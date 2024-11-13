@@ -3,163 +3,163 @@ import localFont from 'next/font/local'
 // Poppins fonts
 const PoppinsBlack = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Black.ttf',
+    src: './poppins/Poppins-Black.ttf',
 })
 
 const PoppinsBlackItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-BlackItalic.ttf',
+    src: './poppins/Poppins-BlackItalic.ttf',
 })
 
 const PoppinsBold = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Bold.ttf',
+    src: './poppins/Poppins-Bold.ttf',
 })
 
 const PoppinsBoldItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-BoldItalic.ttf',
+    src: './poppins/Poppins-BoldItalic.ttf',
 })
 
 const PoppinsExtraBold = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-ExtraBold.ttf',
+    src: './poppins/Poppins-ExtraBold.ttf',
 })
 
 const PoppinsExtraBoldItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-ExtraBoldItalic.ttf',
+    src: './poppins/Poppins-ExtraBoldItalic.ttf',
 })
 
 const PoppinsExtraLight = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-ExtraLight.ttf',
+    src: './poppins/Poppins-ExtraLight.ttf',
 })
 
 const PoppinsExtraLightItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-ExtraLightItalic.ttf',
+    src: './poppins/Poppins-ExtraLightItalic.ttf',
 })
 
 const PoppinsItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Italic.ttf',
+    src: './poppins/Poppins-Italic.ttf',
 })
 
 const PoppinsLight = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Light.ttf',
+    src: './poppins/Poppins-Light.ttf',
 })
 
 const PoppinsLightItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-LightItalic.ttf',
+    src: './poppins/Poppins-LightItalic.ttf',
 })
 
 const PoppinsMedium = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Medium.ttf',
+    src: './poppins/Poppins-Medium.ttf',
 })
 
 const PoppinsMediumItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-MediumItalic.ttf',
+    src: './poppins/Poppins-MediumItalic.ttf',
 })
 
 const PoppinsRegular = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Regular.ttf',
+    src: './poppins/Poppins-Regular.ttf',
 })
 
 const PoppinsSemiBold = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-SemiBold.ttf',
+    src: './poppins/Poppins-SemiBold.ttf',
 })
 
 const PoppinsSemiBoldItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-SemiBoldItalic.ttf',
+    src: './poppins/Poppins-SemiBoldItalic.ttf',
 })
 
 const PoppinsThin = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-Thin.ttf',
+    src: './poppins/Poppins-Thin.ttf',
 })
 
 const PoppinsThinItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/Poppins-ThinItalic.ttf',
+    src: './poppins/Poppins-ThinItalic.ttf',
 })
 
 // Plus Jakarta Sans fonts
 const JakartaBold = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-Bold.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-Bold.ttf',
 })
 
 const JakartaBoldItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-BoldItalic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-BoldItalic.ttf',
 })
 
 const JakartaExtraBold = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-ExtraBold.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-ExtraBold.ttf',
 })
 
 const JakartaExtraBoldItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-ExtraBoldItalic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-ExtraBoldItalic.ttf',
 })
 
 const JakartaExtraLight = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-ExtraLight.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-ExtraLight.ttf',
 })
 
 const JakartaExtraLightItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-ExtraLightItalic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-ExtraLightItalic.ttf',
 })
 
 const JakartaRegular = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-Regular.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-Regular.ttf',
 })
 
 const JakartaItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-Italic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-Italic.ttf',
 })
 
 const JakartaLight = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-Light.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-Light.ttf',
 })
 
 const JakartaLightItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-LightItalic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-LightItalic.ttf',
 })
 
 const JakartaMedium = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-Medium.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-Medium.ttf',
 })
 
 const JakartaMediumItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-MediumItalic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-MediumItalic.ttf',
 })
 
 const JakartaSemiBold = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-SemiBold.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-SemiBold.ttf',
 })
 
 const JakartaSemiBoldItalic = localFont({
     display: 'swap',
-    src: './src/fonts/poppins/PlusJakartaSans-SemiBoldItalic.ttf',
+    src: './Plus_Jakarta_Sans/PlusJakartaSans-SemiBoldItalic.ttf',
 })
 
 export {
