@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Name
 
-## Getting Started
+## Overview
+This project is a structured web application built using **Next.js**, **TypeScript**, and **Tailwind CSS**. It follows the app routing pattern and incorporates Docker for containerized deployment.
 
-First, run the development server:
+### Features
+- **Next.js App Router**: Utilizes the latest routing structure for cleaner and more maintainable code.
+- **TypeScript**: Ensures type safety and robust code quality.
+- **Tailwind CSS**: Provides utility-first CSS for faster styling.
+- **Docker**: Enables easy deployment and environment consistency.
 
+## Project Structure
+The project follows a well-defined structure outlined on whiteboards for all team members to adhere to. This includes clear separation for clients, admins, and super-admins, each with designated functionalities.
+
+### Key Sections
+1. **Client**
+   - Landing page (default)
+   - Vehicle details
+   - Search page
+   - Profile management (accounts, payment history, etc.)
+   - Help center, settings, and FAQ
+2. **Organisation**
+   - Account and transaction management
+   - Agency CRUD operations and details
+   - Vehicle CRUD operations and details
+   - Driver management
+   - Geofencing and statistics overview
+3. **Super Admin**
+   - Organisation management
+   - Subscription management
+   - Notifications
+   - Statistics
+   - Help center
+
+## Installation and Setup
+
+### Prerequisites
+Ensure you have **Docker** and **Docker Compose** installed on your machine.
+
+### Steps to Run the Project
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate into the project directory:
+   ```bash
+   cd <project-directory>
+   ```
+3. Build and launch the project using Docker Compose:
+   ```bash
+   docker-compose up --build
+   ```
+
+### Development
+To start the development server locally, run:
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
+Visit `http://localhost:3000` (or the configured port) to see the application in action. The app includes client-side and server-side rendering for better performance and SEO.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
+- **Next.js**: React framework for building modern web applications.
+- **TypeScript**: Superset of JavaScript providing static typing.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **Docker**: Containerization tool for consistent deployment environments.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contributing
+Please ensure all new features and modifications are in line with the project's architecture and follow best practices for Next.js, TypeScript, and Tailwind.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+This project is licensed under the [MIT License](LICENSE).
