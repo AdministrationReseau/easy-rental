@@ -16,7 +16,7 @@ The project follows a well-defined structure outlined on whiteboards for all tea
 1. **Client**
    - Landing page (default)
    - Vehicle details
-   - Search page
+   - Search pages
    - Profile management (accounts, payment history, etc.)
    - Help center, settings, and FAQ
 2. **Organisation**
