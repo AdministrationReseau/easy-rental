@@ -14,33 +14,58 @@ The project follows a well-defined structure outlined on whiteboards for all tea
 
 ### Key Sections
 1. **Client**
-   - Landing page (default)
-   - Vehicle details
-   - Search page
-   - Profile management (accounts, payment history, etc.)
-   - Help center, settings, and FAQ
+
+[//]: # (```)
+
+[//]: # (cusomer)
+
+[//]: # (└──app/)
+
+[//]: # (    ├── &#40;auth&#41;)
+
+[//]: # (    │   ├── Register.tsx)
+
+[//]: # (    │   └── Login.tsx)
+
+[//]: # (    ├── assets/)
+
+[//]: # (    │   └── readme/)
+
+[//]: # (    │       └── Customer.jpeg)
+
+[//]: # (    ├── components/)
+
+[//]: # (    │   ├── Header.tsx)
+
+[//]: # (    │   └── Footer.tsx)
+
+[//]: # (    ├── pages/)
+
+[//]: # (    │   ├── index.tsx)
+
+[//]: # (    │   └── about.tsx)
+
+[//]: # (    ├── styles/)
+
+[//]: # (    │   └── globals.css)
+
+[//]: # (    └── utils/)
+
+[//]: # (        └── api.ts)
+
+[//]: # ()
+[//]: # (```)
 
 <div align="center">
   <img src="./src/assets/readme/Customer.jpeg" alt="Logo" width="400" />
 </div>
 
 2. **Organisation**
-   - Account and transaction management
-   - Agency CRUD operations and details
-   - Vehicle CRUD operations and details
-   - Driver management
-   - Geofencing and statistics overview
-
 <div align="center">
   <img src="./src/assets/readme/Organisation.jpeg" alt="Logo" width="400" />
 </div>
 
 3. **Super Admin**
-   - Organisation management
-   - Subscription management
-   - Notifications
-   - Statistics
-   - Help center
 
 <div align="center">
   <img src="./src/assets/readme/SuperAdmin.jpeg" alt="Logo" width="400" />
