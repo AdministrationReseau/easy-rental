@@ -19,18 +19,38 @@ The project follows a well-defined structure outlined on whiteboards for all tea
    - Search page
    - Profile management (accounts, payment history, etc.)
    - Help center, settings, and FAQ
+
+<div align="center">
+  <img src="./src/assets/readme/Customer.jpeg" alt="Logo" width="400" />
+</div>
+
 2. **Organisation**
    - Account and transaction management
    - Agency CRUD operations and details
    - Vehicle CRUD operations and details
    - Driver management
    - Geofencing and statistics overview
+
+<div align="center">
+  <img src="./src/assets/readme/Organisation.jpeg" alt="Logo" width="400" />
+</div>
+
 3. **Super Admin**
    - Organisation management
    - Subscription management
    - Notifications
    - Statistics
    - Help center
+
+<div align="center">
+  <img src="./src/assets/readme/SuperAdmin.jpeg" alt="Logo" width="400" />
+</div>
+
+3. **Components**
+
+<div align="center">
+  <img src="./src/assets/readme/components.jpeg" alt="Logo" width="400" />
+</div>
 
 ## Installation and Setup
 
@@ -40,11 +60,11 @@ Ensure you have **Docker** and **Docker Compose** installed on your machine.
 ### Steps to Run the Project
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/AdministrationReseau/easy-rental
    ```
 2. Navigate into the project directory:
    ```bash
-   cd <project-directory>
+   cd easy-rental
    ```
 3. Build and launch the project using Docker Compose:
    ```bash
