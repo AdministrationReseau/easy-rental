@@ -22,13 +22,10 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-interface FilterProps {
-}
 
-
-export default function Filter({}: FilterProps) {
+export default function Filter() {
     const [value, setValue] = useState<number>(0);
-    let [price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>(0);
 
     const dPrice = 5000;
 
@@ -64,7 +61,7 @@ export default function Filter({}: FilterProps) {
 
                 return (
                     <fieldset className='mb-8 border border-green-text/10 border-b-black' key={filterIndex}>
-                        <legend className='uppercase text-xs text-primary-blue'>FILTER 1</legend>
+                        <legend className='uppercase text-xs text-primary-blue'>{name.toUpperCase()}</legend>
                         <Stack>
                             {elements.map((element, elementIndex) => {
                                 return (

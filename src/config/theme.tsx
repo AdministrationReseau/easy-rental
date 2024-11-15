@@ -17,23 +17,31 @@ declare module '@mui/material/styles' {
   }
 }
 
-type ExtendedColors = {
-  blue: true;
-  green: true;
-  orange: true;
-  red: true;
-};
-
 declare module '@mui/material/Button' {
-  interface ButtonPropsColorOverrides extends ExtendedColors {}
+  interface ButtonPropsColorOverrides {
+    blue: true;
+    green: true;
+    orange: true;
+    red: true;
+  }
 }
 
 declare module '@mui/material/Checkbox' {
-  interface CheckboxPropsColorOverrides extends ExtendedColors {}
+  interface CheckboxPropsColorOverrides {
+    blue: true;
+    green: true;
+    orange: true;
+    red: true;
+  }
 }
 
 declare module '@mui/material/Slider' {
-  interface SliderPropsColorOverrides extends ExtendedColors {}
+  interface SliderPropsColorOverrides {
+    blue: true;
+    green: true;
+    orange: true;
+    red: true;
+  }
 }
 
 export const theme = createTheme({

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import "./globals.css";
-import { PoppinsRegular } from '@/fonts'
-import { ThemeProvider } from "@mui/material";
-import { theme } from "@/config/theme";
 import ThemeProviderWrapper from "@/providers/ThemeProviderWrapper";
 
 export const metadata: Metadata = {
