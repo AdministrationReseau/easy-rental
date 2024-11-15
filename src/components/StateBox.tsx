@@ -7,7 +7,16 @@ interface StateBoxProps {
 }
 
 export default function StateBox({state}: StateBoxProps) {
+  const getColor = () => {
+      switch (state) {
+          case ProcessState.PENDING: return 'orange';
+          case ProcessState.CONFIRMED: return 'green';
+          case ProcessState.CANCELED: return 'red';
+          default: return 'red';
+      }
+  }
+
   return (
-      <Button variant="outlined">{state}</Button>
+      <Button variant="outlined" color={getColor()}>{state}</Button>
   );
 }

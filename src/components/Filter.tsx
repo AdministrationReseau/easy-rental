@@ -57,20 +57,20 @@ export default function Filter({}: FilterProps) {
     ];
     
     return (
-        <form action="" className='w-[300px] m-4 p-4 shadow-sm shadow-black'>
+        <form action="" className='w-[300px] m-4 p-4 shadow-sm shadow-primary-blue'>
             {checkboxesFilters.map((filter, filterIndex) => {
                 const name = filter.name;
                 const elements = filter.elements;
 
                 return (
-                    <fieldset className='mb-8 border border-black/10' key={filterIndex}>
-                        <legend className='uppercase text-xs'>FILTER 1</legend>
+                    <fieldset className='mb-8 border border-green-text/10 border-b-black' key={filterIndex}>
+                        <legend className='uppercase text-xs text-primary-blue'>FILTER 1</legend>
                         <Stack>
                             {elements.map((element, elementIndex) => {
                                 return (
                                     <Item key={elementIndex}>
-                                        <Checkbox {...label} id={element} />
-                                        <label htmlFor={element} className='select-none'>{element}</label>
+                                        <Checkbox {...label} color='green' id={element} />
+                                        <label htmlFor={element} className='select-none hover:cursor-pointer'>{element}</label>
                                     </Item>
                                 );
                             })}
@@ -82,9 +82,9 @@ export default function Filter({}: FilterProps) {
             {slidesFilters.map((filter, filterIndex) => {
                 return (
                     <fieldset className='mb-8' key={filterIndex}>
-                        <legend className='uppercase text-xs'>{filter.name}</legend>
+                        <legend className='uppercase text-xs text-primary-blue'>{filter.name}</legend>
                         <Stack>
-                            <Slider aria-label="Price" value={value} onChange={handleChange} />
+                            <Slider color='blue' aria-label="Price" value={value} onChange={handleChange} />
 
                             <div className=''>Max: {new Intl.NumberFormat('fr-FR').format(price)} FCFA</div>
                         </Stack>
