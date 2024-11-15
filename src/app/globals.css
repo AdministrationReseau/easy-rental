@@ -6,22 +6,8 @@
   --background: #F6F7F9;
   --foreground: #083A50;
 
-  /*Color*/
-  --primary-blue: #005FFE;
-
-  --whitish-background: #F6F7F9;
-
-  --primary-text: #083A50;
-  --secondary-text: #90A3BF;
-
-  --green-text: #0EAD69;
-  --orange-text: #F49A47;
-  --red-text: #FF5D47;
-
-  --green-background: #DCFAED;
-  --orange-background: #FFE5A1;
-  --red-background: #FDE2E2;
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -33,5 +19,4 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
