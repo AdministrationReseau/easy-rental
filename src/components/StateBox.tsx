@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { ProcessState } from '@/app/utils/enum';
+import { ProcessState } from '@/utils/enum';
 
 interface StateBoxProps {
     state: ProcessState

@@ -2,8 +2,10 @@ import * as React from 'react';
 import Image from 'next/image';
 
 export default function CarProfilImg() {
+    // let active_img_index = 0;
+
     const profil_path = 'car.png';
-    const images_paths = ['car.png', 'car.png', 'car.png', 'car.png', 'car.png', 'car.png'];
+    const images_paths = ['car.png', 'car2.png', 'car.png', 'car2.png', 'car.png', 'car2.png'];
     const PROFIL_SIDE_SIZE = 300;
     const MARGIN_BETWEEN_IMAGES = 2;
     const MINIATURE = PROFIL_SIDE_SIZE / 3 - MARGIN_BETWEEN_IMAGES;
