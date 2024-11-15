@@ -48,7 +48,7 @@ Ensure you have **Docker** and **Docker Compose** installed on your machine.
    ```
 3. Build and launch the project using Docker Compose:
    ```bash
-   docker-compose up --build
+   docker-compose up
    ```
 
 ### Development
