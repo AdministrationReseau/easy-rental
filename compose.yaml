@@ -16,7 +16,9 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/usr/src/app  # Mounts the current directory to /usr/src/app in the container
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm start
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
