@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import "./globals.css";
-import { PoppinsRegular } from '@/fonts'
+import ThemeProviderWrapper from "@/providers/ThemeProviderWrapper";
 
 export const metadata: Metadata = {
   title: "Easy Rent",
@@ -16,11 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     <AppRouterCacheProvider>
-      <body
-        className={PoppinsRegular.className}
-      >
-        {children}
-      </body>
+      <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
     </AppRouterCacheProvider>
     </html>
   );
