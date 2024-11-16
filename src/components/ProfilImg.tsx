@@ -4,13 +4,13 @@ import * as React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 
-interface CarProfilImgProps {
+interface ProfilImgProps {
     imagesPaths: string[], /* array of image paths names in the 'public' folder without the '/' start */
     width: number,
     height: number,
 }
 
-export default function     CarProfilImg({ imagesPaths, width = 300, height = 500 }: CarProfilImgProps) {
+export default function     ProfilImg({ imagesPaths, width = 300, height = 500 }: ProfilImgProps) {
     const [activeImgIndex, setActiveImgIndex] = useState<number>(0);
     const [profilPath, setProfilPath] = useState<string>(imagesPaths[0]);
 

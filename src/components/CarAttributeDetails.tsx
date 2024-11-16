@@ -7,7 +7,7 @@ import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import GroupIcon from '@mui/icons-material/Group';
 
 
-interface CaracteristicDetailProps {
+interface CarAttributeDetailsProps {
     name: string
     value: string
 }
@@ -22,7 +22,7 @@ const getIcon = (name: string) => {
     }
 }
 
-export default function CaracteristicDetail({ name, value }: CaracteristicDetailProps) {
+export default function CarAttributeDetails({ name, value }: CarAttributeDetailsProps) {
     return (
         <div className='flex flex-col gap-2 items-center bg-white shadow-sm shadow-primary-blue/10 rounded-md p-4'>
             {getIcon(name)}
