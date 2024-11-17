@@ -59,7 +59,7 @@ const CarCard: React.FC<CarProps> = ({
     };
 
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[317px] h-[388px]">
+        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[325px] h-[388px]">
             {/* Première ligne - Nom et Like/Dislike */}
             <div className="flex justify-between items-center p-4">
                 <h2 className="text-xl font-semibold text-gray-800">{brand} {model}</h2>
@@ -76,7 +76,7 @@ const CarCard: React.FC<CarProps> = ({
                 <img
                     src={imageUrl}
                     alt={`${brand} ${model}`}
-                    className="w-[254px] h-[102px] object-cover"
+                    className="w-[300px] h-[125px] object-cover"
                 />
             </div>
 
