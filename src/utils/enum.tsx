@@ -6,3 +6,11 @@ export enum ProcessState {
     CONFIRMED = 'Confirmed',
     CANCELED = 'Canceled',
 }
+
+export enum ProcessColor {
+    PRIMARY = 'bg-primary-blue',
+    SECONDARY = 'bg-secondary-blue',
+    DANGER = 'bg-red-text',
+    SUCCESS = 'bg-green-text',
+    OUTPRIMARY = 'outlined bg-primary-blue',
+}
