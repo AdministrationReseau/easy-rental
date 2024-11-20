@@ -1,39 +1,20 @@
-# syntax=docker/dockerfile:1
+# Utilise une image de base pour Node.js
+FROM node:20
 
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Dockerfile reference guide at
-# https://docs.docker.com/go/dockerfile-reference/
+# Crée un dossier de travail dans le conteneur
+WORKDIR /app
 
-# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
+# Copie le fichier package.json et yarn.lock (ou package-lock.json si tu utilises npm)
+COPY package*.json ./
 
-ARG NODE_VERSION=20.18.0
+# Installe les dépendances du projet
+RUN npm install
 
-FROM node:${NODE_VERSION}-alpine
-
-# Use production node environment by default.
-ENV NODE_ENV=production
-
-
-WORKDIR /usr/src/app
-
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.npm to speed up subsequent builds.
-# Leverage a bind mounts to package.json and package-lock.json to avoid having to copy them into
-# into this layer.
-
-# Copy package.json and package-lock.json
-COPY package.json package-lock.json ./
-
-# Install dependencies
-RUN npm install --include=dev
-
-# Copy the rest of the source files into the image.
+# Copie le reste des fichiers du projet dans le conteneur
 COPY . .
 
-# Expose the port that the application listens on.
+# Expose le port 5174 par défaut pour Vite
 EXPOSE 3000
 
-RUN npm run build
-
-# Run the application.
-CMD ["npm", "start"]
+# Démarre l'application
+CMD ["npm", "run","dev"]
