@@ -18,6 +18,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'primary-blue': '#005FFE',
+          'secondary-blue': '#54A6FF',
         'whitish-background': '#F6F7F9',
         'primary-text': '#083A50',
         'secondary-text': '#90A3BF',
