@@ -39,6 +39,7 @@ export default function Test() {
     const [checked, setChecked] = useState(false);
     const [selectedValue, setSelectedValue] = useState("");
     const [password, setPassword] = useState('');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [likedCars, setLikedCars] = useState<string[]>([]);
     const options = [
         { value: "option1", label: "Option 1" },
@@ -46,8 +47,8 @@ export default function Test() {
         { value: "option3", label: "Option 3" },
     ];
 
-   
- 
+
+
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
@@ -60,6 +61,7 @@ export default function Test() {
         setLikedCars((prev) => prev.filter((carId) => carId !== id));
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [likedAgencies, setLikedAgencies] = useState<string[]>([]); // Etat pour suivre les agences likées
 
     // Fonction pour ajouter un like à une agence

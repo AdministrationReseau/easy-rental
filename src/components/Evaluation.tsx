@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 const Evaluation = () => {
     return (
         <Stack spacing={1}>
-            <Rating name="half-rating" defaultValue={null} precision={0.5} />
+            <Rating name="half-rating" defaultValue={undefined} precision={0.5} />
         </Stack>
     );
 };
