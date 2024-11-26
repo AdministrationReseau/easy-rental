@@ -1,3 +1,4 @@
+/*
 'use client'
 
 import React, { useState } from 'react';
@@ -130,3 +131,42 @@ export default function Test() {
         </div>
     );
 }
+*/
+
+import React from 'react';
+import Reviews from "@/components/Reviews";
+import Records from "@/components/Records";
+import Abonnement from "@/components/Abonnement";
+
+const Test = () => {
+    const options = [
+        { label: "2 team members", available: true },
+        { label: "20GB Cloud storage", available: true },
+        { label: "Integration help", available: true },
+        { label: "Sketch Files", available: true },
+        { label: "API Access", available: true },
+        { label: "Complete documentation", available: true },
+        { label: "24×7 phone & email support", available: true },
+    ];
+    return (
+        <div>
+            <Reviews
+                name="Brayanne test"
+                starsValue={4.5}
+                message="I found solution to all my design needs from Creative Tim. I use
+                        them as a freelancer in my hobby projects for fun! And its really
+                        affordable, very humble guys !!!"
+            />
+            <Records />
+            <Abonnement
+                title="Standard plan"
+                price="49"
+                frequency="month"
+                options={options}
+            />
+        </div>
+    );
+};
+
+export default Test;
+

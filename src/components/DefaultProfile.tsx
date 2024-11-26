@@ -19,6 +19,7 @@ function stringToColor(value: string) {
     return color;
 }
 
+
 function stringAvatar(name: string) {
     const initials = name.split(' ').map(part => part[0]).join('');
     return {
