@@ -7,7 +7,7 @@ interface Transaction {
     date: string;
     time: string;
     amount: string;
-    status: "pending" | "confirmed" | "canceled";
+    status: string;
     icon: string;
 }
 
