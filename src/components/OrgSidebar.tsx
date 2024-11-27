@@ -3,33 +3,40 @@
 import React, { useState } from "react";
 import {
     Home,
-    Favorite,
+    DirectionsCar,
+    AccountBalance,
+    Person,
     LocationOn,
     AttachMoney,
-    Settings,
+    BarChart,
     Notifications,
+    Subscriptions,
+    Settings,
     Help,
-    Logout,
     MenuOpen,
-    Menu,
+    Menu, Logout,
 } from "@mui/icons-material";
 import Link from "next/link";
 
-const Sidebar: React.FC = () => {
+const OrgSidebar: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [activeItem, setActiveItem] = useState<string>("Profile"); // Profile is active by default
+    const [activeItem, setActiveItem] = useState<string>("Dashboard"); // Profile is active by default
 
     const mainMenuItems = [
-        { name: "Profile", icon: <Home />, link: "/" },
-        { name: "Favorite", icon: <Favorite />, link: "/favorite" },
-        { name: "Location", icon: <LocationOn />, link: "/location" },
-        { name: "Transaction", icon: <AttachMoney />, link: "/transaction" },
-        { name: "Notification", icon: <Notifications />, link: "/notification" },
+        { name: "Dashboard", icon: <Home />, link: "/" },
+        { name: "Agencies", icon: <AccountBalance />, link: "/agencies"},
+        {name: "Cars", icon: <DirectionsCar />, link: "/cars"},
+        { name: "Drivers", icon: <Person />, link: "/drivers" },
+        { name: "Locations", icon: <LocationOn />, link: "/locations" },
+        { name: "Transactions", icon: <AttachMoney />, link: "/transactions" },
+        { name: "Statistics", icon: <BarChart />, link: "/statistics" },
+        { name: "Notifications", icon: <Notifications />, link: "/notifications" },
     ];
 
     const preferenceItems = [
-        { name: "Settings", icon: <Settings />, link: "/settings" },
-        { name: "Help & Center", icon: <Help />, link: "/help-center" },
+        { name: "Subscription", icon: <Subscriptions />, link: "/subscription" },
+        { name: "Configuration", icon: <Settings />, link: "/configuration" },
+        { name: "Help", icon: <Help />, link: "/help" },
     ];
 
     return (
@@ -53,14 +60,14 @@ const Sidebar: React.FC = () => {
                         isCollapsed && "hidden"
                     }`}
                 >
-                    Main Menu
+                    Dashboard Menu
                 </h2>
                 <ul>
                     {mainMenuItems.map((item, index) => (
                         <li
                             key={index}
                             onClick={() => setActiveItem(item.name)}
-                            className={`flex items-center gap-4 p-4 cursor-pointer rounded-lg transition-all duration-200 ${
+                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                 activeItem === item.name
                                     ? "bg-primary-blue text-white"
                                     : "hover:bg-gray-100 text-secondary-text"
@@ -110,7 +117,7 @@ const Sidebar: React.FC = () => {
                         <li
                             key={index}
                             onClick={() => setActiveItem(item.name)}
-                            className={`flex items-center gap-4 p-4 cursor-pointer rounded-lg transition-all duration-200 ${
+                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                 activeItem === item.name
                                     ? "bg-primary-blue text-white"
                                     : "hover:bg-gray-100 text-secondary-text"
@@ -169,4 +176,4 @@ const Sidebar: React.FC = () => {
     );
 };
 
-export default Sidebar;
+export default OrgSidebar;

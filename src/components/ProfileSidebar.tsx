@@ -15,7 +15,7 @@ import {
 } from "@mui/icons-material";
 import Link from "next/link";
 
-const Sidebar: React.FC = () => {
+const ProfileSidebar: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [activeItem, setActiveItem] = useState<string>("Profile"); // Profile is active by default
 
@@ -169,4 +169,4 @@ const Sidebar: React.FC = () => {
     );
 };
 
-export default Sidebar;
+export default ProfileSidebar;
