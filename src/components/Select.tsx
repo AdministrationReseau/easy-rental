@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, {ReactNode} from 'react';
 import "@/app/globals.css";
 import {MenuItem, Select, FormControl, SelectChangeEvent} from '@mui/material';
 

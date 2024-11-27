@@ -98,7 +98,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
                     <p>{isOpen}Open</p>
                 </div>
             </div>
-            
+
 
             {/* Prix de location et bouton Rent Now */}
             <div className="px-4 py-2 flex justify-between items-center">

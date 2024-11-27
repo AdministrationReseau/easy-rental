@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, Close, Favorite, Notifications, Settings } from '@mui/icons-material'; // Import des icônes Material-UI
-import Image from 'next/image'; // Pour afficher une image dans le profil
 
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -103,7 +102,7 @@ const NavBar: React.FC = () => {
                                 Pricing
                             </Link>
                         </li>
-                        
+
                         <li>
                             <Link href="#" className="hover:text-gray-300 transition" onClick={toggleMenu}>
                                 Cars
@@ -128,6 +127,7 @@ const NavBar: React.FC = () => {
                         </li>
                         <li className="flex items-center gap-2">
                             <Link href="#">
+
                                 <Image
                                     src="personne (2).png" 
                                     alt="Profil"

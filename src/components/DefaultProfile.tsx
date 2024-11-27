@@ -2,11 +2,11 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
-function stringToColor(string) {
+function stringToColor(value: string) {
     let hash = 0;
 
-    for (let i = 0; i < string.length; i += 1) {
-        hash = string.charCodeAt(i) + ((hash << 5) - hash);
+    for (let i = 0; i < value.length; i += 1) {
+        hash = value.charCodeAt(i) + ((hash << 5) - hash);
     }
 
     let color = '#';
@@ -19,7 +19,8 @@ function stringToColor(string) {
     return color;
 }
 
-function stringAvatar(name) {
+
+function stringAvatar(name: string) {
     const initials = name.split(' ').map(part => part[0]).join('');
     return {
         sx: {
@@ -29,7 +30,7 @@ function stringAvatar(name) {
     };
 }
 
-const DefaultProfile = ({ name }) => {
+const DefaultProfile = ({ name }: { name: string }) => {
     return (
         <Stack direction="row" spacing={2}>
             <Avatar {...stringAvatar(name)} />
