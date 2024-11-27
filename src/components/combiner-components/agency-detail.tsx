@@ -66,7 +66,7 @@ const AgencyDetail: React.FC = () => {
       <div className="flex flex-row md:flex-row justify-between space-y-4 md:space-y-0 text-blue-600">
         <div className="flex items-center">
           <span className="material-icons text-xl">place</span>
-          <span className="ml-2">Adresse : 123 Rue de l'Agence, Douala</span>
+          <span className="ml-2">Adresse : 123 Rue de l&lsquo;Agence, Douala</span>
         </div>
         <div className="flex items-center">
           <span className="material-icons text-xl">schedule</span>

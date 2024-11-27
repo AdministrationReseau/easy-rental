@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Favorite, FavoriteBorder, People,Star, AccessTime, CheckCircle} from '@mui/icons-material'; // Import des icônes pour like et dislike
+import { Favorite, FavoriteBorder, People,Star, AccessTime} from '@mui/icons-material';
+import Image from "next/image"; // Import des icônes pour like et dislike
 
 interface LikeProps {
     isLiked: boolean; // Etat du like : true si aimé, false sinon
@@ -75,7 +76,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
 
             {/* Image du véhicule */}
             <div className='flex items-center justify-center h-[150px]'>
-                <img
+                <Image
                     src={imageUrl}
                     alt={`${agency} ${slogan}`}
                     className="w-[300px] h-[125px] object-cover"

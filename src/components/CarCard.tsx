@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material'; // Import des icônes pour like et dislike
+import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
+import Image from "next/image"; // Import des icônes pour like et dislike
 
 interface LikeProps {
     isLiked: boolean; // Etat du like : true si aimé, false sinon
@@ -73,7 +74,7 @@ const CarCard: React.FC<CarProps> = ({
 
             {/* Image du véhicule */}
             <div className='flex items-center justify-center h-[180px]'>
-                <img
+                <Image
                     src={imageUrl}
                     alt={`${brand} ${model}`}
                     className="w-[300px] h-[125px] object-cover"
