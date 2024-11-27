@@ -137,6 +137,7 @@ import React from 'react';
 import Reviews from "@/components/Reviews";
 import Records from "@/components/Records";
 import Abonnement from "@/components/Abonnement";
+import DriverCard from "@/components/DriverCard";
 
 const Test = () => {
     const options = [
@@ -160,9 +161,18 @@ const Test = () => {
             <Records />
             <Abonnement
                 title="Standard plan"
-                price="49"
+                price={49}
                 frequency="month"
                 options={options}
+            />
+            <DriverCard
+                name="test test"
+                age={25}
+                email="test@gmail.com"
+                location="yaounde"
+                avatar="/car.png"
+                stars={3.5}
+                phone="620202020"
             />
         </div>
     );

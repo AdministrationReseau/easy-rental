@@ -1,7 +1,14 @@
 import React from "react";
 import {PoppinsBold} from "@/fonts";
 
-const Abonnement = ({ title, price, frequency, options }) => {
+interface AbonnementProps{
+    title: string;
+    price: number;
+    frequency: string;
+    options: { label: string; available: boolean }[];
+}
+
+const Abonnement: React.FC<AbonnementProps> = ({ title, price, frequency, options }) => {
     return (
         <div>
             <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow">
