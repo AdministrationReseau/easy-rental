@@ -10,7 +10,7 @@ interface ProfilImgProps {
     height: number,
 }
 
-export default function     ProfilImg({ imagesPaths, width = 300, height = 500 }: ProfilImgProps) {
+export default function ProfilImg({ imagesPaths, width = 300, height = 500 }: ProfilImgProps) {
     const [activeImgIndex, setActiveImgIndex] = useState<number>(0);
     const [profilPath, setProfilPath] = useState<string>(imagesPaths[0]);
 

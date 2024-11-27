@@ -57,7 +57,7 @@ const NavBar: React.FC = () => {
                     <li className="flex items-center gap-2">
                         {/* Profil */}
                         <Link href="#">
-                            <img
+                            <Image
                                 src="personne (2).png" // Remplacez avec le chemin vers l'image
                                 alt="Profil"
                                 width={32}
@@ -127,8 +127,9 @@ const NavBar: React.FC = () => {
                         </li>
                         <li className="flex items-center gap-2">
                             <Link href="#">
-                                <img
-                                    src="personne (2).png"
+
+                                <Image
+                                    src="personne (2).png" 
                                     alt="Profil"
                                     width={32}
                                     height={32}

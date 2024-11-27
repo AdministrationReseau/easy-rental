@@ -8,7 +8,7 @@ interface SelectProps {
     label: string;
     value: string;
     options: { value: string; label: string }[];
-    onChange: (event: SelectChangeEvent<string>, child: ReactNode) => void;
+    onChange: (event: SelectChangeEvent<string>) => void;
 }
 
 const CustomSelect: React.FC<SelectProps> = ({ label, value, options, onChange }) => {
