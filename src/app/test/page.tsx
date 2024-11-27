@@ -138,6 +138,7 @@ import Reviews from "@/components/Reviews";
 import Records from "@/components/Records";
 import Abonnement from "@/components/Abonnement";
 import DriverCard from "@/components/DriverCard";
+import Sidebar from "@/components/Sidebar";
 
 const Test = () => {
     const options = [
@@ -174,6 +175,7 @@ const Test = () => {
                 stars={3.5}
                 phone="620202020"
             />
+            <Sidebar />
         </div>
     );
 };
