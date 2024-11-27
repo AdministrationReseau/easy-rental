@@ -2,13 +2,13 @@
 
 import React from 'react';
 import "@/app/globals.css";
-import { MenuItem, Select, FormControl } from '@mui/material';
+import {MenuItem, Select, FormControl, SelectChangeEvent} from '@mui/material';
 
 interface SelectProps {
     label: string;
     value: string;
     options: { value: string; label: string }[];
-    onChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
+    onChange: (event: SelectChangeEvent<string>) => void;
 }
 
 const CustomSelect: React.FC<SelectProps> = ({ label, value, options, onChange }) => {
