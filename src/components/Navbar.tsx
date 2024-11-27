@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, Close, Favorite, Notifications, Settings } from '@mui/icons-material'; // Import des icônes Material-UI
 
 const NavBar: React.FC = () => {
