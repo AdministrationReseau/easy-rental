@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, Favorite, Notifications, Settings, Tune } from "@mui/icons-material";
+import { Search, Favorite, Notifications, Tune } from "@mui/icons-material";
 import Link from "next/link";
 import ImageProfile from "@/components/ImageProfile";
 
