@@ -1,80 +1,53 @@
-'use client';
+import React from "react";
+import { Search, Favorite, Notifications, Settings, Tune } from "@mui/icons-material";
+import Link from "next/link";
+import ImageProfile from "@/components/ImageProfile";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Menu, Close } from '@mui/icons-material'; // Import des icônes pour le menu hamburger
-
-const NavBar: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    // Fonction pour basculer le menu mobile
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-
+const Navbar: React.FC = () => {
     return (
-        <nav className="bg-primary-blue text-white shadow-lg fixed top-0 left-0 w-full z-50">
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                {/* Logo */}
-                <div className="text-2xl font-bold">
-                    <Link href="/">Logo</Link>
-                </div>
+        <nav className="flex items-center justify-between bg-white py-4 px-6 shadow-md">
+            {/* Logo */}
+            <Link href="/">
+                <p className="text-primary-blue font-bold text-lg">EASY-RENT</p>
+            </Link>
 
-                {/* Menu principal (Desktop) */}
-                <ul className="hidden md:flex gap-6 items-center">
-                    <li>
-                        <Link href="/" className="hover:text-gray-300 transition">Accueil</Link>
-                    </li>
-                    <li>
-                        <Link href="/services" className="hover:text-gray-300 transition">Services</Link>
-                    </li>
-                    <li>
-                        <Link href="/about" className="hover:text-gray-300 transition">À propos</Link>
-                    </li>
-                    <li>
-                        <Link href="/contact" className="hover:text-gray-300 transition">Contact</Link>
-                    </li>
-                </ul>
-
-                {/* Bouton Menu Hamburger (Mobile) */}
-                <button onClick={toggleMenu} className="md:hidden">
-                    {isOpen ? (
-                        <Close className="w-7 h-7 text-white" />
-                    ) : (
-                        <Menu className="w-7 h-7 text-white" />
-                    )}
-                </button>
+            {/* Search Bar */}
+            <div className="flex items-center bg-gray-100 rounded-full w-1/3 px-4">
+                <Search className="text-gray-500" />
+                <input
+                    type="text"
+                    placeholder="Search something here"
+                    className="flex-grow bg-transparent outline-none p-3 text-sm px-2 text-gray-700"
+                />
+                <Tune className="text-gray-500 cursor-pointer" />
             </div>
 
-            {/* Menu mobile */}
-            {isOpen && (
-                <div className="md:hidden bg-primary-blue text-white">
-                    <ul className="flex flex-col items-center gap-4 py-4">
-                        <li>
-                            <Link href="/" className="hover:text-gray-300 transition" onClick={toggleMenu}>
-                                Accueil
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/services" className="hover:text-gray-300 transition" onClick={toggleMenu}>
-                                Services
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/about" className="hover:text-gray-300 transition" onClick={toggleMenu}>
-                                À propos
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/contact" className="hover:text-gray-300 transition" onClick={toggleMenu}>
-                                Contact
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            )}
+            <div className="flex flex-row text-[18px] text-secondary-text gap-4">
+                <Link href="/customer/cars" className="mr-4"> Cars </Link>
+                <Link href="/customer/agencies" > Agencies </Link>
+                <Link href="/customer/contact" > Contact </Link>
+                <Link href="/customer/about" > About Us </Link>
+            </div>
+
+            <div className="flex items-center gap-4">
+                <Link href="/profile/favorites" >
+                    <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
+                        <Favorite className="text-primary-blue" />
+                    </button>
+                </Link>
+
+                <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
+                    <Notifications className="text-primary-blue" />
+                    <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"></span>
+                </button>
+
+                {/* Settings Icon */}
+                <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
+                    <ImageProfile imageUrl="/car.png" width={40} height={40} />
+                </button>
+            </div>
         </nav>
     );
 };
 
-export default NavBar;
+export default Navbar;

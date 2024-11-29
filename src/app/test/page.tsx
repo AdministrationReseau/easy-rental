@@ -65,13 +65,13 @@ export default function Test() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [likedAgencies, setLikedAgencies] = useState<string[]>([]); // Etat pour suivre les agences likées
 
-    // Fonction pour ajouter un like à une agence
+    // Fonction pour ajouter un like à une agencies
     const handleLikeAgency = (id: string) => {
         setLikedAgencies((prev) => [...prev, id]);
         console.log(`Agence ${id} likée`);
     };
 
-    // Fonction pour enlever un like d'une agence
+    // Fonction pour enlever un like d'une agencies
     const handleDislikeAgency = (id: string) => {
         setLikedAgencies((prev) => prev.filter((likedId) => likedId !== id));
         console.log(`Agence ${id} dislikée`);

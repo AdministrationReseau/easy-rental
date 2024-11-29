@@ -48,19 +48,12 @@ const Sidebar: React.FC = () => {
 
             {/* Main Menu Section */}
             <div className="mt-4">
-                <h2
-                    className={`text-secondary-text text-sm px-4 uppercase font-semibold ${
-                        isCollapsed && "hidden"
-                    }`}
-                >
-                    Main Menu
-                </h2>
                 <ul>
                     {mainMenuItems.map((item, index) => (
                         <li
                             key={index}
                             onClick={() => setActiveItem(item.name)}
-                            className={`flex items-center gap-4 p-4 cursor-pointer rounded-lg transition-all duration-200 ${
+                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                 activeItem === item.name
                                     ? "bg-primary-blue text-white"
                                     : "hover:bg-gray-100 text-secondary-text"
@@ -97,20 +90,13 @@ const Sidebar: React.FC = () => {
             <div className="border-t border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
-            <div className="mt-4">
-                <h2
-                    className={`text-secondary-text text-sm px-4 uppercase font-semibold ${
-                        isCollapsed && "hidden"
-                    }`}
-                >
-                    Preferences
-                </h2>
+            <div className="mt-1">
                 <ul>
                     {preferenceItems.map((item, index) => (
                         <li
                             key={index}
                             onClick={() => setActiveItem(item.name)}
-                            className={`flex items-center gap-4 p-4 cursor-pointer rounded-lg transition-all duration-200 ${
+                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                 activeItem === item.name
                                     ? "bg-primary-blue text-white"
                                     : "hover:bg-gray-100 text-secondary-text"
@@ -144,7 +130,7 @@ const Sidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="p-4">
+            <div className="p-3">
                 <button
                     onClick={() => setActiveItem("Log Out")}
                     className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
