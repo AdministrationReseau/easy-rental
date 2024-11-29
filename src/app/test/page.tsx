@@ -1,144 +1,183 @@
+/*
 'use client'
 
 import React, { useState } from 'react';
 import { CustomAlert } from '@/components/Alert'
 import { CustomCheckbox } from '@/components/Checkbox'
-import ComboBox from '@/components/ComboBox'
-import SearchField from "@/components/SearchField";
-import TransactionList from "@/components/TransactionList";
+import {CustomSelect} from '@/components/Select'
+import { CustomPassword } from '@/components/Password';
+import { CarCard } from '@/components/CarCard';
+import { AgencyCard } from '@/components/AgencyCard';
+import NavBar from '@/components/Navbar';
+
+
+const carList = [
+    {
+        id: '1',
+        imageUrl: 'car.png',
+        brand: 'Toyota',
+        model: 'Camry',
+        fuel: 80,
+        gearbox: 'Manuelle',
+        passengers: 5,
+        pricePerDay: 5000,
+    },
+    {
+        id: '2',
+        imageUrl: 'car.png',
+        brand: 'BMW',
+        model: 'X5',
+        fuel: 50,
+        gearbox: 'Automatique',
+        passengers: 5,
+        pricePerDay: 8000,
+    },
+];
 
 
 export default function Test() {
 
-    const paymentOptions = [
-        { name: "PayPal", icon: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" },
-        { name: "Bitcoin", icon: "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" },
+    const [checked, setChecked] = useState(false);
+    const [selectedValue, setSelectedValue] = useState("");
+    const [password, setPassword] = useState('');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [likedCars, setLikedCars] = useState<string[]>([]);
+    const options = [
+        { value: "option1", label: "Option 1" },
+        { value: "option2", label: "Option 2" },
+        { value: "option3", label: "Option 3" },
     ];
 
-    const [checked, setChecked] = useState(false);
+
 
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
 
-    const handleSearch = (query: string) => {
-        console.log("Search query:", query);
+    const handleLike = (id: string) => {
+        setLikedCars((prev) => [...prev, id]);
     };
 
-    const handleChangeComboBox = (selectedValue: string) => {
-        console.log("Option sélectionnée :", selectedValue);
+    const handleDislike = (id: string) => {
+        setLikedCars((prev) => prev.filter((carId) => carId !== id));
     };
 
-    const dumyTransactions = [
-        {
-            id: "1",
-            title: "Currency exchange",
-            description: "From ABC Bank ATM",
-            date: "17 Sep 2023",
-            time: "11:21 AM",
-            amount: "$350.00",
-            status: "pending",
-            icon: "https://via.placeholder.com/40", // Icône de remplacement
-        },
-        {
-            id: "2",
-            title: "Cash-in",
-            description: "From ABC Bank ATM",
-            date: "17 Sep 2023",
-            time: "10:34 AM",
-            amount: "$100.00",
-            status: "confirmed",
-            icon: "https://via.placeholder.com/40",
-        },
-        {
-            id: "3",
-            title: "Transfer to card",
-            description: "From ABC Bank ATM",
-            date: "16 Sep 2023",
-            time: "11:21 AM",
-            amount: "$9,000.00",
-            status: "confirmed",
-            icon: "https://via.placeholder.com/40",
-        },
-        {
-            id: "4",
-            title: "Transfer to card",
-            description: "From ABC Bank ATM",
-            date: "15 Sep 2023",
-            time: "11:21 AM",
-            amount: "$9,267.00",
-            status: "canceled",
-            icon: "https://via.placeholder.com/40",
-        },
-        {
-            id: "5",
-            title: "Currency exchange",
-            description: "From ABC Bank ATM",
-            date: "17 Sep 2023",
-            time: "11:21 AM",
-            amount: "$350.00",
-            status: "pending",
-            icon: "https://via.placeholder.com/40", // Icône de remplacement
-        },
-        {
-            id: "6",
-            title: "Cash-in",
-            description: "From ABC Bank ATM",
-            date: "17 Sep 2023",
-            time: "10:34 AM",
-            amount: "$100.00",
-            status: "confirmed",
-            icon: "https://via.placeholder.com/40",
-        },
-        {
-            id: "7",
-            title: "Transfer to card",
-            description: "From ABC Bank ATM",
-            date: "16 Sep 2023",
-            time: "11:21 AM",
-            amount: "$9,000.00",
-            status: "confirmed",
-            icon: "https://via.placeholder.com/40",
-        },
-        {
-            id: "8",
-            title: "Transfer to card",
-            description: "From ABC Bank ATM",
-            date: "15 Sep 2023",
-            time: "11:21 AM",
-            amount: "$9,267.00",
-            status: "canceled",
-            icon: "https://via.placeholder.com/40",
-        },
-    ];
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [likedAgencies, setLikedAgencies] = useState<string[]>([]); // Etat pour suivre les agences likées
 
-        return (
-            <div>
-                <main>
-                    <div>
-                        <CustomAlert message="hellloooooooo guyssss" type='warning'
-                                     width="w-full sm:w-[300px] md:w-[500px] lg:w-[700px] xl:w-[900px]"/>
+    // Fonction pour ajouter un like à une agence
+    const handleLikeAgency = (id: string) => {
+        setLikedAgencies((prev) => [...prev, id]);
+        console.log(`Agence ${id} likée`);
+    };
 
-                        <div className="p-8">
-                            <h1 className="text-2xl font-bold text-primary-text mb-6">Search</h1>
-                            <SearchField placeholder="Search something here" onSearch={handleSearch}/>
+    // Fonction pour enlever un like d'une agence
+    const handleDislikeAgency = (id: string) => {
+        setLikedAgencies((prev) => prev.filter((likedId) => likedId !== id));
+        console.log(`Agence ${id} dislikée`);
+    };
+    return (
+        <div>
+            <NavBar/>
+            <main>
+                <div>
+                    <CustomAlert message="hellloooooooo guyssss" type='warning' width="w-full sm:w-[300px] md:w-[500px] lg:w-[700px] xl:w-[900px]"/>
 
-                        </div>
+                    <CustomCheckbox label="Agree to terms" checked={checked} onChange={handleCheck}/>
 
-                        <div className="p-8">
-                            <h1 className="text-2xl font-bold text-primary-text mb-6">Choisissez un mode de
-                                paiement</h1>
-                            <ComboBox options={paymentOptions} onChange={handleChangeComboBox} width="700px"/>
-                        </div>
-
-                        <div className="p-6 bg-background min-h-screen">
-                            <TransactionList transactions={dumyTransactions}/>
-                        </div>
-
-
-                        <CustomCheckbox label="Agree to terms" checked={checked} onChange={handleCheck}/>
+                    <CustomSelect
+                        label="Sélectionnez une option"
+                        options={options}
+                        value={selectedValue}
+                        onChange={(e) => setSelectedValue(e.target.value as string)}
+                    />
+                     <CustomPassword
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Mot de passe"
+                    />
+                    <div className="flex justify-center items-center flex-wrap gap-4 p-6 bg-gray-100">
+                        {carList.map((car) => (
+                            <CarCard
+                                key={car.id}
+                                id={car.id}
+                                imageUrl={car.imageUrl}
+                                brand={car.brand}
+                                model={car.model}
+                                fuel={car.fuel}
+                                gearbox={car.gearbox}
+                                passengers={car.passengers}
+                                pricePerDay={car.pricePerDay}
+                                onLike={handleLike}
+                                onDislike={handleDislike}
+                            />
+                        ))}
+                         <AgencyCard
+                            id="1"
+                            imageUrl="ADN.png"
+                            agency="Agence 1"
+                            slogan="Votre partenaire de confiance"
+                            stars={5}
+                            followers={1200}
+                            isOpen={true}
+                            city="Yaoundé"
+                            location="Centre-ville"
+                            onLike={handleLikeAgency}
+                            onDislike={handleDislikeAgency}
+                        />
                     </div>
-                </main>
-            </div>
-        );
+                </div>
+            </main>
+        </div>
+    );
 }
+*/
+
+import React from 'react';
+import Reviews from "@/components/Reviews";
+import Records from "@/components/Records";
+import Abonnement from "@/components/Abonnement";
+import DriverCard from "@/components/DriverCard";
+import OrgSidebar from "@/components/OrgSidebar";
+
+const Test = () => {
+    const options = [
+        { label: "2 team members", available: true },
+        { label: "20GB Cloud storage", available: true },
+        { label: "Integration help", available: true },
+        { label: "Sketch Files", available: true },
+        { label: "API Access", available: true },
+        { label: "Complete documentation", available: true },
+        { label: "24×7 phone & email support", available: true },
+    ];
+    return (
+        <div>
+            <Reviews
+                name="Brayanne test"
+                starsValue={4.5}
+                message="I found solution to all my design needs from Creative Tim. I use
+                        them as a freelancer in my hobby projects for fun! And its really
+                        affordable, very humble guys !!!"
+            />
+            <Records />
+            <Abonnement
+                title="Standard plan"
+                price={49}
+                frequency="month"
+                options={options}
+            />
+            <DriverCard
+                name="test test"
+                age={25}
+                email="test@gmail.com"
+                location="yaounde"
+                avatar="/car.png"
+                stars={3.5}
+                phone="620202020"
+            />
+            <OrgSidebar />
+        </div>
+    );
+};
+
+export default Test;
