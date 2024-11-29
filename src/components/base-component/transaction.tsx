@@ -1,4 +1,4 @@
-// pages/transactions.tsx
+// Dashboard/transactions.tsx
 import React, { useState } from 'react';
 
 interface TransactionItemProps {

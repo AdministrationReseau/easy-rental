@@ -3,14 +3,16 @@
     {
       "id": 1,
       "type": "Car",
-      "make": "Toyota",
+      "brand": "Toyota",
       "model": "Camry",
       "year": 2020,
+      "passenger": 2,
+      "pricePerDay": 2500,
       "vin": "1HGBH41JXMN109186",
       "engine": {
         "type": "Gasoline",
         "horsepower": 203,
-        "capacity": "2.5L"
+        "capacity": 2.5
       },
       "transmission": "Automatic",
       "color": "Blue",
@@ -57,14 +59,16 @@
     {
       "id": 2,
       "type": "Motorcycle",
-      "make": "Harley-Davidson",
+      "brand": "Harley-Davidson",
       "model": "Sportster",
       "year": 2021,
+      "passenger": 2,
+      "pricePerDay": 5000,
       "vin": "1HD1BJY14GB123456",
       "engine": {
         "type": "Gasoline",
         "horsepower": 120,
-        "capacity": "1.2L"
+        "capacity": 1.2
       },
       "transmission": "Manual",
       "color": "Black",
@@ -111,14 +115,16 @@
     {
       "id": 3,
       "type": "Truck",
-      "make": "Ford",
+      "brand": "Ford",
       "model": "F-150",
       "year": 2019,
+      "passenger": 3,
+      "pricePerDay": 3000,
       "vin": "1FTEW1E42JKD12345",
       "engine": {
         "type": "Diesel",
         "horsepower": 400,
-        "capacity": "3.0L"
+        "capacity": 3.0
       },
       "transmission": "Automatic",
       "color": "Red",
@@ -165,14 +171,16 @@
     {
       "id": 4,
       "type": "SUV",
-      "make": "BMW",
+      "brand": "BMW",
       "model": "X5",
       "year": 2022,
+      "passenger": 2,
+      "pricePerDay": 1500,
       "vin": "5UXTY9C08N0B12345",
       "engine": {
         "type": "Gasoline",
         "horsepower": 335,
-        "capacity": "3.0L"
+        "capacity": 3.0
       },
       "transmission": "Automatic",
       "color": "White",
@@ -219,14 +227,16 @@
     {
       "id": 5,
       "type": "Van",
-      "make": "Mercedes-Benz",
+      "brand": "Mercedes-Benz",
       "model": "Metris",
       "year": 2020,
+      "passenger": 3,
+      "pricePerDay": 10000,
       "vin": "W1X6D6BB8LP123456",
       "engine": {
         "type": "Diesel",
         "horsepower": 188,
-        "capacity": "2.0L"
+        "capacity": 2.0
       },
       "transmission": "Automatic",
       "color": "Silver",

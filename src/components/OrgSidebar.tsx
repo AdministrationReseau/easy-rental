@@ -14,20 +14,22 @@ import {
     Settings,
     Help,
     MenuOpen,
-    Menu, Logout,
+    Menu,
+    Logout,
 } from "@mui/icons-material";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const OrgSidebar: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [activeItem, setActiveItem] = useState<string>("Dashboard"); // Profile is active by default
+    const pathname = usePathname();
 
     const mainMenuItems = [
-        { name: "Dashboard", icon: <Home />, link: "/" },
-        { name: "Agencies", icon: <AccountBalance />, link: "/agencies"},
-        {name: "Cars", icon: <DirectionsCar />, link: "/cars"},
+        { name: "Dashboard", icon: <Home />, link: "/Dashboard" },
+        { name: "Agencies", icon: <AccountBalance />, link: "/agencies" },
+        { name: "Cars", icon: <DirectionsCar />, link: "/cars" },
         { name: "Drivers", icon: <Person />, link: "/drivers" },
-        { name: "Locations", icon: <LocationOn />, link: "/locations" },
+        { name: "Locations", icon: <LocationOn />, link: "/rentals" },
         { name: "Transactions", icon: <AttachMoney />, link: "/transactions" },
         { name: "Statistics", icon: <BarChart />, link: "/statistics" },
         { name: "Notifications", icon: <Notifications />, link: "/notifications" },
@@ -39,6 +41,8 @@ const OrgSidebar: React.FC = () => {
         { name: "Help", icon: <Help />, link: "/help" },
     ];
 
+    const isActive = (link: string) => pathname === link;
+
     return (
         <div
             className={`bg-white h-screen transition-all duration-300 shadow-lg ${
@@ -48,34 +52,26 @@ const OrgSidebar: React.FC = () => {
             {/* Toggle Button */}
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="text-secondary-text p-4 focus:outline-none hover:text-primary-blue"
+                className="text-secondary-text p-3 mt-2 text-[18px] focus:outline-none hover:text-primary-blue"
             >
-                {isCollapsed ? <MenuOpen /> : <Menu />}
+                {isCollapsed ? <Menu/> : <MenuOpen/>} Dashboard
             </button>
 
             {/* Main Menu Section */}
             <div className="mt-4">
-                <h2
-                    className={`text-secondary-text text-sm px-4 uppercase font-semibold ${
-                        isCollapsed && "hidden"
-                    }`}
-                >
-                    Dashboard Menu
-                </h2>
                 <ul>
                     {mainMenuItems.map((item, index) => (
                         <li
                             key={index}
-                            onClick={() => setActiveItem(item.name)}
                             className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                activeItem === item.name
+                                isActive(item.link)
                                     ? "bg-primary-blue text-white"
                                     : "hover:bg-gray-100 text-secondary-text"
                             }`}
                         >
                             <span
                                 className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
-                                    activeItem === item.name
+                                    isActive(item.link)
                                         ? "border-white bg-white text-primary-blue"
                                         : "border-gray-200 bg-white text-gray-200"
                                 }`}
@@ -86,7 +82,7 @@ const OrgSidebar: React.FC = () => {
                                 <Link href={item.link}>
                                     <p
                                         className={`transition-colors duration-200 ${
-                                            activeItem === item.name
+                                            isActive(item.link)
                                                 ? "text-white"
                                                 : "text-secondary-text"
                                         }`}
@@ -104,28 +100,20 @@ const OrgSidebar: React.FC = () => {
             <div className="border-t border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
-            <div className="mt-4">
-                <h2
-                    className={`text-secondary-text text-sm px-4 uppercase font-semibold ${
-                        isCollapsed && "hidden"
-                    }`}
-                >
-                    Preferences
-                </h2>
+            <div className="mt-1">
                 <ul>
                     {preferenceItems.map((item, index) => (
                         <li
                             key={index}
-                            onClick={() => setActiveItem(item.name)}
                             className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                activeItem === item.name
+                                isActive(item.link)
                                     ? "bg-primary-blue text-white"
                                     : "hover:bg-gray-100 text-secondary-text"
                             }`}
                         >
                             <span
                                 className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
-                                    activeItem === item.name
+                                    isActive(item.link)
                                         ? "border-white bg-white text-primary-blue"
                                         : "border-gray-200 bg-white text-gray-200"
                                 }`}
@@ -136,7 +124,7 @@ const OrgSidebar: React.FC = () => {
                                 <Link href={item.link}>
                                     <p
                                         className={`transition-colors duration-200 ${
-                                            activeItem === item.name
+                                            isActive(item.link)
                                                 ? "text-white"
                                                 : "text-secondary-text"
                                         }`}
@@ -153,21 +141,20 @@ const OrgSidebar: React.FC = () => {
             {/* Logout Section */}
             <div className="p-4">
                 <button
-                    onClick={() => setActiveItem("Log Out")}
                     className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                        activeItem === "Log Out"
-                            ? "bg-red-text text-white"
-                            : "hover:bg-gray-100 text-red-text"
+                        isActive("/logout")
+                            ? "bg-red-500 text-white"
+                            : "hover:bg-gray-100 text-red-500"
                     }`}
                 >
                     <span
                         className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
-                            activeItem === "Log Out"
-                                ? "border-white bg-white text-red-text"
-                                : "border-red-text bg-white text-red-text"
+                            isActive("/logout")
+                                ? "border-white bg-white text-red-500"
+                                : "border-red-500 bg-white text-red-500"
                         }`}
                     >
-                        <Logout />
+                        <Logout/>
                     </span>
                     {!isCollapsed && <span>Log Out</span>}
                 </button>
