@@ -4,7 +4,7 @@ import CarCarousel from "@/components/CarCarousel";
 import EarnWithUs from "@/components/earnWithUs";
 import Navbar from "@/components/organisation/NavBar";
 import Records from "@/components/Records";
-import { ClientCard } from "@/components/ClientCard";
+import DriverCarousel from "@/components/driverCarousel";
 
 
 export default function Home() {
@@ -38,18 +38,13 @@ export default function Home() {
               What We offer
             </div>
             <div className="mt-4 text-secondary-text">
-              Featured Vehicles
+              Meet ours Drivers
             </div>
 
-            <CarCarousel/>
+            <DriverCarousel/>
         </div>
         <Records/>
-        {/* <ClientCard
-          id="1"
-          name = "LEAONI"
-          comments="hello"
-          // images={}
-        /> */}
+        
       </main>
       <footer>
       </footer>

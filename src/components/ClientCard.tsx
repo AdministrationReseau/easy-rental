@@ -4,6 +4,7 @@
 import React from 'react';
 import Image from "next/image";
 import Evaluation from './Evaluation';
+import Stars from './Stars';
 
 
 interface ClientProps {
@@ -35,27 +36,27 @@ const ClientCard: React.FC<ClientProps> = ({
                     <Image
                         src={images[0]}  // Utiliser la première image du tableau
                         alt={`${name}`}
-                        width={150}
-                        height={120}
+                        width={50}
+                        height={50}
                         className="object-cover rounded-full "
                     />
                 )}
             </div>
 
             {/* Détails supplémentaires */}
-            <div className='flex justify-between items-center text-sm'>
-            {images && images.length > 0 && (
-                    <p>{comments[0]}</p>
-                )}
+            <div className="px-4 py-2 flex flex-col justify-between items-center">
+                <span className='flex m-2'>
+                    <p className="text-xl font-semibold ">{comments} </p>
+                </span>
             </div>
             
 
             {/* Prix de location et bouton Rent Now */}
-            <div className="px-4 py-2 flex justify-between items-center">
-                <span className='flex m-2 font-bold'>
-                    <p className="text-xl font-semibold text-gray-800">${name} </p>
+            <div className="px-4 py-2 flex flex-col justify-between items-center">
+                <span className='flex m-2'>
+                    <p className="text-xl font-semibold text-gray-800">{name} </p>
                 </span>
-                <Evaluation/> 
+                <Stars value={2.5} precision={0.5}/>
             </div>
         </div>
     );
