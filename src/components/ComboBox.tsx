@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"
 
 interface Option {
     name: string;
@@ -51,7 +52,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({ options, onChange, width = "100%" }
                     </label>
 
                     {/* Icon */}
-                    <img
+                    <Image
                         src={option.icon}
                         alt={option.name}
                         className="w-auto h-10 max-w-15"

@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/Dashboard/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -18,7 +18,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'primary-blue': '#005FFE',
-          'secondary-blue': '#54A6FF',
+        'secondary-blue': '#54A6FF',
         'whitish-background': '#F6F7F9',
         'primary-text': '#083A50',
         'secondary-text': '#90A3BF',
@@ -28,6 +28,10 @@ export default {
         'green-background': '#DCFAED',
         'orange-background': '#FFE5A1',
         'red-background': '#FDE2E2',
+        'toogle-yellow': '#EFBB3B',
+        'toggle-yellow-background': '#F2E2AB',
+        'toggle-blue': '#1BA0E2',
+        'toggle-blue-background': '#092D3E',
         'tahiti': {
           DEFAULT: '#cffafe',
           200: '#a5f3fc',

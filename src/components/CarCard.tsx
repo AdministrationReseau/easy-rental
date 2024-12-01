@@ -3,20 +3,20 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
-import Image from "next/image"; // Import des icônes pour like et dislike
+import Image from "next/image";
 
 interface LikeProps {
-    isLiked: boolean; // Etat du like : true si aimé, false sinon
-    onClick: () => void; // Fonction appelée lorsque l'utilisateur clique sur l'icône
+    isLiked: boolean;
+    onClick: () => void;
 }
 
 const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
     return (
         <button onClick={onClick} className="text-xl">
             {isLiked ? (
-                <Favorite className="text-red-500" /> // Coeur rouge si aimé
+                <Favorite className="text-red-500" />
             ) : (
-                <FavoriteBorder className="text-gray-500" /> // Coeur incolore si non aimé
+                <FavoriteBorder className="text-gray-500" />
             )}
         </button>
     );
@@ -79,7 +79,6 @@ interface CarProps {
 
 const CarCard: React.FC<CarProps> = ({
     id,
-    // type, 
     brand,
     model,
     // year,
@@ -152,6 +151,7 @@ const CarCard: React.FC<CarProps> = ({
                 </div>
             </div>
             
+
             {/* Prix de location et bouton Rent Now */}
             <div className="px-4 py-2 flex justify-between items-center">
                 <span className='flex m-2'>

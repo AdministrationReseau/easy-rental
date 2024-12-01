@@ -57,24 +57,24 @@ The project follows a well-defined structure outlined on whiteboards for all tea
 [//]: # (```)
 
 <div align="center">
-  <img src="./src/assets/readme/Customer.jpeg" alt="Logo" width="400" />
+  <img src="public/assets/readme/Customer.jpeg" alt="Logo" width="400" />
 </div>
 
 2. **Organisation**
 <div align="center">
-  <img src="./src/assets/readme/Organisation.jpeg" alt="Logo" width="400" />
+  <img src="public/assets/readme/Organisation.jpeg" alt="Logo" width="400" />
 </div>
 
 3. **Super Admin**
 
 <div align="center">
-  <img src="./src/assets/readme/SuperAdmin.jpeg" alt="Logo" width="400" />
+  <img src="public/assets/readme/SuperAdmin.jpeg" alt="Logo" width="400" />
 </div>
 
 3. **Components**
 
 <div align="center">
-  <img src="./src/assets/readme/components.jpeg" alt="Logo" width="400" />
+  <img src="public/assets/readme/components.jpeg" alt="Logo" width="400" />
 </div>
 
 ## Installation and Setup
