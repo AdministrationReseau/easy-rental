@@ -4,6 +4,7 @@ import CarCarousel from "@/components/CarCarousel";
 import EarnWithUs from "@/components/earnWithUs";
 import Navbar from "@/components/organisation/NavBar";
 import Records from "@/components/Records";
+import { ClientCard } from "@/components/ClientCard";
 
 
 export default function Home() {
@@ -43,6 +44,12 @@ export default function Home() {
             <CarCarousel/>
         </div>
         <Records/>
+        {/* <ClientCard
+          id="1"
+          name = "LEAONI"
+          comments="hello"
+          // images={}
+        /> */}
       </main>
       <footer>
       </footer>
