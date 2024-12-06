@@ -3,7 +3,6 @@
 
 import React from 'react';
 import Image from "next/image";
-import Evaluation from './Evaluation';
 import Stars from './Stars';
 
 
@@ -13,17 +12,13 @@ interface ClientProps {
     comments: string;
 
       images: string[];
-    // onLike: (id: string) => void; // Fonction pour gérer les likes
-    // onDislike: (id: string) => void; // Fonction pour gérer les dislikes
 }
 
 const ClientCard: React.FC<ClientProps> = ({
-    id,
+    //id,
     name,
     comments,
     images,
-    // onLike,
-    // onDislike,
 }) => {
     
     

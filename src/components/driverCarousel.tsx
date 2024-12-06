@@ -6,8 +6,32 @@ import 'swiper/swiper-bundle.css';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import DriverCard from './DriverCard';
 
+interface Vehicle {
+  id: number;
+  make: string;
+  model: string;
+  year: number;
+}
+
+interface Driver {
+  id: number;
+  first_name: string;
+  last_name: string;
+  age: number;
+  license_number: string;
+  license_type: string;
+  address: string;
+  phone: string;
+  email: string;
+  vehicle_assigned: Vehicle;
+  rating: number;
+  insurance_provider: string;
+  insurance_policy: string;
+  profile_picture: string;
+}
+
 const DriverCarousel: React.FC = () => {
-  const [drivers, setDrivers] = useState<any[]>([]);
+  const [drivers, setDrivers] = useState<Driver[]>([]);
 
   useEffect(() => {
     const fetchDrivers = async () => {

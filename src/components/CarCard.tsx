@@ -23,7 +23,7 @@ const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
 };
 
 interface CarProps {
-    id: string;
+    id: number;
     // type: string;
     brand: string;
     model: string;
@@ -33,7 +33,7 @@ interface CarProps {
     // vin: string;
     engine: {
         type: string;
-        horsepowe : number;
+        horsepower : number;
         capacity : number;
     }
     transmission: string;
@@ -73,8 +73,8 @@ interface CarProps {
     //     expiry: string,
     //   },
       images: string[];
-    onLike: (id: string) => void; // Fonction pour gérer les likes
-    onDislike: (id: string) => void; // Fonction pour gérer les dislikes
+    onLike: (id: number) => void; // Fonction pour gérer les likes
+    onDislike: (id: number) => void; // Fonction pour gérer les dislikes
 }
 
 const CarCard: React.FC<CarProps> = ({
