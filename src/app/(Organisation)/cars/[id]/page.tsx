@@ -1,173 +1,122 @@
 'use client'
 
-import {
-    Delete,
-    Edit,
-    RemoveRedEye
-} from '@mui/icons-material';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import ResourceEditForm from './ResourceEditForm';
+import { useParams } from 'next/navigation';
+import { Vehicle, Driver, Resource } from '../ResourceEditForm';
+import { ResourceCard } from '../page';
 
-export interface Vehicle {
-    id: number;
-    type: string;
-    brand: string;
-    model: string;
-    year: number;
-    passenger: number;
-    pricePerDay: number;
-    vin: string;
-    engine: {
-        type: string;
-        horsepower: number;
-        capacity: number;
-    };
-    transmission: string;
-    color: string;
-    fuel_efficiency: {
-        city: number;
-        highway: number;
-    };
-    license_plate: string;
-    registration: {
-        state: string;
-        expiry: string;
-    };
-    owner: {
-        name: string;
-        address: string;
-        phone: string;
-        email: string;
-    };
-    service_history: {
-        date: string;
-        service_type: string;
-        mileage: number;
-        provider: string;
-    }[];
-    insurance: {
-        provider: string;
-        policy_number: string;
-        expiry: string;
-    };
-    images: string[];
-}
-  
-export interface Driver {
-    id: number;
-    first_name: string;
-    last_name: string;
-    age: number;
-    license_number: string;
-    license_type: string;
-    address: string;
-    phone: string;
-    email: string;
-    vehicle_assigned: {
-        id: number;
-        make: string;
-        model: string;
-        year: number;
-    };
-    rating: number;
-    insurance_provider: string;
-    insurance_policy: string;
-    profile_picture: string;
+interface ResourceProfilContentProps {
+    resource: Resource,
 }
 
-interface ResourceCardProps {
-    resource: Driver | Vehicle,
-    openEditForm: (resourceId: number) => void,
-    profilActive: boolean,
-}
-
-export const ResourceCard = ({resource, openEditForm, profilActive = false}: ResourceCardProps) => {
+const ResourceProfilContent = ({ resource }: ResourceProfilContentProps) => {
     const isVehicle: boolean = 'brand' in resource;
     const vehicleResource = resource as Vehicle;
     const driverResource = resource as Driver;
+    let details: { title: string, content: string | object, option: { title: string, content: string }[] }[] = [];
 
-    const imgPath = isVehicle
-        ? vehicleResource.images[0]
-        : driverResource.profile_picture; 
-  
-    const title = isVehicle
-    ? `${vehicleResource.license_plate} | ${vehicleResource.brand} ${vehicleResource.model} (${vehicleResource.year})`
-    : `${driverResource.first_name} ${driverResource.last_name.toUpperCase()} | License No: ${driverResource.license_number}`;
+    let entries = Object.entries(isVehicle ? vehicleResource : driverResource).slice(1);
+    entries = entries.filter(entry => !Array.isArray(entry[1]));
+    console.log(entries);
 
-    const content = isVehicle
-        ? `${vehicleResource.passenger} passengers - capacity: ${vehicleResource.engine.capacity} L`
-        : `${driverResource.age} years old - ${driverResource.email}`;
+    entries.map((entry: [string, any]) => {
+        let title: string = entry[0];
+        let content: string | object = entry[1];
 
-    const asideContents = isVehicle
-        ? [
-            `${vehicleResource.pricePerDay} FCFA (per day)`,
-            `${vehicleResource.fuel_efficiency.city} L/100Km (city)`,
-            `${vehicleResource.fuel_efficiency.highway} L/100Km (highway)`,
-        ]
-        : [
-            `${driverResource.rating} / 5 (rating)`,
-            `${driverResource.insurance_provider} (Insurance)`,
-        ];
+        let detail: { title: string, content: string | object, option: { title: string, content: string }[] } = {
+            title: title,
+            content: content,
+            option: []
+        };
+
+        if (typeof content === 'object') {
+            let subEntries = Object.entries(content);
+            subEntries.map((subEntry: [string, any]) => {
+                let title: string = subEntry[0];
+                let content: string = subEntry[1];
+
+                detail.option.push({
+                    title: title,
+                    content: content,
+                })
+            })
+        }
+
+        details.push(detail);
+    })
+
+    const entriesLength = details.length;
+    const entriesFirstPart = details.slice(0, entriesLength / 2);
+    const entriesSecondPart = details.slice(entriesLength / 2);
+    const entriesParts = [details];
 
     return (
-        <div className='bg-white rounded-md p-1 px-2 flex flex-row items-center gap-2 w-11/12 h-32 m-2 mx-auto border border-primary-blue/15 hover:border-primary-blue/15 hover:shadow-sm'>
-            <div className='relative w-64 h-4/5 border border-black/5 rounded-md'>
-                <Image 
-                    src={imgPath}
-                    alt="Car" 
-                    fill 
-                    style={{ objectFit: 'contain' }} 
-                />
-            </div>
-            
-            <div className='w-1 h-3/5 mx-1 bg-primary-blue/20'></div>
-            
-            <div className='grid grid-cols-[2fr_1fr] gap-2 w-full items-center'>
-                <div className='flex flex-col pl-4'>
-                    <h2 className='font-bold text-xl'>{title}</h2>
-                    {!profilActive &&
-                        <p className='text-xm'>{content}</p>
-                    }
-                </div>
-
-                {!profilActive &&
-                    <div className='flex flex-col gap-0 mx-2'>
-                        {
-                            asideContents.map((asideContent, index) => (
-                                <div key={index} className='text-nowrap text-base text-gray-700'>{asideContent}</div>
-                            ))
-                        }
+        <div className='h-full w-full p-4 flex flex-col gap-2 bg-primary-blue/5 rounded-md'>
+            <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
+                <div>
+                    <h2 className='font-bold text-xl'>Vehicle overview</h2>
+                    <div className='text-gray-600 text-sm'>
+                        You have this vehicle since <span className='font-bold'>{ new Date().getFullYear() }</span>
                     </div>
-                }
+                </div>
+                <div>
+                    <label htmlFor='filter-start-date' className='text-gray-500 mr-2'>Show data from :</label>
+                    <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
+                </div>
             </div>
             
-            <div className='w-1 h-3/5 mx-1 bg-primary-blue/20'></div>
+            <ResourceCard resource={resource} openEditForm={() => {}} profilActive={true} />
+            
+            <div className='mx-auto w-4/5 h-full flex flex-row gap-2'>                
+                <div className='w-1/2 h-2/3 overflow-y-scroll flex flex-col gap-2 px-4 pt-2 bg-white rounded-md p-1 border border-primary-blue/15 hover:border-primary-blue/15 hover:shadow-sm'>
+                    <h2 className='font-bold text-xl text-center pb-2 pl-4 mb-2'>Caracteristics</h2>
+                    
+                    {details.map((entry, index) => {
+                        const isSubList = typeof entry.content === 'object';
 
-            <div className={`flex ${profilActive ? 'flex-row' : 'flex-col'} gap-1 pr-1`}>
-                <RemoveRedEye sx={{ color: 'blue' }} onClick={() => {}} />
-                <Edit sx={{ color: 'blue' }} onClick={() => openEditForm(resource.id)} />
-                <Delete sx={{ color: 'blue' }} />
+                        return (
+                            <div key={index} className='border-b border-gray-200'>
+                                <span className='font-semibold'>{getResourceFieldLabel(entry.title)}{!isSubList ? ':': ''} </span>
+                                {!isSubList &&
+                                    <span className='text-gray-600'>{entry.content as string}</span>
+                                }
+                                {isSubList &&
+                                    <div>
+                                        {entry.option.map((subEntry, subIndex) => (
+                                            <div key={subIndex} className='ml-8'>
+                                                <span className='font-semibold'>{getResourceFieldLabel(subEntry.title)}{!isSubList ? ':': ''} </span>
+                                                <span className='text-gray-600'>{subEntry.content as string}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                }
+                            </div>
+                        );
+                    })}        
+                </div>
+                <div className='w-1/2 h-2/3 flex flex-col gap-2 px-4 pt-2 bg-white rounded-md p-1 border border-primary-blue/15 hover:border-primary-blue/15 hover:shadow-sm'>
+                    <h2 className='font-bold text-xl text-center pb-2 pl-4 mb-2'>Services history</h2>
+                    {/* {isVehicle &&
+                        {
+                            const serviceHistory = vehicleResource.service_history;
+
+                            return (<></>);
+                        }
+                    } */}
+                </div>
             </div>
-
         </div>
     );
 }
 
-export default function VehiclesPage() {
-    const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
-    const [formModalResource, setFormModalResource] = useState<Vehicle | null>(null);
+const getResourceFieldLabel = (fieldName: string): string =>
+    fieldName
+        .replace(/\./g, " ") // Replace dots with spaces
+        .replace(/([a-z])([A-Z])/g, "$1 $2") // Add space between camelCase words
+        .replace(/_/g, " ") // Replace underscores with spaces
+        .toUpperCase()
 
-    const closeEditForm = () => {
-        setFormModalResource(null);
-        setIsEditFormOpen(false);
-    }
-
-    const openEditForm = (resourceId: number) => {
-        setFormModalResource(vehicles.find((vehicle) => vehicle.id === resourceId) || null);
-        setIsEditFormOpen(true);
-    }
-
+export default function ResourceProfilPage() {
     const [vehicles, setVehicles] = useState<Vehicle[]>([
         {
             id: 1,
@@ -608,46 +557,18 @@ export default function VehiclesPage() {
         }
     ]);
 
-    const [showAlert, setShowAlert] = useState(false);
+    const { id } = useParams<{ id: string}>();
+    const vehicleId = Number(id);
 
-    useEffect(() => {
-        if (showAlert) {
-            const timer = setTimeout(() => setShowAlert(false), 1000);
-            return () => clearTimeout(timer);
-        }
-    }, [showAlert]);
+    if (isNaN(vehicleId)) {
+        return <div>Invalid vehicle ID</div>
+    }
 
-    const handleDelete = (id: number) => {
-        setVehicles((prev) => prev.filter((vehicle) => vehicle.id !== id));
-        setShowAlert(true);
-    };
+    const requestedVehicle = vehicles.find(vehicle => vehicle.id === vehicleId);
 
-    return (
-        <div className='h-full w-full p-4 flex flex-col gap-2 bg-primary-blue/5 rounded-md'>
-            <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
-                <div>
-                    <h2 className='font-bold text-xl'>Your vehicles</h2>
-                    <div className='text-gray-600 text-sm'>
-                        Actually, you have <span className='font-black'>{vehicles.length} vehicles</span>
-                    </div>
-                </div>
-                <div>
-                    <label htmlFor='filter-start-date' className='text-gray-500 mr-2'>Show data from :</label>
-                    <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
-                </div>
-            </div>
-            <div className='h-full flex flex-row gap-0'>
-                <div className='w-1/5 h-full flex items-center justify-center bg-red border border-black'>
-                    FILTER
-                </div>
-                <div className='w-full h-full overflow-auto'>
-                    {vehicles.map((vehicle, _) => (
-                        <ResourceCard key={vehicle.id} resource={vehicle} openEditForm={openEditForm} profilActive={false} />
-                    ))}
-                </div>
-            </div>
-            <ResourceEditForm isOpen={isEditFormOpen} resource={formModalResource} onClose={closeEditForm} onSave={null} />
-        </div>
-    );
+    if (!requestedVehicle) {
+        return <div>Invalid vehicle ID</div>
+    }
+
+    return <ResourceProfilContent resource={requestedVehicle} />
 }
-
