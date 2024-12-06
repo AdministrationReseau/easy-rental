@@ -15,8 +15,8 @@ const Abonnement: React.FC<AbonnementProps> = ({ title, price, frequency, option
                 <h5 className="mb-4 text-xl font-medium text-gray-500">{title}</h5>
 
                 <div className="flex items-baseline text-gray-900">
-                    <span className={`text-3xl ${PoppinsBold.className}`}>$</span>
                     <span className={`text-5xl ${PoppinsBold.className} tracking-tight`}>{price}</span>
+                    <span className={`text-3xl ${PoppinsBold.className}`}>FCFA</span>
                     <span className="ms-1 text-xl text-gray-500">/{frequency}</span>
                 </div>
 
