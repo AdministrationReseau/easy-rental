@@ -16,16 +16,16 @@ const ComboBox: React.FC<ComboBoxProps> = ({ options, onChange, width = "100%" }
     const [selectedValue, setSelectedValue] = React.useState<string>("");
 
     const handleChange = (value: string) => {
-        setSelectedValue(value); // Met à jour l'état interne
-        onChange(value); // Appelle la fonction passée en prop
+        setSelectedValue(value);
+        onChange(value);
     };
 
     return (
         <div
             className={`space-y-4 w-full`}
             style={{
-                maxWidth: width, // Largeur personnalisée passée en prop
-                margin: "0 auto", // Centrer horizontalement
+                maxWidth: width,
+                margin: "0 auto",
             }}
         >
             {options.map((option) => (

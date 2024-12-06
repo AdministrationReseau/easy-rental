@@ -5,6 +5,8 @@ import EarnWithUs from "@/components/earnWithUs";
 import Navbar from "@/components/organisation/NavBar";
 import Records from "@/components/Records";
 import DriverCarousel from "@/components/driverCarousel";
+import Footer from "@/components/Footer";
+import AboutUS from "@/components/about";
 
 
 export default function Home() {
@@ -31,7 +33,7 @@ export default function Home() {
             <CarCarousel/>
         </div>
         
-        <About/>
+        <AboutUS/>
         <EarnWithUs/>
         <div className="flex flex-col items-center justify-center text-xl my-12">
             <div className="text-xl text-primary-blue">
@@ -46,8 +48,7 @@ export default function Home() {
         <Records/>
         
       </main>
-      <footer>
-      </footer>
+      <Footer/>
     </>
   );
 }

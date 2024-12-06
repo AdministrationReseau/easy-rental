@@ -5,7 +5,7 @@ import Image from "next/image";
   
 
 
-const  About = () => {
+const  AboutUS = () => {
 
     return (
         
@@ -56,4 +56,4 @@ const  About = () => {
     );
 }
 
-export default About;
+export default AboutUS;

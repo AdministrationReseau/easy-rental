@@ -2,89 +2,121 @@
     {
         "id": 1,
         "name": "Agence Alpha",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Douala",
         "openingTime": "08:00",
         "closingTime": "18:30",
         "stars": 5,
         "type": "Siège",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 2,
         "name": "Agence Beta",
-        "description": "Suspendisse varius enim in eros elementum tristique.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Yaoundé",
         "openingTime": "09:00",
         "closingTime": "19:00",
         "stars": 4,
         "type": "Annexe",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 3,
         "name": "Agence Alpha",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Douala",
         "openingTime": "08:00",
         "closingTime": "18:30",
         "stars": 4.5,
         "type": "Siège",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 4,
         "name": "Agence Beta",
-        "description": "Suspendisse varius enim in eros elementum tristique.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Yaoundé",
         "openingTime": "09:00",
         "closingTime": "19:00",
         "stars": 3.5,
         "type": "Annexe",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 5,
         "name": "Agence Alpha",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Douala",
         "openingTime": "08:00",
         "closingTime": "18:30",
         "stars": 5,
         "type": "Siège",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 6,
         "name": "Agence Beta",
-        "description": "Suspendisse varius enim in eros elementum tristique.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Yaoundé",
         "openingTime": "09:00",
         "closingTime": "19:00",
         "stars": 4,
         "type": "Annexe",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 7,
         "name": "Agence Alpha",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Douala",
         "openingTime": "08:00",
         "closingTime": "18:30",
         "stars": 3.5,
         "type": "Siège",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     },
     {
         "id": 8,
         "name": "Agence Beta",
-        "description": "Suspendisse varius enim in eros elementum tristique.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "city": "Yaoundé",
         "openingTime": "09:00",
         "closingTime": "19:00",
         "stars": 4,
         "type": "Annexe",
-        "image": "/assets/car.png"
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ]
     }
 ]
