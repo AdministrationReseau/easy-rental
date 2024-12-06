@@ -16,7 +16,7 @@ const AgencyDetail: React.FC = () => {
 
           </div>
           <Image
-        src="./hopital2.jpg"
+        src="/ADN.png"
         alt="Hôpital"
         layout="responsive"
         width={16} // Ratio de la largeur
