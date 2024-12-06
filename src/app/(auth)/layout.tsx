@@ -1,4 +1,5 @@
-'use client'
+"use client"
+import Link from "next/link"
 
 export default function Layout({children }: { children: React.ReactNode }) {
     return (
@@ -23,27 +24,27 @@ export default function Layout({children }: { children: React.ReactNode }) {
                 </div>
                 <footer className="absolute bottom-4 text-center w-full text-xs text-gray-600">
         <p>
-          ©2022 MORENT. All rights reserved |{' '}
-          <a
-            href="#"
+          ©2022 MORENT. All rights reserved |
+          <Link
+            href="/"
             className="text-blue-600 hover:underline"
           >
             service client EasyRent
-          </a>{' '}
-          |{' '}
-          <a
-            href="#"
+          </Link>
+          |
+          <Link
+            href="/"
             className="text-blue-600 hover:underline"
           >
-            conditions d'utilisation
-          </a>{' '}
-          |{' '}
-          <a
-            href="#"
+            conditions d utilisation
+          </Link>
+          |
+          <Link
+            href="/"
             className="text-blue-600 hover:underline"
           >
             déclaration de confidentialité
-          </a>
+          </Link>
         </p>
       </footer>
             </main>

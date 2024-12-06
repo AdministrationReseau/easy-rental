@@ -1,4 +1,4 @@
-import About from "@/components/about";
+
 import SportCarCard from "@/components/base-component/sportCarCard";
 import CarCarousel from "@/components/CarCarousel";
 import EarnWithUs from "@/components/earnWithUs";
