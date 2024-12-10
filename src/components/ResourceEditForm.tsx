@@ -70,18 +70,15 @@ export interface Driver {
 export type Resource = Driver | Vehicle;
 
 interface ResourceEditFormProps {
-    resource: Resource | null,
-    isOpen: boolean;
+    resource: Resource,
+    // isOpen: boolean;
     onClose: () => void;
-    onSave: ((updatedVehicle: Vehicle) => void) | null;
+    // onSave: ((updatedVehicle: Vehicle) => void) | null;
 }
 
-export default function ResourceEditForm({ resource, isOpen, onClose, onSave }: ResourceEditFormProps) {
-    if (isOpen == false || resource == null) {
-        return null;
-    }
+export default function ResourceEditForm({ resource, onClose }: ResourceEditFormProps) {
+    const [formData] = useState<Resource>(resource);
 
-    const [formData, setFormData] = useState<Resource | null>(resource);
     const isVehicle: boolean = 'brand' in resource;
     const vehicleFormData = formData as Vehicle;
     const driverFormData = formData as Driver;
@@ -125,61 +122,62 @@ export default function ResourceEditForm({ resource, isOpen, onClose, onSave }: 
         { name: 'profile_picture', label: 'Profile Picture', value: driverFormData.profile_picture, type: 'file' },
     ];
     
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
-        const { value } = e.target;
-        const fields = field.split('.');
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+    //     const handleChange = () => {
+    //     // const { value } = e.target;
+    //     // const fields = field.split('.');
 
-        setFormData((prevData): Resource | null => {
-            if (!prevData) {
-                return null;
-            }
+    //     setFormData((prevData): Resource | null => {
+    //         if (!prevData) {
+    //             return null;
+    //         }
 
-            let newData = { ...prevData };
-            let ref: Record<string, any> = newData;
+    //         const newData = { ...prevData };
+    //         // let ref: Record<string, any> = newData;
             
-            fields.forEach((key: string, index: number) => {
-                if (index === fields.length - 1) {
-                    ref[key] = value;
-                } else {
-                    ref = ref[key];
-                }
-            });
+    //         // fields.forEach((key: string, index: number) => {
+    //         //     if (index === fields.length - 1) {
+    //         //         ref[key] = value;
+    //         //     } else {
+    //         //         ref = ref[key];
+    //         //     }
+    //         // });
             
-            return newData;
-        });
-    };
+    //         return newData;
+    //     });
+    // };
 
-    const handleSave = () => {
-        // onSave(formData);
-        onClose();
-    };
+    // const handleSave = () => {
+    //     // onSave(formData);
+    //     onClose();
+    // };
 
     return (
-        isOpen && (
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
-                <div className="h-4/5 overflow-auto bg-white p-4 rounded-lg shadow-md w-full max-w-lg">
-                    <h2 className="text-xl font-bold mb-4">Edit {isVehicle ? 'Vehicle' : 'Driver'}</h2>
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
+            <div className="h-4/5 overflow-auto bg-white p-4 rounded-lg shadow-md w-full max-w-lg">
+                <h2 className="text-xl font-bold mb-4">Edit {isVehicle ? 'Vehicle' : 'Driver'}</h2>
 
-                    <div className="space-y-4">
-                        {fields.map((field) => (
-                            <div key={field.name}>
-                                <label className="block text-sm font-semibold">{field.label}</label>
-                                <input
-                                    type={field.type}
-                                    value={field.value}
-                                    onChange={(e) => handleChange(e, field.name)}
-                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                                />
-                            </div>
-                        ))}
-                    </div>
+                <div className="space-y-4">
+                    {fields.map((field) => (
+                        <div key={field.name}>
+                            <label className="block text-sm font-semibold">{field.label}</label>
+                            <input
+                                type={field.type}
+                                value={field.value}
+                                onChange={() => {}}
+                                // onChange={(e) => handleChange(e, field.name)}
+                                className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                            />
+                        </div>
+                    ))}
+                </div>
 
-                    <div className="flex justify-end gap-4 mt-4">
-                        <button onClick={onClose} className="py-2 px-4 bg-gray-300 text-white rounded-md">Cancel</button>
-                        <button onClick={handleSave} className="py-2 px-4 bg-blue-600 text-white rounded-md">Save Changes</button>
-                    </div>
+                <div className="flex justify-end gap-4 mt-4">
+                    <button onClick={onClose} className="py-2 px-4 bg-gray-500 text-white rounded-md">Cancel</button>
+                    {/* <button onClick={handleSave} className="py-2 px-4 bg-blue-600 text-white rounded-md">Save Changes</button> */}
+                    <button className="py-2 px-4 bg-blue-600 text-white rounded-md">Save Changes</button>
                 </div>
             </div>
-        )
+        </div>
     );
 };

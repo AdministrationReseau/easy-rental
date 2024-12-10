@@ -49,9 +49,9 @@ const ResourceProfilContent = ({ resource }: ResourceProfilContentProps) => {
         <div className='h-full w-full p-4 flex flex-col gap-2 bg-primary-blue/5 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
                 <div>
-                    <h2 className='font-bold text-xl'>Vehicle overview</h2>
+                    <h2 className='font-bold text-xl'>Drivers overview</h2>
                     <div className='text-gray-600 text-sm'>
-                        You have this vehicle since <span className='font-bold'>{ new Date().getFullYear() }</span>
+                        You have this driver since <span className='font-bold'>{ new Date().getFullYear() }</span>
                     </div>
                 </div>
                 <div>
@@ -105,37 +105,37 @@ const getResourceFieldLabel = (fieldName: string): string =>
         .toUpperCase()
 
 export default function ResourceProfilPage() {
-    const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    const [drivers, setDrivers] = useState<Driver[]>([]);
 
     useEffect(() => {
-        const fetchVehicles = async () => {
+        const fetchDrivers = async () => {
         try {
-            const response = await fetch("/data/cars.json");
+            const response = await fetch("/data/drivers.json");
             if (!response.ok) {
-            throw new Error("Failed to fetch vehicles");
+            throw new Error("Failed to fetch drivers");
             }
-            const data: Vehicle[] = await response.json();
-            setVehicles(data);
+            const data: Driver[] = await response.json();
+            setDrivers(data);
         } catch (error) {
-            console.error("Error fetching vehicles:", error);
+            console.error("Error fetching drivers:", error);
         }
         };
 
-        fetchVehicles();
+        fetchDrivers();
     }, []);
 
     const { id } = useParams<{ id: string}>();
-    const vehicleId = Number(id);
+    const driverId = Number(id);
 
-    if (isNaN(vehicleId)) {
+    if (isNaN(driverId)) {
         return <div>Invalid vehicle ID</div>
     }
 
-    const requestedVehicle = vehicles.find(vehicle => vehicle.id === vehicleId);
+    const requestedDriver = drivers.find(driver => driver.id === driverId);
 
-    if (!requestedVehicle) {
-        return <div>Invalid vehicle ID</div>
+    if (!requestedDriver) {
+        return <div>Invalid driver ID</div>
     }
 
-    return <ResourceProfilContent resource={requestedVehicle} />
+    return <ResourceProfilContent resource={requestedDriver} />
 }

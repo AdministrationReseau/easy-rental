@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "title": "Reservation Confirmed",
+        "content": "Your vehicle reservation for Toyota Camry has been confirmed.",
+        "category": "reservation",
+        "created_at": "2024-12-10T08:00:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 2,
+        "title": "Payment Successful",
+        "content": "Your payment of $250 for the vehicle rental has been processed successfully.",
+        "category": "payment",
+        "created_at": "2024-12-09T14:45:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 3,
+        "title": "Vehicle Returned",
+        "content": "The vehicle BMW X5 has been successfully returned. Thank you!",
+        "category": "return",
+        "created_at": "2024-12-08T17:30:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 4,
+        "title": "New Promotion Available",
+        "content": "Enjoy a 10% discount on all vehicle rentals this holiday season.",
+        "category": "promotion",
+        "created_at": "2024-12-07T10:00:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 5,
+        "title": "Late Return Notice",
+        "content": "The vehicle Mercedes-Benz Metris is overdue. Please return it immediately.",
+        "category": "alert",
+        "created_at": "2024-12-06T09:15:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 6,
+        "title": "Upcoming Reservation Reminder",
+        "content": "Your reservation for Ford F-150 is scheduled for tomorrow at 9 AM.",
+        "category": "reminder",
+        "created_at": "2024-12-05T12:30:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 7,
+        "title": "Profile Updated",
+        "content": "Your profile information has been successfully updated.",
+        "category": "account",
+        "created_at": "2024-12-04T16:20:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 8,
+        "title": "Damage Fee Charged",
+        "content": "A fee of $100 has been charged for damages to the rented vehicle.",
+        "category": "payment",
+        "created_at": "2024-12-03T11:00:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 9,
+        "title": "New Vehicle Added",
+        "content": "A new vehicle, Audi Q5, is now available for rental.",
+        "category": "announcement",
+        "created_at": "2024-12-02T13:00:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 10,
+        "title": "Reservation Cancelled",
+        "content": "Your reservation for Harley-Davidson Sportster has been cancelled.",
+        "category": "reservation",
+        "created_at": "2024-12-01T15:40:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 11,
+        "title": "Insurance Updated",
+        "content": "Your insurance policy has been successfully updated for your rental.",
+        "category": "account",
+        "created_at": "2024-11-30T09:10:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 12,
+        "title": "Overdue Payment",
+        "content": "Your payment for the vehicle rental is overdue. Please settle it immediately.",
+        "category": "alert",
+        "created_at": "2024-11-29T14:00:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 13,
+        "title": "Feedback Requested",
+        "content": "Please share your feedback on your recent vehicle rental experience.",
+        "category": "feedback",
+        "created_at": "2024-11-28T10:30:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 14,
+        "title": "System Maintenance",
+        "content": "Our system will undergo maintenance tonight from 12 AM to 3 AM.",
+        "category": "announcement",
+        "created_at": "2024-11-27T18:15:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 15,
+        "title": "License Expiry Reminder",
+        "content": "Your driver’s license on file is about to expire. Please update it.",
+        "category": "alert",
+        "created_at": "2024-11-26T08:00:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 16,
+        "title": "New Reward Points",
+        "content": "You’ve earned 150 reward points from your last rental.",
+        "category": "reward",
+        "created_at": "2024-11-25T19:00:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 17,
+        "title": "Vehicle Maintenance Scheduled",
+        "content": "The vehicle Tesla Model 3 is scheduled for maintenance tomorrow.",
+        "category": "maintenance",
+        "created_at": "2024-11-24T09:45:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 18,
+        "title": "Loyalty Tier Upgraded",
+        "content": "Congratulations! You’ve been upgraded to Gold Tier in our loyalty program.",
+        "category": "reward",
+        "created_at": "2024-11-23T12:00:00Z",
+        "read_status": "read"
+    },
+    {
+        "id": 19,
+        "title": "Cancellation Fee Charged",
+        "content": "A $50 cancellation fee has been applied for your reservation.",
+        "category": "payment",
+        "created_at": "2024-11-22T15:20:00Z",
+        "read_status": "unread"
+    },
+    {
+        "id": 20,
+        "title": "Special Offer Just for You",
+        "content": "Book now and get a free day with every 3-day rental!",
+        "category": "promotion",
+        "created_at": "2024-11-21T10:10:00Z",
+        "read_status": "unread"
+    }
+]

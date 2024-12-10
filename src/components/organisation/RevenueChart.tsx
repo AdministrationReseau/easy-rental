@@ -17,11 +17,10 @@ import { Line } from 'react-chartjs-2';
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend);
 
 interface RevenueChartProps {
-    revenues : number[],
-    totalRevenue : number
+    revenues : number[]
 }
 
-const RevenueChart = ({revenues, totalRevenue}: RevenueChartProps) => {
+const RevenueChart = ({revenues}: RevenueChartProps) => {
   // Revenues for the week
   // This next line get the day of today and get the names of the 7 previous days
   const today = new Date();
@@ -60,8 +59,7 @@ const RevenueChart = ({revenues, totalRevenue}: RevenueChartProps) => {
       },
     ],
   };
-
-  // Chart options
+  
   const options = {
     responsive: true,
     plugins: {
@@ -70,7 +68,6 @@ const RevenueChart = ({revenues, totalRevenue}: RevenueChartProps) => {
       },
       title: {
         display: true,
-        // Get revenues sum
         text: `Weekly Revenues (${weeklyRevenue} FCFA)`,
         font: {
           size: 18,
@@ -78,34 +75,39 @@ const RevenueChart = ({revenues, totalRevenue}: RevenueChartProps) => {
       },
     },
     scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: '[ Revenue (FCFA) ]',
-        },
-        ticks: {
-            font: {
-              weight: 'bold',
-            },
-        },
-      },
       x: {
         title: {
           display: true,
           text: '[ Days ]',
+          font: {
+            size: 14,
+          },
         },
         ticks: {
           font: {
-            weight: 'bold',
+            size: 12,
           },
         },
       },
-    },
+      y: {
+        title: {
+          display: true,
+          text: '[ Revenues (FCFA) ]',
+          font: {
+            size: 14,
+          },
+        },
+        ticks: {
+          font: {
+            size: 12,
+          },
+        },
+      },
+    }    
   };
 
   return (
-    <div style={{ width: '80%', margin: '0 auto' }}>
+    <div style={{ width: '80%', margin: '0 auto', padding: '20px' }}>
       <Line data={data} options={options} />
     </div>
   );
