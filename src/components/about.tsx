@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
   
 
 
@@ -9,8 +10,8 @@ const  AboutUS = () => {
 
     return (
         
-        <div className="relative flex  items-center rounded-lg shadow-lg">
-            <div className="flex bg-white p-8 rounded-l-lg  ">   
+        <div className="relative flex  items-center rounded-lg  h-screen py-8">
+            <div className="flex bg-white rounded-l-lg  ">   
                 <div className=" inset-y-0 left-1/4 z-10 translate-x-1/2 translate-y-2">
                 <Image
                                 src="/hospital2.jpg"
@@ -23,11 +24,11 @@ const  AboutUS = () => {
             </div>
     
             {/* Section droite (bleu) */}
-            <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-lg">
-                <div className="flex-[3] ">
+            <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-lg h-full">
+                <div className="flex-1 ">
                 
                 </div>
-                <div className="md:w-2/3 w-full mt-6  md:text-base rounded-lg">
+                <div className=" flex-[3] md:w-2/3 w-full mt-6  md:text-base rounded-lg flex flex-col justify-center text-left">
                     <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
                     Welcome to Easy Rent
                     </h2>
@@ -43,12 +44,12 @@ const  AboutUS = () => {
                     the Little Blind Text should turn around and return to its own, safe
                     country.
                     </p>
-                    <a
+                    <Link
                     href="/search-vehicle"
                     className=" font-semibold hover:underline"
                     >
                     Search Vehicle
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

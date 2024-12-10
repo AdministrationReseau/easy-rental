@@ -107,7 +107,7 @@ const CarCarousel: React.FC = () => {
           1044: { slidesPerView: 4 },
           1024: { slidesPerView: 4 },
           800: { slidesPerView: 2 },
-          480: { slidesPerView: 2 },
+          480: { slidesPerView: 1 },
         }}
       >
         {vehicles.map((carData) => (

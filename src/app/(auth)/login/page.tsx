@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link";
+
 export default function Home() {
 
     return (
@@ -12,7 +14,7 @@ export default function Home() {
             </div>
 
             <div
-      className="mx-32 mb-6 rounded-lg flex items-center justify-center h-screen bg-cover bg-center"
+      className="mx-32 mb-6 py-8 rounded-lg flex items-center justify-center  bg-cover bg-center"
       style={{ backgroundImage: "url('/background.jpg')" }}
     >
       <div className="bg-blue-100 bg-opacity-90 rounded-lg p-8 w-[400px] shadow-lg">
@@ -48,9 +50,12 @@ export default function Home() {
         <div className="text-center mt-6">
           <p className="text-sm">
             Vous êtes nouveau?{' '}
-            <button className="text-blue-600 px-6 py-4 bg-white rounded-lg font-semibold hover:underline">
-              Créer un Compte
-            </button>
+            <Link href="/register">
+              <button className="text-blue-600 px-6 py-4 bg-white rounded-lg font-semibold hover:underline">
+                Créer un Compte
+              </button>
+            </Link>
+            
           </p>
         </div>
       </div>
