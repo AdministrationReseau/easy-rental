@@ -2,7 +2,6 @@
 
 import Field from "@/components/base-component/fields"
 import MyComboBox from "@/components/base-component/myComboBox";
-import ComboBox from "@/components/ComboBox";
 import Link from "next/link";
 
 
@@ -68,7 +67,7 @@ export default function Home() {
                 Have an account?{' '}
                 <Link href="/login">
                 <button className="text-blue-600 font-semibold hover:underline">
-                    Let's login
+                    Just login
                 </button>
                 </Link>
                 
