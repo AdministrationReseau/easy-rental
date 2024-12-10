@@ -8,6 +8,9 @@ import { NotificationType } from '@/utils/types/notifications';
 
 export default function NotificationPage() {
     const [notifications, setNotifications] = useState<NotificationType[]>([]);
+    const [filteredNotifications, setFilteredNotifications] = React.useState(notifications);
+    const [checkedNotifications, setCheckedNotifications] = React.useState<number[]>([]);
+    const [showAlert, setShowAlert] = React.useState(false);
 
     useEffect(() => {
         const fetchNotifications = async () => {
@@ -18,6 +21,7 @@ export default function NotificationPage() {
             }
             const data: NotificationType[] = await response.json();
             setNotifications(data);
+            setFilteredNotifications(data);
         } catch (error) {
             console.error("Error fetching notifications:", error);
         }
@@ -25,10 +29,6 @@ export default function NotificationPage() {
 
         fetchNotifications();
     }, []);
-
-    const [filteredNotifications, setFilteredNotifications] = React.useState(notifications);
-    const [checkedNotifications, setCheckedNotifications] = React.useState<number[]>([]);
-    const [showAlert, setShowAlert] = React.useState(false);
 
     // Handle search functionality
     // const handleSearch = (query: string) => {

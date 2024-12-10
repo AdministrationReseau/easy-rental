@@ -41,7 +41,7 @@ export default function Notification({
             <div className="flex flex-row gap-2">
                 <div className="hover:bg-black/5 rounded-md">
                     {/* Delete Button */}
-                    <Delete sx={{ color: 'blue' }} onClick={() => handleDelete(id)} />
+                    <Delete style={{ color: 'blue' }} onClick={() => handleDelete(id)} />
                 </div>
             </div>
         </div>
