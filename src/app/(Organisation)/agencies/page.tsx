@@ -14,12 +14,13 @@ interface Agency {
     closingTime: string;
     stars: number;
     type: "Siège" | "Annexe";
-    image: string;
+    images: string[];
 }
 
 const Agence = () => {
     const [agencies, setAgencies] = useState<Agency[]>([]);
     const [showModal, setShowModal] = useState(false);
+    const [selectedImages, setSelectedImages] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchAgencies = async () => {
@@ -38,9 +39,19 @@ const Agence = () => {
         fetchAgencies();
     }, []);
 
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files) {
+            const imageUrls = Array.from(files).map((file) =>
+                URL.createObjectURL(file)
+            );
+            setSelectedImages(imageUrls);
+        }
+    };
+
     return (
-        <div>
-            <main className="flex-grow overflow-y-auto bg-gray-100 p-6">
+        <div className="w-full">
+            <main className="items-center flex-grow overflow-y-auto bg-[F6F7F9]">
                 <h1 className="text-2xl font-bold mb-4">Agencies List</h1>
                 <button
                     className="bg-blue-500 text-white px-4 py-3 rounded mb-4"
@@ -49,10 +60,10 @@ const Agence = () => {
                     + ADD AGENCY
                 </button>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-full">
                     {agencies.map((agency) => (
                         <Link
-                            href={`/app/(organisation)/agencies/${agency.id}`}
+                            href={`/agencies/${agency.id}`}
                             key={agency.id}
                         >
                             <div
@@ -60,9 +71,9 @@ const Agence = () => {
                                 className="bg-white shadow rounded p-4 cursor-pointer"
                             >
                                 <Image
-                                    src={agency.image}
+                                    src={agency.images[0]}
                                     alt={agency.name}
-                                    width={300}
+                                    width={500}
                                     height={200}
                                     className="rounded mb-2"
                                 />
@@ -135,6 +146,35 @@ const Agence = () => {
                                         type="time"
                                         className="border border-gray-300 rounded w-full p-2"
                                     />
+                                </div>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium">
+                                        Images
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        multiple
+                                        className="border border-gray-300 rounded w-full p-2"
+                                        onChange={handleImageChange}
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-2 mb-4">
+                                    {selectedImages.map((src, index) => (
+                                        <div
+                                            key={index}
+                                            className="border border-gray-300 rounded overflow-hidden"
+                                        >
+                                            <Image
+                                                src={src}
+                                                alt={`Preview ${index + 1}`}
+                                                width={100}
+                                                height={100}
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                    ))}
                                 </div>
                                 <div className="text-right">
                                     <button
