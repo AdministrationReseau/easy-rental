@@ -1,5 +1,5 @@
 /*
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { CustomAlert } from '@/components/Alert'
@@ -132,50 +132,35 @@ export default function Test() {
     );
 }
 */
-
+"use client";
 import React from 'react';
-import Reviews from "@/components/Reviews";
-import Records from "@/components/Records";
-import Abonnement from "@/components/Abonnement";
-import DriverCard from "@/components/DriverCard";
-import OrgSidebar from "@/components/OrgSidebar";
+import AgencyDetail from "@/components/combiner-components/agency-detail";
 
 const Test = () => {
-    const options = [
-        { label: "2 team members", available: true },
-        { label: "20GB Cloud storage", available: true },
-        { label: "Integration help", available: true },
-        { label: "Sketch Files", available: true },
-        { label: "API Access", available: true },
-        { label: "Complete documentation", available: true },
-        { label: "24×7 phone & email support", available: true },
-    ];
+    // const options = [
+    //     { label: "2 team members", available: true },
+    //     { label: "20GB Cloud storage", available: true },
+    //     { label: "Integration help", available: true },
+    //     { label: "Sketch Files", available: true },
+    //     { label: "API Access", available: true },
+    //     { label: "Complete documentation", available: true },
+    //     { label: "24×7 phone & email support", available: true },
+    // ];
     return (
         <div>
-            <Reviews
-                name="Brayanne test"
-                starsValue={4.5}
-                message="I found solution to all my design needs from Creative Tim. I use
-                        them as a freelancer in my hobby projects for fun! And its really
-                        affordable, very humble guys !!!"
-            />
-            <Records />
-            <Abonnement
-                title="Standard plan"
-                price={49}
-                frequency="month"
-                options={options}
-            />
-            <DriverCard
-                name="test test"
-                age={25}
-                email="test@gmail.com"
-                location="yaounde"
-                avatar="/car.png"
-                stars={3.5}
-                phone="620202020"
-            />
-            <OrgSidebar />
+
+            {/*<DriverCard*/}
+            {/*    name="test test"*/}
+            {/*    age={25}*/}
+            {/*    email="test@gmail.com"*/}
+            {/*    location="yaounde"*/}
+            {/*    avatar="/assets/car.png"*/}
+            {/*    stars={3.5}*/}
+            {/*    phone="620202020"*/}
+            {/*/>*/}
+            {/*<OrgSidebar />*/}
+            <AgencyDetail key={1} />
+
         </div>
     );
 };

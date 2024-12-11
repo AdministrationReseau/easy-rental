@@ -13,13 +13,13 @@ const NavOrg: React.FC = () => {
 
             {/* Search Bar */}
             <div className="flex justify-items-start bg-gray-100 rounded-full w-1/3 px-4">
-                <Search className="text-gray-500" />
+                <Search className="text-gray-500 mt-3" />
                 <input
                     type="text"
                     placeholder="Search something here"
                     className="flex-grow bg-transparent outline-none text-sm px-2 py-3 text-gray-700"
                 />
-                <Tune className="text-gray-500 cursor-pointer" />
+                <Tune className="text-gray-500 cursor-pointer mt-3" />
             </div>
 
             {/* Action Icons */}
@@ -32,7 +32,7 @@ const NavOrg: React.FC = () => {
 
                 {/* Settings Icon */}
                 <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
-                    <ImageProfile  imageUrl="/car2.png" width={40} height={40} />
+                    <ImageProfile  imageUrl="/assets/car.png" width={40} height={40} />
                 </div>
             </div>
         </nav>

@@ -60,9 +60,12 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => {
                     >
                         {/* Icone */}
                         <div className="flex items-center space-x-4">
+
                             <div className="w-12 h-12 rounded-lg bg-primary-blue flex items-center justify-center">
                                 <img src={transaction.icon} alt={transaction.title} className="w-6 h-6" />
+
                             </div>
+
                             <div>
                                 <h3 className="text-sm font-medium text-primary-text">{transaction.title}</h3>
                                 <p className="text-xs text-secondary-text">{transaction.description}</p>

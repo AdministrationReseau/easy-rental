@@ -11,15 +11,15 @@ import Checkbox from '@mui/material/Checkbox';
 const label = { inputProps: {  } };
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  paddingLeft: theme.spacing(2),
-  textAlign: 'left',
-  fontWeight: 'bold',
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
+    backgroundColor: '#fff',
+    ...theme.typography.body2,
+    paddingLeft: theme.spacing(2),
+    textAlign: 'left',
+    fontWeight: 'bold',
+    color: theme.palette.text.secondary,
+    ...theme.applyStyles('dark', {
+        backgroundColor: '#1A2027',
+    }),
 }));
 
 
@@ -52,7 +52,7 @@ export default function Filter() {
             'max': 1_000_000,
         },
     ];
-    
+
     return (
         <form action="" className='w-[300px] m-4 p-4 shadow-sm shadow-primary-blue'>
             {checkboxesFilters.map((filter, filterIndex) => {
@@ -85,7 +85,7 @@ export default function Filter() {
 
                             <div className=''>Max: {new Intl.NumberFormat('fr-FR').format(price)} FCFA</div>
                         </Stack>
-                    </fieldset>  
+                    </fieldset>
                 );
             })}
         </form>
