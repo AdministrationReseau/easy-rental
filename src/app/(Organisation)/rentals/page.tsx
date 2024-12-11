@@ -1,7 +1,8 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+import React, {useEffect, useState} from 'react';
+import LocationList from "@/components/LocationList";
 
-interface Location {
+interface Location1 {
     id: string;
     name: string;
     type: string;
@@ -10,46 +11,44 @@ interface Location {
     image: string;
 }
 
-interface LocationListProps {
-    locations: Location[];
-}
+const Location = () => {
 
-const LocationList: React.FC<LocationListProps> = ({ locations }) => {
+    const [locations, setLocations] = useState<Location1[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchLocations = async () => {
+            try {
+                const response = await fetch("/data/locations.json");
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error("Failed to fetch locations");
+                }
+                const data = await response.json();
+                console.log(data)
+                setLocations(data);
+            } catch (err) {
+                setError((err as Error).message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchLocations();
+    }, []);
+
+    if (loading) return <p>Loading ...</p>
+    if (error) return <p>Error: {error}</p>
+
     return (
-        <div className="w-full">
-            <h2 className="text-xl font-semibold mb-4 text-primary-text">Recent Locations</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {locations.map((location) => (
-                    <div
-                        key={location.id}
-                        className="flex items-center justify-between bg-whitish-background p-4 rounded-lg shadow-sm"
-                    >
-                        {/* Image et informations */}
-                        <div className="flex items-center space-x-4">
-                            <Image
-                                src={location.image}
-                                alt={location.name}
-                                className="w-[100px] h-auto rounded-lg object-cover"
-                                width={100}
-                                height={100}
-                            />
-                            <div>
-                                <h3 className="text-sm font-medium text-primary-text">{location.name}</h3>
-                                <p className="text-xs text-secondary-text">{location.type}</p>
-                            </div>
-                        </div>
-
-                        {/* Prix et date */}
-                        <div className="flex flex-col items-end space-y-1">
-                            <p className="text-sm font-semibold text-primary-text">{location.price}</p>
-                            <p className="text-sm text-secondary-text">{location.date}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
+        <div>
+            <main>
+                <div className="ml-[25px] mt-[20px]">
+                    <LocationList locations={locations} />
+                </div>
+            </main>
         </div>
     );
-
 };
 
-export default LocationList;
+export default Location;
