@@ -79,7 +79,7 @@ export default function DriversPage() {
             {formModalResource && isEditFormOpen &&
                 <ResourceEditForm resource={formModalResource} onClose={closeEditForm} />
             }
+
         </div>
     );
 }
-
