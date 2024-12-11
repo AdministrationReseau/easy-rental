@@ -9,6 +9,7 @@ const ConfigurationPage: React.FC = () => {
     const [paymentService, setPaymentService] = useState({
         organizationName: "",
         paymentEmail: "",
+        paymentNumber: "",
         isRegistered: false,
     });
 
@@ -28,7 +29,7 @@ const ConfigurationPage: React.FC = () => {
     };
 
     const handlePaymentServiceRegistration = () => {
-        if (paymentService.organizationName && paymentService.paymentEmail) {
+        if (paymentService.organizationName && paymentService.paymentEmail && paymentService.paymentNumber) {
             setPaymentService((prev) => ({
                 ...prev,
                 isRegistered: true,
@@ -103,6 +104,18 @@ const ConfigurationPage: React.FC = () => {
                                 className="w-full border border-gray-300 rounded-lg px-4 py-2"
                                 placeholder="Entrez l'email pour recevoir les paiements"
                                 value={paymentService.paymentEmail}
+                                onChange={handlePaymentServiceChange}
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-gray-600 mb-2">Numero pour les paiements</label>
+                            <input
+                                type="email"
+                                name="paymentNumber"
+                                className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                                placeholder="Entrez le numero pour recevoir les paiements"
+                                value={paymentService.paymentNumber}
                                 onChange={handlePaymentServiceChange}
                             />
                         </div>
