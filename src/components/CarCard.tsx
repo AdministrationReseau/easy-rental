@@ -23,7 +23,7 @@ const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
 };
 
 interface CarProps {
-    id: string;
+    id: number;
     // type: string;
     brand: string;
     model: string;
@@ -33,7 +33,7 @@ interface CarProps {
     // vin: string;
     engine: {
         type: string;
-        horsepowe : number;
+        horsepower : number;
         capacity : number;
     }
     transmission: string;
@@ -73,13 +73,12 @@ interface CarProps {
     //     expiry: string,
     //   },
       images: string[];
-    onLike: (id: string) => void; // Fonction pour gérer les likes
-    onDislike: (id: string) => void; // Fonction pour gérer les dislikes
+    onLike: (id: number) => void; // Fonction pour gérer les likes
+    onDislike: (id: number) => void; // Fonction pour gérer les dislikes
 }
 
 const CarCard: React.FC<CarProps> = ({
     id,
-    // type,
     brand,
     model,
     // year,
@@ -99,7 +98,7 @@ const CarCard: React.FC<CarProps> = ({
     onDislike,
 }) => {
     const [isLiked, setIsLiked] = useState<boolean>(false);
-
+  
     // Fonction pour basculer l'état du like
     const toggleLike = () => {
         setIsLiked(!isLiked);
@@ -151,6 +150,7 @@ const CarCard: React.FC<CarProps> = ({
                     <p>{passenger} People</p>
                 </div>
             </div>
+            
 
             {/* Prix de location et bouton Rent Now */}
             <div className="px-4 py-2 flex justify-between items-center">

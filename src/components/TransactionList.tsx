@@ -1,6 +1,4 @@
-import Image from "next/image";
 import React, { useState } from "react";
-import Transaction from '../app/(Organisation)/transactions/page';
 
 interface Transaction {
     id: string;
@@ -62,31 +60,10 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => {
                     >
                         {/* Icone */}
                         <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 rounded-lg bg-primary-blue flex items-center justify-center overflow-hidden">
-                                <div className="w-[80px] h-[80px] mt-[50px] ml-[10px]">
-                                    {transaction.status === "confirmed" ? (
-                                    <Image
-                                        src="/transaction_types_icons_add.svg"
-                                        alt={transaction.title}
-                                        width={60}
-                                        height={60}
-                                    />
-                                    ) : transaction.status === "pending" ? (
-                                    <Image
-                                        src="/transaction_types_icons_refresh.svg"
-                                        alt={transaction.title}
-                                        width={60}
-                                        height={60}
-                                    />
-                                    ) : (
-                                    <Image
-                                        src="/transaction_types_icons.svg"
-                                        alt={transaction.title}
-                                        width={60}
-                                        height={60}
-                                    />
-                                    )}
-                                </div>
+
+                            <div className="w-12 h-12 rounded-lg bg-primary-blue flex items-center justify-center">
+                                <img src={transaction.icon} alt={transaction.title} className="w-6 h-6" />
+
                             </div>
 
                             <div>
