@@ -45,29 +45,30 @@ const Transaction = () => {
 
     return (
         <div>
-            <main className="flex-grow overflow-y-auto bg-gray-100 p-6">
+            <main className="flex-grow overflow-y-auto p-6">
 
-                <div className="flex flex-wrap justify-center">
+                <div className="flex flex-row justify-center">
                     <TransactionInfoCard
                         title= "Total Earnings"
                         device="FCFA"
-                        value={430.00}
-                        subtitle= "as of 01 December 2023"
+                        value={130000.00}
+                        subtitle= "as of 01 November 2024"
                         type= "transactions"
                     />
 
                     <TransactionInfoCard
-                        title= "Total Earnings"
-                        value={430.00}
-                        subtitle= "as of 01 December 2023"
+                        title= "Confirmed Earnings"
+                        device="FCFA"
+                        value={43000.00}
+                        subtitle= "as of 01 November 2024"
                         type= "earnings"
                     />
 
                     <TransactionInfoCard
-                        title= "Total Earnings"
-                        device="₹"
-                        value={430.00}
-                        subtitle= "as of 01 December 2023"
+                        title= "Pending Earnings"
+                        device="FCFA"
+                        value={50000.00}
+                        subtitle= "as of 01 November 2024"
                         type= "payments"
                     />
                 </div>
