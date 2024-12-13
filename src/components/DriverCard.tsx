@@ -23,7 +23,7 @@ const DriverCard: React.FC<DriverCardProps> = ({ name, email, location, age, ava
     };
 
     return (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden my-4 p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/6">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden my-4 p-4 w-full">
             {/* Image Section */}
             <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
                 <Image
@@ -73,8 +73,8 @@ const DriverCard: React.FC<DriverCardProps> = ({ name, email, location, age, ava
 
             {/* Button Section */}
             <button
-                onClick={handleButtonClick}
-                className={`mt-4 w-full py-2 rounded-lg transition-all ${isDriverAdded ? 'bg-secondary-blue text-blue-800' : 'bg-primary-blue text-white'}`}
+                // onClick={handleButtonClick}
+                className={`mt-4 w-full py-2 rounded-lg transition-all ${isDriverAdded ? 'bg-gray-200 text-gray-400' : 'bg-gray-200 text-gray-400'}`}
             >
                 {buttonText}
             </button>
