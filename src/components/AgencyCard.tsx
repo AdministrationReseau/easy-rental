@@ -24,28 +24,28 @@ const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
 
 interface AgencyProps {
     id: string;
-    imageUrl: string;
-    agency: string;
-    slogan: string;
-    stars: number;
-    followers:number;
-    isOpen: boolean;
     city: string;
-    location: string;
+    quater: string;
+    name: string;
+    followers: number,
+    stars: number,
+    slogan: string;
+    images: string[];
+    isOpen: boolean;
     onLike: (id: string) => void; // Fonction pour gérer les likes
     onDislike: (id: string) => void; // Fonction pour gérer les dislikes
 }
 
 const AgencyCard: React.FC<AgencyProps> = ({
     id,
-    imageUrl,
-    agency,
-    slogan,
-    stars,
-    followers,
-    isOpen,
     city,
-    location,
+    quater,
+    followers,
+    stars,
+    slogan,
+    name,
+    isOpen,
+    images,
     onLike,
     onDislike,
 }) => {
@@ -60,12 +60,12 @@ const AgencyCard: React.FC<AgencyProps> = ({
             onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
         }
     };
-
+    isOpen = true;
     return (
         <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[325px] h-[388px]">
             {/* Première ligne - Nom et Like/Dislike */}
             <div className="flex justify-between items-center p-4">
-                <h2 className="text-xl font-semibold text-gray-800">{agency}</h2>
+                <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
                 <LikeButton isLiked={isLiked} onClick={toggleLike} />
             </div>
 
@@ -77,9 +77,11 @@ const AgencyCard: React.FC<AgencyProps> = ({
             {/* Image du véhicule */}
             <div className='flex items-center justify-center h-[150px]'>
                 <Image
-                    src={imageUrl}
-                    alt={`${agency} ${slogan}`}
-                    className="w-[300px] h-[125px] object-cover"
+                    src={images[0]}
+                    alt={`${name} `}
+                    width={250}
+                    height={120}
+                    className="object-cover "
                 />
             </div>
 
@@ -104,12 +106,15 @@ const AgencyCard: React.FC<AgencyProps> = ({
             <div className="px-4 py-2 flex justify-between items-center">
                 <span className='m-2'>
                     <p className="text-xl font-semibold text-gray-800">{city}</p>
-                    <p className='text-secondary-text ml-2'>{location}</p>
+                    <p className='text-secondary-text ml-2'>{quater}</p>
                 </span>
                 {/* <Link href={`/car-details/${id}`}> */}
-                <Link href="#">
+                <Link
+                    href={`/agencies/${id}`}
+                    className="text-primary-blue mt-2 inline-block"
+                >
                     <button className="py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 hover:scale-105 hover:bg-blue-600 w-[116px] h-[44px]">
-                        Rent Now
+                        View more
                     </button>
                 </Link>
             </div>

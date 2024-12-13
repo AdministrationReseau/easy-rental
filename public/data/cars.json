@@ -6,9 +6,30 @@
       "brand": "Toyota",
       "model": "Camry",
       "year": 2020,
+      "rating":2,
       "passenger": 2,
+      "description" : 
+      [
+        "Sports car with the best design and acceleration",
+        "Safety and comfort while driving a futuristic and elegant sports car.",
+        "NISMO has become the embodiment of Nissan‘s outstanding performance, inspired by the most unforgiving proving ground, the “race track“."
+      ],
       "pricePerDay": 2500,
       "vin": "1HGBH41JXMN109186",
+      "fonctionnalities":{ 
+        "air_condition":true,
+        "usb_input":true,
+        "seat_belt":true,
+        "audio_input":true,
+        "child_seat":false,
+        "bluetooth":false,
+        "sleeping bed":true,
+        "onboard_computter":true,
+        "gps":false,
+        "luggage":false,
+        "water":true,
+        "additionnal_covers":true
+      },
       "engine": {
         "type": "Gasoline",
         "horsepower": 203,
@@ -54,6 +75,18 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
+      ],
+      "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
       ]
     },
     {
@@ -62,9 +95,29 @@
       "brand": "Harley-Davidson",
       "model": "Sportster",
       "year": 2021,
+      "rating":3,
       "passenger": 2,
+      "description": [
+        "Luxury SUV designed for versatility and performance on any terrain.",
+        "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
+        "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
+      ],
       "pricePerDay": 5000,
       "vin": "1HD1BJY14GB123456",
+      "fonctionnalities":{ 
+        "air_condition":true,
+        "usb_input":true,
+        "seat_belt":true,
+        "audio_input":true,
+        "child_seat":false,
+        "bluetooth":false,
+        "sleeping bed":true,
+        "onboard_computter":true,
+        "gps":false,
+        "luggage":false,
+        "water":true,
+        "additionnal_covers":true
+      },
       "engine": {
         "type": "Gasoline",
         "horsepower": 120,
@@ -108,8 +161,20 @@
       },
       "images": [
         "/assets/organisation/cars/sportster.jpeg",
-        "/assets/organisation/cars/sportster.jpeg",
+        "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/sportster.jpeg"
+      ],
+      "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
       ]
     },
     {
@@ -118,9 +183,29 @@
       "brand": "Ford",
       "model": "F-150",
       "year": 2019,
+      "rating":4,
       "passenger": 3,
+      "description": [
+          "Powerful truck built to handle the toughest jobs with ease.",
+          "Reliability and comfort combined with exceptional towing and payload capacity.",
+          "The Ford F-150 embodies strength and innovation, inspired by decades of leadership in the truck segment."
+          ],
       "pricePerDay": 3000,
       "vin": "1FTEW1E42JKD12345",
+      "fonctionnalities":{ 
+        "air_condition":true,
+        "usb_input":true,
+        "seat_belt":true,
+        "audio_input":true,
+        "child_seat":false,
+        "bluetooth":false,
+        "sleeping bed":true,
+        "onboard_computter":true,
+        "gps":false,
+        "luggage":false,
+        "water":true,
+        "additionnal_covers":true
+      },
       "engine": {
         "type": "Diesel",
         "horsepower": 400,
@@ -166,6 +251,18 @@
         "/assets/organisation/cars/f-150.jpeg",
         "/assets/organisation/cars/f-150.jpeg",
         "/assets/organisation/cars/f-150.jpeg"
+      ],
+      "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
       ]
     },
     {
@@ -174,9 +271,29 @@
       "brand": "BMW",
       "model": "X5",
       "year": 2022,
+      "rating":5,
       "passenger": 2,
+      "description": [
+          "Luxury SUV designed for versatility and performance on any terrain.",
+          "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
+          "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
+        ],
       "pricePerDay": 1500,
       "vin": "5UXTY9C08N0B12345",
+      "fonctionnalities":{ 
+        "air_condition":true,
+        "usb_input":true,
+        "seat_belt":true,
+        "audio_input":true,
+        "child_seat":false,
+        "bluetooth":false,
+        "sleeping bed":true,
+        "onboard_computter":true,
+        "gps":false,
+        "luggage":false,
+        "water":true,
+        "additionnal_covers":true
+      },
       "engine": {
         "type": "Gasoline",
         "horsepower": 335,
@@ -222,6 +339,18 @@
         "/assets/organisation/cars/x5.jpeg",
         "/assets/organisation/cars/x5.jpeg",
         "/assets/organisation/cars/x5.jpeg"
+      ],
+      "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
       ]
     },
     {
@@ -230,9 +359,30 @@
       "brand": "Mercedes-Benz",
       "model": "Metris",
       "year": 2020,
+      "rating":1,
       "passenger": 3,
+      "description": [
+        "Luxury SUV designed for versatility and performance on any terrain.",
+        "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
+        "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
+      ],
+
       "pricePerDay": 10000,
       "vin": "W1X6D6BB8LP123456",
+      "fonctionnalities":{ 
+        "air_condition":true,
+        "usb_input":true,
+        "seat_belt":true,
+        "audio_input":true,
+        "child_seat":false,
+        "bluetooth":false,
+        "sleeping bed":true,
+        "onboard_computter":true,
+        "gps":false,
+        "luggage":false,
+        "water":true,
+        "additionnal_covers":true
+      },
       "engine": {
         "type": "Diesel",
         "horsepower": 188,
@@ -278,6 +428,18 @@
         "/assets/organisation/cars/metris.jpeg",
         "/assets/organisation/cars/metris.jpeg",
         "/assets/organisation/cars/metris.jpeg"
+      ],
+      "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
       ]
     }
   ]
