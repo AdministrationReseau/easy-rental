@@ -22,7 +22,7 @@ export default function Home() {
         {/* <Stars value={2.5} precision={0.5}/> */}
         {/* <Sidebar/> */}
         <SportCarCard/>
-        <div className="flex flex-col items-center justify-center text-xl my-12 h-screen w-full">
+        <div className="flex flex-col items-center justify-center text-xl my-12 w-full">
             <div className="text-xl text-primary-blue">
               What We offer
             </div>

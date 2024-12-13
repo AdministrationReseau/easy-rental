@@ -5,7 +5,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "35,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "pending",
     "icon": "https://via.placeholder.com/40"
   },
@@ -15,7 +18,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "10:34 AM",
+<<<<<<< HEAD
     "amount": "1,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -25,7 +31,10 @@
     "description": "From ABC Bank ATM",
     "date": "16 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -35,7 +44,10 @@
     "description": "From ABC Bank ATM",
     "date": "15 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,267 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "canceled",
     "icon": "https://via.placeholder.com/40"
   },
@@ -45,7 +57,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "350 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "pending",
     "icon": "https://via.placeholder.com/40"
   },
@@ -55,7 +70,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "10:34 AM",
+<<<<<<< HEAD
     "amount": "1,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -65,7 +83,10 @@
     "description": "From ABC Bank ATM",
     "date": "16 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -75,7 +96,10 @@
     "description": "From ABC Bank ATM",
     "date": "15 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,267 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "canceled",
     "icon": "https://via.placeholder.com/40"
   },
@@ -85,7 +109,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "350 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "pending",
     "icon": "https://via.placeholder.com/40"
   },
@@ -95,7 +122,10 @@
     "description": "From ABC Bank ATM",
     "date": "16 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -105,7 +135,10 @@
     "description": "From ABC Bank ATM",
     "date": "15 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,267 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "canceled",
     "icon": "https://via.placeholder.com/40"
   },
@@ -115,7 +148,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "350 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "pending",
     "icon": "https://via.placeholder.com/40"
   },
@@ -125,7 +161,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "10:34 AM",
+<<<<<<< HEAD
     "amount": "1,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -135,7 +174,10 @@
     "description": "From ABC Bank ATM",
     "date": "16 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -145,7 +187,10 @@
     "description": "From ABC Bank ATM",
     "date": "15 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,267 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "canceled",
     "icon": "https://via.placeholder.com/40"
   },
@@ -155,7 +200,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "350 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "pending",
     "icon": "https://via.placeholder.com/40"
   },
@@ -165,7 +213,10 @@
     "description": "From ABC Bank ATM",
     "date": "17 Sep 2023",
     "time": "10:34 AM",
+<<<<<<< HEAD
     "amount": "1,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -175,7 +226,10 @@
     "description": "From ABC Bank ATM",
     "date": "16 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,000 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "confirmed",
     "icon": "https://via.placeholder.com/40"
   },
@@ -185,7 +239,10 @@
     "description": "From ABC Bank ATM",
     "date": "15 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,267 FCFA",
+=======
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb
     "status": "canceled",
     "icon": "https://via.placeholder.com/40"
   },
@@ -195,8 +252,15 @@
     "description": "From ABC Bank ATM",
     "date": "15 Sep 2023",
     "time": "11:21 AM",
+<<<<<<< HEAD
     "amount": "9,267 FCFA",
     "status": "canceled",
     "icon": "https://via.placeholder.com/40"
   }
 ]
+=======
+    "status": "canceled",
+    "icon": "https://via.placeholder.com/40"
+  }
+]
+>>>>>>> 6daa8d09d24efe9c095df326cc8d478f475b61cb

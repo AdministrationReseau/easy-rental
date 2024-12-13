@@ -105,7 +105,7 @@ const CarCarousel: React.FC = () => {
         autoplay={{delay:3000 ,disableOnInteraction:false}}
         breakpoints={{
           1044: { slidesPerView: 4 },
-          1024: { slidesPerView: 4 },
+          1024: { slidesPerView: 3 },
           800: { slidesPerView: 2 },
           480: { slidesPerView: 1 },
         }}
