@@ -10,7 +10,7 @@ const Field = ({
 }) => (
   <div className={`mb-4.5 ${size}`}>
     <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-      {label} {required && <span className="text-meta-1">*</span>}
+      <b>{label}</b> {required && <span className="text-meta-1">*</span>}
     </label>
     <input
       type={type}

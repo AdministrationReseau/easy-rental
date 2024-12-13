@@ -6,7 +6,7 @@ const Reviews = ({name, starsValue, message}: {name: string, starsValue: number,
     return (
         <div>
             <div
-                className="flex w-full p-4 max-w-lg flex-col rounded-lg bg-white shadow-sm border border-slate-200 my-6">
+                className="flex w-full p-4  flex-col rounded-lg bg-white shadow-sm border border-slate-200 my-6">
                 <div className="flex items-center gap-4 text-slate-800">
                     <DefaultProfile name={name} />
                     <div className="flex w-full flex-col">
