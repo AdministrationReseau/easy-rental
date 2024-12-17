@@ -5,30 +5,21 @@ import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
 import Image from 'next/image';
 import Stars from '../Stars';
+import { CarProps } from '@/utils/types/CarProps';
 
-
-interface CarProps {
-    id: string;
-    brand: string;
-    model: string;
-    passenger: number;
-    pricePerDay: number;
-    rating: number,
-    reviews: {
-        comment: string,
-        reviewer: string,
-        rating: number,
-    }[],
-    engine: {
-        type: string;
-        horsepower: number;
-        capacity: number;
-    };
-    transmission: string;
-    images: string[];
+export interface rentalInfoProps {
+    pickUpDate: string,
+    pickUpTime: string,
+    backOffDate: string,
+    backOffTime: String
+    billingName: String,
+    billingPhone: number,
+    billingAddress: string,
+    billingCity: string,
+    promoCode: number,
 }
 
-const RentalSummary: React.FC<CarProps> = ({
+const RentalSummary: React.FC<CarProps& { rentalInfo?: rentalInfoProps }> = ({
     id,
     brand,
     model,
@@ -39,11 +30,12 @@ const RentalSummary: React.FC<CarProps> = ({
     passenger,
     pricePerDay,
     images,
+    rentalInfo
 }) => {
   
 
     return (
-        <div className="bg-white text-gray-700 rounded-lg p-4 min-w-full shadow-md overflow-hidden">
+        <div className="bg-white text-gray-700 rounded-lg p-4 max-w-full shadow-md overflow-hidden">
             {/* Header - Brand, Model, Like Button */}
             <div className="flex flex-col py-2">
                 <h2 className="text-lg font-semibold text-gray-800">
@@ -78,6 +70,15 @@ const RentalSummary: React.FC<CarProps> = ({
             </div>
             <div className='flex justify-center'>
                 <hr className='w-[80%] h-4'/>
+            </div>
+            <div>
+                <h1 className="text-xl font-bold">{brand} {model}</h1>
+                <p><b>Pick-Up Date:</b> {rentalInfo?.pickUpDate || 'N/A'}</p>
+                <p><b>Pick-Up Time:</b> {rentalInfo?.pickUpTime || 'N/A'}</p>
+                <p><b>Return Date:</b> {rentalInfo?.backOffDate || 'N/A'}</p>
+                <p><b>Return Time:</b> {rentalInfo?.backOffTime || 'N/A'}</p>
+                <p><b>Customer:</b> {rentalInfo?.billingName || 'N/A'}</p>
+                <p><b>Phone:</b> {rentalInfo?.billingPhone || 'N/A'}</p>
             </div>
             <div className='flex flex-row justify-between py-2'>
                 <h1 className='text-secondary-text'> Subtotal</h1>

@@ -4,28 +4,29 @@ import React from "react";
 import CarCard from "@/components/combiner-components/CarCard";
 import CarFeatureCard from "@/components/base-component/CarFeatureCard";
 import CarFeatures from "@/components/base-component/CarFeatures";
-import Review from "@/components/base-component/review"; // Ajout de l'importation du composant Review
 import Link from "next/link";
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import GroupIcon from '@mui/icons-material/Group';
 import Reviews from "../Reviews";
+import { CarProps } from "@/utils/types/CarProps";
 
-const CarDetail: React.FC<{ vehicle: any }> = ({ vehicle }) => {
+
+const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="p-8 space-y-8">
-      <Link href="/vehicles">
+    <div className="space-y-8 bg-red w-full">
+      <Link href="/customer/cars">
         <h1 className="p-4 m-4">&gt; Back to Vehicles</h1>
       </Link>
       
       {/* Car Details Section */}
       <div className="flex flex-col md:flex-row gap-6 w-full rounded-lg ">
         {/* Car Description */}
-        <div className="w-full  px-4">
+        <div className="w-[60%]  px-4">
             <CarFeatureCard vehicle={vehicle} />
         </div>
-       <div className="w-full px-4 ">
+       <div className="w-[40%] px-4 ">
           {/* Car Info */}
           <CarCard vehicle={vehicle} />
        </div>
@@ -36,7 +37,7 @@ const CarDetail: React.FC<{ vehicle: any }> = ({ vehicle }) => {
         <div className="flex flex-col">
           <span><AddRoadIcon/></span>
           <span className="material-icons">speed</span>
-          <p>Mileage ({vehicle.service_history.mileage}Km)</p>
+          <p>Mileage ({vehicle.service_history[(vehicle.service_history.length-1)].mileage}Km)</p>
         </div>
         <div className="flex flex-col">
          <span><DirectionsCarIcon/></span>

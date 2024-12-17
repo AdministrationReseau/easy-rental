@@ -2,15 +2,16 @@
 
 import React from 'react';
 import { AgencyCard } from '@/components/AgencyCard';
-
+import { AgencyProps } from '@/utils/types/AgencyProps';
 
 interface AgencyListProps {
-  agencies: any[];
+  agencies: AgencyProps[];
   filters: {
     city: string[];
     stars: number | null;
   };
 }
+
 
 const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
   const filteredAgencies = agencies.filter((agency) => {
@@ -27,7 +28,7 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
 
   return (
     <div className="p-5 w-full flex">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
         {filteredAgencies.length > 0 ? (
           filteredAgencies.map((agency) => (
             <AgencyCard
@@ -40,6 +41,9 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
               stars={agency.stars   || 4}
               slogan={agency.slogan}
               images={agency.images}
+              isOpen={agency.isOpen}
+              onLike={ (id: number) => {} }
+              onDislike={ (id: number) => {} }
             />
           ))
         ) : (

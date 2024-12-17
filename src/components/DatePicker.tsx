@@ -1,7 +1,7 @@
 'use client'
 
-import * as React from 'react';
-import { Button, Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker as ReactDatePicker, DateSegment, Dialog, Group, Heading, Label, Popover } from 'react-aria-components';
+import React, { useState } from 'react';
+import { Button, Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker as ReactDatePicker, DateSegment, Dialog, Group, Heading, Label, Popover, DateValue } from 'react-aria-components';
 
 export const DatePicker = () => {
     return (
@@ -30,21 +30,37 @@ export const DatePicker = () => {
     );
 }
 
-
 export const DatePickerStyled = () => {
+    const [selectedDate, setSelectedDate] = useState<DateValue | null>(null); // État pour la date sélectionnée
+    const [error, setError] = useState<string | null>(null); // État pour les erreurs
+
+    // Gestion du changement de date
+    const handleDateChange = (value: DateValue | null) => {
+        if (value) {
+            setSelectedDate(value);
+            setError(null); // Réinitialise les erreurs si la date est valide
+        } else {
+            setError('Veuillez sélectionner une date valide.'); // Gestion d'erreur si invalide
+        }
+    };
+
     return (
         <div className="min-w-[250px] max-w-md mx-auto">
             {/* Wrapper for time selection */}
             <div className="flex flex-col gap-4">
                 <div className="w-full relative">
                     {/* Label pour l'accessibilité */}
-                    <label className="block  mb-1">
+                    <label htmlFor="datePicker" className="block mb-1 text-sm font-medium text-black dark:text-white">
                         Select Date
                     </label>
-                    <ReactDatePicker>
+
+                    <ReactDatePicker onChange={handleDateChange}>
                         {/* Champ d'entrée et bouton pour ouvrir le sélecteur */}
-                        <Group className="flex flex-row w-full  rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
-                            <DateInput className="w-full flex items-center justify-between gap-1 text-gray-700">
+                        <Group className="flex flex-row w-full rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                            <DateInput
+                                // id="datePicker"
+                                className="w-full flex items-center justify-between gap-1 text-gray-700"
+                            >
                                 {(segment) => (
                                     <DateSegment
                                         segment={segment}
@@ -56,6 +72,9 @@ export const DatePickerStyled = () => {
                                 ▼
                             </Button>
                         </Group>
+
+                        {/* Affichage de l'erreur */}
+                        {error && <span className="text-red-500 text-xs mt-1">{error}</span>}
 
                         {/* Popover pour afficher le calendrier */}
                         <Popover className="absolute mt-2 w-full max-w-sm bg-white border border-gray-200 rounded-md shadow-lg z-10">

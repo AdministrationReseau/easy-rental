@@ -2,14 +2,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { Slider } from '@mui/material';
+import { CarProps } from '@/utils/types/CarProps';
+import { FilterProps } from '@/utils/types/CarProps';
 
-const SidebarFilter: React.FC<{ vehicles: any[]; onFilter: (filters: any) => void }> = ({
+const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: FilterProps) => void }> = ({
   vehicles,
   onFilter,
 }) => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedPassengers, setSelectedPassengers] = useState<number[]>([]);
-  const [priceRange, setPriceRange] = useState<number[]>([0, 100000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
 
   useEffect(() => {
     const prices = vehicles.map((vehicle) => vehicle.pricePerDay || 0);
@@ -31,7 +33,7 @@ const SidebarFilter: React.FC<{ vehicles: any[]; onFilter: (filters: any) => voi
   };
 
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
-    setPriceRange(newValue as number[]);
+    setPriceRange(newValue as [number, number]);
   };
 
   const applyFilters = () => {
@@ -60,7 +62,7 @@ const SidebarFilter: React.FC<{ vehicles: any[]; onFilter: (filters: any) => voi
   };
 
   return (
-    <div className="bg-white h-full fixed shadow-lg flex top-4 left-0 p-6 flex-col p-2">
+    <div className="bg-white h-full fixed shadow-lg flex flex-col p-4">
       <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
       <div className="mb-6">

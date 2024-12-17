@@ -1,14 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useParams } from 'next/navigation';
 
 interface AgencyDetailsProps {
-  params: { id: string };
 }
 
-const AgencyDetails: React.FC<AgencyDetailsProps> = ({ params }) => {
-  const { id } = params;
+const AgencyDetails: React.FC<AgencyDetailsProps> = () => {
+  const { id } = useParams();
 
   const [agency, setAgency] = React.useState<any>(null);
 

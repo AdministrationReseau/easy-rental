@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Favorite, FavoriteBorder, People,Star, AccessTime} from '@mui/icons-material';
 import Image from "next/image"; // Import des icônes pour like et dislike
+import { AgencyProps } from '@/utils/types/AgencyProps';
 
 interface LikeProps {
     isLiked: boolean; // Etat du like : true si aimé, false sinon
@@ -21,20 +22,6 @@ const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
         </button>
     );
 };
-
-interface AgencyProps {
-    id: string;
-    city: string;
-    quater: string;
-    name: string;
-    followers: number,
-    stars: number,
-    slogan: string;
-    images: string[];
-    isOpen: boolean;
-    onLike: (id: string) => void; // Fonction pour gérer les likes
-    onDislike: (id: string) => void; // Fonction pour gérer les dislikes
-}
 
 const AgencyCard: React.FC<AgencyProps> = ({
     id,
@@ -62,7 +49,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
     };
     isOpen = true;
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[325px] h-[388px]">
+        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[325px] h-[450px]">
             {/* Première ligne - Nom et Like/Dislike */}
             <div className="flex justify-between items-center p-4">
                 <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
@@ -70,18 +57,18 @@ const AgencyCard: React.FC<AgencyProps> = ({
             </div>
 
             {/* Deuxième ligne - Marque */}
-            <div className="px-4 py-2 text-sm text-secondary-text">
+            <div className="px-4 py-2 text-sm text-secondary-text text-sm h-[70px]">
                 <p>{slogan}</p>
             </div>
 
             {/* Image du véhicule */}
-            <div className='flex items-center justify-center h-[150px]'>
+            <div className='flex items-center justify-center h-[200px]'>
                 <Image
                     src={images[0]}
                     alt={`${name} `}
-                    width={250}
-                    height={120}
-                    className="object-cover "
+                    width={200}
+                    height={100}
+                    className=" "
                 />
             </div>
 
@@ -110,10 +97,10 @@ const AgencyCard: React.FC<AgencyProps> = ({
                 </span>
                 {/* <Link href={`/car-details/${id}`}> */}
                 <Link
-                    href={`/agencies/${id}`}
+                    href={`/customer/agencies/${id}`}
                     className="text-primary-blue mt-2 inline-block"
                 >
-                    <button className="py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 hover:scale-105 hover:bg-blue-600 w-[116px] h-[44px]">
+                    <button className="py-2 px-4 text-sm bg-primary-blue text-white rounded-md transition duration-200 hover:scale-105 hover:bg-blue-600 w-[116px] h-[44px]">
                         View more
                     </button>
                 </Link>

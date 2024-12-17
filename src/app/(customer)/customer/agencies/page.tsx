@@ -26,8 +26,8 @@ const App: React.FC = () => {
         return response.json();
       })
       .then((data) => {
-        if (data && Array.isArray(data.agency)) {
-          setAgencies(data.agency);
+        if (data && Array.isArray(data)) {
+          setAgencies(data);
         } else {
           console.error('Unexpected data format:', data);
           console.log(data);

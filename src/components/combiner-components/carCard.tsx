@@ -1,31 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import Stars from '../Stars';
+import { CarProps } from '@/utils/types/CarProps';
 
-// Interface pour définir le type Vehicle
-interface Vehicle {
-  id: string;
-  brand: string;
-  model: string;
-  rating: number;
-  reviews: {
-    comment: string,
-    reviewer: string,
-    rating: number,
-}[];
-  description: string[]; // Supposons que la description soit un tableau de chaînes
-  type: string;
-  passenger: number;
-  transmission: string;
-  engine: {
-    capacity: number;
-  };
-  pricePerDay: number;
-}
 
-const CarCard: React.FC<{ vehicle: Vehicle }> = ({ vehicle }) => {
+const CarCard: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 max-w-md mx-auto relative">
+    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
       {/* Favorite Icon Placeholder */}
       <div className="absolute top-10 right-10 text-gray-400 hover:text-red-500 cursor-pointer">
         ♥

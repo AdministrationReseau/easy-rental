@@ -5,6 +5,7 @@
       "first_name": "John",
       "last_name": "Doe",
       "age": 35,
+      "location": "Yaoundé",
       "license_number": "D1234567",
       "license_type": "Class C",
       "address": "123 Main St, City, CA 90001",
@@ -19,13 +20,14 @@
       "rating": 4.5,
       "insurance_provider": "State Farm",
       "insurance_policy": "SF123456789",
-      "profile_picture": "/assets/organisation/cars/1.jpeg"
+      "profile_picture": "/assets/organisation/drivers/1.jpeg"
     },
     {
       "id": 2,
       "first_name": "Jane",
       "last_name": "Smith",
       "age": 28,
+      "location": "Douala",
       "license_number": "S7654321",
       "license_type": "Class M",
       "address": "456 Park Ave, Miami, FL 33101",
@@ -40,13 +42,14 @@
       "rating": 4.8,
       "insurance_provider": "Allstate",
       "insurance_policy": "AL987654321",
-      "profile_picture": "/assets/organisation/cars/2.jpeg"
+      "profile_picture": "/assets/organisation/drivers/2.jpeg"
     },
     {
       "id": 3,
       "first_name": "Tom",
       "last_name": "Harris",
       "age": 42,
+      "location": "Yaoundé",
       "license_number": "T12345678",
       "license_type": "Class A",
       "address": "789 Industrial Blvd, Dallas, TX 75201",
@@ -61,13 +64,14 @@
       "rating": 4.6,
       "insurance_provider": "Progressive",
       "insurance_policy": "PR1234567890",
-      "profile_picture": "/assets/organisation/cars/3.jpeg"
+      "profile_picture": "/assets/organisation/drivers/3.jpeg"
     },
     {
       "id": 4,
       "first_name": "Alice",
       "last_name": "Johnson",
       "age": 30,
+      "location": "Ngaoundéré",
       "license_number": "J9876543",
       "license_type": "Class B",
       "address": "234 Oak St, New York, NY 10001",
@@ -82,13 +86,14 @@
       "rating": 4.7,
       "insurance_provider": "Geico",
       "insurance_policy": "GE123456789",
-      "profile_picture": "/assets/organisation/cars/4.jpeg"
+      "profile_picture": "/assets/organisation/drivers/4.jpeg"
     },
     {
       "id": 5,
       "first_name": "Mike",
       "last_name": "Brown",
       "age": 38,
+      "location": "Buea",
       "license_number": "M1239876",
       "license_type": "Class C",
       "address": "567 Maple Rd, Seattle, WA 98101",
@@ -103,7 +108,7 @@
       "rating": 4.9,
       "insurance_provider": "Nationwide",
       "insurance_policy": "NW123456789",
-      "profile_picture": "/assets/organisation/cars/5.jpeg"
+      "profile_picture": "/assets/organisation/drivers/5.jpeg"
     }
   ]
 }

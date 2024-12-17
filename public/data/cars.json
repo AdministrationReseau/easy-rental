@@ -23,7 +23,7 @@
         "audio_input":true,
         "child_seat":false,
         "bluetooth":false,
-        "sleeping bed":true,
+        "sleeping_bed":true,
         "onboard_computter":true,
         "gps":false,
         "luggage":false,

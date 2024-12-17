@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
 import Image from 'next/image';
+import { CarProps } from '@/utils/types/CarProps';
 
 interface LikeProps {
     isLiked: boolean;
@@ -22,22 +23,22 @@ const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
     );
 };
 
-interface CarProps {
-    id: string;
-    brand: string;
-    model: string;
-    passenger: number;
-    pricePerDay: number;
-    engine: {
-        type: string;
-        horsepower: number;
-        capacity: number;
-    };
-    transmission: string;
-    images: string[];
-    onLike: (id: string) => void;
-    onDislike: (id: string) => void;
-}
+// interface CarProps {
+//     id: number;
+//     brand: string;
+//     model: string;
+//     passenger: number;
+//     pricePerDay: number;
+//     engine: {
+//         type: string;
+//         horsepower: number;
+//         capacity: number;
+//     };
+//     transmission: string;
+//     images: string[];
+//     onLike: (id: number) => void;
+//     onDislike: (id: number) => void;
+// }
 
 const CarCard: React.FC<CarProps> = ({
     id,

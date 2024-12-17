@@ -2,15 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import VehicleList from '@/components/customer/VehicleList';
-import SidebarFilter from '@/components/customer/SideBarFilter';
+import SidebarFilter from '@/components/customer/SideBarFilterCar';
 import LocationFilter from '@/components/LocationFilter';
 import CarDetail from '@/components/combiner-components/CarDetail';
+import { FilterProps } from '@/utils/types/CarProps';
 
-interface FilterProps {
-  type: string[];
-  capacity: number | null;
-  priceRange: [number, number];
-}
 
 const App: React.FC = () => {
   const [vehicles, setVehicles] = useState<any[]>([]);
@@ -47,7 +43,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <main className="flex flex-col mt-14">
+      <main className="flex flex-col m-2">
           <div className="filter-container">
             <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
           </div>

@@ -11,10 +11,12 @@ import { DatePickerStyled } from '@/components/DatePicker';
 import Image from 'next/image';
 import ComboBox from '@/components/ComboBox';
 import { CustomCheckbox } from '@/components/Checkbox';
+import DriverList from '@/components/customer/DriverList';
+import { DateValue } from 'react-aria-components';
 
 const MultiStepForm: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(1); // État pour suivre l'étape actuelle
-    const totalSteps = 4; // Nombre total d'étapes
+    const totalSteps = 5; // Nombre total d'étapes
     const options=
     [
         {
@@ -43,6 +45,73 @@ const MultiStepForm: React.FC = () => {
     const handleSelectionChange = (value: string) => {
         console.log("Option sélectionnée :", value);
       };
+
+    const [selectedDate, setSelectedDate] = useState<DateValue | null>(null); // État pour la date sélectionnée
+        // État pour stocker les informations saisies
+    const [rentalInfo, setRentalInfo] = useState({
+        pickUpDate: '',
+        pickUpTime: '',
+        backOffDate: '',
+        backOffTime: '',
+        billingName: '',
+        billingPhone: '',
+        billingAddress: '',
+        billingCity: '',
+        promoCode: '',
+    });
+
+    // Fonction pour mettre à jour l'état des informations
+    const handleRentalChange = (field: string, value: string) => {
+        setRentalInfo((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+    };
+    
+
+    const { id } = useParams(); // Récupération de l'ID via Next.js
+    
+
+       // const [vehicle, setVehicle] = useState<Vehicle | null>(null); // État pour le véhicule
+       const [loading, setLoading] = useState(true); // État de chargement
+
+       // Charger les données du véhicule
+       const [vehicle, setVehicle] = useState<any | null>(null);
+       const [vehicles, setVehicles] = useState<any[]>([]);
+   
+       // Chargement des données des véhicules
+       useEffect(() => {
+           fetch('/data/cars.json')
+               .then((response) => {
+                   if (!response.ok) {
+                       throw new Error(`HTTP error! Status: ${response.status}`);
+                   }
+                   return response.json();
+               })
+               .then((data) => {
+                   if (data && Array.isArray(data.vehicles)) {
+                       setVehicles(data.vehicles);
+                       const foundVehicle = data.vehicles.find(
+                           (v: any) => v.id.toString() === id
+                       );
+                       setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
+                   } else {
+                       console.error('Unexpected data format:', data);
+                   }
+               })
+               .catch((error) => {
+                   console.error('Error loading vehicles:', error);
+               });
+       }, [id]);
+       
+   
+       if (!vehicle) {
+           return (
+               <div className="p-6">
+                   <p>Vehicle not found!</p>
+               </div>
+           );
+       }
     // Contenu dynamique pour chaque étape
     const renderStepContent = () => {
         switch (currentStep) {
@@ -56,12 +125,30 @@ const MultiStepForm: React.FC = () => {
 
                         </div>
                         <div className='flex flex-row gap-4'>
-                            <Field label="Name" placeholder="Your name" required={true} />
-                            <Field label="Phone number" placeholder="Phone number" required={true} />
+                            <Field 
+                                label="Name" 
+                                placeholder="Your name" 
+                                required={true}
+                                onChange={(e) => handleRentalChange('billingName', e.target.value)}  />
+                                
+                            <Field  
+                                label="Phone number" 
+                                placeholder="Phone number" 
+                                required={true}
+                                onChange={(e) => handleRentalChange('billingPhone', e.target.value)}  />
                         </div>
                         <div className='flex flex-row gap-4'>
-                            <Field label="Address" placeholder="Your address" required={true} />
-                            <Field label="Town/City" placeholder="Town or city" required={true} />
+                            <Field 
+                                label="Address" 
+                                placeholder="Your address" 
+                                required={true}
+                                onChange={(e) => handleRentalChange('billingAddress', e.target.value)}  />
+                            <Field 
+                                label="Town/City" 
+                                placeholder="Town or city" 
+                                required={true}
+                                onChange={(e) => handleRentalChange('billingcity', e.target.value)}  
+                                />
                         </div>
 
                     </>
@@ -87,7 +174,7 @@ const MultiStepForm: React.FC = () => {
                             </div>
                             <div className="flex flex-col">
                                 <div className="flex h-full ">
-                                    <DatePickerStyled />
+                                    <DatePickerStyled/>
                                 </div>
                             </div>
                         </div>
@@ -130,6 +217,19 @@ const MultiStepForm: React.FC = () => {
                     </>
                 );
             case 3:
+                return (
+                    <>
+                         <h1><b> Choose a driver</b></h1>
+                         <div className="flex flex-row justify-between text-secondary-text">
+                            <p>Please choose a driver</p>
+                            <p>Step {currentStep} of {totalSteps}</p>
+                        </div>
+                        <div className='w-full overflow-x-scroll relative'>
+                            <DriverList vehicleId= {Number(id)}/>
+                        </div>
+                    </>
+                )
+            case 4:
                 return (
                     <>
                          <h1><b> Payment Method</b></h1>
@@ -180,7 +280,7 @@ const MultiStepForm: React.FC = () => {
                         </div>
                     </>
                 );
-            case 4:
+            case 5:
                 return (
                 <>
                      <h1><b> Confirmation</b></h1>
@@ -217,54 +317,17 @@ const MultiStepForm: React.FC = () => {
                 return null;
         }
     };
-    const { id } = useParams(); // Récupération de l'ID via Next.js
-    // const [vehicle, setVehicle] = useState<Vehicle | null>(null); // État pour le véhicule
-    const [loading, setLoading] = useState(true); // État de chargement
+   
+ 
 
-    // Charger les données du véhicule
-    const [vehicle, setVehicle] = useState<any | null>(null);
-    const [vehicles, setVehicles] = useState<any[]>([]);
-
-    // Chargement des données des véhicules
-    useEffect(() => {
-        fetch('/data/cars.json')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data && Array.isArray(data.vehicles)) {
-                    setVehicles(data.vehicles);
-                    const foundVehicle = data.vehicles.find(
-                        (v: any) => v.id.toString() === id
-                    );
-                    setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
-                } else {
-                    console.error('Unexpected data format:', data);
-                }
-            })
-            .catch((error) => {
-                console.error('Error loading vehicles:', error);
-            });
-    }, [id]);
-
-    if (!vehicle) {
-        return (
-            <div className="p-6">
-                <p>Vehicle not found!</p>
-            </div>
-        );
-    }
-
+   
     return (
-        <div className='flex mt-20 bg-gray-100'>
+        <div className='flex m-2 bg-gray-100'>
             <div className="m-8 w-full">
                 
 
                 {/* Formulaire dynamique */}
-                <div className="bg-white rounded-lg shadow-md p-6 w-full space-y-4 mx-auto">
+                <div className="bg-white rounded-lg shadow-md p-6 w-[full] space-y-4 mx-auto">
 
 
                     <div className="space-y-4">{renderStepContent()}</div>
@@ -314,6 +377,7 @@ const MultiStepForm: React.FC = () => {
                     engine={vehicle.engine}
                     passenger={vehicle.passenger || 4}
                     pricePerDay={vehicle.pricePerDay}
+                    rentalInfo={rentalInfo} // Passer l'état dynamique
                 />
             </aside>
         </div>

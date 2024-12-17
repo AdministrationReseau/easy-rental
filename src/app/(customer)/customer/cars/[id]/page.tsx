@@ -6,7 +6,7 @@ import CarProfilDescription from '@/components/CarProfilDescription';
 import ProfilImg from '@/components/ProfilImg';
 import { useParams } from 'next/navigation';
 import VehicleList from '@/components/customer/VehicleList';
-import SidebarFilter from '@/components/customer/SideBarFilter';
+import SidebarFilter from '@/components/customer/SideBarFilterCar';
 import LocationFilter from '@/components/LocationFilter';
 import CarDetail from '@/components/combiner-components/CarDetail';
 
@@ -60,7 +60,7 @@ const VehicleDetails: React.FC = () => {
   }
 
   return (
-    <div className='mt-10 bg-gray-100'>
+    <div className='m-2 bg-gray-100'>
       <main className="flex flex-col">
         {/* Section filtre */}
         <div className="filter-container mb-4">
