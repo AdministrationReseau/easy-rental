@@ -5,7 +5,7 @@ import Stars from '../Stars';
 import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 import { Slider } from '@mui/material';
 
-const SidebarFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filters: FilterAgencyProps) => void }> = ({
+const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filters: FilterAgencyProps) => void }> = ({
   agencies,
   onFilter,
 }) => {
@@ -42,6 +42,9 @@ const SidebarFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filters: Fil
     );
   };
 
+  const handleRatingRangeChange = (event: Event, newValue: number | number[]) => {
+    setFollowersRange(newValue as [number, number]);
+  }
   const handleTypeChange = (type: string) => {
     setSelectedTypes((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
@@ -187,7 +190,7 @@ const SidebarFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filters: Fil
             <h3 className="text-md font-medium mb-2">Followers</h3>
             <Slider
               value={followersRange}
-              onChange={(event, newValue) => setFollowersRange(newValue)}
+              onChange={handleRatingRangeChange}
               valueLabelDisplay="auto"
               min={Math.min(...agencies.map((agency) => agency.followers))}
               max={Math.max(...agencies.map((agency) => agency.followers))}
@@ -212,4 +215,4 @@ const SidebarFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filters: Fil
   );
 };
 
-export default SidebarFilter;
+export default SidebarAgencyFilter;

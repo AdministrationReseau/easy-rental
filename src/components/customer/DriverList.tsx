@@ -12,7 +12,7 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
   const [filteredDrivers, setFilteredDrivers] = useState<DriverProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedDriver, setSelectedDriver] = useState<DriverProps | null>(null);
-
+  console.log(selectedDriver);
   useEffect(() => {
     // Charger les chauffeurs depuis le fichier JSON
     fetch('/data/drivers.json')

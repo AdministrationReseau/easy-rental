@@ -33,9 +33,16 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
               slogan={agency.slogan}
               images={agency.images}
               isOpen={agency.isOpen}
-              onLike={(id: number) => {}}
-              onDislike={(id: number) => {}}
-            />
+              description={agency.description} 
+              openingTime={agency.openingTime} 
+              closingTime={agency.closingTime} 
+              type={agency.type} 
+              createdAt={agency.createdAt} 
+              updatedAt={agency.updatedAt} 
+              reviews={agency.reviews}
+              onLike={(id: number) => { console.log(id); } }
+              onDislike={(id: number) => { console.log(id); } } 
+              />
           ))
         ) : (
           <p className="col-span-full text-center text-gray-500">

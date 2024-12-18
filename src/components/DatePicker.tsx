@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker as ReactDatePicker, DateSegment, Dialog, Group, Heading, Label, Popover, DateValue } from 'react-aria-components';
+import { Button, Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker as ReactDatePicker, DateSegment, Dialog, Group, Heading, Popover, DateValue } from 'react-aria-components';
 
 interface DatePickerStyledProps {
   value: DateValue | null;
   onChange?: (value: DateValue | null) => void; // ici on spécifie que onChange attend une fonction qui prend une DateValue ou null
 }
 
-export const DatePickerStyled = ({ value, onChange }: DatePickerStyledProps) => {
+export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
     const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
     const [error, setError] = useState<string | null>(null);
-
+    console.log(selectedDate)
     const handleDateChange = (newDate: DateValue | null) => {
         if (newDate) {
             setSelectedDate(newDate);

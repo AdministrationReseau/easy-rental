@@ -3,15 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import AgencyList from '@/components/customer/AgencyList';
 import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
-import { FilterAgencyProps } from '@/utils/types/AgencyProps';
+import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 
 
 
 const App: React.FC = () => {
-  const [agencies, setAgencies] = useState<any[]>([]);
+  const [agencies, setAgencies] = useState<AgencyProps[]>([]);
   const [filters, setFilters] = useState<FilterAgencyProps>({
     city: [],
-    rating: null,
+      rating: null,
+      type: [],
+      status: 'all',
+      followers: [0, 100],
   });
 
   useEffect(() => {

@@ -1,30 +1,26 @@
-import React from 'react';
-import Link from 'next/link';
-import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
+import React, { ReactNode } from 'react';
 import Image from 'next/image';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';
-import { DriverProps } from '@/utils/types/DriverProps';
 import { DateValue } from 'react-aria-components';
 
 export interface rentalInfoProps {
-    pickUpDate: DateValue;
+    pickUpDate: DateValue | string | ReactNode;
     pickUpTime: string;
-    pickUpPlace: String;
-    backOffDate: DateValue;
-    backOffTime: String;
+    pickUpPlace: string;
+    backOffDate: DateValue | string | ReactNode;
+    backOffTime: string;
     backOffPlace: string;
-    billingName: String;
-    billingPhone: number;
+    billingName: string;
+    billingPhone: string;
     billingAddress: string;
     billingCity: string;
-    paymentMethod: String;  // Added payment method field
-    driverName: String| undefined;
-    promoCode: number;
+    paymentMethod: string;  // Added payment method field
+    driverName: string| undefined;
+    promoCode: string;
 }
 
 const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
-    id,
     brand,
     model,
     rating,
@@ -84,10 +80,10 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     <p className='text-secondary-text'>Billing Address:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.billingAddress || ''}</p>
                 </span>
-                <span className='flex flex-row justify-between'>
+                {/* <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Pick-Up Date:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.pickUpDate || ''}</p>
-                </span>
+                </span> */}
                 {/* <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Pick-Up Time:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.pickUpTime || ''}</p>
@@ -96,10 +92,10 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     <p className='text-secondary-text'>Pick-Up Place:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.pickUpPlace || ''}</p>
                 </span>
-                <span className='flex flex-row justify-between'>
+                {/* <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Return Date:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.backOffDate || ''}</p>
-                </span>
+                </span> */}
                 {/* <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Return Time:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.backOffTime || ''}</p>

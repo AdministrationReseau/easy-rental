@@ -11,6 +11,19 @@ interface DriverCardProps {
   profile_picture: string;
   rating: number;
   phone: string;
+  id: number;
+  last_name: string;
+  license_number: string;
+  license_type: string;
+  address: string;
+  vehicle_assigned:{
+    id: number;
+    make:  string;
+    model:  string;
+    year: number;
+};
+  insurance_provider: string;
+  insurance_policy: string;
   onSelect: (driver: DriverProps) => void; // Fonction pour notifier la sélection
 }
 
@@ -22,10 +35,34 @@ const DriverCard: React.FC<DriverCardProps> = ({
   profile_picture,
   rating,
   phone,
+  id,
+  last_name,
+  license_number,
+  license_type,
+  address,
+  vehicle_assigned,
+  insurance_provider,
+  insurance_policy,
   onSelect,
 }) => {
   const handleClick = () => {
-    onSelect({ first_name, email, location, age, profile_picture, rating, phone });
+    onSelect({
+      first_name, 
+      email, 
+      location, 
+      age, 
+      profile_picture, 
+      rating, 
+      phone,
+      id,
+      last_name,
+      license_number,
+      license_type,
+      address,
+      vehicle_assigned,
+      insurance_provider,
+      insurance_policy
+    });
   };
 
   return (

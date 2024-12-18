@@ -13,6 +13,7 @@ import { CustomCheckbox } from '@/components/Checkbox';
 import DriverList from '@/components/customer/DriverList';
 import { DateValue } from 'react-aria-components';
 import { DriverProps } from '@/utils/types/DriverProps';
+import { CarProps } from '@/utils/types/CarProps';
 
 const MultiStepForm: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(1); // État pour suivre l'étape actuelle
@@ -54,8 +55,8 @@ const MultiStepForm: React.FC = () => {
 
     const [selectedPickDate, setSelectedPickDate] = useState<DateValue | null>(null);
     const [selectedBackDate, setSelectedBackDate] = useState<DateValue | null>(null);
-    const [selectedPickTime, setSelectedPickTime] = useState<string | null>(null);
-    const [selectedBackTime, setSelectedBackTime] = useState<string | null>(null);
+    // const [selectedPickTime, setSelectedPickTime] = useState<string | null>(null);
+    // const [selectedBackTime, setSelectedBackTime] = useState<string | null>(null);
     const [selectedPickCountry, setSelectedPickCountry] = useState<string>('');
     const [selectedPickRegion, setSelectedPickRegion] = useState<string>('');
     const [selectedBackCountry, setSelectedBackCountry] = useState<string>('');
@@ -65,16 +66,21 @@ const MultiStepForm: React.FC = () => {
     const handleSelectedDriversChange = (driver: DriverProps | null) => {
         setSelectedDriver(driver);
         if (driver) {
-          console.log('Selected driver:', driver.first_name);
-          setRentalInfo((prev) => ({
-            ...prev,
-            ["driverName"]: selectedDriver?.first_name,
-        }));
+            console.log('Selected driver:', driver.first_name);
+            setRentalInfo((prev) => ({
+                ...prev,
+                driverName: driver.first_name, // Directly set the driver name
+            }));
         } else {
-          console.log('No driver selected');
+            console.log('No driver selected');
+            setRentalInfo((prev) => ({
+                ...prev,
+                driverName: '', // Reset driver name when no driver is selected
+            }));
         }
-      };
-
+    };
+    console.log(selectedDriver)
+    
 
     const handlePickDateChange = (value: DateValue | null) => {
         if (value) {
@@ -105,14 +111,14 @@ const MultiStepForm: React.FC = () => {
         }
     };
 
-    const handlePickTimeChange = (time: string) => {
-        setSelectedPickTime(time);
-        console.log(time);
-    };
+    // const handlePickTimeChange = (time: string) => {
+    //     setSelectedPickTime(time);
+    //     console.log(time);
+    // };
 
-    const handleBackTimeChange = (time: string) => {
-        setSelectedBackTime(time);
-    };
+    // const handleBackTimeChange = (time: string) => {
+    //     setSelectedBackTime(time);
+    // };
 
     const handlePickCountryChange = (country: string) => {
         setSelectedPickCountry(country);
@@ -141,7 +147,7 @@ const MultiStepForm: React.FC = () => {
 
     // État pour stocker les informations saisies
     const [rentalInfo, setRentalInfo] = useState({
-        pickUppDate: '',
+        pickUpDate: '',
         pickUpTime: '',
         pickUpPlace: '',
         backOffDate: '',
@@ -170,12 +176,12 @@ const MultiStepForm: React.FC = () => {
 
 
     // const [vehicle, setVehicle] = useState<Vehicle | null>(null); // État pour le véhicule
-    const [loading, setLoading] = useState(true); // État de chargement
+    // const [loading, setLoading] = useState(true); // État de chargement
 
     // Charger les données du véhicule
-    const [vehicle, setVehicle] = useState<any | null>(null);
-    const [vehicles, setVehicles] = useState<any[]>([]);
-
+    const [vehicle, setVehicle] = useState<CarProps| null>(null);
+    const [vehicles, setVehicles] = useState<CarProps[]>([]);
+    console.log(vehicles);
     // Chargement des données des véhicules
     useEffect(() => {
         fetch('/data/cars.json')
@@ -189,7 +195,7 @@ const MultiStepForm: React.FC = () => {
                 if (data && Array.isArray(data.vehicles)) {
                     setVehicles(data.vehicles);
                     const foundVehicle = data.vehicles.find(
-                        (v: any) => v.id.toString() === id
+                        (v: CarProps) => v.id.toString() === id
                     );
                     setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
                 } else {
@@ -282,7 +288,8 @@ const MultiStepForm: React.FC = () => {
                         <div className='flex flex-row gap-4'>
                             <div className="flex flex-col w-[70%]">
                                 <div className="flex h-full items-center">
-                                    <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} />
+                                    {/* <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
+                                    <TimePickerStyled/>
                                 </div>
                             </div>
                         </div>
@@ -310,7 +317,8 @@ const MultiStepForm: React.FC = () => {
                         <div className='flex flex-row gap-4'>
                             <div className="flex flex-col w-[70%]">
                                 <div className="flex h-full items-center">
-                                    <TimePickerStyled onChange={handleBackTimeChange} value={selectedBackTime} />
+                                    {/* <TimePickerStyled onChange={handleBackTimeChange} value={selectedBackTime} /> */}
+                                    <TimePickerStyled />
                                 </div>
                             </div>
 
@@ -478,8 +486,23 @@ const MultiStepForm: React.FC = () => {
                     engine={vehicle.engine}
                     passenger={vehicle.passenger || 4}
                     pricePerDay={vehicle.pricePerDay}
+                    type={vehicle.type} 
+                    year={vehicle.year} 
+                    description ={vehicle.description} 
+                    vin={vehicle.vin} 
+                    fonctionnalities={vehicle.fonctionnalities}
+                    color={vehicle.color} 
+                    fuel_efficiency={vehicle.fuel_efficiency} 
+                    license_plate={vehicle.license_plate} 
+                    registration={vehicle.registration} 
+                    owner={vehicle.owner} 
+                    service_history={vehicle.service_history} 
+                    insurance={vehicle.insurance} 
+                    onLike={function (id: number): void {console.log(id)}} 
+                    onDislike={function (id: number): void {console.log(id)} }
                     rentalInfo={rentalInfo} // Passer l'état dynamique
-                />
+                                    />
+                     
             </aside>
         </div>
     );

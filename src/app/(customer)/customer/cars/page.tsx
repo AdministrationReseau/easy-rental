@@ -5,17 +5,17 @@ import VehicleList from '@/components/customer/VehicleList';
 import SidebarFilter from '@/components/customer/SideBarFilterVehicle';
 import LocationFilter from '@/components/LocationFilter';
 import CarDetail from '@/components/combiner-components/CarDetail';
-import { CarProps, FilterProps } from '@/utils/types/CarProps';
+import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 
 
 const Cars: React.FC = () => {
   const [vehicles, setVehicles] = useState<CarProps[]>([]);
-  const [filters, setFilters] = useState<FilterProps>({
+  const [filters, setFilters] = useState<FilterVehicleProps>({
     type: [],
     capacity: null,
     priceRange: [0, Infinity],
   });
-  const [selectedVehicle, setSelectedVehicle] = useState<any | null>(null);
+  const [selectedVehicle] = useState<CarProps | null>(null);
 
   useEffect(() => {
     fetch('/data/cars.json')
@@ -37,7 +37,7 @@ const Cars: React.FC = () => {
       });
   }, []);
 
-  const handleFilterChange = (newFilters: FilterProps) => {
+  const handleFilterChange = (newFilters: FilterVehicleProps) => {
     setFilters(newFilters);
   };
 

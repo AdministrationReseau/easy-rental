@@ -10,8 +10,8 @@ import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 
 const VehicleDetails: React.FC = () => {
   const { id } = useParams(); // Récupère l'ID du véhicule depuis l'URL
-  const [vehicle, setVehicle] = useState<any | null>(null);
-  const [vehicles, setVehicles] = useState<any[]>([]);
+  const [vehicle, setVehicle] = useState<CarProps | null>(null);
+  const [vehicles, setVehicles] = useState<CarProps[]>([]);
   const [filters, setFilters] = useState<FilterVehicleProps>({
     type: [],
     capacity: null,
@@ -43,7 +43,7 @@ const VehicleDetails: React.FC = () => {
       });
   }, [id]);
 
-  const handleFilterChange = (newFilters: FilterProps) => {
+  const handleFilterChange = (newFilters: FilterVehicleProps) => {
     setFilters(newFilters);
   };
 

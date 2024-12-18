@@ -9,11 +9,11 @@ import { CarCard } from "../CarCard";
 
 
 const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
+  const [currentImage, setCurrentImage] = useState(agency.images[0]);
   if (!agency) {
     return <p>Loading...</p>;
   }
-  const [currentImage, setCurrentImage] = useState(agency.images[0]);
-
+ 
   return (
     <>
       {/* Galerie d'images */}
@@ -98,7 +98,9 @@ const AgencyInfo: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
 
 const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   const [vehicles, setVehicles] = useState<CarProps[]>([]);
-
+  // On doir rechercher les véhicules qui possedent en clé étrangere l'id de l'agency
+  const id_agency = agency.id;
+  console.log(id_agency);
   useEffect(() => {
     fetch('/data/cars.json')
       .then((response) => {
@@ -125,17 +127,31 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
         {vehicles.length > 0 ? (
           vehicles.map((vehicle) => (
             <CarCard
-              key={vehicle.id}
-              id={vehicle.id}
-              images={vehicle.images}
-              brand={vehicle.brand}
-              model={vehicle.model}
-              transmission={vehicle.transmission}
-              engine={vehicle.engine}
-              passenger={vehicle.passenger || 4}
-              pricePerDay={vehicle.pricePerDay}
-              onLike={(id: number) => { }}
-              onDislike={(id: number) => { }}
+            key={vehicle.id}
+            id={vehicle.id}
+            images={vehicle.images}
+            brand={vehicle.brand}
+            rating={vehicle.rating}
+            reviews={vehicle.reviews}
+            model={vehicle.model}
+            transmission={vehicle.transmission}
+            engine={vehicle.engine}
+            passenger={vehicle.passenger || 4}
+            pricePerDay={vehicle.pricePerDay}
+            type={vehicle.type} 
+            year={vehicle.year} 
+            description ={vehicle.description} 
+            vin={vehicle.vin} 
+            fonctionnalities={vehicle.fonctionnalities}
+            color={vehicle.color} 
+            fuel_efficiency={vehicle.fuel_efficiency} 
+            license_plate={vehicle.license_plate} 
+            registration={vehicle.registration} 
+            owner={vehicle.owner} 
+            service_history={vehicle.service_history} 
+            insurance={vehicle.insurance} 
+            onLike={function (id: number): void {console.log(id)}} 
+            onDislike={function (id: number): void {console.log(id)} }
             />))
         ) : (
           <p className="col-span-full text-center text-gray-500">
@@ -168,7 +184,7 @@ const AgencyDetail: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
       <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
         <h4 className="font-bold text-lg">Reviews</h4>
 
-        {agency.reviews.map((review: any, index: number) => (
+        {agency.reviews.map((review: {reviewer:string, comment: string;rating: number;}, index: number) => (
           <Reviews
             key={index}
             name={review.reviewer}

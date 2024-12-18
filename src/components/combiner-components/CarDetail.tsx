@@ -14,11 +14,13 @@ import { CarProps } from "@/utils/types/CarProps";
 import Stars from "../Stars";
 
 export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
+  
+  const [currentImage, setCurrentImage] = useState(vehicle.images[0]);
+
   if (!vehicle) {
     return <p>Loading...</p>;
   }
 
-  const [currentImage, setCurrentImage] = useState(vehicle.images[0]);
 
   return (
     <div className="px-2 w-full">
@@ -198,7 +200,7 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
         <h4 className="font-bold text-lg">Reviews</h4>
 
-        {vehicle.reviews.map((review: any, index: number) => (
+        {vehicle.reviews.map((review: {reviewer:string, comment: string;rating: number;}, index: number) => (
           <Reviews
             key={index}
             name={review.reviewer}
