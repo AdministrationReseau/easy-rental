@@ -1,35 +1,45 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import { TimeField, Label, DateInput, DateSegment } from 'react-aria-components';
 
+interface TimePickerStyledProps {
+  value: string | null;
+  onChange?: (value: string) => void; // ici on spécifie que onChange attend une fonction qui prend une chaîne de caractères
+}
+
 export const TimePicker = () => {
     return (
         <TimeField>
-            <DateInput className='flex flex-row gap-1' >
+            <DateInput className='flex flex-row gap-1'>
                 {segment => <DateSegment segment={segment} />}
             </DateInput>
         </TimeField>
     );
 }
 
-export const TimePickerStyled = () => {
+export const TimePickerStyled = ({ value, onChange }: TimePickerStyledProps) => {
+  const [inputValue, setInputValue] = React.useState(value);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
+
   return (
-    <div className="w-full max-w-md ">
-      {/* Wrapper for time selection */}
+    <div className="w-full max-w-md">
       <div className="flex flex-col gap-4">
         <div className="relative">
-          {/* Label pour l'accessibilité */}
-          <label className="block  mb-1">
-            Select Time
-          </label>
-
-          {/* Champ TimeField avec styles */}
+          <label className="block mb-1">Select Time</label>
           <TimeField>
             <DateInput
+              // value={inputValue}  // Assigner la valeur de l'état local
+              // onChange={handleInputChange} // Gérer le changement d'entrée
               className="w-full px-4 py-2 flex flex-row items-center justify-between gap-2 rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
             >
-              {/* Les segments individuels de l'heure */}
               {segment => (
                 <DateSegment
                   segment={segment}

@@ -28,7 +28,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
     city,
     quater,
     followers,
-    stars,
+    rating,
     slogan,
     name,
     isOpen,
@@ -49,7 +49,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
     };
     isOpen = true;
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[325px] h-[450px]">
+        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[300px] h-[450px]">
             {/* Première ligne - Nom et Like/Dislike */}
             <div className="flex justify-between items-center p-4">
                 <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
@@ -76,7 +76,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
             <div className='flex justify-between items-center text-sm'>
                 <div className="flex items-center gap-2 px-2 py-2">
                     <Star className="w-5 h-5" />
-                    <p>{stars}</p>
+                    <p>{rating}</p>
                 </div>
                 <div className="flex items-center gap-2 px-2 py-2">
                 <People className="w-5 h-5" />

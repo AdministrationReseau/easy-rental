@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { Slider } from '@mui/material';
 import { CarProps } from '@/utils/types/CarProps';
-import { FilterProps } from '@/utils/types/CarProps';
+import { FilterVehicleProps } from '@/utils/types/CarProps';
 
-const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: FilterProps) => void }> = ({
+const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: FilterVehicleProps) => void }> = ({
   vehicles,
   onFilter,
 }) => {
@@ -62,7 +62,8 @@ const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: Filter
   };
 
   return (
-    <div className="bg-white h-full fixed shadow-lg flex flex-col p-4">
+    <div className="h-[600px] flex flex-col p-1 w-[230px]">
+      <div className='bg-white fixed h-[600px] shadow-lg flex flex-col p-4 w-[230px]'>
       <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
       <div className="mb-6">
@@ -119,6 +120,7 @@ const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: Filter
         <button className="bg-gray-300 text-gray-700 p-2 rounded-lg flex-grow" onClick={clearFilters}>
           Clear
         </button>
+      </div>
       </div>
     </div>
   );

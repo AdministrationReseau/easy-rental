@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import VehicleList from '@/components/customer/VehicleList';
-import SidebarFilter from '@/components/customer/SideBarFilterCar';
+import SidebarFilter from '@/components/customer/SideBarFilterVehicle';
 import LocationFilter from '@/components/LocationFilter';
 import CarDetail from '@/components/combiner-components/CarDetail';
-import { FilterProps } from '@/utils/types/CarProps';
+import { CarProps, FilterProps } from '@/utils/types/CarProps';
 
 
-const App: React.FC = () => {
-  const [vehicles, setVehicles] = useState<any[]>([]);
+const Cars: React.FC = () => {
+  const [vehicles, setVehicles] = useState<CarProps[]>([]);
   const [filters, setFilters] = useState<FilterProps>({
     type: [],
     capacity: null,
@@ -43,31 +43,36 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <main className="flex flex-col m-2">
-          <div className="filter-container">
-            <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
-          </div>
-        {/* Display CarDetail if a vehicle is selected */}
-        {selectedVehicle && (
-          <div className="mb-4">
-            <CarDetail vehicle={selectedVehicle} />
-          </div>
-        )}
-
-        <div className="flex">
-          
-          <div className="flex justify-center items-center flex-col ml-56">
-            <LocationFilter />
-            <VehicleList
-              vehicles={vehicles}
-              filters={filters}
-             // Pass down the function
-            />
-          </div>
+      <main className="flex flex-row m-2">
+        <div className="">
+          <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
         </div>
+        <div>
+          {/* Display CarDetail if a vehicle is selected */}
+          {selectedVehicle && (
+            <div className="mb-4">
+              <CarDetail vehicle={selectedVehicle} />
+            </div>
+          )}
+          <div className="flex">
+
+            <div className="flex justify-center items-center flex-col">
+              <LocationFilter />
+              <VehicleList
+                vehicles={vehicles}
+                filters={filters}
+              // Pass down the function
+              />
+            </div>
+          </div>
+
+        </div>
+
+
+
       </main>
     </div>
   );
 };
 
-export default App;
+export default Cars;

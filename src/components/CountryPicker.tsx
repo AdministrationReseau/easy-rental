@@ -5,6 +5,49 @@ import {
   RegionDropdown,
 } from 'react-country-region-selector';
 
+interface CountryPickerStyledProps {
+  valueCountry: string;
+  valueRegion: string;
+  onChangeCountry?: (valueCountry: string) => void; // ici on spécifie que onChange attend une fonction qui prend une chaîne de caractères
+  onChangeRegion?: (valueRegion: string) => void;
+}
+
+
+export const CountryPickerStyled = ({ valueCountry, valueRegion, onChangeCountry, onChangeRegion }: CountryPickerStyledProps) => {
+  
+
+  return (
+    <div className="w-full max-w-md">
+      <div className="flex flex-col gap-4">
+        <div className="relative">
+          <label className="block font-medium mb-1">Country</label>
+          <CountryDropdown
+            className="w-full rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+            value={valueCountry}
+            onChange={(e) => {
+              if (onChangeCountry) onChangeCountry(e);
+            }}
+          />
+        </div>
+
+        {valueCountry && (
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Select City/Region</label>
+            <RegionDropdown
+              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:ring-primary-blue focus:border-primary-blue"
+              country={valueCountry}
+              value={valueRegion}
+              onChange={(e) => {
+                if (onChangeRegion) onChangeRegion(e);
+              }}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export const CountryPicker = () => {
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
@@ -23,42 +66,6 @@ export const CountryPicker = () => {
           value={region}
           onChange={(val) => setRegion(val)}
         />
-      </div>
-    </div>
-  );
-};
-
-export const CountryPickerStyled = () => {
-  const [country, setCountry] = useState('');
-  const [region, setRegion] = useState('');
-
-  return (
-    <div className="w-full max-w-md">
-      <div className="flex flex-col gap-4">
-        <div className="relative">
-          <label className="block font-medium mb-1">
-            Country
-          </label>
-          <CountryDropdown
-            className="w-full rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-            value={country}
-            onChange={(val) => setCountry(val)}
-          />
-        </div>
-
-        {country && (
-          <div className="relative">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Select City/Region
-            </label>
-            <RegionDropdown
-              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:ring-primary-blue focus:border-primary-blue"
-              country={country}
-              value={region}
-              onChange={(val) => setRegion(val)}
-            />
-          </div>
-        )}
       </div>
     </div>
   );

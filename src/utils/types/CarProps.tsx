@@ -72,17 +72,14 @@ export interface CarProps {
 
 }
 
-export interface VehicleListProps {
-  vehicles: CarProps[];
-  filters: {
-    type: string[];
-    capacity: number | null;
-    priceRange: [number, number];
-  };
-}
 
-export interface FilterProps {
+export interface FilterVehicleProps {
   type: string[];
   capacity: number | null;
   priceRange: [number, number];
+}
+
+export interface VehicleListProps {
+  vehicles: CarProps[];
+  filters: FilterVehicleProps
 }

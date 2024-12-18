@@ -136,7 +136,7 @@ export default function Test() {
 import React from 'react';
 import DriverCard from "@/components/DriverCard";
 import OrgSidebar from "@/components/OrgSidebar";
-import AgencyDetail from "@/components/combiner-components/agency-detail";
+import AgencyDetail from "@/components/combiner-components/AgencyDetail";
 
 const Test = () => {
     // const options = [

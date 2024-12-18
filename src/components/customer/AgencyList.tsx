@@ -2,15 +2,7 @@
 
 import React from 'react';
 import { AgencyCard } from '@/components/AgencyCard';
-import { AgencyProps } from '@/utils/types/AgencyProps';
-
-interface AgencyListProps {
-  agencies: AgencyProps[];
-  filters: {
-    city: string[];
-    stars: number | null;
-  };
-}
+import { AgencyListProps } from '@/utils/types/AgencyProps';
 
 
 const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
@@ -21,14 +13,14 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
       filters.city.length === 0 || (agency.city && filters.city.includes(agency.city));
 
     const matchesStars =
-      filters.stars === null || (agency.stars && agency.stars >= filters.stars);
+      filters.rating === null || (agency.rating && agency.rating >= filters.rating);
 
       return matchesCity&& matchesStars;
 });
 
   return (
     <div className="p-5 w-full flex">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
         {filteredAgencies.length > 0 ? (
           filteredAgencies.map((agency) => (
             <AgencyCard
@@ -38,7 +30,7 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
               quater={agency.quater}
               name={agency.name}
               followers={agency.followers || 4}
-              stars={agency.stars   || 4}
+              rating={agency.rating   || 4}
               slogan={agency.slogan}
               images={agency.images}
               isOpen={agency.isOpen}

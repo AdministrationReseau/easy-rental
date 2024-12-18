@@ -1,26 +1,18 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import CarAttributeDetails from '@/components/CarAttributeDetails';
-import CarProfilDescription from '@/components/CarProfilDescription';
-import ProfilImg from '@/components/ProfilImg';
 import { useParams } from 'next/navigation';
 import VehicleList from '@/components/customer/VehicleList';
-import SidebarFilter from '@/components/customer/SideBarFilterCar';
-import LocationFilter from '@/components/LocationFilter';
+import SidebarFilter from '@/components/customer/SideBarFilterVehicle';
 import CarDetail from '@/components/combiner-components/CarDetail';
+import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 
-interface FilterProps {
-  type: string[];
-  capacity: number | null;
-  priceRange: [number, number];
-}
 
 const VehicleDetails: React.FC = () => {
   const { id } = useParams(); // Récupère l'ID du véhicule depuis l'URL
   const [vehicle, setVehicle] = useState<any | null>(null);
   const [vehicles, setVehicles] = useState<any[]>([]);
-  const [filters, setFilters] = useState<FilterProps>({
+  const [filters, setFilters] = useState<FilterVehicleProps>({
     type: [],
     capacity: null,
     priceRange: [0, Infinity],
@@ -39,7 +31,7 @@ const VehicleDetails: React.FC = () => {
         if (data && Array.isArray(data.vehicles)) {
           setVehicles(data.vehicles);
           const foundVehicle = data.vehicles.find(
-            (v: any) => v.id.toString() === id
+            (v: CarProps) => v.id.toString() === id
           );
           setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
         } else {
@@ -61,14 +53,14 @@ const VehicleDetails: React.FC = () => {
 
   return (
     <div className='m-2 bg-gray-100'>
-      <main className="flex flex-col">
+      <main className="flex">
         {/* Section filtre */}
-        <div className="filter-container mb-4">
+        <div className="filter-container">
           <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
         </div>
           {/* Liste des véhicules */}
-          <div className="flex">
-            <div className="flex justify-center items-center flex-col ml-56">
+          <div className="flex m-4">
+            <div className="flex justify-center items-center flex-col">
               {/* <LocationFilter /> */}
               {/* Détails du véhicule sélectionné */}
               <CarDetail vehicle={vehicle} />
