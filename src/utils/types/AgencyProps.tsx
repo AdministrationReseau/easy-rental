@@ -5,6 +5,7 @@ export interface AgencyProps {
     slogan: string;
     city: string;
     quater: string;
+    isOpen: boolean;
     openingTime: string;
     closingTime: string;
     followers: number;   // A retirer
@@ -26,9 +27,11 @@ export interface AgencyProps {
 export interface FilterAgencyProps {
   city: string[];
   rating: number | null;
-  status: string;
-  type: string;
+  status: 'open' | 'all'; // Modifié le type de 'status' pour correspondre aux valeurs possibles
+  type: string[];
+  followers: number[];
 }
+
 
 export interface AgencyListProps {
   agencies: AgencyProps[];

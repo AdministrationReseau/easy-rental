@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
 import Image from 'next/image';
@@ -10,19 +8,19 @@ import { DriverProps } from '@/utils/types/DriverProps';
 import { DateValue } from 'react-aria-components';
 
 export interface rentalInfoProps {
-    pickUpDate: DateValue,
-    pickUpTime: string,
-    pickUpPlace: String,
-    backOffDate: DateValue,
-    backOffTime: String,
-    backOffPlace: string,
-    billingName: String,
-    billingPhone: number,
-    billingAddress: string,
-    billingCity: string,
-    paymentMethod: String,  // Added payment method field
-    driver: DriverProps,
-    promoCode: number,
+    pickUpDate: DateValue;
+    pickUpTime: string;
+    pickUpPlace: String;
+    backOffDate: DateValue;
+    backOffTime: String;
+    backOffPlace: string;
+    billingName: String;
+    billingPhone: number;
+    billingAddress: string;
+    billingCity: string;
+    paymentMethod: String;  // Added payment method field
+    driverName: String| undefined;
+    promoCode: number;
 }
 
 const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
@@ -113,6 +111,10 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Payment Method:</p>  {/* Added Payment Method field */}
                     <p className='text-primary-text text-xl'>{rentalInfo?.paymentMethod || ''}</p>
+                </span>
+                <span className='flex flex-row justify-between'>
+                    <p className='text-secondary-text'>Driver Name:</p>  {/* Added Payment Method field */}
+                    <p className='text-primary-text text-xl'>{rentalInfo?.driverName || ''}</p>
                 </span>
                 
             </div>

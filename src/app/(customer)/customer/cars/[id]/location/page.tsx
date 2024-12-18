@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Field from '@/components/base-component/fields';
 import { RentalSummary } from "@/components/customer/RentalSummary";
 import { useParams } from "next/navigation";
-import { CustomSelect } from '@/components/Select';
 import { CountryPickerStyled } from '@/components/CountryPicker';
 import { TimePickerStyled } from '@/components/TimePicker';
 import { DatePickerStyled } from '@/components/DatePicker';
@@ -13,6 +12,7 @@ import ComboBox from '@/components/ComboBox';
 import { CustomCheckbox } from '@/components/Checkbox';
 import DriverList from '@/components/customer/DriverList';
 import { DateValue } from 'react-aria-components';
+import { DriverProps } from '@/utils/types/DriverProps';
 
 const MultiStepForm: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(1); // État pour suivre l'étape actuelle
@@ -33,6 +33,8 @@ const MultiStepForm: React.FC = () => {
         option2: false,
         option3: false,
     });
+
+   
 
     // Gestion du changement de valeur
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +60,20 @@ const MultiStepForm: React.FC = () => {
     const [selectedPickRegion, setSelectedPickRegion] = useState<string>('');
     const [selectedBackCountry, setSelectedBackCountry] = useState<string>('');
     const [selectedBackRegion, setSelectedBackRegion] = useState<string>('');
-    const [selectedRegion, setSelectedRegion] = useState<string>('');
+    const [selectedDriver, setSelectedDriver] = useState<DriverProps | null>(null);
+
+    const handleSelectedDriversChange = (driver: DriverProps | null) => {
+        setSelectedDriver(driver);
+        if (driver) {
+          console.log('Selected driver:', driver.first_name);
+          setRentalInfo((prev) => ({
+            ...prev,
+            ["driverName"]: selectedDriver?.first_name,
+        }));
+        } else {
+          console.log('No driver selected');
+        }
+      };
 
 
     const handlePickDateChange = (value: DateValue | null) => {
@@ -108,7 +123,7 @@ const MultiStepForm: React.FC = () => {
     };
 
     const handlePickRegionChange = (region: string) => {
-        setSelectedRegion(region);
+        setSelectedPickRegion(region);
         setRentalInfo((prev) => ({
             ...prev,
             ["pickUpPlace"]: selectedPickCountry + ' at '+ region,
@@ -116,7 +131,7 @@ const MultiStepForm: React.FC = () => {
     };
 
     const handleBackRegionChange = (region: string) => {
-        setSelectedRegion(region);
+        setSelectedBackRegion(region);
         setRentalInfo((prev) => ({
             ...prev,
             ["backOffPlace"]: selectedBackCountry +' at '+ region,
@@ -138,6 +153,7 @@ const MultiStepForm: React.FC = () => {
         billingCity: '',
         promoCode: '',
         paymentMethod:'',
+        driverName:'',
     });
 
 
@@ -310,7 +326,7 @@ const MultiStepForm: React.FC = () => {
                             <p>Step {currentStep} of {totalSteps}</p>
                         </div>
                         <div className='w-full overflow-x-scroll relative'>
-                            <DriverList vehicleId={Number(id)} />
+                            <DriverList vehicleId={Number(id)} onSelectedDriversChange={handleSelectedDriversChange} />
                         </div>
                     </>
                 )

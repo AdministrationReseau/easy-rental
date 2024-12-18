@@ -4,7 +4,6 @@ import React from 'react';
 import { AgencyCard } from '@/components/AgencyCard';
 import { AgencyListProps } from '@/utils/types/AgencyProps';
 
-
 const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
   const filteredAgencies = agencies.filter((agency) => {
     if (!agency) return false;
@@ -15,12 +14,12 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
     const matchesStars =
       filters.rating === null || (agency.rating && agency.rating >= filters.rating);
 
-      return matchesCity&& matchesStars;
-});
+    return matchesCity && matchesStars;
+  });
 
   return (
     <div className="p-5 w-full flex">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredAgencies.length > 0 ? (
           filteredAgencies.map((agency) => (
             <AgencyCard
@@ -30,12 +29,12 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
               quater={agency.quater}
               name={agency.name}
               followers={agency.followers || 4}
-              rating={agency.rating   || 4}
+              rating={agency.rating || 4}
               slogan={agency.slogan}
               images={agency.images}
               isOpen={agency.isOpen}
-              onLike={ (id: number) => {} }
-              onDislike={ (id: number) => {} }
+              onLike={(id: number) => {}}
+              onDislike={(id: number) => {}}
             />
           ))
         ) : (
@@ -47,5 +46,5 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
     </div>
   );
 };
-  
+
 export default AgencyList;

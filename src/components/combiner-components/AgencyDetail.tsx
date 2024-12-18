@@ -25,7 +25,7 @@ const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
         ></div>
 
         {/* Thumbnail Images Section */}
-        <div className="flex justify-around mt-6 w-full  gap-6">
+        <div className="flex justify-left mt-6 w-full  gap-6">
           {agency.images.slice(0, 3).map((image, index) => (
             <div
               key={index}

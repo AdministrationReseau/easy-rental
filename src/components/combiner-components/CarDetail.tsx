@@ -29,7 +29,7 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       ></div>
 
       {/* Thumbnail Images Section */}
-      <div className="flex justify-around mt-6 w-full  gap-6">
+      <div className="flex justify-left mt-6 w-full  gap-6">
         {vehicle.images.slice(0, 3).map((image, index) => (
           <div
             key={index}
