@@ -5,7 +5,6 @@ export interface AgencyProps {
     slogan: string;
     city: string;
     quater: string;
-    isOpen: boolean;
     openingTime: string;
     closingTime: string;
     followers: number;   // A retirer

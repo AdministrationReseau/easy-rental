@@ -40,31 +40,36 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
     setSelectedRating((prev) =>
       prev.includes(rating) ? prev.filter((r) => r !== rating) : [...prev, rating]
     );
+    console.log("Selected Rate:", rating)
   };
 
-  const handleRatingRangeChange = (event: Event, newValue: number | number[]) => {
+  const handleFollowersRangeChange = (event: Event, newValue: number | number[]) => {
     setFollowersRange(newValue as [number, number]);
+    console.log("Selected Followers Ranger Rang:", newValue)
   }
   const handleTypeChange = (type: string) => {
     setSelectedTypes((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
     );
+    console.log("Selected type:", type)
   };
 
   const handleStatusChange = () => {
     setStatusFilter(statusFilter === 'all' ? 'open' : 'all');
+    console.log("Selected Status:", statusFilter)
   };
 
   const isAgencyOpen = (agency: AgencyProps) => {
     const now = new Date();
-    const currentTime = now.getHours() * 100 + now.getMinutes();
+    const currentTime = now.getHours() * 60 + now.getMinutes();
     const [openingHour, openingMinute] = agency.openingTime.split(':').map(Number);
     const [closingHour, closingMinute] = agency.closingTime.split(':').map(Number);
 
-    const openingTime = openingHour * 100 + openingMinute;
-    const closingTime = closingHour * 100 + closingMinute;
-
+    const openingTime = openingHour * 60 + openingMinute;
+    const closingTime = closingHour * 60 + closingMinute;
+    console.log("CurrentTime: ", openingTime, " et ", closingTime, " pour", currentTime);
     return currentTime >= openingTime && currentTime <= closingTime;
+
   };
 
   const applyFilters = () => {
@@ -78,13 +83,18 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
         selectedRanges.length === 0 ||
         selectedRanges.some((range) => range && rating >= range.min && rating <= range.max);
 
+      const matchesFollowers =
+        typeof agency.followers === 'number' &&
+        agency.followers >= followersRange[0] &&
+        agency.followers <= followersRange[1];
+
       const matchesCity = selectedCities.length === 1 && selectedCities[0] !== 'all' ? selectedCities.includes(agency.city) : true;
 
       const matchesType = selectedTypes.length === 0 || selectedTypes.includes(agency.type);
 
       const matchesStatus = statusFilter === 'all' || isAgencyOpen(agency);
 
-      return matchesRating && matchesCity && matchesType && matchesStatus;
+      return matchesRating && matchesFollowers && matchesCity && matchesType && matchesStatus;
     });
 
     const filters: FilterAgencyProps = {
@@ -190,7 +200,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
             <h3 className="text-md font-medium mb-2">Followers</h3>
             <Slider
               value={followersRange}
-              onChange={handleRatingRangeChange}
+              onChange={handleFollowersRangeChange}
               valueLabelDisplay="auto"
               min={Math.min(...agencies.map((agency) => agency.followers))}
               max={Math.max(...agencies.map((agency) => agency.followers))}

@@ -2,19 +2,42 @@
 
 import React from 'react';
 import { AgencyCard } from '@/components/AgencyCard';
-import { AgencyListProps } from '@/utils/types/AgencyProps';
+import { AgencyListProps, AgencyProps } from '@/utils/types/AgencyProps';
 
+const isAgencyOpen = (agency: AgencyProps) => {
+    const now = new Date();
+    const currentTime = now.getHours() * 60 + now.getMinutes();
+    const [openingHour, openingMinute] = agency.openingTime.split(':').map(Number);
+    const [closingHour, closingMinute] = agency.closingTime.split(':').map(Number);
+
+    const openingTime = openingHour * 60 + openingMinute;
+    const closingTime = closingHour * 60 + closingMinute;
+    console.log("CurrentTime: ",openingTime," et ", closingTime, " pour",currentTime);
+    return currentTime >= openingTime && currentTime <= closingTime;
+    
+  };
+  
 const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
   const filteredAgencies = agencies.filter((agency) => {
     if (!agency) return false;
-
-    const matchesCity =
-      filters.city.length === 0 || (agency.city && filters.city.includes(agency.city));
-
-    const matchesStars =
+    const matchesRating =
       filters.rating === null || (agency.rating && agency.rating >= filters.rating);
 
-    return matchesCity && matchesStars;
+    const matchesCity = 
+      filters.city.length === 1 && filters.city[0] !== 'all' ? filters.city.includes(agency.city) : true;
+    
+      const matchesFollowers =
+      typeof agency.followers === 'number' &&
+      agency.followers>= filters.followers[0] &&
+      agency.followers <= filters.followers[1];
+
+
+    const matchesType = filters.type.length === 0 ||  filters.type.includes(agency.type);
+
+    const matchesStatus = filters.status=== 'all' || isAgencyOpen(agency);
+
+    return matchesRating && matchesFollowers && matchesCity && matchesType && matchesStatus;
+
   });
 
   return (
@@ -32,7 +55,6 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
               rating={agency.rating || 4}
               slogan={agency.slogan}
               images={agency.images}
-              isOpen={agency.isOpen}
               description={agency.description} 
               openingTime={agency.openingTime} 
               closingTime={agency.closingTime} 
