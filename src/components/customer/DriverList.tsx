@@ -23,8 +23,8 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
         return response.json();
       })
       .then((data) => {
-        if (data && Array.isArray(data.drivers)) {
-          setDrivers(data.drivers);
+        if (data && Array.isArray(data)) {
+          setDrivers(data);
         } else {
           console.error('Unexpected data format:', data);
         }
