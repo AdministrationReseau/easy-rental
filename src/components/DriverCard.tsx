@@ -1,85 +1,117 @@
-"use client";
+import React from 'react';
 import Image from 'next/image';
-import React, { useState } from "react";
-import Stars from "@/components/Stars";
+import Stars from '@/components/Stars';
+import { DriverProps } from '@/utils/types/DriverProps';
 
 interface DriverCardProps {
-    name: string;
-    email: string;
-    location: string;
-    age: number;
-    avatar: string;
-    stars: number;
-    phone: string;
+  first_name: string;
+  email: string;
+  location: string;
+  age: number;
+  profile_picture: string;
+  rating: number;
+  phone: string;
+  id: number;
+  last_name: string;
+  license_number: string;
+  license_type: string;
+  address: string;
+  vehicle_assigned:{
+    id: number;
+    make:  string;
+    model:  string;
+    year: number;
+};
+  insurance_provider: string;
+  insurance_policy: string;
+  onSelect: (driver: DriverProps) => void; // Fonction pour notifier la sélection
 }
 
-const DriverCard: React.FC<DriverCardProps> = ({ name, email, location, age, avatar, stars, phone }) => {
-    const [buttonText, setButtonText] = useState("Add to Rental");
-    const [isDriverAdded, setIsDriverAdded] = useState(false);
+const DriverCard: React.FC<DriverCardProps> = ({
+  first_name,
+  email,
+  location,
+  age,
+  profile_picture,
+  rating,
+  phone,
+  id,
+  last_name,
+  license_number,
+  license_type,
+  address,
+  vehicle_assigned,
+  insurance_provider,
+  insurance_policy,
+  onSelect,
+}) => {
+  const handleClick = () => {
+    onSelect({
+      first_name, 
+      email, 
+      location, 
+      age, 
+      profile_picture, 
+      rating, 
+      phone,
+      id,
+      last_name,
+      license_number,
+      license_type,
+      address,
+      vehicle_assigned,
+      insurance_provider,
+      insurance_policy
+    });
+  };
 
-    const handleButtonClick = () => {
-        setIsDriverAdded(!isDriverAdded);
-        setButtonText(isDriverAdded ? "Add to Rental" : "Driver Added");
-    };
+  return (
+    <div className="bg-white rounded-xl p-5 w-[280px] hover:shadow-[0_0_15px_5px_rgba(0,119,255,0.2),0_0_30px_15px_rgba(0,119,255,0.1)] transition-shadow duration-300">
+      <div className="relative h-48 w-full rounded-xl overflow-hidden mb-4">
+        <Image
+          src={profile_picture || "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"}
+          alt={`${first_name}'s avatar`}
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
 
-    return (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden my-4 p-4 w-full sm:w-1/2 lg:w-1/3 xl:w-1/6">
-            {/* Image Section */}
-            <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
-                <Image
-                    src={avatar || "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"}
-                    alt={`${name}'s avatar`}
-                    layout="fill"
-                    objectFit="cover"
-                />
-            </div>
-
-            {/* Blue Border Divider */}
-            <div className="border-b-2 border-primary-blue mb-4"></div>
-
-            <div className="flex flex-col space-y-3 py-3">
-                <div className="flex justify-between items-center">
-                    <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
-                    <Stars value={stars} precision={0.5} />
-                </div>
-
-                <div className="space-y-2">
-                    <div className="flex items-center text-gray-700 text-sm">
-                        <svg className="h-5 w-5 fill-current text-blue-500" viewBox="0 0 512 512">
-                            <path d="M437.332 80H74.668C51.199 80 32 99.198 32 122.667v266.666C32 412.802 51.199 432 74.668 432h362.664C460.801 432 480 412.802 480 389.333V122.667C480 99.198 460.801 80 437.332 80zM432 170.667L256 288 80 170.667V128l176 117.333L432 128v42.667z" />
-                        </svg>
-                        <p className="ml-2">{email}</p>
-                    </div>
-                    <div className="flex items-center text-gray-700 text-sm">
-                        <svg className="h-5 w-5 fill-current text-blue-500" viewBox="0 0 512 512">
-                            <path d="M256 32c-88.004 0-160 70.557-160 156.801C96 306.4 256 480 256 480s160-173.6 160-291.199C416 102.557 344.004 32 256 32zm0 212.801c-31.996 0-57.144-24.645-57.144-56 0-31.357 25.147-56 57.144-56s57.144 24.643 57.144 56c0 31.355-25.148 56-57.144 56z" />
-                        </svg>
-                        <p className="ml-2">{location}</p>
-                    </div>
-                    <div className="flex items-center text-gray-700 text-sm">
-                        <svg className="h-5 w-5 fill-current text-blue-500" viewBox="0 0 512 512">
-                            <path d="M256 64c35.348 0 64 28.652 64 64s-28.652 64-64 64-64-28.652-64-64 28.652-64 64-64zm0 128c70.692 0 128 57.308 128 128s-57.308 128-128 128-128-57.308-128-128 57.308-128 128-128z" />
-                        </svg>
-                        <p className="ml-2">{age} years old</p>
-                    </div>
-                    <div className="flex items-center text-gray-700 text-sm">
-                        <svg className="h-5 w-5 fill-current text-blue-500" viewBox="0 0 512 512">
-                            <path d="M512 256c0 33.1-26.9 60-60 60h-392c-33.1 0-60-26.9-60-60s26.9-60 60-60h392c33.1 0 60 26.9 60 60z" />
-                        </svg>
-                        <p className="ml-2">{phone}</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Button Section */}
-            <button
-                onClick={handleButtonClick}
-                className={`mt-4 w-full py-2 rounded-lg transition-all ${isDriverAdded ? 'bg-secondary-blue text-blue-800' : 'bg-primary-blue text-white'}`}
-            >
-                {buttonText}
-            </button>
+      <div className="flex flex-col space-y-3">
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg font-bold text-gray-800">{first_name}</h2>
+          <Stars value={rating} precision={0.5} />
         </div>
-    );
+
+        <div className="text-gray-600 text-sm space-y-2">
+          <div className="flex items-center">
+            <span className="material-icons text-blue-500 mr-2">mail</span>
+            <p>{email}</p>
+          </div>
+          <div className="flex items-center">
+            <span className="material-icons text-blue-500 mr-2">place</span>
+            <p>{location}</p>
+          </div>
+          <div className="flex items-center">
+            <span className="material-icons text-blue-500 mr-2">age</span>
+            <p>{age} years old</p>
+          </div>
+          <div className="flex items-center">
+            <span className="material-icons text-blue-500 mr-2">call</span>
+            <p>{phone}</p>
+          </div>
+        </div>
+
+        <div className="border-b border-gray-200"></div>
+
+        <button
+          onClick={handleClick}
+          className="mt-3 w-full py-2 rounded-lg font-semibold transition-all duration-300 bg-blue-600 text-white hover:bg-blue-700"
+        >
+          Select Driver
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default DriverCard;

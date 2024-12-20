@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { LocationFilterEnum } from '@/utils/enum';
 import {CountryPicker} from './CountryPicker';
 import {TimePicker} from './TimePicker';

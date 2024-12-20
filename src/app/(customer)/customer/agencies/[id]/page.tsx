@@ -1,56 +1,74 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
+import AgencyList from '@/components/customer/AgencyList';
+import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
+import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
+import AgencyDetail from '@/components/combiner-components/AgencyDetail';
 
-interface AgencyDetailsProps {
-  params: { id: string };
-}
 
-const AgencyDetails: React.FC<AgencyDetailsProps> = ({ params }) => {
-  const { id } = params;
 
-  const [agency, setAgency] = React.useState<any>(null);
+const AgencyDetails: React.FC = () => {
+  const { id } = useParams();
+  const [agency, setAgency] = React.useState<AgencyProps | null>(null);
+  const [agencies, setAgencies] = useState<AgencyProps[]>([]);
+  const [filters, setFilters] = useState<FilterAgencyProps>({
+    city: [],
+    rating: null,
+    type: [],
+    status: 'all',
+    followers: [0, 100],
+  });
 
-  React.useEffect(() => {
-    // Simulez un appel API ou récupérez les détails de l'agence selon `id`.
-    fetch(`/data/agencies.json`)
-      .then((res) => res.json())
-      .then((data) => {
-        const foundAgency = data.agency.find((agency: any) => agency.id.toString() === id);
-        setAgency(foundAgency);
+  // Chargement des données des véhicules
+  useEffect(() => {
+    fetch('/data/agencies.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
       })
-      .catch((err) => console.error('Error fetching agency details:', err));
+      .then((data) => {
+        if (data && Array.isArray(data)) {
+          setAgencies(data);
+          const foundAgency = data.find(
+            (a: AgencyProps) => a.id.toString() === id
+          );
+          setAgency(foundAgency || null); // Trouve l'agence correspondant à l'ID
+        } else {
+          console.error('Unexpected data format:', data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error loading Agencies:', error);
+      });
   }, [id]);
 
   if (!agency) {
     return <p>Loading...</p>;
   }
 
+  const handleFilterChange = (newFilters: FilterAgencyProps) => {
+    setFilters(newFilters);
+  };
+
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">{agency.name}</h1>
-      <p className="text-gray-600">{agency.description}</p>
-      <div>
-        <strong>City:</strong> {agency.city}
-      </div>
-      <div>
-        <strong>Stars:</strong> {agency.stars}
-      </div>
-      <div>
-        <strong>Followers:</strong> {agency.followers}
-      </div>
-      <div>
-        <strong>Quater:</strong> {agency.quater}
-      </div>
-      <div className="mt-4">
-        <h2 className="font-semibold">Images:</h2>
-        <div className="grid grid-cols-3 gap-4">
-          {agency.images.map((img: string, idx: number) => (
-            <img key={idx} src={img} alt={`Agency Image ${idx + 1}`} className="w-full h-auto" />
-          ))}
+    <div >
+      <main className="flex">
+        <div className="filter-container">
+          <SidebarFilterAgency agencies={agencies} onFilter={handleFilterChange} />
         </div>
-      </div>
+
+        {/* <Filter/> */}
+        <div className='flex justify-center items-center flex-col m-4'>
+          {/* <LocationFilter/> */}
+          <AgencyDetail agency={agency} />
+          <AgencyList agencies={agencies} filters={filters} />
+        </div>
+      </main>
     </div>
   );
 };

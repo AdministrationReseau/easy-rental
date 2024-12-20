@@ -2,16 +2,8 @@
 
 import React from 'react';
 import { CarCard } from '@/components/CarCard';
+import { VehicleListProps } from '@/utils/types/CarProps';
 
-
-interface VehicleListProps {
-  vehicles: any[];
-  filters: {
-    type: string[];
-    capacity: number | null;
-    priceRange: [number, number];
-  };
-}
 
 const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   const filteredVehicles = vehicles.filter((vehicle) => {
@@ -33,19 +25,35 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
 
   return (
     <div className="p-5 w-full flex">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
         {filteredVehicles.length > 0 ? (
           filteredVehicles.map((vehicle) => (
             <CarCard
-              key={vehicle.id}
-              id={vehicle.id}
-              images={vehicle.images}
-              brand={vehicle.brand}
-              model={vehicle.model}
-              transmission={vehicle.transmission}
-              engine={vehicle.engine}
-              passenger={vehicle.passenger || 4}
-              pricePerDay={vehicle.pricePerDay}
+            key={vehicle.id}
+            id={vehicle.id}
+            images={vehicle.images}
+            brand={vehicle.brand}
+            rating={vehicle.rating}
+            reviews={vehicle.reviews}
+            model={vehicle.model}
+            transmission={vehicle.transmission}
+            engine={vehicle.engine}
+            passenger={vehicle.passenger || 4}
+            pricePerDay={vehicle.pricePerDay}
+            type={vehicle.type} 
+            year={vehicle.year} 
+            description ={vehicle.description} 
+            vin={vehicle.vin} 
+            fonctionnalities={vehicle.fonctionnalities}
+            color={vehicle.color} 
+            fuel_efficiency={vehicle.fuel_efficiency} 
+            license_plate={vehicle.license_plate} 
+            registration={vehicle.registration} 
+            owner={vehicle.owner} 
+            service_history={vehicle.service_history} 
+            insurance={vehicle.insurance} 
+            onLike={function (id: number): void {console.log(id)}} 
+            onDislike={function (id: number): void {console.log(id)} }
             />
           ))
         ) : (

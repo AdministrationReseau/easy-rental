@@ -2,24 +2,20 @@
 
 import React, { useState, useEffect } from 'react';
 import VehicleList from '@/components/customer/VehicleList';
-import SidebarFilter from '@/components/customer/SideBarFilter';
+import SidebarFilter from '@/components/customer/SideBarFilterVehicle';
 import LocationFilter from '@/components/LocationFilter';
 import CarDetail from '@/components/combiner-components/CarDetail';
+import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 
-interface FilterProps {
-  type: string[];
-  capacity: number | null;
-  priceRange: [number, number];
-}
 
-const App: React.FC = () => {
-  const [vehicles, setVehicles] = useState<any[]>([]);
-  const [filters, setFilters] = useState<FilterProps>({
+const Cars: React.FC = () => {
+  const [vehicles, setVehicles] = useState<CarProps[]>([]);
+  const [filters, setFilters] = useState<FilterVehicleProps>({
     type: [],
     capacity: null,
     priceRange: [0, Infinity],
   });
-  const [selectedVehicle, setSelectedVehicle] = useState<any | null>(null);
+  const [selectedVehicle] = useState<CarProps | null>(null);
 
   useEffect(() => {
     fetch('/data/cars.json')
@@ -41,37 +37,42 @@ const App: React.FC = () => {
       });
   }, []);
 
-  const handleFilterChange = (newFilters: FilterProps) => {
+  const handleFilterChange = (newFilters: FilterVehicleProps) => {
     setFilters(newFilters);
   };
 
   return (
     <div>
-      <main className="flex flex-col mt-14">
-          <div className="filter-container">
-            <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
-          </div>
-        {/* Display CarDetail if a vehicle is selected */}
-        {selectedVehicle && (
-          <div className="mb-4">
-            <CarDetail vehicle={selectedVehicle} />
-          </div>
-        )}
-
-        <div className="flex">
-          
-          <div className="flex justify-center items-center flex-col ml-56">
-            <LocationFilter />
-            <VehicleList
-              vehicles={vehicles}
-              filters={filters}
-             // Pass down the function
-            />
-          </div>
+      <main className="flex flex-row m-2">
+        <div className="">
+          <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
         </div>
+        <div>
+          {/* Display CarDetail if a vehicle is selected */}
+          {selectedVehicle && (
+            <div className="mb-4">
+              <CarDetail vehicle={selectedVehicle} />
+            </div>
+          )}
+          <div className="flex">
+
+            <div className="flex justify-center items-center flex-col">
+              <LocationFilter />
+              <VehicleList
+                vehicles={vehicles}
+                filters={filters}
+              // Pass down the function
+              />
+            </div>
+          </div>
+
+        </div>
+
+
+
       </main>
     </div>
   );
 };
 
-export default App;
+export default Cars;

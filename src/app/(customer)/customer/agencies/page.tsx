@@ -3,18 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import AgencyList from '@/components/customer/AgencyList';
 import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
-import LocationFilter from '@/components/LocationFilter';
+import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 
-interface FilterProps {
-  city: string[];
-  stars: number | null;
-}
+
 
 const App: React.FC = () => {
-  const [agencies, setAgencies] = useState<any[]>([]);
-  const [filters, setFilters] = useState<FilterProps>({
+  const [agencies, setAgencies] = useState<AgencyProps[]>([]);
+  const [filters, setFilters] = useState<FilterAgencyProps>({
     city: [],
-    stars: null,
+      rating: null,
+      type: [],
+      status: 'all',
+      followers: [0, 100],
   });
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const App: React.FC = () => {
         return response.json();
       })
       .then((data) => {
-        if (data && Array.isArray(data.agency)) {
-          setAgencies(data.agency);
+        if (data && Array.isArray(data)) {
+          setAgencies(data);
         } else {
           console.error('Unexpected data format:', data);
           console.log(data);
@@ -38,18 +38,18 @@ const App: React.FC = () => {
       });
   }, []);
 
-  const handleFilterChange = (newFilters: FilterProps) => {
+  const handleFilterChange = (newFilters: FilterAgencyProps) => {
     setFilters(newFilters);
   };
 
   return (
     <div>
-      <main className="flex">
-        <div className="filter-container">
-          <SidebarFilterAgency vehicles={agencies} onFilter={handleFilterChange} />
+      <main className="flex flex-row m-2">
+        <div className="">
+          <SidebarFilterAgency agencies={agencies} onFilter={handleFilterChange} />
         </div>
         {/* <Filter/> */}
-        <div className='flex justify-center items-center flex-col ml-56'>
+        <div className='flex justify-center items-center flex-col'>
           {/* <LocationFilter/> */}
           <AgencyList agencies={agencies} filters={filters} />
         </div>

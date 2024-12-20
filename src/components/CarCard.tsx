@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
 import Image from 'next/image';
+import { CarProps } from '@/utils/types/CarProps';
 
 interface LikeProps {
     isLiked: boolean;
@@ -22,22 +23,6 @@ const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
     );
 };
 
-interface CarProps {
-    id: string;
-    brand: string;
-    model: string;
-    passenger: number;
-    pricePerDay: number;
-    engine: {
-        type: string;
-        horsepower: number;
-        capacity: number;
-    };
-    transmission: string;
-    images: string[];
-    onLike: (id: string) => void;
-    onDislike: (id: string) => void;
-}
 
 const CarCard: React.FC<CarProps> = ({
     id,
@@ -63,7 +48,7 @@ const CarCard: React.FC<CarProps> = ({
     };
 
     return (
-        <div className="bg-white text-gray-700 rounded-lg shadow-md overflow-hidden w-[325px]">
+        <div className="bg-white text-gray-700 rounded-lg shadow-md overflow-hidden w-[300px]">
             {/* Header - Brand, Model, Like Button */}
             <div className="flex justify-between items-center p-4">
                 <h2 className="text-lg font-semibold text-gray-800">
@@ -73,7 +58,7 @@ const CarCard: React.FC<CarProps> = ({
             </div>
 
             {/* Image Section */}
-            <div className="flex items-center justify-center h-[180px] bg-gray-100">
+            <div className="flex items-center justify-center h-[180px]">
                 {images?.[0] && (
                     <Image
                         src={images[0]}
