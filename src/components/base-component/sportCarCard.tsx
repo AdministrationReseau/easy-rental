@@ -12,7 +12,7 @@ const CarFeatureCard = () => {
         {/* Car Description */}
             <div className="flex-1 flex flex-col justify-center text-center md:text-left text-white p-6 rounded-lg">
                 <h2 className="font-bold text-xl text-2xl md:text-4xl font-bold mb-4 ">Rent cars with the best design and acceleration</h2>
-                <p className="text-sm md:text-base mb-6">Safety and comfort while driving a futuristic and elegant cars.</p>
+                <p className="text-sm md:text-base mb-6">Safety and comfort while driving a futuristic and elegant car.</p>
                 <div className="flex flex-row gap-6 md:my-6 ">
                 <Link
                   href="/home"

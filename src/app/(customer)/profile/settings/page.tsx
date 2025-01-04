@@ -85,22 +85,24 @@ const Setting = () => {
 
                     
                 </form>
-                <form className="flex flex-wrap ">
+                <form className="flex flex-col ">
                     <Field
                     label="Current Password"
                     type="password"
                     placeholder="********"
-                    
+                    size="xl:w-1/2"
                     />
                     <Field
                     label="New Password"
                     type="password"
                     placeholder="********"
+                    size="xl:w-1/2"
                     />
                     <Field
                     label="Confirm Password"
                     type="password"
                     placeholder="********"
+                    size="xl:w-1/2"
                     />
 
                     </form>
