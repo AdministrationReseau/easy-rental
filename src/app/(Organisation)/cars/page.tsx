@@ -24,7 +24,7 @@ export default function VehiclesPage() {
     useEffect(() => {
         const fetchVehicles = async () => {
         try {
-            const response = await fetch("/data/cars.json");
+            const response = await fetch("/data/car.json");
             if (!response.ok) {
             throw new Error("Failed to fetch vehicles");
             }
