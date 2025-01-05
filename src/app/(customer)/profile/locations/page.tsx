@@ -42,7 +42,7 @@ const Location = () => {
 
     return (
         <div>
-            <main className="flex-grow overflow-y-auto bg-gray-100 p-6">
+            <main>
                 <div className="ml-[25px] mt-[20px]">
                     <LocationList locations={locations} />
                 </div>

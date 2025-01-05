@@ -134,7 +134,9 @@ export default function Test() {
 */
 "use client";
 import React from 'react';
-import AgencyDetail from "@/components/combiner-components/agency-detail";
+// import DriverCard from "@/components/DriverCard";
+import OrgSidebar from "@/components/OrgSidebar";
+// import AgencyDetail from "@/components/combiner-components/agency-detail";
 
 const Test = () => {
     // const options = [
@@ -149,18 +151,17 @@ const Test = () => {
     return (
         <div>
 
-            {/*<DriverCard*/}
-            {/*    name="test test"*/}
-            {/*    age={25}*/}
-            {/*    email="test@gmail.com"*/}
-            {/*    location="yaounde"*/}
-            {/*    avatar="/assets/car.png"*/}
-            {/*    stars={3.5}*/}
-            {/*    phone="620202020"*/}
-            {/*/>*/}
-            {/*<OrgSidebar />*/}
-            <AgencyDetail key={1} />
-
+            {/* <DriverCard
+                name="test test"
+                age={25}
+                email="test@gmail.com"
+                location="yaounde"
+                avatar="/assets/car.png"
+                stars={3.5}
+                phone="620202020"
+            /> */}
+            <OrgSidebar />
+            {/* <AgencyDetail key={1} /> */}
         </div>
     );
 };
