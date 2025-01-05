@@ -1,6 +1,5 @@
 "use client";
 import Field from '@/components/base-component/fields';
-import MyComboBox from '@/components/base-component/myComboBox';
 import React from 'react';
 
 const Setting = () => {
