@@ -4,7 +4,6 @@ import EarnWithUs from "@/components/earnWithUs";
 import Navbar from "@/components/organisation/NavBar";
 import Records from "@/components/Records";
 import DriverCarousel from "@/components/driverCarousel";
-import Footer from "@/components/Footer";
 import AboutUS from "@/components/about";
 
 
@@ -40,7 +39,6 @@ export default function Home() {
                 <Records/>
 
             </main>
-            <Footer/>
         </>
     );
 }

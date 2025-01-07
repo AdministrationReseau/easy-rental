@@ -68,9 +68,8 @@ const Cars: React.FC = () => {
 
         </div>
 
-
-
       </main>
+
     </div>
   );
 };
