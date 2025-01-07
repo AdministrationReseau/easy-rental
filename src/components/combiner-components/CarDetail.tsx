@@ -1,9 +1,6 @@
 'use client';
 
 import React, { useState } from "react";
-// import CarCard from "@/components/combiner-components/CarCard";
-// import CarFeatureCard from "@/components/base-component/CarFeatureCard";
-// import CarFeatures from "@/components/base-component/CarFeatures";
 import Link from "next/link";
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
@@ -60,8 +57,8 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
           {vehicle.brand} {vehicle.model}
         </h3>
         <span className='flex flex-row py-4 gap-2'>
-          <Stars value={vehicle.rating} precision={1} />
-          {vehicle.reviews.length} + Reviewer
+          <Stars value={vehicle.rating ?? 0} precision={1} />
+            {vehicle.reviews.length} + Reviewer
         </span>
       </div>
 

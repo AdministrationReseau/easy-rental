@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
 
                 {/* Settings Icon */}
                 <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
-                    <ImageProfile imageUrl="/car.png" width={40} height={40} />
+                    <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
                 </button>
             </div>
         </nav>

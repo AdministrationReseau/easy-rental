@@ -56,7 +56,7 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                         <h1 className='text-xl text-primary-text'><b>{brand} {model}</b></h1>
                     </span>
                     <span className='flex flex-row w-full py-4'>
-                        <Stars value={rating} precision={1} />
+                        <Stars value={rating  ?? 0} precision={1} />
                        <span className='px-4'>{reviews.length} + Reviewer</span> 
                     </span>
                 </div>
