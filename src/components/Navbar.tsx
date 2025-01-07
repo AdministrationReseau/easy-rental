@@ -22,6 +22,9 @@ const NavOrg: React.FC = () => {
                 <Tune className="text-gray-500 cursor-pointer" />
             </div>
             <div className="flex items-center">
+                <Link href="/customer" className="text-primary-blue font-bold text-lg">
+                    Home
+                </Link>
                 <Link href="/customer/cars" className="text-primary-blue font-bold text-lg">
                     Cars
                 </Link>

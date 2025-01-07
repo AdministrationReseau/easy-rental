@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="flex flex-row text-[18px] text-secondary-text gap-4">
+                <Link href="/customer" className="mr-4"> Home </Link>
                 <Link href="/customer/cars" className="mr-4"> Cars </Link>
                 <Link href="/customer/agencies" > Agencies </Link>
                 <Link href="/customer/contact" > Contact </Link>
