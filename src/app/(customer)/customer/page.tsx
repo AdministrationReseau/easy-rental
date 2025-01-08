@@ -59,23 +59,11 @@ export default function Home() {
                 </div>
 
 
-                <div className="flex justify-center items-center flex-col">
+                <div className="w-full flex justify-center items-center flex-col">
                     <LocationFilter/>
-                    <div className="justify-center my-12">
+                    <div className="w-full flex flex-row justify-center my-12">
                         <VehicleList
-                            vehicles={vehicles.slice(0, 4)}
-                            filters={filters}
-                            // Pass down the function
-                        />
-
-                        <VehicleList
-                            vehicles={vehicles.slice(0, 4)}
-                            filters={filters}
-                            // Pass down the function
-                        />
-
-                        <VehicleList
-                            vehicles={vehicles.slice(0, 4)}
+                            vehicles={vehicles.slice(0, 6)}
                             filters={filters}
                             // Pass down the function
                         />

@@ -278,5 +278,845 @@
       "/assets/organisation/cars/metris.jpeg",
       "/assets/organisation/cars/metris.jpeg"
     ]
+  },
+  {
+    "id": 6,
+    "type": "Car",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+    "passenger": 2,
+    "pricePerDay": 2500,
+    "vin": "1HGBH41JXMN109186",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 203,
+      "capacity": 2.5
+    },
+    "transmission": "Automatic",
+    "color": "Blue",
+    "fuel_efficiency": {
+      "city": 28,
+      "highway": 39
+    },
+    "license_plate": "ABC1234",
+    "registration": {
+      "state": "California",
+      "expiry": "2025-08-01"
+    },
+    "owner": {
+      "name": "John Doe",
+      "address": "123 Main St, City, CA 90001",
+      "phone": "+1 123-456-7890",
+      "email": "john.doe@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-01-10",
+        "service_type": "Oil Change",
+        "mileage": 15000,
+        "provider": "Quick Lube"
+      },
+      {
+        "date": "2023-06-22",
+        "service_type": "Brake Inspection",
+        "mileage": 25000,
+        "provider": "Brake Masters"
+      }
+    ],
+    "insurance": {
+      "provider": "State Farm",
+      "policy_number": "SF123456789",
+      "expiry": "2024-07-15"
+    },
+    "images": [
+      "/assets/organisation/cars/camry.jpeg",
+      "/assets/organisation/cars/camry.jpeg",
+      "/assets/organisation/cars/camry.jpeg"
+    ]
+  },
+  {
+    "id": 7,
+    "type": "Motorcycle",
+    "brand": "Harley-Davidson",
+    "model": "Sportster",
+    "year": 2021,
+    "passenger": 2,
+    "pricePerDay": 5000,
+    "vin": "1HD1BJY14GB123456",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 120,
+      "capacity": 1.2
+    },
+    "transmission": "Manual",
+    "color": "Black",
+    "fuel_efficiency": {
+      "city": 50,
+      "highway": 65
+    },
+    "license_plate": "XYZ9876",
+    "registration": {
+      "state": "Florida",
+      "expiry": "2025-09-01"
+    },
+    "owner": {
+      "name": "Jane Smith",
+      "address": "456 Park Ave, Miami, FL 33101",
+      "phone": "+1 987-654-3210",
+      "email": "jane.smith@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-03-15",
+        "service_type": "Tire Replacement",
+        "mileage": 5000,
+        "provider": "Harley Service Center"
+      },
+      {
+        "date": "2023-08-30",
+        "service_type": "Chain Lubrication",
+        "mileage": 15000,
+        "provider": "Motorcycle Repair Co."
+      }
+    ],
+    "insurance": {
+      "provider": "Allstate",
+      "policy_number": "AL987654321",
+      "expiry": "2024-08-20"
+    },
+    "images": [
+      "/assets/organisation/cars/sportster.jpeg",
+      "/assets/organisation/cars/sportster.jpeg",
+      "/assets/organisation/cars/sportster.jpeg"
+    ]
+  },
+  {
+    "id": 8,
+    "type": "Truck",
+    "brand": "Ford",
+    "model": "F-150",
+    "year": 2019,
+    "passenger": 3,
+    "pricePerDay": 3000,
+    "vin": "1FTEW1E42JKD12345",
+    "engine": {
+      "type": "Diesel",
+      "horsepower": 400,
+      "capacity": 3.0
+    },
+    "transmission": "Automatic",
+    "color": "Red",
+    "fuel_efficiency": {
+      "city": 22,
+      "highway": 30
+    },
+    "license_plate": "TRK9876",
+    "registration": {
+      "state": "Texas",
+      "expiry": "2024-12-05"
+    },
+    "owner": {
+      "name": "Tom Harris",
+      "address": "789 Industrial Blvd, Dallas, TX 75201",
+      "phone": "+1 321-987-6543",
+      "email": "tom.harris@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-07-10",
+        "service_type": "Tire Rotation",
+        "mileage": 22000,
+        "provider": "Truck Service Experts"
+      },
+      {
+        "date": "2023-11-20",
+        "service_type": "Engine Tune-up",
+        "mileage": 40000,
+        "provider": "Diesel Mechanics"
+      }
+    ],
+    "insurance": {
+      "provider": "Progressive",
+      "policy_number": "PR1234567890",
+      "expiry": "2025-01-25"
+    },
+    "images": [
+      "/assets/organisation/cars/f-150.jpeg",
+      "/assets/organisation/cars/f-150.jpeg",
+      "/assets/organisation/cars/f-150.jpeg"
+    ]
+  },
+  {
+    "id": 9,
+    "type": "SUV",
+    "brand": "BMW",
+    "model": "X5",
+    "year": 2022,
+    "passenger": 2,
+    "pricePerDay": 1500,
+    "vin": "5UXTY9C08N0B12345",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 335,
+      "capacity": 3.0
+    },
+    "transmission": "Automatic",
+    "color": "White",
+    "fuel_efficiency": {
+      "city": 21,
+      "highway": 27
+    },
+    "license_plate": "SXY4567",
+    "registration": {
+      "state": "New York",
+      "expiry": "2026-05-15"
+    },
+    "owner": {
+      "name": "Alice Johnson",
+      "address": "234 Oak St, New York, NY 10001",
+      "phone": "+1 432-987-6543",
+      "email": "alice.johnson@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2023-02-20",
+        "service_type": "Oil Change",
+        "mileage": 8000,
+        "provider": "BMW Service Center"
+      },
+      {
+        "date": "2023-10-10",
+        "service_type": "Tire Inspection",
+        "mileage": 15000,
+        "provider": "Tire World"
+      }
+    ],
+    "insurance": {
+      "provider": "Geico",
+      "policy_number": "GE123456789",
+      "expiry": "2024-06-30"
+    },
+    "images": [
+      "/assets/organisation/cars/x5.jpeg",
+      "/assets/organisation/cars/x5.jpeg",
+      "/assets/organisation/cars/x5.jpeg"
+    ]
+  },
+  {
+    "id": 10,
+    "type": "Van",
+    "brand": "Mercedes-Benz",
+    "model": "Metris",
+    "year": 2020,
+    "passenger": 3,
+    "pricePerDay": 10000,
+    "vin": "W1X6D6BB8LP123456",
+    "engine": {
+      "type": "Diesel",
+      "horsepower": 188,
+      "capacity": 2.0
+    },
+    "transmission": "Automatic",
+    "color": "Silver",
+    "fuel_efficiency": {
+      "city": 20,
+      "highway": 24
+    },
+    "license_plate": "VAN1234",
+    "registration": {
+      "state": "Illinois",
+      "expiry": "2024-09-20"
+    },
+    "owner": {
+      "name": "Michael Green",
+      "address": "456 Broadway, Chicago, IL 60601",
+      "phone": "+1 567-890-1234",
+      "email": "michael.green@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-04-25",
+        "service_type": "Oil Change",
+        "mileage": 12000,
+        "provider": "Mercedes Service Center"
+      },
+      {
+        "date": "2023-09-01",
+        "service_type": "Brake Fluid Replacement",
+        "mileage": 18000,
+        "provider": "Euro Service"
+      }
+    ],
+    "insurance": {
+      "provider": "Nationwide",
+      "policy_number": "NW1234567890",
+      "expiry": "2025-03-12"
+    },
+    "images": [
+      "/assets/organisation/cars/metris.jpeg",
+      "/assets/organisation/cars/metris.jpeg",
+      "/assets/organisation/cars/metris.jpeg"
+    ]
+  },
+  {
+    "id": 11,
+    "type": "Car",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+    "passenger": 2,
+    "pricePerDay": 2500,
+    "vin": "1HGBH41JXMN109186",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 203,
+      "capacity": 2.5
+    },
+    "transmission": "Automatic",
+    "color": "Blue",
+    "fuel_efficiency": {
+      "city": 28,
+      "highway": 39
+    },
+    "license_plate": "ABC1234",
+    "registration": {
+      "state": "California",
+      "expiry": "2025-08-01"
+    },
+    "owner": {
+      "name": "John Doe",
+      "address": "123 Main St, City, CA 90001",
+      "phone": "+1 123-456-7890",
+      "email": "john.doe@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-01-10",
+        "service_type": "Oil Change",
+        "mileage": 15000,
+        "provider": "Quick Lube"
+      },
+      {
+        "date": "2023-06-22",
+        "service_type": "Brake Inspection",
+        "mileage": 25000,
+        "provider": "Brake Masters"
+      }
+    ],
+    "insurance": {
+      "provider": "State Farm",
+      "policy_number": "SF123456789",
+      "expiry": "2024-07-15"
+    },
+    "images": [
+      "/assets/organisation/cars/camry.jpeg",
+      "/assets/organisation/cars/camry.jpeg",
+      "/assets/organisation/cars/camry.jpeg"
+    ]
+  },
+  {
+    "id": 12,
+    "type": "Motorcycle",
+    "brand": "Harley-Davidson",
+    "model": "Sportster",
+    "year": 2021,
+    "passenger": 2,
+    "pricePerDay": 5000,
+    "vin": "1HD1BJY14GB123456",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 120,
+      "capacity": 1.2
+    },
+    "transmission": "Manual",
+    "color": "Black",
+    "fuel_efficiency": {
+      "city": 50,
+      "highway": 65
+    },
+    "license_plate": "XYZ9876",
+    "registration": {
+      "state": "Florida",
+      "expiry": "2025-09-01"
+    },
+    "owner": {
+      "name": "Jane Smith",
+      "address": "456 Park Ave, Miami, FL 33101",
+      "phone": "+1 987-654-3210",
+      "email": "jane.smith@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-03-15",
+        "service_type": "Tire Replacement",
+        "mileage": 5000,
+        "provider": "Harley Service Center"
+      },
+      {
+        "date": "2023-08-30",
+        "service_type": "Chain Lubrication",
+        "mileage": 15000,
+        "provider": "Motorcycle Repair Co."
+      }
+    ],
+    "insurance": {
+      "provider": "Allstate",
+      "policy_number": "AL987654321",
+      "expiry": "2024-08-20"
+    },
+    "images": [
+      "/assets/organisation/cars/sportster.jpeg",
+      "/assets/organisation/cars/sportster.jpeg",
+      "/assets/organisation/cars/sportster.jpeg"
+    ]
+  },
+  {
+    "id": 13,
+    "type": "Truck",
+    "brand": "Ford",
+    "model": "F-150",
+    "year": 2019,
+    "passenger": 3,
+    "pricePerDay": 3000,
+    "vin": "1FTEW1E42JKD12345",
+    "engine": {
+      "type": "Diesel",
+      "horsepower": 400,
+      "capacity": 3.0
+    },
+    "transmission": "Automatic",
+    "color": "Red",
+    "fuel_efficiency": {
+      "city": 22,
+      "highway": 30
+    },
+    "license_plate": "TRK9876",
+    "registration": {
+      "state": "Texas",
+      "expiry": "2024-12-05"
+    },
+    "owner": {
+      "name": "Tom Harris",
+      "address": "789 Industrial Blvd, Dallas, TX 75201",
+      "phone": "+1 321-987-6543",
+      "email": "tom.harris@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-07-10",
+        "service_type": "Tire Rotation",
+        "mileage": 22000,
+        "provider": "Truck Service Experts"
+      },
+      {
+        "date": "2023-11-20",
+        "service_type": "Engine Tune-up",
+        "mileage": 40000,
+        "provider": "Diesel Mechanics"
+      }
+    ],
+    "insurance": {
+      "provider": "Progressive",
+      "policy_number": "PR1234567890",
+      "expiry": "2025-01-25"
+    },
+    "images": [
+      "/assets/organisation/cars/f-150.jpeg",
+      "/assets/organisation/cars/f-150.jpeg",
+      "/assets/organisation/cars/f-150.jpeg"
+    ]
+  },
+  {
+    "id": 14,
+    "type": "SUV",
+    "brand": "BMW",
+    "model": "X5",
+    "year": 2022,
+    "passenger": 2,
+    "pricePerDay": 1500,
+    "vin": "5UXTY9C08N0B12345",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 335,
+      "capacity": 3.0
+    },
+    "transmission": "Automatic",
+    "color": "White",
+    "fuel_efficiency": {
+      "city": 21,
+      "highway": 27
+    },
+    "license_plate": "SXY4567",
+    "registration": {
+      "state": "New York",
+      "expiry": "2026-05-15"
+    },
+    "owner": {
+      "name": "Alice Johnson",
+      "address": "234 Oak St, New York, NY 10001",
+      "phone": "+1 432-987-6543",
+      "email": "alice.johnson@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2023-02-20",
+        "service_type": "Oil Change",
+        "mileage": 8000,
+        "provider": "BMW Service Center"
+      },
+      {
+        "date": "2023-10-10",
+        "service_type": "Tire Inspection",
+        "mileage": 15000,
+        "provider": "Tire World"
+      }
+    ],
+    "insurance": {
+      "provider": "Geico",
+      "policy_number": "GE123456789",
+      "expiry": "2024-06-30"
+    },
+    "images": [
+      "/assets/organisation/cars/x5.jpeg",
+      "/assets/organisation/cars/x5.jpeg",
+      "/assets/organisation/cars/x5.jpeg"
+    ]
+  },
+  {
+    "id": 15,
+    "type": "Van",
+    "brand": "Mercedes-Benz",
+    "model": "Metris",
+    "year": 2020,
+    "passenger": 3,
+    "pricePerDay": 10000,
+    "vin": "W1X6D6BB8LP123456",
+    "engine": {
+      "type": "Diesel",
+      "horsepower": 188,
+      "capacity": 2.0
+    },
+    "transmission": "Automatic",
+    "color": "Silver",
+    "fuel_efficiency": {
+      "city": 20,
+      "highway": 24
+    },
+    "license_plate": "VAN1234",
+    "registration": {
+      "state": "Illinois",
+      "expiry": "2024-09-20"
+    },
+    "owner": {
+      "name": "Michael Green",
+      "address": "456 Broadway, Chicago, IL 60601",
+      "phone": "+1 567-890-1234",
+      "email": "michael.green@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-04-25",
+        "service_type": "Oil Change",
+        "mileage": 12000,
+        "provider": "Mercedes Service Center"
+      },
+      {
+        "date": "2023-09-01",
+        "service_type": "Brake Fluid Replacement",
+        "mileage": 18000,
+        "provider": "Euro Service"
+      }
+    ],
+    "insurance": {
+      "provider": "Nationwide",
+      "policy_number": "NW1234567890",
+      "expiry": "2025-03-12"
+    },
+    "images": [
+      "/assets/organisation/cars/metris.jpeg",
+      "/assets/organisation/cars/metris.jpeg",
+      "/assets/organisation/cars/metris.jpeg"
+    ]
+  },
+  {
+    "id": 16,
+    "type": "Car",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+    "passenger": 2,
+    "pricePerDay": 2500,
+    "vin": "1HGBH41JXMN109186",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 203,
+      "capacity": 2.5
+    },
+    "transmission": "Automatic",
+    "color": "Blue",
+    "fuel_efficiency": {
+      "city": 28,
+      "highway": 39
+    },
+    "license_plate": "ABC1234",
+    "registration": {
+      "state": "California",
+      "expiry": "2025-08-01"
+    },
+    "owner": {
+      "name": "John Doe",
+      "address": "123 Main St, City, CA 90001",
+      "phone": "+1 123-456-7890",
+      "email": "john.doe@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-01-10",
+        "service_type": "Oil Change",
+        "mileage": 15000,
+        "provider": "Quick Lube"
+      },
+      {
+        "date": "2023-06-22",
+        "service_type": "Brake Inspection",
+        "mileage": 25000,
+        "provider": "Brake Masters"
+      }
+    ],
+    "insurance": {
+      "provider": "State Farm",
+      "policy_number": "SF123456789",
+      "expiry": "2024-07-15"
+    },
+    "images": [
+      "/assets/organisation/cars/camry.jpeg",
+      "/assets/organisation/cars/camry.jpeg",
+      "/assets/organisation/cars/camry.jpeg"
+    ]
+  },
+  {
+    "id": 17,
+    "type": "Motorcycle",
+    "brand": "Harley-Davidson",
+    "model": "Sportster",
+    "year": 2021,
+    "passenger": 2,
+    "pricePerDay": 5000,
+    "vin": "1HD1BJY14GB123456",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 120,
+      "capacity": 1.2
+    },
+    "transmission": "Manual",
+    "color": "Black",
+    "fuel_efficiency": {
+      "city": 50,
+      "highway": 65
+    },
+    "license_plate": "XYZ9876",
+    "registration": {
+      "state": "Florida",
+      "expiry": "2025-09-01"
+    },
+    "owner": {
+      "name": "Jane Smith",
+      "address": "456 Park Ave, Miami, FL 33101",
+      "phone": "+1 987-654-3210",
+      "email": "jane.smith@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-03-15",
+        "service_type": "Tire Replacement",
+        "mileage": 5000,
+        "provider": "Harley Service Center"
+      },
+      {
+        "date": "2023-08-30",
+        "service_type": "Chain Lubrication",
+        "mileage": 15000,
+        "provider": "Motorcycle Repair Co."
+      }
+    ],
+    "insurance": {
+      "provider": "Allstate",
+      "policy_number": "AL987654321",
+      "expiry": "2024-08-20"
+    },
+    "images": [
+      "/assets/organisation/cars/sportster.jpeg",
+      "/assets/organisation/cars/sportster.jpeg",
+      "/assets/organisation/cars/sportster.jpeg"
+    ]
+  },
+  {
+    "id": 18,
+    "type": "Truck",
+    "brand": "Ford",
+    "model": "F-150",
+    "year": 2019,
+    "passenger": 3,
+    "pricePerDay": 3000,
+    "vin": "1FTEW1E42JKD12345",
+    "engine": {
+      "type": "Diesel",
+      "horsepower": 400,
+      "capacity": 3.0
+    },
+    "transmission": "Automatic",
+    "color": "Red",
+    "fuel_efficiency": {
+      "city": 22,
+      "highway": 30
+    },
+    "license_plate": "TRK9876",
+    "registration": {
+      "state": "Texas",
+      "expiry": "2024-12-05"
+    },
+    "owner": {
+      "name": "Tom Harris",
+      "address": "789 Industrial Blvd, Dallas, TX 75201",
+      "phone": "+1 321-987-6543",
+      "email": "tom.harris@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-07-10",
+        "service_type": "Tire Rotation",
+        "mileage": 22000,
+        "provider": "Truck Service Experts"
+      },
+      {
+        "date": "2023-11-20",
+        "service_type": "Engine Tune-up",
+        "mileage": 40000,
+        "provider": "Diesel Mechanics"
+      }
+    ],
+    "insurance": {
+      "provider": "Progressive",
+      "policy_number": "PR1234567890",
+      "expiry": "2025-01-25"
+    },
+    "images": [
+      "/assets/organisation/cars/f-150.jpeg",
+      "/assets/organisation/cars/f-150.jpeg",
+      "/assets/organisation/cars/f-150.jpeg"
+    ]
+  },
+  {
+    "id": 19,
+    "type": "SUV",
+    "brand": "BMW",
+    "model": "X5",
+    "year": 2022,
+    "passenger": 2,
+    "pricePerDay": 1500,
+    "vin": "5UXTY9C08N0B12345",
+    "engine": {
+      "type": "Gasoline",
+      "horsepower": 335,
+      "capacity": 3.0
+    },
+    "transmission": "Automatic",
+    "color": "White",
+    "fuel_efficiency": {
+      "city": 21,
+      "highway": 27
+    },
+    "license_plate": "SXY4567",
+    "registration": {
+      "state": "New York",
+      "expiry": "2026-05-15"
+    },
+    "owner": {
+      "name": "Alice Johnson",
+      "address": "234 Oak St, New York, NY 10001",
+      "phone": "+1 432-987-6543",
+      "email": "alice.johnson@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2023-02-20",
+        "service_type": "Oil Change",
+        "mileage": 8000,
+        "provider": "BMW Service Center"
+      },
+      {
+        "date": "2023-10-10",
+        "service_type": "Tire Inspection",
+        "mileage": 15000,
+        "provider": "Tire World"
+      }
+    ],
+    "insurance": {
+      "provider": "Geico",
+      "policy_number": "GE123456789",
+      "expiry": "2024-06-30"
+    },
+    "images": [
+      "/assets/organisation/cars/x5.jpeg",
+      "/assets/organisation/cars/x5.jpeg",
+      "/assets/organisation/cars/x5.jpeg"
+    ]
+  },
+  {
+    "id": 20,
+    "type": "Van",
+    "brand": "Mercedes-Benz",
+    "model": "Metris",
+    "year": 2020,
+    "passenger": 3,
+    "pricePerDay": 10000,
+    "vin": "W1X6D6BB8LP123456",
+    "engine": {
+      "type": "Diesel",
+      "horsepower": 188,
+      "capacity": 2.0
+    },
+    "transmission": "Automatic",
+    "color": "Silver",
+    "fuel_efficiency": {
+      "city": 20,
+      "highway": 24
+    },
+    "license_plate": "VAN1234",
+    "registration": {
+      "state": "Illinois",
+      "expiry": "2024-09-20"
+    },
+    "owner": {
+      "name": "Michael Green",
+      "address": "456 Broadway, Chicago, IL 60601",
+      "phone": "+1 567-890-1234",
+      "email": "michael.green@example.com"
+    },
+    "service_history": [
+      {
+        "date": "2022-04-25",
+        "service_type": "Oil Change",
+        "mileage": 12000,
+        "provider": "Mercedes Service Center"
+      },
+      {
+        "date": "2023-09-01",
+        "service_type": "Brake Fluid Replacement",
+        "mileage": 18000,
+        "provider": "Euro Service"
+      }
+    ],
+    "insurance": {
+      "provider": "Nationwide",
+      "policy_number": "NW1234567890",
+      "expiry": "2025-03-12"
+    },
+    "images": [
+      "/assets/organisation/cars/metris.jpeg",
+      "/assets/organisation/cars/metris.jpeg",
+      "/assets/organisation/cars/metris.jpeg"
+    ]
   }
 ]

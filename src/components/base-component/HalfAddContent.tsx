@@ -118,11 +118,11 @@ const HalfAddContent: React.FC<HalfAddProps> = ({
                                                     buttonLink,
                                                     backgroundImage,
                                                     buttonColor = "bg-blue-600", // Default button color
-                                                    className = "h-[300px] w-[600px]", // Default size
+                                                    className = "h-[300px] w-[48%]", // Default size
                                                 }) => {
     return (
         <div
-            className={`relative bg-cover bg-center rounded-lg shadow-lg overflow-hidden ${className}`}
+            className={`relative  bg-cover bg-center rounded-lg shadow-lg overflow-hidden ${className}`}
         >
             <Image
                 src={backgroundImage}

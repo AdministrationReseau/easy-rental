@@ -13,12 +13,12 @@ interface LocationFilterProps {
 
 function LocationFilter({ type }: LocationFilterProps) {
     return (
-        <div>
+        <div className="relative">
             <div className="flex flex-row gap-2 items-center">
                 <div className="w-2 h-2 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
                 <span>{type}</span>
             </div>
-            <div className="flex flex-row gap-2 h-12">
+            <div className="w-full flex flex-row gap-2 h-12">
                 <div className="flex flex-col">
                     <span className="text-gray-500 text-xs">Select country - region</span>
                     <div className="flex h-full items-center">
@@ -54,7 +54,7 @@ function LocationFilterContainer() {
     return (
         <div className="bg-white p-4 gap-4 rounded-lg shadow-lg flex flex-row justify-center mt-5 w-[85%]">
             {isDepartureFirst ? (
-                <>
+                <div className="w-[48%] h-full">
                     <LocationFilter type={LocationFilterEnum.PICKUP} />
                     <span className='flex justify-center items-center'>
                         <button
@@ -65,9 +65,9 @@ function LocationFilterContainer() {
                        </button>
                         </span> 
                     <LocationFilter type={LocationFilterEnum.DROPOFF} />
-                </>
+                </div>
             ) : (
-                <>
+                <div className="w-[48%] h-full">
                     <LocationFilter type={LocationFilterEnum.DROPOFF} />
                     <span className='flex justify-center items-center'>
                         <button
@@ -79,7 +79,7 @@ function LocationFilterContainer() {
                     </span>
                     
                     <LocationFilter type={LocationFilterEnum.PICKUP} />
-                </>
+                </div >
             )}
         </div>
     );

@@ -42,7 +42,7 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
 
   return (
     <div className="p-5 w-full flex">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="flex flex-row flex-wrap gap-6 w-full justify-center">
         {filteredAgencies.length > 0 ? (
           filteredAgencies.map((agency) => (
             <AgencyCard

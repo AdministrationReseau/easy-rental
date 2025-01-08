@@ -203,7 +203,7 @@ const CarCard: React.FC<CarProps> = ({
                 </div>
                 <Link href={`/customer/cars/${id}`}>
                     <button className="py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 transform hover:scale-105 hover:bg-blue-600">
-                        Rent Now
+                        View More
                     </button>
                 </Link>
             </div>
