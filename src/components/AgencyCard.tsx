@@ -87,7 +87,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
     const isOpen = isAgencyOpen(agency);
 
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[300px] h-[450px]">
+        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[280px] h-[450px]">
             {/* Première ligne - Nom et Like/Dislike */}
             <div className="flex justify-between items-center p-4">
                 <h2 className="text-xl font-semibold text-primary-text">{name}</h2>
@@ -96,7 +96,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
             </div>
 
             {/* Deuxième ligne - Marque */}
-            <div className="px-4 py-2 text-sm text-secondary-text text-sm h-[70px]">
+            <div className="px-4 py-2 text-sm text-secondary-text h-[70px]">
                 <p>{slogan}</p>
             </div>
 
@@ -132,7 +132,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
             <div className="px-4 py-2 flex justify-between items-center">
                 <span className='m-2'>
                     <p className="text-xl font-semibold text-gray-800">{city}</p>
-                    <p className='text-secondary-text ml-2'>{quater}</p>
+                    <p className='text-sm ml-2'>{quater}</p>
                 </span>
                 {/* <Link href={`/car-details/${id}`}> */}
                 <Link
