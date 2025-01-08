@@ -1,0 +1,264 @@
+[
+    {
+        "id": 1,
+        "name": "Agence Alpha",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "slogan": "Une agence qui met en avant la satisfaction de ses clients et leur sécurité",
+        "city": "Douala",
+        "followers":15,
+        "quater": "Essos",
+        "openingTime": "08:00",
+        "closingTime": "18:30",
+        "rating": 5,
+        "isOpen": true,
+        "type": "Siège",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "images": [
+           "/assets/organisation/agency/agence1.png",
+                "/assets/organisation/agency/agence1.png",
+                "/assets/organisation/agency/agence1.png"
+        ],"reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 2,
+        "name": "Agence Beta",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Douala",
+        "openingTime": "09:00",
+        "closingTime": "23:00",
+        "rating": 4,
+        "followers":10,
+        "quater": "Bonandjo",
+        "type": "Annexe",
+        "slogan": "Nous vous aidons à obtenir un moyen d'aller où vous voulez, quand vous voulez",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": true,
+        "images": [
+            "/assets/organisation/agency/agence2.png",
+            "/assets/organisation/agency/agence2.png",
+            "/assets/organisation/agency/agence2.png"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 3,
+        "name": "Agence Alpha",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Yaoundé",
+        "openingTime": "08:00",
+        "closingTime": "18:30",
+        "rating": 4.5,
+        "type": "Siège",
+        "followers":20,
+        "quater": "Melen",
+        "slogan": "Déplacez vous dans toute la ville avec des véhicules de qualités",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": false,
+        "images": [
+            "/assets/organisation/agency/agence3.png",
+            "/assets/organisation/agency/agence3.png",
+            "/assets/organisation/agency/agence3.png"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 4,
+        "name": "Agence Beta",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Douala",
+        "openingTime": "09:00",
+        "closingTime": "19:00",
+        "rating": 3.5,
+        "followers":10,
+        "type": "Annexe",
+        "slogan": "Vous servire est notre devoir et nos véhicules sont là pour ça",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": true,
+        "images": [
+            "/assets/organisation/agency/agence4.png",
+            "/assets/organisation/agency/agence4.png",
+            "/assets/organisation/agency/agence4.png"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 5,
+        "name": "Agence Alpha",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Yaoundé",
+        "quater": "Mvog-ada",
+        "openingTime": "08:00",
+        "closingTime": "18:30",
+        "rating": 5,
+        "followers":10,
+        "type": "Siège",
+        "slogan": "votre confort, notre mission",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": false,
+        "images": [
+            "/assets/organisation/agency/agence6.png",
+            "/assets/organisation/agency/agence6.png",
+            "/assets/organisation/agency/agence6.png"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 6,
+        "name": "Agence Beta",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Ngaoundéré",
+        "quater": "Bideng",
+        "openingTime": "09:00",
+        "closingTime": "19:00",
+        "rating": 4,
+        "followers":50,
+        "type": "Annexe",
+        "slogan": "Vos véhicules de qualité à prix moins chères",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": false,
+        "images": [
+            "/assets/organisation/agency/agence5.png",
+            "/assets/organisation/agency/agence5.png",
+            "/assets/organisation/agency/agence5.png"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 7,
+        "name": "Agence Alpha",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Ngaoundéré",
+        "openingTime": "08:00",
+        "closingTime": "18:30",
+        "rating": 3.5,
+        "followers":10,
+        "quater": "Bamyanga",
+        "type": "Siège",
+        "slogan": "Nous vous accompagnons dans votre vie quotidienne",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": true,
+        "images": [
+            "/assets/organisation/agency/agence7.png",
+            "/assets/organisation/agency/agence7.png",
+            "/assets/organisation/agency/agence7.png"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    },
+    {
+        "id": 8,
+        "name": "Agence Beta",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "city": "Yaoundé",
+        "openingTime": "09:00",
+        "closingTime": "19:00",
+        "rating": 4,
+        "followers":10,
+        "quater": "Poste centrale",
+        "type": "Annexe",
+        "slogan": "Nous vous accompagnons dans votre vie quotidienne",
+        "createdAt": "2023-08-30",
+        "updateddAt": "2023-08-30",
+        "isOpen": true,
+        "images": [
+            "/assets/agency.jpg",
+            "/assets/agency1.jpeg",
+            "/assets/agency2.jpg"
+        ],
+        "reviews": [
+        {
+          "reviewer": "Alice Johnson",
+          "comment": "Amazing experience with this car. Smooth ride and great fuel efficiency.",
+          "rating": 4
+        },
+        {
+          "reviewer": "Tom Harris",
+          "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
+          "rating": 3
+        }
+      ]
+    }
+]

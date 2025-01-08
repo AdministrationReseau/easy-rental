@@ -24,7 +24,7 @@ const getIcon = (name: string) => {
 
 export default function CarAttributeDetails({ name, value }: CarAttributeDetailsProps) {
     return (
-        <div className='flex flex-col gap-2 items-center bg-white shadow-sm shadow-primary-blue/10 rounded-md p-4'>
+        <div className='flex flex-col gap-2 items-center bg-white shadow-sm shadow-primary-blue/10 rounded-md p-4 w-full'>
             {getIcon(name)}
                 
             <div>

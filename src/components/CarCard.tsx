@@ -1,113 +1,209 @@
+// 'use client';
+//
+// import React, { useState } from 'react';
+// import Link from 'next/link';
+// import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
+// import Image from 'next/image';
+// import { CarProps } from '@/utils/types/CarProps';
+//
+// interface LikeProps {
+//     isLiked: boolean;
+//     onClick: () => void;
+// }
+//
+// const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
+//     return (
+//         <button onClick={onClick} className="text-xl">
+//             {isLiked ? (
+//                 <Favorite className="text-red-500" />
+//             ) : (
+//                 <FavoriteBorder className="text-gray-500" />
+//             )}
+//         </button>
+//     );
+// };
+//
+//
+// const CarCard: React.FC<CarProps> = ({
+//     id,
+//     brand,
+//     model,
+//     engine,
+//     transmission,
+//     passenger,
+//     pricePerDay,
+//     images,
+//     onLike,
+//     onDislike,
+// }) => {
+//     const [isLiked, setIsLiked] = useState<boolean>(false);
+//
+//     const toggleLike = () => {
+//         setIsLiked(!isLiked);
+//         if (!isLiked) {
+//             onLike(id);
+//         } else {
+//             onDislike(id);
+//         }
+//     };
+//
+//     return (
+//         <div className="bg-white text-gray-700 rounded-lg shadow-md overflow-hidden w-[300px]">
+//             {/* Header - Brand, Model, Like Button */}
+//             <div className="flex justify-between items-center p-4">
+//                 <h2 className="text-lg font-semibold text-gray-800">
+//                     {brand} {model}
+//                 </h2>
+//                 <LikeButton isLiked={isLiked} onClick={toggleLike} />
+//             </div>
+//
+//             {/* Image Section */}
+//             <div className="flex items-center justify-center h-[180px]">
+//                 {images?.[0] && (
+//                     <Image
+//                         src={images[0]}
+//                         alt={`${brand} ${model}`}
+//                         width={250}
+//                         height={120}
+//                         className="object-contain"
+//                     />
+//                 )}
+//             </div>
+//
+//             {/* Details Section */}
+//             <div className="flex justify-between items-center px-4 py-2 text-sm text-gray-600">
+//                 <div className="flex items-center gap-1">
+//                     <LocalGasStation className="w-5 h-5 text-gray-500" />
+//                     <p>{engine.capacity}L</p>
+//                 </div>
+//                 <div className="flex items-center gap-1">
+//                     <Speed className="w-5 h-5 text-gray-500" />
+//                     <p>{transmission}</p>
+//                 </div>
+//                 <div className="flex items-center gap-1">
+//                     <People className="w-5 h-5 text-gray-500" />
+//                     <p>{passenger} People</p>
+//                 </div>
+//             </div>
+//
+//             {/* Footer Section */}
+//             <div className="px-4 py-2 flex justify-between items-center">
+//                 <div>
+//                     <span className="text-xl font-semibold text-gray-800">
+//                         {pricePerDay} CFA
+//                     </span>
+//                     <span className="text-gray-500 ml-1">/ jour</span>
+//                 </div>
+//                 <Link href={`/customer/cars/${id}`}>
+//                     <button className="py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 transform hover:scale-105 hover:bg-blue-600">
+//                         Rent Now
+//                     </button>
+//                 </Link>
+//             </div>
+//         </div>
+//     );
+// };
+//
+// export { CarCard };
+
 'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
-import Image from "next/image"; // Import des icônes pour like et dislike
+import Image from 'next/image';
+import { CarProps } from '@/utils/types/CarProps';
 
 interface LikeProps {
-    isLiked: boolean; // Etat du like : true si aimé, false sinon
-    onClick: () => void; // Fonction appelée lorsque l'utilisateur clique sur l'icône
+    isLiked: boolean;
+    onClick: () => void;
 }
 
 const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
     return (
         <button onClick={onClick} className="text-xl">
             {isLiked ? (
-                <Favorite className="text-red-500" /> // Coeur rouge si aimé
+                <Favorite className="text-red-500" />
             ) : (
-                <FavoriteBorder className="text-gray-500" /> // Coeur incolore si non aimé
+                <FavoriteBorder className="text-gray-500" />
             )}
         </button>
     );
 };
 
-interface CarProps {
-    id: string;
-    imageUrl: string;
-    brand: string;
-    model: string;
-    fuel: number;
-    gearbox: string;
-    passengers: number;
-    pricePerDay: number;
-    onLike: (id: string) => void; // Fonction pour gérer les likes
-    onDislike: (id: string) => void; // Fonction pour gérer les dislikes
-}
-
 const CarCard: React.FC<CarProps> = ({
-    id,
-    imageUrl,
-    brand,
-    model,
-    fuel,
-    gearbox,
-    passengers,
-    pricePerDay,
-    onLike,
-    onDislike,
-}) => {
+                                         id = 0,
+                                         brand = '',
+                                         model = '',
+                                         engine = { capacity: 0 },
+                                         transmission = '',
+                                         passenger = 0,
+                                         pricePerDay = 0,
+                                         images = [],
+                                         onLike = () => {},
+                                         onDislike = () => {},
+                                     }) => {
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
-    // Fonction pour basculer l'état du like
     const toggleLike = () => {
         setIsLiked(!isLiked);
         if (!isLiked) {
-            onLike(id); // Appel de la fonction onLike si le véhicule est aimé
+            onLike(id);
         } else {
-            onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
+            onDislike(id);
         }
     };
 
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[325px] h-[388px]">
-            {/* Première ligne - Nom et Like/Dislike */}
+        <div className="bg-white text-gray-700 rounded-lg shadow-md overflow-hidden w-[300px]">
+            {/* Header - Brand, Model, Like Button */}
             <div className="flex justify-between items-center p-4">
-                <h2 className="text-xl font-semibold text-gray-800">{brand} {model}</h2>
+                <h2 className="text-lg font-semibold text-gray-800">
+                    {brand} {model}
+                </h2>
                 <LikeButton isLiked={isLiked} onClick={toggleLike} />
             </div>
 
-            {/* Deuxième ligne - Marque */}
-            <div className="px-4 py-2 text-sm text-secondary-text">
-                <p>Marque: {brand}</p>
+            {/* Image Section */}
+            <div className="flex items-center justify-center h-[180px]">
+                {images[0] && (
+                    <Image
+                        src={images[0]}
+                        alt={`${brand} ${model}`}
+                        width={250}
+                        height={120}
+                        className="object-contain"
+                    />
+                )}
             </div>
 
-            {/* Image du véhicule */}
-            <div className='flex items-center justify-center h-[180px]'>
-                <Image
-                    src={imageUrl}
-                    alt={`${brand} ${model}`}
-                    className="w-[300px] h-[125px] object-cover"
-                />
-            </div>
-
-            {/* Détails supplémentaires */}
-            <div className='flex justify-between items-center text-sm'>
-                <div className="flex items-center gap-2 px-2 py-2">
-                    <LocalGasStation className="w-5 h-5" />
-                    <p>{fuel} L</p>
+            {/* Details Section */}
+            <div className="flex justify-between items-center px-4 py-2 text-sm text-gray-600">
+                <div className="flex items-center gap-1">
+                    <LocalGasStation className="w-5 h-5 text-gray-500" />
+                    <p>{engine.capacity}L</p>
                 </div>
-                <div className="flex items-center gap-2 px-2 py-2">
-                    <Speed className="w-5 h- 5" />
-                    <p>{gearbox}</p>
+                <div className="flex items-center gap-1">
+                    <Speed className="w-5 h-5 text-gray-500" />
+                    <p>{transmission}</p>
                 </div>
-                <div className="flex items-center gap-2 px-2 py-2">
-                    <People className="w-5 h-5" />
-                    <p>{passengers} People</p>
+                <div className="flex items-center gap-1">
+                    <People className="w-5 h-5 text-gray-500" />
+                    <p>{passenger} People</p>
                 </div>
             </div>
-            
 
-            {/* Prix de location et bouton Rent Now */}
+            {/* Footer Section */}
             <div className="px-4 py-2 flex justify-between items-center">
-                <span className='flex m-2'>
-                    <p className="text-xl font-semibold text-gray-800">{pricePerDay} CFA /</p>
-                    <p className='text-secondary-text ml-2'>jour</p>
-                </span>
-                {/* <Link href={`/car-details/${id}`}> */}
-                <Link href="#">
-                    <button className="py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 hover:scale-105 hover:bg-blue-600 w-[116px] h-[44px]">
-                        Rent Now
+                <div>
+                    <span className="text-xl font-semibold text-gray-800">
+                        {pricePerDay} CFA
+                    </span>
+                    <span className="text-gray-500 ml-1">/ jour</span>
+                </div>
+                <Link href={`/customer/cars/${id}`}>
+                    <button className="py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 transform hover:scale-105 hover:bg-blue-600">
+                        View More
                     </button>
                 </Link>
             </div>

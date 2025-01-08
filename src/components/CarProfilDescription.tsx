@@ -7,14 +7,13 @@ import StateBox from './StateBox';
 import { ProcessState } from '@/utils/enum';
 
 interface CarProfilDescriptionProps {
-    starsNumber: number
+    rating: number
     name: string
     description: string
-    price: number
+    pricePerDay: number
     caracteristics: { name: string, value: string }[]
     width: number
 }
-
 interface EvaluationProps {
     number: number
 }
@@ -32,14 +31,14 @@ const Evaluation = ({number}: EvaluationProps) => {
     )
 }
 
-export default function CarProfilDescription({ starsNumber, name, description, price, caracteristics, width=450 }: CarProfilDescriptionProps) {
+export default function CarProfilDescription({ rating, name, description, pricePerDay, caracteristics, width=450 }: CarProfilDescriptionProps) {
     return (
         <div style={{ width: `${width}px` }} className='bg-white shadow-sm shadow-primary-blue/15 rounded-md p-4'>
             <div className='w-full relative'>
                 <FavoriteIcon className='absolute top-2 right-2 text-red-text'/>
                 
                 <h3 className='font-bold'>{name}</h3>
-                <Evaluation number={starsNumber}/>
+                <Evaluation number={rating}/>
             </div>
             <div className='w-full py-8 text-gray-500'>
                 <p>{description}</p>
@@ -56,7 +55,7 @@ export default function CarProfilDescription({ starsNumber, name, description, p
             </div>
             <div className='w-full flex flex-row gap-1 justify-between items-center'>
                 <div>
-                    <span className='text-gray-500'><span className='font-bold text-black'>{price} FCFA </span>per day</span>
+                    <span className='text-gray-500'><span className='font-bold text-black'>{pricePerDay} FCFA </span>per day</span>
                 </div>
                 <div>
                     <StateBox state={ProcessState.CONFIRMED} />

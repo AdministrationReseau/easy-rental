@@ -1,22 +1,46 @@
-import DefaultProfile from "@/components/DefaultProfile";
-import ImageProfile from "@/components/ImageProfile";
-import Evaluation from "@/components/Evaluation";
-import Stars from "@/components/Stars";
-import Sidebar from "@/components/Sidebar";
+import SportCarCard from "@/components/base-component/sportCarCard";
+import CarCarousel from "@/components/CarCarousel";
+import EarnWithUs from "@/components/earnWithUs";
+import Navbar from "@/components/organisation/NavBar";
+import Records from "@/components/Records";
+import DriverCarousel from "@/components/driverCarousel";
+import AboutUS from "@/components/about";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
-  return (
-    <div>
-      <main>
-          <DefaultProfile name='John Doe'/>
-          <ImageProfile imageUrl="car.png" width={45} height={45}/>
-          <Evaluation/>
-          <Stars value={2.5} precision={0.5}/>
-          <Sidebar/>
-      </main>
-      <footer>
-      </footer>
-    </div>
-  );
+    return (
+        <>
+            <main className="bg-var(--background)">
+                <Navbar />
+                <SportCarCard/>
+                <div className="flex flex-col items-center justify-center text-xl my-12 w-full">
+                    <div className="text-xl text-primary-blue">
+                        What We offer
+                    </div>
+                    <div className="mt-4 text-secondary-text">
+                        Featured Vehicles
+                    </div>
+
+                    <CarCarousel/>
+                </div>
+
+                <AboutUS/>
+                <EarnWithUs/>
+                <div className="flex flex-col items-center justify-center text-xl my-12">
+                    <div className="text-xl text-primary-blue">
+                        What We offer
+                    </div>
+                    <div className="mt-4 text-secondary-text">
+                        Meet ours Drivers
+                    </div>
+
+                    <DriverCarousel/>
+                </div>
+                <Records/>
+
+                <Footer />
+            </main>
+        </>
+    );
 }
