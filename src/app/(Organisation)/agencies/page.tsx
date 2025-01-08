@@ -73,7 +73,7 @@ const Agence = () => {
                 {/* Statistics Section */}
                 <section className="bg-white shadow-md rounded-lg p-6 mb-6">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-6">Agency Statistics</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {/* Total Agencies Card */}
                         <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg p-4 flex flex-col items-center shadow-md">
                             <h3 className="text-lg font-medium mb-2">Total Agencies</h3>
@@ -135,7 +135,7 @@ const Agence = () => {
                                 onChange={(e) => {
                                     const type = e.target.value;
                                     if (type === "Siège" || type === "Annexe" || type === "All") {
-                                      setFilter({ ...filter, type });
+                                        setFilter({ ...filter, type });
                                     }
                                 }}
                             >
@@ -156,16 +156,16 @@ const Agence = () => {
                 </button>
 
                 {/* Agency Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-full">
                     {filteredAgencies.map((agency) => (
                         <Link href={`/agencies/${agency.id}`} key={agency.id}>
-                            <div className="bg-white shadow rounded p-4 w-[380px] cursor-pointer">
+                            <div className="bg-white shadow rounded p-4 w-full sm:w-[380px] md:w-[350px] lg:w-[380px] cursor-pointer">
                                 <Image
                                     src={agency.images[0]}
                                     alt={agency.name}
                                     width={400}
                                     height={250}
-                                    className="rounded mb-2 object-cover w-[400px] h-[250px]"
+                                    className="rounded mb-2 object-cover w-full h-[250px]"
                                 />
                                 <div className="">
                                     <div className="flex flex-row justify-between mb-2">
