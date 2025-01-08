@@ -8,13 +8,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <div className="flex flex-col flex-grow bg-whitish-background h-full">
-                <div className="">
-                    <NavBar />
-                </div>
+                <NavBar />
 
-                <div>
+                <main>
                     {children}
-                </div>
+                </main>
 
                 <Footer />
             </div>
