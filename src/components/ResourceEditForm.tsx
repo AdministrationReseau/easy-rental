@@ -1,3 +1,4 @@
+import { CarProps } from '@/utils/types/CarProps';
 import React, { useState } from 'react';
 
 export interface Vehicle {
@@ -67,7 +68,7 @@ export interface Driver {
     profile_picture: string;
 }
 
-export type Resource = Driver | Vehicle;
+export type Resource = Driver | CarProps;
 
 interface ResourceEditFormProps {
     resource: Resource,
@@ -80,7 +81,7 @@ export default function ResourceEditForm({ resource, onClose }: ResourceEditForm
     const [formData] = useState<Resource>(resource);
 
     const isVehicle: boolean = 'brand' in resource;
-    const vehicleFormData = formData as Vehicle;
+    const vehicleFormData = formData as CarProps;
     const driverFormData = formData as Driver;
 
     const fields = isVehicle
@@ -95,18 +96,18 @@ export default function ResourceEditForm({ resource, onClose }: ResourceEditForm
         { name: 'engine.capacity', label: 'Engine Capacity (L)', value: vehicleFormData.engine.capacity, type: 'number' },
         { name: 'transmission', label: 'Transmission', value: vehicleFormData.transmission, type: 'text' },
         { name: 'color', label: 'Color', value: vehicleFormData.color, type: 'text' },
-        { name: 'fuel_efficiency.city', label: 'Fuel Efficiency (City)', value: vehicleFormData.fuel_efficiency.city, type: 'number' },
-        { name: 'fuel_efficiency.highway', label: 'Fuel Efficiency (Highway)', value: vehicleFormData.fuel_efficiency.highway, type: 'number' },
+        { name: 'fuel_efficiency.city', label: 'Fuel Efficiency (City)', value: vehicleFormData.fuel_efficiency?.city, type: 'number' },
+        { name: 'fuel_efficiency.highway', label: 'Fuel Efficiency (Highway)', value: vehicleFormData.fuel_efficiency?.highway, type: 'number' },
         { name: 'license_plate', label: 'License Plate', value: vehicleFormData.license_plate, type: 'text' },
-        { name: 'registration.state', label: 'Registration State', value: vehicleFormData.registration.state, type: 'text' },
-        { name: 'registration.expiry', label: 'Registration Expiry Date', value: vehicleFormData.registration.expiry, type: 'date' },
-        { name: 'owner.name', label: 'Owner Name', value: vehicleFormData.owner.name, type: 'text' },
-        { name: 'owner.address', label: 'Owner Address', value: vehicleFormData.owner.address, type: 'text' },
-        { name: 'owner.phone', label: 'Owner Phone', value: vehicleFormData.owner.phone, type: 'tel' },
-        { name: 'owner.email', label: 'Owner Email', value: vehicleFormData.owner.email, type: 'email' },
-        { name: 'insurance.provider', label: 'Insurance Provider', value: vehicleFormData.insurance.provider, type: 'text' },
-        { name: 'insurance.policy_number', label: 'Insurance Policy Number', value: vehicleFormData.insurance.policy_number, type: 'text' },
-        { name: 'insurance.expiry', label: 'Insurance Expiry Date', value: vehicleFormData.insurance.expiry, type: 'date' },
+        { name: 'registration.state', label: 'Registration State', value: vehicleFormData.registration?.state, type: 'text' },
+        { name: 'registration.expiry', label: 'Registration Expiry Date', value: vehicleFormData.registration?.expiry, type: 'date' },
+        { name: 'owner.name', label: 'Owner Name', value: vehicleFormData.owner?.name, type: 'text' },
+        { name: 'owner.address', label: 'Owner Address', value: vehicleFormData.owner?.address, type: 'text' },
+        { name: 'owner.phone', label: 'Owner Phone', value: vehicleFormData.owner?.phone, type: 'tel' },
+        { name: 'owner.email', label: 'Owner Email', value: vehicleFormData.owner?.email, type: 'email' },
+        { name: 'insurance.provider', label: 'Insurance Provider', value: vehicleFormData.insurance?.provider, type: 'text' },
+        { name: 'insurance.policy_number', label: 'Insurance Policy Number', value: vehicleFormData.insurance?.policy_number, type: 'text' },
+        { name: 'insurance.expiry', label: 'Insurance Expiry Date', value: vehicleFormData.insurance?.expiry, type: 'date' },
     ]
     : [
         { name: 'first_name', label: 'First Name', value: driverFormData.first_name, type: 'text' },
@@ -163,7 +164,11 @@ export default function ResourceEditForm({ resource, onClose }: ResourceEditForm
                             <label className="block text-sm font-semibold">{field.label}</label>
                             <input
                                 type={field.type}
-                                value={field.value}
+                                value={
+                                    field.type === 'date' && field.value instanceof Date
+                                        ? field.value.toISOString().split('T')[0] // Convertir Date en 'YYYY-MM-DD'
+                                        : (field.value as string) // Assurer TypeScript que c'est une string
+                                }
                                 onChange={() => {}}
                                 // onChange={(e) => handleChange(e, field.name)}
                                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"

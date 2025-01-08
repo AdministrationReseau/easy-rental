@@ -8,11 +8,11 @@ export default function Layout({children }: { children: React.ReactNode }) {
     return (
         <>
             <div className="flex h-screen">
-                <div className="">
+                <div>
                     <OrgSidebar />
                 </div>
 
-                <div className="flex flex-col flex-grow">
+                <div className="flex flex-col">
                     <NavOrg />
 
                     <div className="flex-grow overflow-y-auto bg-gray-100 p-6">

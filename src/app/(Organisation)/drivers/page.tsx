@@ -14,13 +14,13 @@ export default function DriversPage() {
         setIsEditFormOpen(false);
     }
 
-    const openEditForm = (resourceId: number) => {
-        setFormModalResource(drivers.find((driver) => driver.id === resourceId) || null);
-        setIsEditFormOpen(true);
-    }
+    // 
 
     const [drivers, setDrivers] = useState<Driver[]>([]);
-
+    // const openEditForm = (resourceId: number) => {
+    //     setFormModalResource(drivers.find((driver) => driver.id === resourceId) || null);
+    //     setIsEditFormOpen(true);
+    // }
     useEffect(() => {
         const fetchDrivers = async () => {
         try {
@@ -72,7 +72,7 @@ export default function DriversPage() {
                 </div>
                 <div className='w-full h-full overflow-auto'>
                     {drivers.map((driver) => (
-                        <ResourceCard key={driver.id} resource={driver} openEditForm={openEditForm} profilActive={false} />
+                        <ResourceCard key={driver.id} resource={driver} profilActive={false} />
                     ))}
                 </div>
             </div>
