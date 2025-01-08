@@ -62,7 +62,7 @@ const AgencyDetails = () => {
                         alt="Main image"
                         width={1400}
                         height={100}
-                        className="rounded"
+                        className="rounded w-[1400px] h-[600px]"
                     />
                 </div>
 
