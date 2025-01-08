@@ -5,6 +5,7 @@ import Navbar from "@/components/organisation/NavBar";
 import Records from "@/components/Records";
 import DriverCarousel from "@/components/driverCarousel";
 import AboutUS from "@/components/about";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
                 </div>
                 <Records/>
 
+                <Footer />
             </main>
         </>
     );
