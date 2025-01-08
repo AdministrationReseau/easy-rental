@@ -3,7 +3,7 @@ import { JakartaRegular, JakartaBold, JakartaSemiBold } from "@/fonts";
 
 const Footer = () => {
 	return (
-		<footer className={`${JakartaRegular.className} bg-white py-10 px-4 border-t border-gray-200`}>
+		<footer className={`${JakartaRegular.className} h-[120px] bg-white py-10 px-4 border-t border-gray-200`}>
 			<div className="container mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center">
 				
 				{/* Left Section */}
@@ -101,19 +101,19 @@ const Footer = () => {
 			</div>
 			
 			{/* Bottom Section */}
-			<div className="container mx-auto flex flex-col lg:flex-row justify-between items-center mt-8 border-t border-gray-200 pt-6">
-				<p className="text-sm text-gray-500">
-					©2022 Easy Rent. All rights reserved
-				</p>
-				<div className="flex space-x-4 mt-4 lg:mt-0">
-					<a href="#" className="text-gray-500 hover:text-gray-800">
-						Privacy & Policy
-					</a>
-					<a href="#" className="text-gray-500 hover:text-gray-800">
-						Terms & Condition
-					</a>
-				</div>
-			</div>
+			{/*<div className="container mx-auto flex flex-col lg:flex-row justify-between items-center mt-8 border-t border-gray-200 pt-6">*/}
+			{/*	<p className="text-sm text-gray-500">*/}
+			{/*		©2022 Easy Rent. All rights reserved*/}
+			{/*	</p>*/}
+			{/*	<div className="flex space-x-4 mt-4 lg:mt-0">*/}
+			{/*		<a href="#" className="text-gray-500 hover:text-gray-800">*/}
+			{/*			Privacy & Policy*/}
+			{/*		</a>*/}
+			{/*		<a href="#" className="text-gray-500 hover:text-gray-800">*/}
+			{/*			Terms & Condition*/}
+			{/*		</a>*/}
+			{/*	</div>*/}
+			{/*</div>*/}
 		</footer>
 	);
 };
