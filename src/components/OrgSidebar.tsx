@@ -52,9 +52,10 @@ const OrgSidebar: React.FC = () => {
             {/* Toggle Button */}
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="text-secondary-text p-3 mt-2 text-[18px] focus:outline-none hover:text-primary-blue"
+                className="text-secondary-text p-3 mt-2 text-[18px] focus:outline-none hover:text-primary-blue text-nowrap"
             >
-                {isCollapsed ? <Menu/> : <MenuOpen/>} Dashboard
+                {isCollapsed ? <Menu/> : <MenuOpen/>}
+                {isCollapsed ? "" : "Dashboard"}
             </button>
 
             {/* Main Menu Section */}
