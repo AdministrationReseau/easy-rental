@@ -101,7 +101,7 @@ export default function NotificationPage() {
       )}
 
       {/* Liste des notifications */}
-      <div className="w-11/12 h-full mx-auto mt-10 p-4 flex flex-col gap-4 overflow-auto">
+      <div className="w-11/12 max-w-3xl h-full mx-auto mt-10 p-4 flex flex-col gap-4">
         {filteredNotifications.map((notification) => (
           <div
             key={notification.id}

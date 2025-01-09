@@ -32,19 +32,19 @@ const CarCarousel: React.FC = () => {
     }, []);
 
     return (
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto py-20">
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={25}
                 slidesPerView={4}
-                pagination={{ clickable: true }}
+                pagination={{clickable: true}}
                 loop={true}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                autoplay={{delay: 3000, disableOnInteraction: false}}
                 breakpoints={{
-                    1044: { slidesPerView: 4 },
-                    1024: { slidesPerView: 3 },
-                    800: { slidesPerView: 2 },
-                    480: { slidesPerView: 1 },
+                    1044: {slidesPerView: 4},
+                    1024: {slidesPerView: 3},
+                    800: {slidesPerView: 2},
+                    480: {slidesPerView: 1},
                 }}
             >
                 {vehicles.map((carData, index) => (
