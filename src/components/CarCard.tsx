@@ -32,25 +32,27 @@ const CarCard: React.FC<CarProps> = ({
                                          passenger = 0,
                                          pricePerDay = 0,
                                          images = [],
+                                         favorite = false,
                                          onLike = () => {},
                                          onDislike = () => {},
                                      }) => {
-    const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [isLiked, setIsLiked] = useState<boolean>(favorite);
 
     const toggleLike = () => {
-        setIsLiked(!isLiked);
-        if (!isLiked) {
-            onLike(id);
-        } else {
-            onDislike(id);
-        }
+
+            setIsLiked(!isLiked);
+            if (!isLiked) {
+                onLike(id);
+            } else {
+                onDislike(id);
+            }  
     };
 
     return (
         <div className="bg-white text-gray-700 rounded-lg shadow-md overflow-hidden w-[280px]">
             {/* Header - Brand, Model, Like Button */}
-            <div className="flex justify-between items-center p-4">
-                <h2 className="text-lg font-semibold text-gray-800">
+            <div className="flex justify-between items-center p-4 h-[50px]">
+                <h2 className="text-md font-semibold text-gray-800">
                     {brand} {model}
                 </h2>
                 <LikeButton isLiked={isLiked} onClick={toggleLike} />
