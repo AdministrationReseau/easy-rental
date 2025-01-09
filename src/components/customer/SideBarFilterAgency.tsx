@@ -130,7 +130,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
 
   return (
     <div className="flex flex-col h-[90%]  w-[250px]">
-      <div className='bg-white rounded-lg shadow-lg flex flex-col p-4 h-[90%]  w-[250px] fixed'>
+      <div className='bg-white rounded-lg shadow-lg flex flex-col p-4 h-[90%]  w-[250px]'>
         <div className=' w-full h-full overflow-y-scroll relative'>
           <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
