@@ -6,6 +6,7 @@ import {CarProps, FilterVehicleProps} from "@/utils/types/CarProps";
 import HalfAddContent from "@/components/base-component/HalfAddContent";
 import AgencyList from "@/components/customer/AgencyList";
 import {AgencyProps, FilterAgencyProps} from "@/utils/types/AgencyProps";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -93,23 +94,37 @@ export default function Home() {
                     <LocationFilter/>
 
                     <div>
-                        <div className="ml-32 mt-10">
+                        <div className="ml-[160px] mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
-                            <h3 className="font-light text-sm text-secondary-text">Find the best agencies to meet your
+                            <h3 className="font-light text-lg text-secondary-text">Find the best agencies to meet your
                                 needs</h3>
                         </div>
                         <div className="w-full flex flex-row justify-center mb-12">
                             <AgencyList agencies={agencies.slice(0, 6)} filters={filtersA}/>
                         </div>
 
-                        <div className="ml-32 mt-10">
+                        <Link
+                            href="/customer/agencies"
+                            className={`flex justify-center m-auto bg-primary-blue text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition w-[230px]`}
+                        >
+                            Explore more agencies
+                        </Link>
+
+                        <div className="ml-[160px] mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Cars</h2>
-                            <h3 className="font-light text-sm text-secondary-text">Explore our top vehicle options</h3>
+                            <h3 className="font-light text-lg text-secondary-text">Explore our top vehicle options</h3>
                         </div>
 
                         <div className="w-full flex flex-row justify-center my-12">
                             <VehicleList vehicles={vehicles.slice(0, 6)} filters={filters}/>
                         </div>
+
+                        <Link
+                            href="/customer/cars"
+                            className={`flex justify-center m-auto mb-5 bg-primary-blue text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition w-[200px]`}
+                        >
+                            View more cars
+                        </Link>
                     </div>
 
                 </div>
