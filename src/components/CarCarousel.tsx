@@ -93,6 +93,7 @@ const CarCarousel: React.FC = () => {
                             } // Fallback for service history
                             reviews={carData.reviews || []} // Fallback to an empty array for reviews
                             onLike={() => console.log('Liked')}
+                            favorite={false}
                             onDislike={() => console.log('Disliked')}
                         />
                     </SwiperSlide>
