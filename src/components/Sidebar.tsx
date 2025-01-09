@@ -17,7 +17,7 @@ import Link from "next/link";
 
 const Sidebar: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [activeItem, setActiveItem] = useState<string>("Profile"); // Profile is active by default
+    const [activeItem, setActiveItem] = useState<string>("Profile"); // "Profile" is active by default
 
     const mainMenuItems = [
         { name: "Profile", icon: <Home />, link: "/" },
@@ -50,26 +50,25 @@ const Sidebar: React.FC = () => {
             <div className="mt-4">
                 <ul>
                     {mainMenuItems.map((item, index) => (
-                        <li
-                            key={index}
-                            onClick={() => setActiveItem(item.name)}
-                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                activeItem === item.name
-                                    ? "bg-primary-blue text-white"
-                                    : "hover:bg-gray-100 text-secondary-text"
-                            }`}
-                        >
-                            <span
-                                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                        <Link key={index} href={item.link}>
+                            <li
+                                onClick={() => setActiveItem(item.name)}
+                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     activeItem === item.name
-                                        ? "border-white bg-white text-primary-blue"
-                                        : "border-gray-200 bg-white text-gray-200"
+                                        ? "bg-primary-blue text-white"
+                                        : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
-                                {item.icon}
-                            </span>
-                            {!isCollapsed && (
-                                <Link href={item.link}>
+                                <span
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                        activeItem === item.name
+                                            ? "border-white bg-white text-primary-blue"
+                                            : "border-gray-200 bg-white text-gray-200"
+                                    }`}
+                                >
+                                    {item.icon}
+                                </span>
+                                {!isCollapsed && (
                                     <p
                                         className={`transition-colors duration-200 ${
                                             activeItem === item.name
@@ -79,9 +78,9 @@ const Sidebar: React.FC = () => {
                                     >
                                         {item.name}
                                     </p>
-                                </Link>
-                            )}
-                        </li>
+                                )}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>
@@ -93,26 +92,25 @@ const Sidebar: React.FC = () => {
             <div className="mt-1">
                 <ul>
                     {preferenceItems.map((item, index) => (
-                        <li
-                            key={index}
-                            onClick={() => setActiveItem(item.name)}
-                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                activeItem === item.name
-                                    ? "bg-primary-blue text-white"
-                                    : "hover:bg-gray-100 text-secondary-text"
-                            }`}
-                        >
-                            <span
-                                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                        <Link key={index} href={item.link}>
+                            <li
+                                onClick={() => setActiveItem(item.name)}
+                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     activeItem === item.name
-                                        ? "border-white bg-white text-primary-blue"
-                                        : "border-gray-200 bg-white text-gray-200"
+                                        ? "bg-primary-blue text-white"
+                                        : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
-                                {item.icon}
-                            </span>
-                            {!isCollapsed && (
-                                <Link href={item.link}>
+                                <span
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                        activeItem === item.name
+                                            ? "border-white bg-white text-primary-blue"
+                                            : "border-gray-200 bg-white text-gray-200"
+                                    }`}
+                                >
+                                    {item.icon}
+                                </span>
+                                {!isCollapsed && (
                                     <p
                                         className={`transition-colors duration-200 ${
                                             activeItem === item.name
@@ -122,34 +120,36 @@ const Sidebar: React.FC = () => {
                                     >
                                         {item.name}
                                     </p>
-                                </Link>
-                            )}
-                        </li>
+                                )}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>
 
             {/* Logout Section */}
             <div className="p-3">
-                <button
-                    onClick={() => setActiveItem("Log Out")}
-                    className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                        activeItem === "Log Out"
-                            ? "bg-red-text text-white"
-                            : "hover:bg-gray-100 text-red-text"
-                    }`}
-                >
-                    <span
-                        className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                <Link href="/">
+                    <li
+                        onClick={() => setActiveItem("Log Out")}
+                        className={`flex items-center gap-4 cursor-pointer rounded-lg transition-all duration-200 ${
                             activeItem === "Log Out"
-                                ? "border-white bg-white text-red-text"
-                                : "border-red-text bg-white text-red-text"
+                                ? "bg-red-text text-white"
+                                : "hover:bg-gray-100 text-red-text"
                         }`}
                     >
-                        <Logout />
-                    </span>
-                    {!isCollapsed && <span>Log Out</span>}
-                </button>
+                        <span
+                            className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                activeItem === "Log Out"
+                                    ? "border-white bg-white text-red-text"
+                                    : "border-red-text bg-white text-red-text"
+                            }`}
+                        >
+                            <Logout />
+                        </span>
+                        {!isCollapsed && <span>Log Out</span>}
+                    </li>
+                </Link>
             </div>
         </div>
     );
