@@ -1,14 +1,11 @@
 "use client";
 import { CarCard } from '@/components/CarCard';
 import CarDetail from '@/components/combiner-components/CarDetail';
-import VehicleList from '@/components/customer/VehicleList';
-import LocationFilter from '@/components/LocationFilter';
-import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
+import { CarProps } from '@/utils/types/CarProps';
 import React, { useEffect, useState } from 'react';
 
 const Favorite: React.FC = () => {
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
-    const [likedVehicles, setLikedVehicles] = useState<CarProps[]>([]);
     const [selectedVehicle] = useState<CarProps | null>(null);
 
     useEffect(() => {
@@ -31,20 +28,6 @@ const Favorite: React.FC = () => {
             });
     }, []);
 
-    
-
-    // Ajouter un véhicule aux favoris
-    const handleLike = (id: number) => {
-        const likedVehicle = vehicles.find((vehicle) => vehicle.id === id);
-        if (likedVehicle && !likedVehicles.some((v) => v.id === id)) {
-            setLikedVehicles((prev) => [...prev, likedVehicle]);
-        }
-    };
-
-    // Retirer un véhicule des favoris
-    const handleDislike = (id: number) => {
-        setLikedVehicles((prev) => prev.filter((vehicle) => vehicle.id !== id));
-    };
 
     return (
         <div>
