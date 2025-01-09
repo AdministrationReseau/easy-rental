@@ -132,7 +132,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
             <div className="px-4 py-2 flex justify-between items-center">
                 <span className='m-2'>
                     <p className="text-xl font-semibold text-gray-800">{city}</p>
-                    <p className='text-sm ml-2'>{quater}</p>
+                    <p className='text-sm'>{quater}</p>
                 </span>
                 {/* <Link href={`/car-details/${id}`}> */}
                 <Link
