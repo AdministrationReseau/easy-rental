@@ -10,11 +10,13 @@ import { TimeField, DateInput, DateSegment } from 'react-aria-components';
 
 export const TimePicker = () => {
     return (
+      <div className='w-full'>
         <TimeField>
             <DateInput className='flex flex-row gap-1'>
                 {segment => <DateSegment segment={segment} />}
             </DateInput>
         </TimeField>
+        </div>
     );
 }
 
@@ -57,7 +59,7 @@ export const TimePicker = () => {
 
 export const TimePickerStyled = () => {
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full">
       <div className="flex flex-col gap-4">
         <div className="relative">
           <label className="block mb-1">Select Time</label>
