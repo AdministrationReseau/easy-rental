@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { Vehicle, Driver, Resource } from '../../../../components/ResourceEditForm';
+import { Driver, Resource } from '../../../../components/ResourceEditForm';
 import { ResourceCard } from '@/components/ResourceCard';
+import { CarProps } from '@/utils/types/CarProps';
 
 interface ResourceProfilContentProps {
     resource: Resource,
@@ -11,7 +12,7 @@ interface ResourceProfilContentProps {
 
 const ResourceProfilContent = ({ resource }: ResourceProfilContentProps) => {
     const isVehicle: boolean = 'brand' in resource;
-    const vehicleResource = resource as Vehicle;
+    const vehicleResource = resource as CarProps;
     const driverResource = resource as Driver;
     const details: { title: string, content: string | object, option: { title: string, content: string }[] }[] = [];
 
@@ -60,7 +61,7 @@ const ResourceProfilContent = ({ resource }: ResourceProfilContentProps) => {
                 </div>
             </div>
             
-            <ResourceCard resource={resource} openEditForm={() => {}} profilActive={true} />
+            <ResourceCard resource={resource} profilActive={true} />
             
             <div className='mx-auto w-4/5 h-full flex flex-row gap-2'>                
                 <div className='w-1/2 h-2/3 overflow-y-scroll flex flex-col gap-2 px-4 pt-2 bg-white rounded-md p-1 border border-primary-blue/15 hover:border-primary-blue/15 hover:shadow-sm'>
@@ -105,37 +106,50 @@ const getResourceFieldLabel = (fieldName: string): string =>
         .toUpperCase()
 
 export default function ResourceProfilPage() {
-    const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    const [vehicles, setVehicles] = useState<CarProps[]>([]);
+    const [isLoading,] = useState(true);
+    const [hasError,] = useState(false);
 
-    useEffect(() => {
-        const fetchVehicles = async () => {
-        try {
-            const response = await fetch("/data/cars.json");
-            if (!response.ok) {
-            throw new Error("Failed to fetch vehicles");
-            }
-            const data: Vehicle[] = await response.json();
-            setVehicles(data);
-        } catch (error) {
-            console.error("Error fetching vehicles:", error);
-        }
-        };
-
-        fetchVehicles();
-    }, []);
-
-    const { id } = useParams<{ id: string}>();
+    const { id } = useParams<{ id: string }>();
     const vehicleId = Number(id);
 
+    useEffect(() => {
+        fetch('/data/cars.json')
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data && Array.isArray(data.vehicles)) {
+              setVehicles(data.vehicles);
+            } else {
+              console.error('Unexpected data format:', data);
+            }
+          })
+          .catch((error) => {
+            console.error('Error loading vehicles:', error);
+          });
+      }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (hasError) {
+        return <div>Error loading vehicles. Please try again later.</div>;
+    }
+
     if (isNaN(vehicleId)) {
-        return <div>Invalid vehicle ID</div>
+        return <div>Invalid vehicle ID.</div>;
     }
 
     const requestedVehicle = vehicles.find(vehicle => vehicle.id === vehicleId);
 
     if (!requestedVehicle) {
-        return <div>Invalid vehicle ID</div>
+        return <div>Vehicle not found.</div>;
     }
 
-    return <ResourceProfilContent resource={requestedVehicle} />
+    return <ResourceProfilContent resource={requestedVehicle as Resource} />;
 }
