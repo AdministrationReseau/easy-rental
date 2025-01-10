@@ -1,4 +1,5 @@
 import { CarProps } from '@/utils/types/CarProps';
+import { DriverProps } from '@/utils/types/DriverProps';
 import React, { useState } from 'react';
 
 export interface Vehicle {
@@ -68,7 +69,7 @@ export interface Driver {
     profile_picture: string;
 }
 
-export type Resource = Driver | CarProps;
+export type Resource = DriverProps | CarProps;
 
 interface ResourceEditFormProps {
     resource: Resource,
@@ -82,7 +83,7 @@ export default function ResourceEditForm({ resource, onClose }: ResourceEditForm
 
     const isVehicle: boolean = 'brand' in resource;
     const vehicleFormData = formData as CarProps;
-    const driverFormData = formData as Driver;
+    const driverFormData = formData as DriverProps;
 
     const fields = isVehicle
     ? [

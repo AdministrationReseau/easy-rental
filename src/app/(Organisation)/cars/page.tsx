@@ -5,6 +5,7 @@ import ResourceEditForm from '../../../components/ResourceEditForm';
 import { ResourceCard } from '@/components/ResourceCard';
 import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
+import Link from 'next/link';
 
 export default function VehiclesPage() {
     const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
@@ -81,7 +82,9 @@ export default function VehiclesPage() {
             <div className='h-full flex flex-row gap-0'>
                 <div className='grid grid-cols-2 gap-4 w-full h-full overflow-auto'>
                     {vehicles.map((vehicle) => (
-                        <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} />
+                        <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
+                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} />
+                        </Link>
                     ))}
                 </div>
             </div>

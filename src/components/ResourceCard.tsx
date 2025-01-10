@@ -5,9 +5,10 @@ import {
     Edit,
 } from '@mui/icons-material';
 import { CarProps } from "@/utils/types/CarProps";
+import { DriverProps } from "@/utils/types/DriverProps";
 
 interface ResourceCardProps {
-    resource: Driver | CarProps,
+    resource: DriverProps | CarProps,
     profilActive: boolean,
 }
 
