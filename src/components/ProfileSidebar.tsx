@@ -33,7 +33,6 @@ const ProfileSidebar: React.FC = () => {
         { name: "Help & Center", icon: <Help />, link: "/profile/help" },
     ];
 
-    // Fonction pour vérifier si le lien correspond au chemin actif
     const isActive = (link: string) => pathname === link;
 
     return (
@@ -42,7 +41,6 @@ const ProfileSidebar: React.FC = () => {
                 isCollapsed ? "w-20" : "w-64"
             } flex flex-col`}
         >
-            {/* Toggle Button */}
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
                 className="text-secondary-text p-4 focus:outline-none hover:text-primary-blue"
@@ -54,25 +52,24 @@ const ProfileSidebar: React.FC = () => {
             <div className="mt-4">
                 <ul>
                     {mainMenuItems.map((item, index) => (
-                        <li
-                            key={index}
-                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                isActive(item.link)
-                                    ? "bg-primary-blue text-white"
-                                    : "hover:bg-gray-100 text-secondary-text"
-                            }`}
-                        >
-                            <span
-                                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                        <Link key={index} href={item.link}>
+                            <li
+                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "border-white bg-white text-primary-blue"
-                                        : "border-gray-200 bg-white text-gray-200"
+                                        ? "bg-primary-blue text-white"
+                                        : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
-                                {item.icon}
-                            </span>
-                            {!isCollapsed && (
-                                <Link href={item.link}>
+                                <span
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                        isActive(item.link)
+                                            ? "border-white bg-white text-primary-blue"
+                                            : "border-gray-200 bg-white text-gray-200"
+                                    }`}
+                                >
+                                    {item.icon}
+                                </span>
+                                {!isCollapsed && (
                                     <p
                                         className={`transition-colors duration-200 ${
                                             isActive(item.link)
@@ -82,9 +79,9 @@ const ProfileSidebar: React.FC = () => {
                                     >
                                         {item.name}
                                     </p>
-                                </Link>
-                            )}
-                        </li>
+                                )}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>
@@ -96,25 +93,24 @@ const ProfileSidebar: React.FC = () => {
             <div className="mt-1">
                 <ul>
                     {preferenceItems.map((item, index) => (
-                        <li
-                            key={index}
-                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                isActive(item.link)
-                                    ? "bg-primary-blue text-white"
-                                    : "hover:bg-gray-100 text-secondary-text"
-                            }`}
-                        >
-                            <span
-                                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                        <Link key={index} href={item.link}>
+                            <li
+                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "border-white bg-white text-primary-blue"
-                                        : "border-gray-200 bg-white text-gray-200"
+                                        ? "bg-primary-blue text-white"
+                                        : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
-                                {item.icon}
-                            </span>
-                            {!isCollapsed && (
-                                <Link href={item.link}>
+                                <span
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                        isActive(item.link)
+                                            ? "border-white bg-white text-primary-blue"
+                                            : "border-gray-200 bg-white text-gray-200"
+                                    }`}
+                                >
+                                    {item.icon}
+                                </span>
+                                {!isCollapsed && (
                                     <p
                                         className={`transition-colors duration-200 ${
                                             isActive(item.link)
@@ -124,33 +120,35 @@ const ProfileSidebar: React.FC = () => {
                                     >
                                         {item.name}
                                     </p>
-                                </Link>
-                            )}
-                        </li>
+                                )}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>
 
             {/* Logout Section */}
             <div className="p-3">
-                <button
-                    className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                        isActive("/logout")
-                            ? "bg-red-text text-white"
-                            : "hover:bg-gray-100 text-red-text"
-                    }`}
-                >
-                    <span
-                        className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
-                            isActive("/logout")
-                                ? "border-white bg-white text-red-text"
-                                : "border-red-text bg-white text-red-text"
+                <Link href="/">
+                    <button
+                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
+                            isActive("/")
+                                ? "bg-red-text text-white"
+                                : "hover:bg-gray-100 text-red-text"
                         }`}
                     >
-                        <Logout />
-                    </span>
-                    {!isCollapsed && <span>Log Out</span>}
-                </button>
+                        <span
+                            className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                isActive("/logout")
+                                    ? "border-white bg-white text-red-text"
+                                    : "border-red-text bg-white text-red-text"
+                            }`}
+                        >
+                            <Logout />
+                        </span>
+                        {!isCollapsed && <span>Log Out</span>}
+                    </button>
+                </Link>
             </div>
         </div>
     );

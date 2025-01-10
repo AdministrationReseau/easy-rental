@@ -1,116 +1,150 @@
 'use client';
 
-import { CustomAlert } from '@/components/Alert';
+import React, { useEffect, useState } from 'react';
 import SearchField from '@/components/SearchField';
 import { Delete } from '@mui/icons-material';
-import Notification from '@/components/Notification';
-import React from 'react';
+import Modal from '@/components/Modal';
 
 export default function NotificationPage() {
-    const [notifications, setNotifications] = React.useState<{ id: number; title: string; content: string }[]>([
-        { id: 1, title: 'Title 1', content: 'Notification 1' },
-        { id: 2, title: 'ATitle 2', content: 'Notification 2' },
-        { id: 3, title: 'BTitle 3', content: 'Notification 3' },
-        { id: 4, title: 'CTitle 4', content: 'Notification 4' },
-        { id: 5, title: 'DTitle 5', content: 'Notification 5' },
-        { id: 6, title: 'ETitle 6', content: 'Notification 6' },
-        { id: 7, title: 'FTitle 7', content: 'Notification 7' },
-        { id: 8, title: 'GTitle 8', content: 'Notification 8' },
-        { id: 9, title: 'Title 9', content: 'Notification 9' },
-        { id: 10, title: 'Title 10', content: 'Notification 10' },
-        { id: 11, title: 'Title 11', content: 'Notification 11' },
-        { id: 12, title: 'Title 12', content: 'Notification 12' },
-        { id: 13, title: 'Title 13', content: 'Notification 13' },
-        { id: 14, title: 'Title 14', content: 'Notification 14' },
-        { id: 15, title: 'Title 15', content: 'Notification 15' },
-        { id: 16, title: 'Title 16', content: 'Notification 16' },
-        { id: 17, title: 'Title 17', content: 'Notification 17' },
-        { id: 18, title: 'Title 18', content: 'Notification 18' },
-        { id: 19, title: 'Title 19', content: 'Notification 19' },
-        { id: 20, title: 'Title 20', content: 'Notification 20' },
-    ]);
+  const [notifications, setNotifications] = useState<
+    { id: number; title: string; content: string; category: string; timestamp: string }[]
+  >([]);
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [checkedNotifications, setCheckedNotifications] = useState<number[]>([]);
+  const [showDetails, setShowDetails] = useState<{ title: string; content: string } | null>(null); // Popup content
+  const [showAlert, setShowAlert] = useState<string | null>(null); // Success message
 
-    const [filteredNotifications, setFilteredNotifications] = React.useState(notifications);
-    const [checkedNotifications, setCheckedNotifications] = React.useState<number[]>([]);
-    const [showAlert, setShowAlert] = React.useState(false);
+  useEffect(() => {
+    fetch('/data/notifications.json') // Chemin JSON
+      .then((response) => response.json())
+      .then((data) => {
+        setNotifications(data);
+        setFilteredNotifications(data);
+      });
+  }, []);
 
-    // Handle search functionality
-    const handleSearch = (query: string) => {
-        if (query.trim() === '') {
-            setFilteredNotifications(notifications); // Reset to all notifications
-        } else {
-            const filtered = notifications.filter(
-                (notification) =>
-                    notification.title.toLowerCase().includes(query.toLowerCase()) ||
-                    notification.content.toLowerCase().includes(query.toLowerCase())
-            );
-            setFilteredNotifications(filtered);
-        }
-    };
+  // Recherche
+  const handleSearch = (query: string) => {
+    if (query.trim() === '') {
+      setFilteredNotifications(notifications);
+    } else {
+      const filtered = notifications.filter(
+        (notification) =>
+          notification.title.toLowerCase().includes(query.toLowerCase()) ||
+          notification.content.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredNotifications(filtered);
+    }
+  };
 
-    // Handle checkbox state
-    const handleNotificationCheck = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
-        if (event.target.checked) {
-            setCheckedNotifications((prev) => [...prev, id]);
-        } else {
-            setCheckedNotifications((prev) => prev.filter((notificationId) => notificationId !== id));
-        }
-    };
+  // Sélection multiple
+  const handleNotificationCheck = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    if (event.target.checked) {
+      setCheckedNotifications((prev) => [...prev, id]);
+    } else {
+      setCheckedNotifications((prev) => prev.filter((notificationId) => notificationId !== id));
+    }
+  };
 
-    // Handle deleting a single notification
-    const handleDelete = (id: number) => {
-        setNotifications((prev) => prev.filter((notification) => notification.id !== id));
-        setCheckedNotifications((prev) => prev.filter((notificationId) => notificationId !== id));
-        setFilteredNotifications((prev) => prev.filter((notification) => notification.id !== id));
-        setShowAlert(true);
-    };
+  // Suppression
+  const handleDelete = (id: number) => {
+    const updatedNotifications = notifications.filter((notification) => notification.id !== id);
+    setNotifications(updatedNotifications);
+    setFilteredNotifications(updatedNotifications);
+    setCheckedNotifications((prev) => prev.filter((notificationId) => notificationId !== id));
+    setShowAlert('Notification supprimée avec succès.');
+  };
 
-    // Handle deleting all selected notifications
-    const handleDeleteSelected = () => {
-        setNotifications((prev) => prev.filter((notification) => !checkedNotifications.includes(notification.id)));
-        setFilteredNotifications((prev) => prev.filter((notification) => !checkedNotifications.includes(notification.id)));
-        setCheckedNotifications([]);
-        setShowAlert(true);
-    };
+  const handleDeleteSelected = () => {
+    const updatedNotifications = notifications.filter((notification) => !checkedNotifications.includes(notification.id));
+    setNotifications(updatedNotifications);
+    setFilteredNotifications(updatedNotifications);
+    setCheckedNotifications([]);
+    setShowAlert('Sélection supprimée avec succès.');
+  };
 
-    // Show alert for a short duration
-    React.useEffect(() => {
-        if (showAlert) {
-            const timer = setTimeout(() => setShowAlert(false), 1000);
-            return () => clearTimeout(timer);
-        }
-    }, [showAlert]);
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => setShowAlert(null), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
 
-    return (
-        <div className="relative border w-full px-4 max-h-screen mx-auto mt-4 p-4 flex flex-col gap-4">
-            {/* Search Field and Bulk Delete Button */}
-            <div className="absolute left-10 top-2 flex flex-row gap-8 items-center">
-                <SearchField placeholder="Search notifications" onSearch={handleSearch} />
-                {checkedNotifications.length > 0 && (
-                    <div className="flex flex-row gap-2">
-                        <div className="hover:bg-black/5 rounded-md">
-                        <Delete sx={{ color: 'blue' }} onClick={handleDeleteSelected} />
-                        </div>
-                    </div>
-                )}
-            </div>
+  // Afficher les détails
+  const openDetails = (notification: { title: string; content: string }) => {
+    setShowDetails(notification);
+  };
 
-            {/* Success Alert */}
-            {showAlert && <CustomAlert message="Notification deleted successfully" type="success" width="w-full" />}
+  const closeDetails = () => {
+    setShowDetails(null);
+  };
 
-            {/* Notification List */}
-            <div className="w-11/12 h-full mx-auto mt-10 p-4 flex flex-col gap-4 overflow-auto">
-                {filteredNotifications.map((notification) => (
-                    <Notification
-                        key={notification.id}
-                        id={notification.id}
-                        title={notification.title}
-                        content={notification.content}
-                        handleDelete={handleDelete}
-                        handleNotificationCheck={handleNotificationCheck}
-                    />
-                ))}
-            </div>
+  return (
+    <div className="relative w-full px-4 max-h-screen mx-auto mt-4 p-4 flex flex-col gap-4">
+      {/* Barre de recherche et suppression multiple */}
+        <div className="absolute left-10 top-2 w-11/12 flex flex-row gap-8 items-center justify-center">
+            <SearchField placeholder="Rechercher" onSearch={handleSearch} />
+            {checkedNotifications.length > 0 && (
+            <Delete
+                onClick={handleDeleteSelected}
+                className="text-red-500 hover:text-red-700 cursor-pointer"
+                fontSize="large"
+            />
+            )}
         </div>
-    );
+
+      {/* Alerte */}
+      {showAlert && (
+        <div className="absolute top-16 mb-10 left-10 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg">
+          {showAlert}
+        </div>
+      )}
+
+      {/* Liste des notifications */}
+      <div className="w-11/12 h-full mx-auto mt-10 p-4 flex flex-col gap-4 overflow-auto">
+        {filteredNotifications.map((notification) => (
+          <div
+            key={notification.id}
+            className="flex items-center justify-between p-4 bg-white shadow-md rounded-lg hover:shadow-lg transition duration-300"
+          >
+            <div className="flex items-start gap-4">
+              <input
+                type="checkbox"
+                onChange={(event) => handleNotificationCheck(event, notification.id)}
+                className="mt-2"
+              />
+              <div>
+                <h3
+                  onClick={() => openDetails(notification)}
+                  className="text-lg font-bold text-blue-600 cursor-pointer hover:underline"
+                >
+                  {notification.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{notification.content}</p>
+                <span className="text-xs text-gray-400">{notification.timestamp}</span>
+              </div>
+            </div>
+            <Delete
+              onClick={() => handleDelete(notification.id)}
+              className="text-red-500 hover:text-red-700 cursor-pointer"
+              fontSize="large"
+            />
+          </div>
+        ))}
+      </div>
+
+      {showDetails && (
+        <Modal onClose={closeDetails}>
+          <h3 className="text-lg font-bold">{showDetails.title}</h3>
+          <p className="text-gray-600 mt-2">{showDetails.content}</p>
+          <button
+            onClick={closeDetails}
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
+            Fermer
+          </button>
+        </Modal>
+      )}
+    </div>
+  );
 }

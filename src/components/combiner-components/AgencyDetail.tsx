@@ -13,7 +13,7 @@ const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   if (!agency) {
     return <p>Loading...</p>;
   }
- 
+
   return (
     <>
       {/* Galerie d'images */}
@@ -34,7 +34,7 @@ const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
               onClick={() => setCurrentImage(image)}
             ></div>
           ))}
-          
+
         </div>
       </div>
     </>
@@ -120,10 +120,10 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
         console.error('Error loading vehicles:', error);
       });
   }, []);
-  
+
   return (
-    <div className="p-5 w-full flex">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+    <div className=" mx-auto p-5 w-full flex justify-center items-center">
+      <div className="gap-4 w-full flex flex-wrap ml-12 ">
         {vehicles.length > 0 ? (
           vehicles.map((vehicle) => (
             <CarCard
@@ -138,19 +138,20 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
             engine={vehicle.engine}
             passenger={vehicle.passenger || 4}
             pricePerDay={vehicle.pricePerDay}
-            type={vehicle.type} 
-            year={vehicle.year} 
-            description ={vehicle.description} 
-            vin={vehicle.vin} 
+            type={vehicle.type}
+            year={vehicle.year}
+            description ={vehicle.description}
+            vin={vehicle.vin}
             fonctionnalities={vehicle.fonctionnalities}
-            color={vehicle.color} 
-            fuel_efficiency={vehicle.fuel_efficiency} 
-            license_plate={vehicle.license_plate} 
-            registration={vehicle.registration} 
-            owner={vehicle.owner} 
-            service_history={vehicle.service_history} 
-            insurance={vehicle.insurance} 
-            onLike={function (id: number): void {console.log(id)}} 
+            color={vehicle.color}
+            fuel_efficiency={vehicle.fuel_efficiency}
+            license_plate={vehicle.license_plate}
+            registration={vehicle.registration}
+            owner={vehicle.owner}
+            service_history={vehicle.service_history}
+            insurance={vehicle.insurance}
+            favorite={false}
+            onLike={function (id: number): void {console.log(id)}}
             onDislike={function (id: number): void {console.log(id)} }
             />))
         ) : (

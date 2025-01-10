@@ -498,6 +498,7 @@ const MultiStepForm: React.FC = () => {
                     owner={vehicle.owner} 
                     service_history={vehicle.service_history} 
                     insurance={vehicle.insurance} 
+                    favorite = {vehicle.favorite}
                     onLike={function (id: number): void {console.log(id)}} 
                     onDislike={function (id: number): void {console.log(id)} }
                     rentalInfo={rentalInfo} // Passer l'état dynamique

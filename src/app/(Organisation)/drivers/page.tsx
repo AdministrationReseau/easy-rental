@@ -77,7 +77,7 @@ export default function DriversPage() {
             <div className='h-full flex flex-row gap-0'>
                 <div className='grid grid-cols-2 gap-4 w-full h-full overflow-auto'>
                     {drivers.map((driver) => (
-                        <Link key={driver.id} href={`/driver/${driver.id}`}>
+                        <Link key={driver.id} href={`/drivers/${driver.id}`}>
                             <ResourceCard key={driver.id} resource={driver} profilActive={false} />
                         </Link>
                     ))}

@@ -72,7 +72,7 @@ export interface CarProps {
         comment: string;
         rating: number;
     }[];
-
+    favorite : boolean;
     onLike?: (id: number) => void;    // Optional
     onDislike?: (id: number) => void; // Optional
 }

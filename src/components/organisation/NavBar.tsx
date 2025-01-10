@@ -37,15 +37,18 @@ const Navbar: React.FC = () => {
                     </button>
                 </Link>
 
-                <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
-                    <Notifications className="text-primary-blue" />
-                    <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"></span>
-                </button>
+                <Link href="/profile/notifications">
+                    <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
+                        <Notifications className="text-primary-blue" />
+                        <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"></span>
+                    </button>
+                </Link>
 
-                {/* Settings Icon */}
-                <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
-                    <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
-                </button>
+                <Link href="/profile">
+                    <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
+                        <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
+                    </button>
+                </Link>
             </div>
         </nav>
     );

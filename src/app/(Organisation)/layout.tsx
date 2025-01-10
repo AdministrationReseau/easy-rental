@@ -9,15 +9,16 @@ export default function Layout({children }: { children: React.ReactNode }) {
         <>
             <div className="flex h-screen">
                 <div>
-                    <OrgSidebar />
+                    <OrgSidebar/>
                 </div>
 
                 <div className="flex flex-col flex-grow">
-                    <NavOrg />
+                    <NavOrg/>
 
-                    <div className="flex-grow overflow-y-auto bg-gray-100 p-6">
+                    <div className="flex-grow overflow-y-auto bg-gray-100 p-6 ">
                         {children}
                     </div>
+
                 </div>
             </div>
 
