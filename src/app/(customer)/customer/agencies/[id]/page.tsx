@@ -13,7 +13,7 @@ const AgencyDetails: React.FC = () => {
   const { id } = useParams();
   const [agency, setAgency] = React.useState<AgencyProps | null>(null);
   const [agencies, setAgencies] = useState<AgencyProps[]>([]);
-  const [filters, setFilters] = useState<FilterAgencyProps>({
+  const [filters] = useState<FilterAgencyProps>({
     city: [],
     rating: null,
     type: [],
@@ -50,9 +50,9 @@ const AgencyDetails: React.FC = () => {
     return <p>Loading...</p>;
   }
 
-  const handleFilterChange = (newFilters: FilterAgencyProps) => {
-    setFilters(newFilters);
-  };
+  // const handleFilterChange = (newFilters: FilterAgencyProps) => {
+  //   setFilters(newFilters);
+  // };
 
 
   return (

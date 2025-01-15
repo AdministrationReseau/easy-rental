@@ -209,6 +209,7 @@ import { PlayCircle } from '@mui/icons-material';
         >
         </div>
         
+        
         <div className="container flex flex-col md:flex-row md:justify-center items-center mx-auto px-4 my-auto relative z-10">
           <div className="h-[430px]">
             <Image 
@@ -222,7 +223,7 @@ import { PlayCircle } from '@mui/icons-material';
           
           <div className="md:w-1/2 ml-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Do You Want To Earn With Us? So Don't Be Late.
+              Do You Want To Earn With Us? So Don  `&apos;` t Be Late.
             </h2>
             <Link href="/drivers">
               <button className="bg-secondary-blue text-white px-8 py-4 m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
