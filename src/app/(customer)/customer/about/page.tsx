@@ -47,18 +47,33 @@ const features: Feature[] = [
 
 const teamMembers: TeamMember[] = [
     {
-        name: 'Jenny Wilson',
-        role: 'CEO & Founder',
+        name: 'Nguepssi Brayanne',
+        role: 'Project Manager',
         image: '/personne2.png'
     },
     {
-        name: 'Jane Cooper',
-        role: 'Worker',
+        name: 'Hassana Zouheiriyya',
+        role: 'Member',
         image: '/personne2.png'
     },
     {
-        name: 'Cody Fisher',
-        role: 'Security Guard',
+        name: 'Ntye Nina',
+        role: 'Member',
+        image: '/personne2.png'
+    },
+    {
+        name: 'Vuide Jordan',
+        role: 'Member',
+        image: '/personne2.png'
+    },
+    {
+        name: 'Ngom Christine',
+        role: 'Member',
+        image: '/personne2.png'
+    },
+    {
+        name: 'Kamga Davy',
+        role: 'Member',
         image: '/personne2.png'
     }
 ];
