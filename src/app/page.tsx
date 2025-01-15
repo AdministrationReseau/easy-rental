@@ -311,8 +311,8 @@ import LocationFilterContainer from "@/components/LocationFilter";
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <span className="text-primary text-sm uppercase tracking-wider">Blog</span>
-            <h2 className="text-3xl font-bold mt-2">Recent Blog</h2>
+            <span className="text-primary text-sm uppercase tracking-wider">Podcasts</span>
+            <h2 className="text-3xl font-bold mt-2">Recent Podcasts</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
