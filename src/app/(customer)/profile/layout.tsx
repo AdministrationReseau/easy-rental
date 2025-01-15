@@ -15,7 +15,7 @@ export default function Layout({children }: { children: React.ReactNode }) {
                 <div className="flex flex-col flex-grow">
 
 
-                    <div className="flex-grow overflow-y-auto bg-gray-100 p-4 md:p-6">
+                    <div className="flex-grow overflow-y-auto bg-gray-100 p-6">
                         {children}
                     </div>
 
