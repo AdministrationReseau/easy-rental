@@ -8,6 +8,20 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        slideDown: {
+          '0%': { top: '0' },
+          '100%': { top: '-100px' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 0.6s ease-out forwards',
+        fadeIn: 'fadeIn 1s ease-in-out forwards',
+      },
       screens: {
         sm: '480px',
         md: '768px',

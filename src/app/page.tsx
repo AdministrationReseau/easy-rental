@@ -1,19 +1,8 @@
+'use client'
 import CarCarousel from "@/components/CarCarousel";
 import Navbar from "@/components/organisation/NavBar";
 import Footer from "@/components/Footer";
 
-// app/page.tsx
-// import Navbar from '@/components/Navbar'
-// import Hero from '@/components/Hero'
-// import BookingForm from '@/components/BookingForm'
-// import FeaturedVehicles from '@/components/FeaturedVehicles'
-// import AboutSection from '@/components/AboutSection'
-// import Services from '@/components/Services'
-// import DriverCTA from '@/components/DriverCTA'
-// import Testimonials from '@/components/Testimonials'
-// import BlogSection from '@/components/BlogSection'
-// import Stats from '@/components/Stats'
-// import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -24,7 +13,9 @@ export default function Home() {
     <h3 className="text-2xl text-primary-text font-semibold mb-6">Better Way to Rent Your Perfect Cars</h3>
     <RentalSteps />
     </div>
+    <div className="p-8">
       <LocationFilterContainer/>
+    </div>
       <FeaturedVehicles />
       <AboutSection />
       <Services />
@@ -109,8 +100,9 @@ import { PlayCircle } from '@mui/icons-material';
                     src="/about_rental.png"
                     alt="Welcome"
                     width={300}
-                    height={400}  
-                    className="h-full w-auto "
+                    height={400}
+                    objectFit="cover"  
+                    className="h-full w-auto fit-cover "
                 />
             </div>
         </div>
@@ -354,11 +346,11 @@ import LocationFilterContainer from "@/components/LocationFilter";
         <p className="text-sm text-white p-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam unde sapiente officiis, ab alias rerum nulla sunt eligendi ducimus quam facilis hic assumenda nostrum dolorem tempora consequatur adipisci temporibus corrupti.</p>
           <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
             {stats.map((stat, index) => (
-              <div key={index} className=" flex flex-row justify-between  bg-white rounded-lg w-[80%]  m-4 p-4">
-                <span className=" rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
+              <div key={index} className=" flex flex-row justify-around  bg-white rounded-lg   m-4 p-4">
+                <span className="w-[50%] rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
                   {stat.icon}
                 </span>
-                <div>
+                <div className="w-[50%]">
                 <div className="text-3xl font-bold text-primary-text mb-2">
                   {stat.number}+
                 </div>
@@ -376,8 +368,10 @@ import LocationFilterContainer from "@/components/LocationFilter";
   import { LocationOn, Handshake, } from '@mui/icons-material';
 import Stars from "@/components/Stars";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const RentalSteps = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const steps = [
     {
       icon: <LocationOn className="text-primary w-8 h-8" />,
@@ -393,11 +387,40 @@ const RentalSteps = () => {
     }
   ];
 
+  // Hook pour vérifier si le composant est visible dans la fenêtre
+  useEffect(() => {
+    const handleScroll = () => {
+      const component = document.getElementById("rental-steps");
+      if (component) {
+        const rect = component.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          setIsVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Vérifie au cas où le composant est déjà visible
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="w-full relative shadow-lg bg-white rounded-md p-6 top-[-100px]" >
+    <div
+      id="rental-steps"
+      className={`w-full relative shadow-lg bg-white rounded-md p-6 transition-all duration-1000 ${
+        isVisible ? "top-[-100px] animate-slideIn" : "top-0"
+      }`}
+    >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {steps.map((step, index) => (
-          <div key={index} className="flex flex-col items-center text-center py-4">
+          <div
+            key={index}
+            className={`flex flex-col items-center text-center py-4 transition-opacity duration-1000 ${
+              isVisible ? `opacity-100 animate-fadeIn` : ""
+            }`}
+            style={{ animationDelay: `${index * 0.3}s` }} // Délai progressif pour chaque étape
+          >
             <div className="flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-4">
               {step.icon}
             </div>
@@ -407,12 +430,12 @@ const RentalSteps = () => {
           </div>
         ))}
       </div>
-      
+
       <div className="text-center mt-8">
         <Link href="/customer/cars">
-        <button className="bg-primary-blue text-white text-xl px-8 py-3 rounded hover:bg-primary/90 transition-colors duration-300">
-          Reserve Your Perfect Car Rental Now
-        </button>
+          <button className="bg-secondary-blue text-white text-xl px-8 py-3 rounded hover:bg-primary-blue transition-colors duration-300">
+            Reserve Your Perfect Car Rental Now
+          </button>
         </Link>
       </div>
     </div>
@@ -494,41 +517,3 @@ function PodcastSection() {
   );
 }
 
-
-
-// export default function Home() {
-//     return (
-//         <>
-//             <main className="bg-var(--background)">
-//                 <Navbar />
-//                 <SportCarCard/>
-//                 <div className="flex flex-col items-center justify-center text-xl my-12 w-full">
-//                     <div className="text-xl text-primary-blue">
-//                         What We offer
-//                     </div>
-//                     <div className="mt-4 text-secondary-text">
-//                         Featured Vehicles
-//                     </div>
-
-//                     <CarCarousel/>
-//                 </div>
-
-//                 <AboutUS/>
-//                 <EarnWithUs/>
-//                 <div className="flex flex-col items-center justify-center text-xl my-12">
-//                     <div className="text-xl text-primary-blue">
-//                         What We offer
-//                     </div>
-//                     <div className="mt-4 text-secondary-text">
-//                         Meet ours Drivers
-//                     </div>
-
-//                     <DriverCarousel/>
-//                 </div>
-//                 <Records/>
-
-//                 <Footer />
-//             </main>
-//         </>
-//     );
-// }
