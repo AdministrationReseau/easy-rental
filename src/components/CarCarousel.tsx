@@ -32,7 +32,7 @@ const CarCarousel: React.FC = () => {
     }, []);
 
     return (
-        <div className="container mx-auto py-20">
+        <div className=" py-8 w-[90%] h-[450px] ">
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={25}
@@ -46,9 +46,11 @@ const CarCarousel: React.FC = () => {
                     800: {slidesPerView: 2},
                     480: {slidesPerView: 1},
                 }}
+                className='py-9 h-full w-full'
             >
-                {vehicles.map((carData, index) => (
+                {vehicles?.map((carData, index) => (
                     <SwiperSlide key={carData.id || index}>
+                        {/* <span className='mx-4'> */}
                         <CarCard
                             id={carData.id || 0} // Provide a fallback value
                             images={carData.images || []} // Handle undefined images
@@ -96,6 +98,7 @@ const CarCarousel: React.FC = () => {
                             favorite={false}
                             onDislike={() => console.log('Disliked')}
                         />
+                        {/* </span> */}
                     </SwiperSlide>
                 ))}
             </Swiper>
