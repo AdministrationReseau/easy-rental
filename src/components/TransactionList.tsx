@@ -42,7 +42,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => {
                     {["all", "pending"].map((status) => (
                         <button
                             key={status}
-                            className={`m-2 px-4 py-2 rounded-[30px] font-medium text-sm ${
+                            className={`my-2 mr-2 px-4 py-2 rounded-[30px] font-medium text-sm ${
                                 filter === status
                                     ? "bg-blue-500 text-white"
                                     : "bg-white text-black-100 hover:bg-gray-200"
@@ -58,7 +58,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => {
                     {["confirmed", "canceled"].map((status) => (
                         <button
                             key={status}
-                            className={`m-2 px-4 py-2 rounded-[30px] font-medium text-sm ${
+                            className={`my-2 mr-2 px-4 py-2 rounded-[30px] font-medium text-sm ${
                                 filter === status
                                     ? "bg-blue-500 text-white"
                                     : "bg-white text-black-100 hover:bg-gray-200"
