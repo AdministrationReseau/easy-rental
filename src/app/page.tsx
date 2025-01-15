@@ -1,10 +1,5 @@
-import SportCarCard from "@/components/base-component/sportCarCard";
 import CarCarousel from "@/components/CarCarousel";
-import EarnWithUs from "@/components/earnWithUs";
 import Navbar from "@/components/organisation/NavBar";
-import Records from "@/components/Records";
-import DriverCarousel from "@/components/driverCarousel";
-import AboutUS from "@/components/about";
 import Footer from "@/components/Footer";
 
 // app/page.tsx
@@ -72,8 +67,6 @@ import { PlayCircle } from '@mui/icons-material';
 }
 
 // components/FeaturedVehicles.tsx
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-
  function FeaturedVehicles() {
 
 
@@ -96,7 +89,7 @@ import { ChevronLeft, ChevronRight } from '@mui/icons-material';
         <div className="relative flex  items-center rounded-lg  md:h-[500px] p-8 flex-col md:flex-row">
         <div className="flex md:bg-white rounded-l-lg h-full items-center">
             <div className="h-full md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-md overflow-hidden">
-                <img
+                <Image
                     src="/about_rental.png"
                     alt="Welcome"
                     className="h-full w-auto "
@@ -200,7 +193,7 @@ import { ChevronLeft, ChevronRight } from '@mui/icons-material';
         
         <div className="container flex flex-col md:flex-row md:justify-center items-center mx-auto px-4 my-auto relative z-10">
           <div className="h-[430px]">
-            <img src="/customer.png" alt="become locator" className="h-full"/>
+            <Image src="/customer.png" alt="become locator" className="h-full"/>
           </div>
           
           <div className="md:w-1/2 ml-auto">
@@ -266,7 +259,7 @@ import LocationFilterContainer from "@/components/LocationFilter";
               <div key={index} className="bg-white p-8 rounded-lg  shadow-lg text-center">
                 <div className="flex justify-between w-full">
                     <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-4">
-                    <img 
+                    <Image 
                         src={testimonial.image} 
                         alt={testimonial.name} 
                         className="w-full h-full object-cover"
@@ -391,6 +384,7 @@ import LocationFilterContainer from "@/components/LocationFilter";
 
   import { LocationOn, Handshake, } from '@mui/icons-material';
 import Stars from "@/components/Stars";
+import Image from "next/image";
 
 const RentalSteps = () => {
   const steps = [
