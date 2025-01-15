@@ -46,7 +46,6 @@ export default function NotificationPage() {
     }
   };
 
-  // Suppression
   const handleDelete = (id: number) => {
     const updatedNotifications = notifications.filter((notification) => notification.id !== id);
     setNotifications(updatedNotifications);
@@ -80,18 +79,19 @@ export default function NotificationPage() {
   };
 
   return (
-    <div className="relative w-full px-4 max-h-screen mx-auto mt-4 p-4 flex flex-col gap-4">
+    <div className="w-[90%] max-h-screen mt-4 flex flex-col gap-4">
       {/* Barre de recherche et suppression multiple */}
-        <div className="absolute left-10 top-2 w-11/12 flex flex-row gap-8 items-center justify-center">
-            <SearchField placeholder="Rechercher" onSearch={handleSearch} />
-            {checkedNotifications.length > 0 && (
+
+      <div className="mx-auto flex flex-row w-[80%] justify-between ">
+        <SearchField placeholder="Rechercher" onSearch={handleSearch} />
+        {checkedNotifications.length > 0 && (
             <Delete
                 onClick={handleDeleteSelected}
                 className="text-red-500 hover:text-red-700 cursor-pointer"
                 fontSize="large"
             />
-            )}
-        </div>
+        )}
+      </div>
 
       {/* Alerte */}
       {showAlert && (
