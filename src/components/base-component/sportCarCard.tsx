@@ -15,7 +15,7 @@ const CarFeatureCard = () => {
                     <p className="text-sm md:text-base mb-6">Safety and comfort while driving a futuristic and elegant car.</p>
                     <div className="flex flex-row gap-6 md:my-6 ">
                         <Link
-                            href="/home"
+                            href="/customer"
                             className="bg-white w-full text-blue-500 font-semibold py-3 px-6 md:py-4 md:px-8 rounded-lg shadow-lg hover:bg-gray-100 transition"
                         >
                             Rent a Vehicle

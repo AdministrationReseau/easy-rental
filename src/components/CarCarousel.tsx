@@ -36,7 +36,7 @@ const CarCarousel: React.FC = () => {
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={25}
-                slidesPerView={4}
+                slidesPerView={3}
                 pagination={{ clickable: true }}
                 loop={true}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
