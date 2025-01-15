@@ -209,8 +209,8 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       </div>
 
       {/* Recommendations Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h4 className="font-bold text-lg">You would also like</h4>
+      <div className="p-6">
+        <h4 className="font-bold text-xl text-center font-bold">You would also like</h4>
 
       </div>
     </div>

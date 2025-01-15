@@ -223,7 +223,7 @@ import { PlayCircle } from '@mui/icons-material';
           
           <div className="md:w-1/2 ml-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Do You Want To Earn With Us? So Don  `&apos;` t Be Late.
+              Do You Want To Earn With Us? So Don&apos;t Be Late.
             </h2>
             <Link href="/drivers">
               <button className="bg-secondary-blue text-white px-8 py-4 m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
@@ -292,8 +292,8 @@ import LocationFilterContainer from "@/components/LocationFilter";
                     <Image 
                         src={testimonial.image} 
                         alt={testimonial.name}
-                        width={0}
-                        height={0}   
+                        width={400}
+                        height={400}   
                         className="w-full h-full object-cover"
                     />
                     </div>
@@ -316,40 +316,56 @@ import LocationFilterContainer from "@/components/LocationFilter";
       </section>
     );
   }
-  
 
+  import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+  import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+  import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+  import TrendingUpIcon from '@mui/icons-material/TrendingUp';
   // components/Stats.tsx
    function Stats() {
     const stats = [
       {
+        icon: <CalendarMonthIcon className="text-4xl text-white"/>,
         number: 60,
         label: "Year Experienced"
       },
       {
+        icon: <DirectionsCarIcon className="text-4xl text-white"/>,
         number: 1090,
         label: "Total Cars"
       },
       {
+        icon: <PeopleAltIcon className="text-4xl text-white"/>,
         number: 2590,
         label: "Happy Customers"
       },
       {
+        icon: <TrendingUpIcon className="text-4xl text-white"/>,
         number: 67,
         label: "Total Branches"
       }
     ];
   
     return (
-      <section className="py-16 bg-secondary-blue m-8 rounded-lg ">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <section className="py-16 bg-secondary-blue m-8 rounded-lg " style={{ backgroundImage: "url('/Ads 1.png')" }} >
+        
+        <div className=" mx-auto px-4">
+        <h1 className="text-4xl text-center p-4 text-white font-bold">Facts In Numbers</h1>
+        <p className="text-sm text-white p-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam unde sapiente officiis, ab alias rerum nulla sunt eligendi ducimus quam facilis hic assumenda nostrum dolorem tempora consequatur adipisci temporibus corrupti.</p>
+          <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-5xl font-bold text-white mb-2">
-                  {stat.number}
+              <div key={index} className=" flex flex-row justify-between  bg-white rounded-lg w-[80%]  m-4 p-4">
+                <span className=" rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
+                  {stat.icon}
+                </span>
+                <div>
+                <div className="text-3xl font-bold text-primary-text mb-2">
+                  {stat.number}+
                 </div>
                 <p className="text-primary-text">{stat.label}</p>
-              </div>
+              
+                </div>
+                </div>
             ))}
           </div>
         </div>
@@ -427,7 +443,7 @@ function PodcastSection() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16">
       <div className="container mx-auto px-4">
         {/* En-tête de la section */}
         <div className="text-center mb-12">
@@ -446,7 +462,7 @@ function PodcastSection() {
               />
 
               {/* Contenu du podcast */}
-              <div className="p-6">
+              <div className="p-4">
                 <div className="flex items-center text-gray-500 text-sm mb-4">
                   <span>{podcast.date}</span>
                   <span className="mx-2">•</span>

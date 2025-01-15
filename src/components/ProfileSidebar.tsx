@@ -56,8 +56,8 @@ const ProfileSidebar: React.FC = () => {
                             <li
                                 className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "bg-primary-blue text-white"
-                                        : "hover:bg-gray-100 text-secondary-text"
+                                        ? "bg-primary-blue text-white m-2"
+                                        : "hover:bg-gray-100 hover:mx-2 text-secondary-text"
                                 }`}
                             >
                                 <span
