@@ -2,7 +2,7 @@ import React from "react";
 
 const HelpPage: React.FC = () => {
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-6">
+        <div className="min-h-screen w-full py-12 px-3 md:px-6">
             <div className="max-w-5xl mx-auto">
                 <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
                     Vehicle Location Service Help
