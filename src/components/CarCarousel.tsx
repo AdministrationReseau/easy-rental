@@ -32,22 +32,23 @@ const CarCarousel: React.FC = () => {
     }, []);
 
     return (
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto py-20">
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={25}
-                slidesPerView={3}
-                pagination={{ clickable: true }}
+                slidesPerView={4}
+                pagination={{clickable: true}}
                 loop={true}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                autoplay={{delay: 3000, disableOnInteraction: false}}
                 breakpoints={{
-                    1044: { slidesPerView: 4 },
-                    1024: { slidesPerView: 3 },
-                    800: { slidesPerView: 2 },
-                    480: { slidesPerView: 1 },
+                    1044: {slidesPerView: 4},
+                    1024: {slidesPerView: 3},
+                    800: {slidesPerView: 2},
+                    480: {slidesPerView: 1},
                 }}
+                className='py-8'
             >
-                {vehicles.map((carData, index) => (
+                {vehicles?.map((carData, index) => (
                     <SwiperSlide key={carData.id || index}>
                         <CarCard
                             id={carData.id || 0} // Provide a fallback value
