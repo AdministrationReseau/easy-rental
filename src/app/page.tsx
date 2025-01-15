@@ -30,7 +30,7 @@ export default function Home() {
       <Services />
       <DriverCTA />
       <Testimonials />
-      <BlogSection />
+      <PodcastSection />
       <Stats />
       <Footer />
     </main>
@@ -43,26 +43,42 @@ import { PlayCircle } from '@mui/icons-material';
 
  function Hero() {
   return (
-    // <div className="relative h-screen bg-cover bg-center" style={{backgroundImage: "url('/Ads1.png')"}} >
-    <div className="relative h-screen bg-cover bg-center" style={{backgroundImage: "url('/Ads 1.png')"}}>
-      <div className="absolute inset-0  "></div>
-      <div className="container mx-auto px-4 h-full">
-        <div className="flex items-center justify-center h-full flex-col  md:flex-row">
-          <div className="text-center text-white relative z-10">
-            <h1 className="text-5xl font-bold mb-4">Fast & Easy Way To Rent A Car</h1>
-            <p className="text-xl mb-8">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            <button className="flex items-center mx-auto bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark">
-              <PlayCircle className="mr-2" />
-              <span>Easy steps for renting a car</span>
-            </button>
-          </div>
-          <div>
-            <img src="/voiture.png" alt="lamborgini" />
-          </div>
-        </div>
+    <div
+  className="relative h-screen bg-cover bg-center"
+  style={{ backgroundImage: "url('/Ads 1.png')" }}
+>
+  <div className="absolute inset-0"></div>
+  <div className="container mx-auto px-4 h-full">
+    <div className="flex items-center justify-between h-full flex-col md:flex-row">
+      {/* Texte */}
+      <div className="text-center text-white relative z-10 md:text-left md:w-1/2">
+        <h1 className="text-5xl font-bold m-4">
+          Fast & Easy Way To Rent A Car
+        </h1>
+        <p className="text-xl mb-8">
+          A small river named Duden flows by their place and supplies it with
+          the necessary regelialia.
+        </p>
+        <button className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark">
+          <PlayCircle className="mr-2" />
+          <span>Easy steps for renting a car</span>
+        </button>
+      </div>
+
+      {/* Image */}
+      <div className="relative md:w-1/2 h-64 md:h-auto flex justify-center items-center">
+        <Image
+          src="/voiture.png"
+          alt="Lamborghini"
+          width={500}
+          height={400}
+          objectFit="contain"
+        />
       </div>
     </div>
-    // </div>
+  </div>
+</div>
+
   );
 }
 
@@ -71,7 +87,7 @@ import { PlayCircle } from '@mui/icons-material';
 
 
   return (
-    <section className="py-16 w-fullflex flex-col justify-center items-center">
+    <section className="py-16 w-full  flex flex-col justify-center items-center">
       <div className="container mx-auto w-full">
         <div className="text-center mb-12">
           <span className="text-secondary-text">What we offer</span>
@@ -87,11 +103,13 @@ import { PlayCircle } from '@mui/icons-material';
  function AboutSection() {
     return (
         <div className="relative flex  items-center rounded-lg  md:h-[500px] p-8 flex-col md:flex-row">
-        <div className="flex md:bg-white rounded-l-lg h-full items-center">
-            <div className="h-full md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-md overflow-hidden">
+        <div className="flex  md:w-1/3  md:bg-white rounded-l-lg h-full items-center">
+            <div className="h-full md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
                 <Image
                     src="/about_rental.png"
                     alt="Welcome"
+                    width={300}
+                    height={400}  
                     className="h-full w-auto "
                 />
             </div>
@@ -102,7 +120,7 @@ import { PlayCircle } from '@mui/icons-material';
             <div className="flex-1 ">
 
             </div>
-            <div className=" flex-[3] md:w-2/3 w-full mt-6  md:text-base rounded-lg flex flex-col justify-center text-left">
+            <div className=" flex-[4] md:w-2/3 w-full mt-6  md:text-base rounded-lg flex flex-col justify-around text-left">
                 <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
                     Welcome to Easy Rent
                 </h2>
@@ -119,7 +137,7 @@ import { PlayCircle } from '@mui/icons-material';
                     country.
                 </p>
                 <Link
-                    href="/"
+                    href="/customer/cars"
                     className=" font-semibold hover:underline"
                 >
                     Search Vehicle
@@ -193,19 +211,30 @@ import { PlayCircle } from '@mui/icons-material';
         
         <div className="container flex flex-col md:flex-row md:justify-center items-center mx-auto px-4 my-auto relative z-10">
           <div className="h-[430px]">
-            <Image src="/customer.png" alt="become locator" className="h-full"/>
+            <Image 
+                src="/customer.png" 
+                alt="become locator"
+                width={400}
+                height={400}
+                objectFit="contain"  
+                className="h-full w-auto"/>
           </div>
           
           <div className="md:w-1/2 ml-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
               Do You Want To Earn With Us? So Don't Be Late.
             </h2>
-            <button className="bg-secondary-blue text-white px-8 py-4 m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
-              Become A Driver
-            </button>
-            <button className="bg-secondary-blue text-white px-8 py-4  m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
-              Become An Agency
-            </button>
+            <Link href="/drivers">
+              <button className="bg-secondary-blue text-white px-8 py-4 m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
+                Become A Driver
+              </button>
+            </Link>
+            <Link href="/agencies">
+              <button className="bg-secondary-blue text-white px-8 py-4  m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
+                Become An Agency
+              </button>
+            </Link>
+            <Link href="/customer"></Link>
           </div>
         </div>
       </section>
@@ -247,7 +276,7 @@ import LocationFilterContainer from "@/components/LocationFilter";
     ];
   
     return (
-      <section className="py-16">
+      <section className="py-16 mx-8 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-secondary-text text-sm uppercase tracking-wider">Testimonial</span>
@@ -261,7 +290,9 @@ import LocationFilterContainer from "@/components/LocationFilter";
                     <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-4">
                     <Image 
                         src={testimonial.image} 
-                        alt={testimonial.name} 
+                        alt={testimonial.name}
+                        width={0}
+                        height={0}   
                         className="w-full h-full object-cover"
                     />
                     </div>
@@ -285,64 +316,7 @@ import LocationFilterContainer from "@/components/LocationFilter";
     );
   }
   
-  // components/BlogSection.tsx
-  
-   function BlogSection() {
-    const posts = [
-      {
-        image: "/images/image_1.jpg",
-        date: "Oct. 29, 2019",
-        author: "Admin",
-        comments: 3,
-        title: "Why Lead Generation is Key for Business Growth",
-        url: "/blog/lead-generation"
-      },
-      // Add more blog posts...
-    ];
-  
-    return (
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-primary text-sm uppercase tracking-wider">Podcasts</span>
-            <h2 className="text-3xl font-bold mt-2">Recent Podcasts</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {posts.map((post, index) => (
-              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg">
-                <div 
-                  className="h-48 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${post.image})` }}
-                />
-                <div className="p-6">
-                  <div className="flex items-center text-gray-500 text-sm mb-4">
-                    <span>{post.date}</span>
-                    <span className="mx-2">•</span>
-                    <span>{post.author}</span>
-                    <span className="mx-2">•</span>
-                    <span>{post.comments} Comments</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-4">
-                    <Link href={post.url} className="hover:text-primary">
-                      {post.title}
-                    </Link>
-                  </h3>
-                  <Link 
-                    href={post.url}
-                    className="text-primary hover:text-primary-dark"
-                  >
-                    Read more
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-  
+
   // components/Stats.tsx
    function Stats() {
     const stats = [
@@ -365,15 +339,15 @@ import LocationFilterContainer from "@/components/LocationFilter";
     ];
   
     return (
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-secondary-blue m-8 rounded-lg ">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-5xl font-bold text-primary mb-2">
+                <div className="text-5xl font-bold text-white mb-2">
                   {stat.number}
                 </div>
-                <p className="text-gray-600">{stat.label}</p>
+                <p className="text-primary-text">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -418,13 +392,92 @@ const RentalSteps = () => {
       </div>
       
       <div className="text-center mt-8">
+        <Link href="/customer/cars">
         <button className="bg-primary-blue text-white text-xl px-8 py-3 rounded hover:bg-primary/90 transition-colors duration-300">
           Reserve Your Perfect Car Rental Now
         </button>
+        </Link>
       </div>
     </div>
   );
 };
+
+function PodcastSection() {
+  const podcasts = [
+    {
+      image: "/fleet.png",
+      date: "Jan. 10, 2025",
+      host: "John Doe",
+      duration: "45 min",
+      title: "The Future of AI in Everyday Life",
+      description: "Discover how AI is shaping our daily routines and what the future holds.",
+      url: "/podcasts/future-of-ai"
+    },
+    {
+      image: "/fleet.png",
+      date: "Dec. 15, 2024",
+      host: "Jane Smith",
+      duration: "30 min",
+      title: "How to Stay Productive Working from Home",
+      description: "Tips and tricks to maximize your productivity while working remotely.",
+      url: "/podcasts/productivity-tips"
+    },
+    // Ajoutez d'autres podcasts ici...
+  ];
+
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        {/* En-tête de la section */}
+        <div className="text-center mb-12">
+          <span className="text-primary text-sm uppercase tracking-wider">Podcasts</span>
+          <h2 className="text-3xl font-bold mt-2">Recent Podcasts</h2>
+        </div>
+
+        {/* Grille des podcasts */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {podcasts.map((podcast, index) => (
+            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg">
+              {/* Image du podcast */}
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: `url(${podcast.image})` }}
+              />
+
+              {/* Contenu du podcast */}
+              <div className="p-6">
+                <div className="flex items-center text-gray-500 text-sm mb-4">
+                  <span>{podcast.date}</span>
+                  <span className="mx-2">•</span>
+                  <span>{podcast.host}</span>
+                  <span className="mx-2">•</span>
+                  <span>{podcast.duration}</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">
+                  <Link href={podcast.url} className="hover:text-primary">
+                    {podcast.title}
+                  </Link>
+                </h3>
+                <p className="text-gray-700 mb-4">
+                  {podcast.description}
+                </p>
+                <Link 
+                  href={podcast.url} 
+                  className="text-primary hover:text-primary-dark font-semibold"
+                >
+                  Listen Now <PlayCircle className="mr-2" />
+
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 
 // export default function Home() {
 //     return (

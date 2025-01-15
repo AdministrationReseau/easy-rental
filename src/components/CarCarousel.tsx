@@ -42,11 +42,11 @@ const CarCarousel: React.FC = () => {
                 autoplay={{delay: 3000, disableOnInteraction: false}}
                 breakpoints={{
                     1044: {slidesPerView: 4},
-                    1024: {slidesPerView: 3},
-                    800: {slidesPerView: 2},
-                    480: {slidesPerView: 1},
+                    1000: {slidesPerView: 3},
+                    500: {slidesPerView: 2},
+                    320: {slidesPerView: 1},
                 }}
-                className='py-9 h-full w-full'
+                className='py-9 h-full md:w-full'
             >
                 {vehicles?.map((carData, index) => (
                     <SwiperSlide key={carData.id || index}>

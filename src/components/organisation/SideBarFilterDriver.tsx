@@ -76,7 +76,7 @@ const SidebarFilter: React.FC<{ drivers: DriverProps[]; onFilter: (filters: Filt
   return (
     <div className="mx-auto flex flex-col h-fit w-[95%]">
       <div className="bg-white rounded-md shadow-lg flex flex-col h-full w-[95%]">
-        <div className="w-full h-full overflow-y-scroll relative">
+        <div className="w-full h-full overflow-y-auto relative">
           <div className="flex w-full items-center px-4">
             <h2 className="w-1/6 text-lg font-semibold" onClick={showFilters}>Filters</h2>
             

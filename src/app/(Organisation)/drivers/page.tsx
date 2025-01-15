@@ -75,7 +75,7 @@ export default function DriversPage() {
                 <SidebarFilter drivers={drivers} onFilter={handleFilterChange} />
             </div>
             <div className='h-full flex flex-row gap-0'>
-                <div className='grid grid-cols-2 gap-4 w-full h-full overflow-auto'>
+                <div className='grid grid-cols-2 gap-4 w-full h-full'>
                     {drivers.map((driver) => (
                         <Link key={driver.id} href={`/drivers/${driver.id}`}>
                             <ResourceCard key={driver.id} resource={driver} profilActive={false} />

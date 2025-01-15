@@ -431,12 +431,12 @@ const MultiStepForm: React.FC = () => {
 
 
     return (
-        <div className='flex m-2 bg-gray-100'>
-            <div className="m-8 w-full">
+        <div className='flex m-4 flex-col lg:flex-row'>
+            <div className="m-auto w-full">
 
 
                 {/* Formulaire dynamique */}
-                <div className="bg-white rounded-lg shadow-md p-6 w-[full] space-y-4 mx-auto">
+                <div className="bg-white rounded-lg shadow-md p-6 w-[full] space-y-4 ">
 
 
                     <div className="space-y-4">{renderStepContent()}</div>
@@ -473,7 +473,7 @@ const MultiStepForm: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <aside className="w-[70%]  p-4 mt-4">
+            <aside className="w-full  p-4 m-auto">
                 <RentalSummary
                     key={vehicle.id}
                     id={vehicle.id}

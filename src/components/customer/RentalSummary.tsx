@@ -124,7 +124,7 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                 <p><b>0 Francs cfa</b></p>
             </div>
             <div>
-                <button className="py-2 px-4 w-full bg-gray-100 text-secondary-text text-sm rounded-md transition duration-200 transform hover:scale-105 hover:bg-gray-400 hover:text-primary-text">
+                <button className="py-2 px-4 w-full bg-secondary-blue text-white text-sm rounded-md transition duration-200 transform hover:scale-105 hover:bg-primary-blue">
                     Apply Promo Code
                 </button>
             </div>

@@ -1,9 +1,8 @@
 'use client'
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { FitScreen } from "@mui/icons-material";
+import Image from "next/image";
 
 
 
@@ -14,9 +13,11 @@ const  AboutUS = () => {
         <div className="relative flex  items-center rounded-lg  md:h-[500px] p-8 flex-col md:flex-row">
             <div className="flex md:bg-white rounded-l-lg h-full items-center">
                 <div className="h-full md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-md overflow-hidden">
-                    <img
+                    <Image
                         src="/about_rental.png"
                         alt="Welcome"
+                        width={0}
+                        height={0}  
                         className="h-full w-auto "
                     />
                 </div>
