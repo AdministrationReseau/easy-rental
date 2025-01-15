@@ -13,17 +13,16 @@ interface HalfAddProps {
 }
 
 const HalfAddContent: React.FC<HalfAddProps> = ({
-                                                    title,
-                                                    description,
-                                                    buttonText,
-                                                    buttonLink,
-                                                    backgroundImage,
-                                                    buttonColor = "bg-blue-600", // Default button color
-                                                    className = "h-[300px] w-[48%]", // Default size
-                                                }) => {
+    title,
+    description,
+    buttonText,
+    buttonLink,
+    backgroundImage,
+    buttonColor = "bg-blue-600",
+}) => {
     return (
         <div
-            className={`relative  bg-cover bg-center rounded-lg shadow-lg overflow-hidden ${className}`}
+            className={`relative bg-cover bg-center h-[200px] rounded-lg shadow-lg overflow-hidden mb-3 md:h-[300px] md:w-[45%]`}
         >
             <Image
                 src={backgroundImage}
@@ -32,7 +31,6 @@ const HalfAddContent: React.FC<HalfAddProps> = ({
                 style={{ objectFit: "cover" }} // Replaces `objectFit="cover"`
             />
 
-            {/* Content */}
             <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 text-white">
                 <h2 className="text-xl md:text-2xl font-bold mb-2">{title}</h2>
                 <p className="text-sm md:text-base mb-4">{description}</p>
