@@ -43,7 +43,7 @@ const Location = () => {
     return (
         <div>
             <main>
-                <div className="ml-[25px] mt-[20px]">
+                <div className="mt-[20px]">
                     <LocationList locations={locations} />
                 </div>
             </main>

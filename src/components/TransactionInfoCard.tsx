@@ -22,7 +22,7 @@ const TransactionInfoCard: React.FC<CardData> = ({ title,device, value, subtitle
 
     return (
         <div
-            className={`flex items-center justify-between p-4 rounded-lg shadow-md bg-${bgColor} max-w-[500px] m-[10px] min-w-[100px] w-[100%] `}
+            className={`flex items-center justify-between p-4 rounded-lg shadow-md bg-${bgColor} max-w-[500px] m-[10px] min-w-[100px] w-[full] xl:w-[100%] `}
         >
             <div>
                 <h3 className="text-sm font-medium text-gray-600">{title}</h3>

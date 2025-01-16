@@ -9,7 +9,7 @@ const Setting = () => {
 
     return (
         <div>
-            <main className="flex-grow overflow-y-auto bg-gray-100 p-6">
+            <main className="flex-grow overflow-y-auto bg-gray-100 py-6">
                 <h1 className="text-2xl font-bold text-secondary-text mb-4">Edit profile</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
@@ -47,7 +47,7 @@ const Setting = () => {
                                     type="text"
                                     defaultValue="Customer"
                                     disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
+                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text "
                                 />
                             </div>
 
@@ -83,7 +83,7 @@ const Setting = () => {
                                 <label className="block text-sm font-bold text-primary-text">
                                     Phone Number
                                 </label>
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center space-x-2 w-[80%] ">
                                     <input
                                         type="text"
                                         defaultValue="+237"
@@ -92,7 +92,7 @@ const Setting = () => {
                                     <input
                                         type="text"
                                         defaultValue="620203233"
-                                        className="flex-1 h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
+                                        className="flex-1 h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text w-[80%] "
                                     />
                                 </div>
                             </div>
