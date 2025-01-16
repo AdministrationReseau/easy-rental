@@ -45,7 +45,7 @@ const AgencyInfo: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   return (
     <div className="relative bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
     {/* Favorite Icon Placeholder */}
-    <div className="absolute top-25 text-3xl right-15 text-gray-400 hover:text-red-500 cursor-pointer">
+    <div className="absolute top-25 text-3xl right-10 text-gray-400 hover:text-red-500 cursor-pointer">
       ♥
     </div>
       <div>
