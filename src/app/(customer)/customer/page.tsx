@@ -69,7 +69,7 @@ export default function Home() {
     return (
         <>
             <main className="bg-var(--background)">
-                <div className="w-[85%] flex justify-between my-12 mx-auto flex-row">
+                <div className="w-[85%] my-12 mx-auto md:justify-between flex flex-col md:flex-row">
                     <HalfAddContent
                         title="The Best Platform for Car Rental"
                         description="Ease of doing a car rental safely and reliably. Of course at a low price."
@@ -94,10 +94,12 @@ export default function Home() {
                     <LocationFilter/>
 
                     <div>
-                        <div className="ml-[160px] mt-10">
+                        <div className="mx-5 flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
-                            <h3 className="font-light text-lg text-secondary-text">Find the best agencies to meet your
-                                needs</h3>
+                            <h3 className="font-light text-lg text-secondary-text text-centeritems-center">
+                                Find the best agencies to meet your needs
+                            </h3>
+
                         </div>
                         <div className="w-full flex flex-row justify-center mb-12">
                             <AgencyList agencies={agencies.slice(0, 6)} filters={filtersA}/>
@@ -110,9 +112,11 @@ export default function Home() {
                             Explore more agencies
                         </Link>
 
-                        <div className="ml-[160px] mt-10">
+                        <div className="flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Cars</h2>
-                            <h3 className="font-light text-lg text-secondary-text">Explore our top vehicle options</h3>
+                            <h3 className="font-light text-lg text-secondary-text text-centeritems-center">
+                                Explore our top vehicle options
+                            </h3>
                         </div>
 
                         <div className="w-full flex flex-row justify-center my-12">

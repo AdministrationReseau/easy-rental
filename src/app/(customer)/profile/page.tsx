@@ -1,5 +1,5 @@
-
 "use client";
+
 import React from 'react';
 import Image from "next/image";
 
@@ -40,33 +40,31 @@ const Profile = () => {
                                 </button>
                             </div>
                         </div>
-
-
-                        <div className="mt-4 ml-10">
-                            <div>
-                                {/* Name and Information */}
-                                <h2 className="text-lg font-semibold text-primary-text mt-4">
-                                    Mobina Mirbagheri
-                                </h2>
-                                <p className="text-sm font-semibold text-primary-text mt-1">
-                                    Your account is ready, you can now apply for advice.
-                                </p>
-                                <span className="text-sm text-secondary-text flex justify-center">mirbagheri</span>
-                            </div>
-                            <div className="absolute right-[10%] top-[50%]">
-                                {/*    Share button*/}
-                                <button>
-                                    <Image
-                                        src="/shareIcon.svg"
-                                        alt="share button"
-                                        height={30}
-                                        width={30}
-                                    />
-                                </button>
-                            </div>
-                        </div>
                     </div>
 
+                </div>
+                <div className="mt-4 md:ml-10">
+                    <div>
+                        {/* Name and Information */}
+                        <h2 className="text-lg font-semibold text-primary-text mt-4">
+                            Mobina Mirbagheri
+                        </h2>
+                        <p className="text-sm font-semibold text-primary-text mt-1">
+                            Your account is ready, you can now apply for advice.
+                        </p>
+                        <span className="text-sm text-secondary-text flex">mirbagheri</span>
+                    </div>
+                    <div className="right-[10%] top-[50%]">
+                        {/* Share button*/}
+                        <button>
+                            <Image
+                                src="/shareIcon.svg"
+                                alt="share button"
+                                height={30}
+                                width={30}
+                            />
+                        </button>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
@@ -164,7 +162,7 @@ const Profile = () => {
                                         type="text"
                                         defaultValue="620203233"
                                         disabled
-                                        className="flex-1 h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
+                                        className="flex-1 h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text w-[80%] "
                                     />
                                 </div>
                             </div>
