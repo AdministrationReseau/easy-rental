@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import VehicleList from '@/components/customer/VehicleList';
-import SidebarFilter from '@/components/customer/SideBarFilterVehicle';
 import CarDetail from '@/components/combiner-components/CarDetail';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import Link from 'next/link';
@@ -13,7 +12,7 @@ const VehicleDetails: React.FC = () => {
   const { id } = useParams(); // Récupère l'ID du véhicule depuis l'URL
   const [vehicle, setVehicle] = useState<CarProps | null>(null);
   const [vehicles, setVehicles] = useState<CarProps[]>([]);
-  const [filters, setFilters] = useState<FilterVehicleProps>({
+  const [filters] = useState<FilterVehicleProps>({          //add setFilter to activate filtering
     type: [],
     capacity: null,
     priceRange: [0, Infinity],
@@ -44,9 +43,9 @@ const VehicleDetails: React.FC = () => {
       });
   }, [id]);
 
-  const handleFilterChange = (newFilters: FilterVehicleProps) => {
-    setFilters(newFilters);
-  };
+  // const handleFilterChange = (newFilters: FilterVehicleProps) => {
+  //   setFilters(newFilters);
+  // };
 
   if (!vehicle) {
     return <p>Loading vehicle details...</p>; // Affiche un message de chargement si les données ne sont pas prêtes
