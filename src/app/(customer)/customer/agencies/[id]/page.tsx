@@ -68,9 +68,9 @@ const AgencyDetails: React.FC = () => {
           {/* <LocationFilter/> */}
           <AgencyDetail agency={agency} />
        
-          <Link href="/customer/agencies">
+          <Link href="/customer/cars">
           <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
-              See More Agencies
+              See More Vehicles
           </button>
           </Link>
              {/* Recommendations Section */}
@@ -78,9 +78,9 @@ const AgencyDetails: React.FC = () => {
             <h4 className="font-bold text-lg">You would also like</h4>
           </div>
           <AgencyList agencies={agencies} filters={filters} />
-          <Link href="/customer/cars">
+          <Link href="/customer/agencies">
           <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
-              See More Vehicles
+              See More Agencies
           </button>
           </Link>
         </div>

@@ -25,7 +25,7 @@ const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
         ></div>
 
         {/* Thumbnail Images Section */}
-        <div className="flex justify-left flex-wrap mt-6 w-full  gap-6">
+        <div className="flex justify-left flex-wrap mt-6 w-full gap-2 md:gap-4">
           {agency.images.slice(0, 3).map((image, index) => (
             <div
               key={index}
@@ -45,7 +45,7 @@ const AgencyInfo: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   return (
     <div className="relative bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
     {/* Favorite Icon Placeholder */}
-    <div className="absolute top-10 right-10 text-4xl text-gray-400 hover:text-red-500 cursor-pointer">
+    <div className="absolute top-25 text-3xl right-15 text-gray-400 hover:text-red-500 cursor-pointer">
       ♥
     </div>
       <div>
