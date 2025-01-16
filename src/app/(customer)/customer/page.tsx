@@ -94,10 +94,12 @@ export default function Home() {
                     <LocationFilter/>
 
                     <div>
-                        <div className="flex flex-col justify-center items-center mt-10">
+                        <div className="mx-5 flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
-                            <h3 className="font-light text-lg text-secondary-text">Find the best agencies to meet your
-                                needs</h3>
+                            <h3 className="font-light text-lg text-secondary-text text-centeritems-center">
+                                Find the best agencies to meet your needs
+                            </h3>
+
                         </div>
                         <div className="w-full flex flex-row justify-center mb-12">
                             <AgencyList agencies={agencies.slice(0, 6)} filters={filtersA}/>
@@ -112,7 +114,9 @@ export default function Home() {
 
                         <div className="flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Cars</h2>
-                            <h3 className="font-light text-lg text-secondary-text">Explore our top vehicle options</h3>
+                            <h3 className="font-light text-lg text-secondary-text text-centeritems-center">
+                                Explore our top vehicle options
+                            </h3>
                         </div>
 
                         <div className="w-full flex flex-row justify-center my-12">
