@@ -21,7 +21,7 @@ export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
     };
 
     return (
-        <div className="min-w-[250px] max-w-md mx-auto">
+        <div className="w-full mx-auto">
             <div className="flex flex-col gap-4">
                 <div className="w-full relative">
                     <label htmlFor="datePicker" className="block mb-1 text-sm font-medium text-black dark:text-white">
@@ -68,6 +68,7 @@ export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
 
 export const DatePicker = () => {
     return (
+        <div className="w-full ">
         <ReactDatePicker>
             <Group className='text-xs flex flex-row gap-2'>
                 <DateInput className='flex flex-row'>
@@ -90,5 +91,6 @@ export const DatePicker = () => {
                 </Dialog>
             </Popover>
         </ReactDatePicker>
+        </div>
     );
 }

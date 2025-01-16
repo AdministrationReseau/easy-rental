@@ -17,7 +17,7 @@ export const CountryPickerStyled = ({ valueCountry, valueRegion, onChangeCountry
   
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full ">
       <div className="flex flex-col gap-4">
         <div className="relative">
           <label className="block font-medium mb-1">Country</label>
@@ -54,7 +54,7 @@ export const CountryPicker = () => {
 
   return (
     <div>
-      <div className="w-36 flex flex-col items-center gap-0 text-xs">
+      <div className="w-full flex flex-col items-center gap-0 text-xs">
         <CountryDropdown
           className="country-drop-down"
           value={country}

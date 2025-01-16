@@ -37,20 +37,39 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => {
             <h2 className="text-xl font-semibold mb-4 text-primary-text">Payement History</h2>
 
             {/* Boutons de filtre */}
-            <div className="flex space-x-4 mb-6">
-                {["all", "pending", "confirmed", "canceled"].map((status) => (
-                    <button
-                        key={status}
-                        className={`px-4 py-2 rounded-[30px] font-medium text-sm ${
-                            filter === status
-                                ? "bg-blue-500 text-white"
-                                : "bg-white text-black-100 hover:bg-gray-200"
-                        }`}
-                        onClick={() => setFilter(status)}
-                    >
-                        {status === "all" ? "All" : status.charAt(0).toUpperCase() + status.slice(1)}
-                    </button>
-                ))}
+            <div className="flex mb-6 flex-col md:flex-row ">
+                <div>
+                    {["all", "pending"].map((status) => (
+                        <button
+                            key={status}
+                            className={`my-2 mr-2 px-4 py-2 rounded-[30px] font-medium text-sm ${
+                                filter === status
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-white text-black-100 hover:bg-gray-200"
+                            }`}
+                            onClick={() => setFilter(status)}
+                        >
+                            {status === "all" ? "All" : status.charAt(0).toUpperCase() + status.slice(1)}
+                        </button>
+                    ))}
+                </div>
+
+                <div>
+                    {["confirmed", "canceled"].map((status) => (
+                        <button
+                            key={status}
+                            className={`my-2 mr-2 px-4 py-2 rounded-[30px] font-medium text-sm ${
+                                filter === status
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-white text-black-100 hover:bg-gray-200"
+                            }`}
+                            onClick={() => setFilter(status)}
+                        >
+                            {status === "all" ? "All" : status.charAt(0).toUpperCase() + status.slice(1)}
+                        </button>
+                    ))}
+                </div>
+
             </div>
 
             {/* Liste des transactions filtrées */}

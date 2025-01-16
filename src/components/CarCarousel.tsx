@@ -32,23 +32,25 @@ const CarCarousel: React.FC = () => {
     }, []);
 
     return (
-        <div className="container mx-auto py-8">
+        <div className=" py-8 w-[90%] h-[450px] ">
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={25}
                 slidesPerView={4}
-                pagination={{ clickable: true }}
+                pagination={{clickable: true}}
                 loop={true}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                autoplay={{delay: 3000, disableOnInteraction: false}}
                 breakpoints={{
-                    1044: { slidesPerView: 4 },
-                    1024: { slidesPerView: 3 },
-                    800: { slidesPerView: 2 },
-                    480: { slidesPerView: 1 },
+                    1044: {slidesPerView: 4},
+                    1000: {slidesPerView: 3},
+                    500: {slidesPerView: 2},
+                    320: {slidesPerView: 1},
                 }}
+                className='py-9 h-full md:w-full'
             >
-                {vehicles.map((carData, index) => (
+                {vehicles?.map((carData, index) => (
                     <SwiperSlide key={carData.id || index}>
+                        {/* <span className='mx-4'> */}
                         <CarCard
                             id={carData.id || 0} // Provide a fallback value
                             images={carData.images || []} // Handle undefined images
@@ -93,8 +95,10 @@ const CarCarousel: React.FC = () => {
                             } // Fallback for service history
                             reviews={carData.reviews || []} // Fallback to an empty array for reviews
                             onLike={() => console.log('Liked')}
+                            favorite={false}
                             onDislike={() => console.log('Disliked')}
                         />
+                        {/* </span> */}
                     </SwiperSlide>
                 ))}
             </Swiper>

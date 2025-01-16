@@ -8,16 +8,17 @@ export default function Layout({children }: { children: React.ReactNode }) {
     return (
         <>
             <div className="flex h-screen">
-                <div className="w-64">
-                    <OrgSidebar />
+                <div>
+                    <OrgSidebar/>
                 </div>
 
                 <div className="flex flex-col flex-grow">
-                    <NavOrg />
+                    <NavOrg/>
 
-                    <div className="flex-grow overflow-y-auto bg-gray-100 p-6">
+                    <div className="flex-grow bg-gray-100 p-6 ">
                         {children}
                     </div>
+
                 </div>
             </div>
 

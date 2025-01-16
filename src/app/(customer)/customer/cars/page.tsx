@@ -42,8 +42,8 @@ const Cars: React.FC = () => {
   };
 
   return (
-    <div>
-      <main className="flex flex-row m-2">
+    <div className=''>
+      <main className="flex flex-row m-2 ">
         <div className="">
           <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
         </div>
@@ -56,7 +56,7 @@ const Cars: React.FC = () => {
           )}
           <div className="flex">
 
-            <div className="flex justify-center items-center flex-col">
+            <div className="w-full w-[70%] flex justify-center items-center flex-col gap-8">
               <LocationFilter />
               <VehicleList
                 vehicles={vehicles}

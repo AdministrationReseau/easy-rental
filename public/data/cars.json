@@ -86,7 +86,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 2,
@@ -174,7 +175,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 3,
@@ -262,7 +264,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 4,
@@ -350,7 +353,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 5,
@@ -438,7 +442,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 6,
@@ -526,7 +531,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 7,
@@ -614,7 +620,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 8,
@@ -702,7 +709,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 9,
@@ -790,7 +798,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 10,
@@ -878,7 +887,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 11,
@@ -966,7 +976,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 12,
@@ -1054,7 +1065,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 13,
@@ -1142,7 +1154,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 14,
@@ -1230,7 +1243,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 15,
@@ -1318,7 +1332,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 16,
@@ -1406,7 +1421,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 17,
@@ -1494,7 +1510,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 18,
@@ -1582,7 +1599,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 19,
@@ -1670,7 +1688,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     },
     {
       "id": 20,
@@ -1758,7 +1777,8 @@
           "comment": "Comfortable and powerful, but a bit pricey for the daily rental.",
           "rating": 3
         }
-      ]
+      ],
+      "favorite": false
     }
   ]
 }

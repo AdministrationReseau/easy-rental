@@ -22,11 +22,11 @@ const SearchField: React.FC<SearchFieldProps> = ({
     };
 
     return (
-        <div className="flex items-center w-full max-w-[500px] rounded-full border border-gray-300 bg-whitish-background px-4 py-2 shadow-sm focus-within:ring-2 focus-within:ring-primary-blue">
+        <div className="flex items-center w-full max-w-[500px] rounded-full border border-gray-300 bg-whitish-background px-2 py-2 shadow-sm ">
             {/* Icône de loupe */}
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-400"
+                className="h-5 w-4 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -42,7 +42,7 @@ const SearchField: React.FC<SearchFieldProps> = ({
             {/* Champ de recherche */}
             <input
                 type="text"
-                className="flex-1 bg-transparent outline-none placeholder-gray-500 text-primary-text ml-3"
+                className="flex-1 bg-transparent outline-none placeholder-gray-500 text-primary-text"
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handleInputChange}
@@ -55,7 +55,7 @@ const SearchField: React.FC<SearchFieldProps> = ({
 
             {/* Icône de filtre */}
             <button
-                className="ml-3 text-gray-400 hover:text-primary-blue focus:outline-none"
+                className="-ml-2 text-gray-400 hover:text-primary-blue focus:outline-none"
                 onClick={handleSearch}
             >
                 <svg

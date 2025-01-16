@@ -52,7 +52,7 @@ const VehicleDetails: React.FC = () => {
   }
 
   return (
-    <div className='m-2 bg-gray-100'>
+    <div className='m-2'>
       <main className="flex">
         {/* Section filtre */}
         <div className="filter-container">

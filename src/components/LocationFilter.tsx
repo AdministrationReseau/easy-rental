@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { LocationFilterEnum } from '@/utils/enum';
-import {CountryPicker} from './CountryPicker';
-import {TimePicker} from './TimePicker';
-import {DatePicker }from './DatePicker';
+import { CountryPicker } from './CountryPicker';
+import { TimePicker } from './TimePicker';
+import { DatePicker } from './DatePicker';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'; // Icône pour le switch horizontal
 
 interface LocationFilterProps {
@@ -13,31 +13,25 @@ interface LocationFilterProps {
 
 function LocationFilter({ type }: LocationFilterProps) {
     return (
-        <div className="relative">
-            <div className="flex flex-row gap-2 items-center">
-                <div className="w-2 h-2 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
-                <span>{type}</span>
+        <div className="relative bg-white  rounded-lg shadow-md p-4">
+            <div className="flex items-center gap-2 mb-4">
+                <div className="w-3 h-3 rounded-full bg-primary-blue shadow-[0_0_10px_2px_rgba(0,96,254,0.6)]"></div>
+                <span className="font-semibold text-primary-blue capitalize">{type}</span>
             </div>
-            <div className="w-full flex flex-row gap-2 h-12">
-                <div className="flex flex-col">
-                    <span className="text-gray-500 text-xs">Select country - region</span>
-                    <div className="flex h-full items-center">
-                        <CountryPicker />
-                    </div>
+            <div className="w-full flex flex-row gap-3">
+                <div className="w-[30%] flex flex-col flex-grow">
+                    <label className="text-gray-500 text-sm mb-1">Select country - region</label>
+                    <CountryPicker />
                 </div>
-                <div className="w-[1px] h-3/5 bg-primary-blue/20"></div>
-                <div className="flex flex-col">
-                    <span className="text-gray-500 text-xs">Select your date</span>
-                    <div className="flex h-full items-center">
-                        <DatePicker />
-                    </div>
+                <div className="w-[1px] bg-gray-300"></div>
+                <div className="w-[30%] flex flex-col flex-grow">
+                    <label className="text-gray-500 text-sm mb-1">Select your date</label>
+                    <DatePicker />
                 </div>
-                <div className="w-[1px] h-3/5 bg-primary-blue/20"></div>
-                <div className="flex flex-col">
-                    <span className="text-gray-500 text-xs">Select your time</span>
-                    <div className="flex h-full items-center">
-                        <TimePicker />
-                    </div>
+                <div className="w-[1px] bg-gray-300"></div>
+                <div className="w-[30%] flex flex-col flex-grow">
+                    <label className="text-gray-500 text-sm mb-1">Select your time</label>
+                    <TimePicker />
                 </div>
             </div>
         </div>
@@ -52,35 +46,38 @@ function LocationFilterContainer() {
     };
 
     return (
-        <div className="bg-white p-4 gap-4 rounded-lg shadow-lg flex flex-row justify-center mt-5 w-[85%]">
-            {isDepartureFirst ? (
-                <div className="w-[48%] h-full">
-                    <LocationFilter type={LocationFilterEnum.PICKUP} />
-                    <span className='flex justify-center items-center'>
-                        <button
-                            className="bg-primary-blue text-white rounded-md py-2 px-4 hover:bg-primary-blue/80 w-[60px] h-[60px]"
-                            onClick={togglePosition}
-                        >
-                            <SwapHorizIcon />
-                       </button>
-                        </span> 
-                    <LocationFilter type={LocationFilterEnum.DROPOFF} />
-                </div>
-            ) : (
-                <div className="w-[48%] h-full">
-                    <LocationFilter type={LocationFilterEnum.DROPOFF} />
-                    <span className='flex justify-center items-center'>
-                        <button
-                            className="bg-primary-blue text-white rounded-md py-2 px-4 hover:bg-primary-blue/80 w-[60px] h-[60px]"
-                            onClick={togglePosition}
-                        >
-                             <SwapHorizIcon />
-                        </button>
-                    </span>
-                    
-                    <LocationFilter type={LocationFilterEnum.PICKUP} />
-                </div >
-            )}
+        <div className=" px-2 flex flex-col lg:flex-row justify-between items-center gap-6 relative w-[70] ">
+            <div className="relative w-full flex  lg:flex-row flex-col gap-6 justify-between md:items-center">
+                {isDepartureFirst ? (
+                    <>
+                        <LocationFilter type={LocationFilterEnum.PICKUP} />
+
+                        <div className="flex justify-center items-center">
+                            <button
+                                className="bg-primary-blue text-white rounded-full p-4 hover:bg-primary-blue/90 focus:outline-none focus:ring-2 focus:ring-primary-blue/50 transition duration-300"
+                                onClick={togglePosition}
+                            >
+                                <SwapHorizIcon className="text-white" fontSize="large" />
+                            </button>
+                        </div>
+                        <LocationFilter type={LocationFilterEnum.DROPOFF} />
+                    </>
+                ) : (
+                    <>
+                        <LocationFilter type={LocationFilterEnum.DROPOFF} />
+
+                        <div className="flex justify-center items-center">
+                            <button
+                                className="bg-primary-blue text-white rounded-full p-4 hover:bg-primary-blue/90 focus:outline-none focus:ring-2 focus:ring-primary-blue/50 transition duration-300"
+                                onClick={togglePosition}
+                            >
+                                <SwapHorizIcon className="text-white" fontSize="large" />
+                            </button>
+                        </div>
+                        <LocationFilter type={LocationFilterEnum.PICKUP} />
+                    </>
+                )}
+            </div>
         </div>
     );
 }

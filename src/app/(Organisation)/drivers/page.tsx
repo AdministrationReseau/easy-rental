@@ -1,42 +1,42 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import ResourceEditForm from '@/components/ResourceEditForm';
-import { Driver } from '@/utils/types/resources';
+import ResourceEditForm from '../../../components/ResourceEditForm';
 import { ResourceCard } from '@/components/ResourceCard';
+import SidebarFilter from '@/components/organisation/SideBarFilterDriver';
+import { DriverProps, FilterDriverProps } from '@/utils/types/DriverProps';
+import { Link } from 'react-aria-components';
 
 export default function DriversPage() {
     const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
-    const [formModalResource, setFormModalResource] = useState<Driver | null>(null);
+    const [formModalResource, setFormModalResource] = useState<DriverProps | null>(null);
 
     const closeEditForm = () => {
         setFormModalResource(null);
         setIsEditFormOpen(false);
     }
 
-    const openEditForm = (resourceId: number) => {
-        setFormModalResource(drivers.find((driver) => driver.id === resourceId) || null);
-        setIsEditFormOpen(true);
-    }
-
-    const [drivers, setDrivers] = useState<Driver[]>([]);
+    const [drivers, setDrivers] = useState<DriverProps[]>([]);
 
     useEffect(() => {
-        const fetchDrivers = async () => {
-        try {
-            const response = await fetch("/data/drivers.json");
+        fetch('/data/drivers.json')
+          .then((response) => {
             if (!response.ok) {
-            throw new Error("Failed to fetch drivers");
+              throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const data: Driver[] = await response.json();
-            setDrivers(data);
-        } catch (error) {
-            console.error("Error fetching drivers:", error);
-        }
-        };
-
-        fetchDrivers();
-    }, []);
+            return response.json();
+          })
+          .then((data) => {
+            if (data && Array.isArray(data)) {
+              setDrivers(data);
+            } else {
+              console.error('Unexpected data format:', data);
+            }
+          })
+          .catch((error) => {
+            console.error('Error loading drivers:', error);
+          });
+      }, []);
 
     const [showAlert, setShowAlert] = useState(false);
 
@@ -47,16 +47,21 @@ export default function DriversPage() {
         }
     }, [showAlert]);
 
-    // const handleDelete = (id: number) => {
-    //     setDrivers((prev) => prev.filter((driver) => driver.id !== id));
-    //     setShowAlert(true);
-    // };
+    const [, setFilters] = useState<FilterDriverProps>({
+        rating: null,
+        ageRange: [0, 100],
+        location: '',
+    });
+
+    const handleFilterChange = (newFilters: FilterDriverProps) => {
+        setFilters(newFilters);
+    };
 
     return (
-        <div className='h-full w-full p-4 flex flex-col gap-2 bg-primary-blue/5 rounded-md'>
+        <div className='h-full w-full flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
                 <div>
-                    <h2 className='font-bold text-xl'>Your drivers</h2>
+                    <h2 className='text-2xl font-bold'>Your drivers</h2>
                     <div className='text-gray-600 text-sm'>
                         Actually, you have <span className='font-black'>{drivers.length} drivers</span>
                     </div>
@@ -66,20 +71,22 @@ export default function DriversPage() {
                     <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
                 </div>
             </div>
+            <div className="my-4">
+                <SidebarFilter drivers={drivers} onFilter={handleFilterChange} />
+            </div>
             <div className='h-full flex flex-row gap-0'>
-                <div className='w-1/5 h-full flex items-center justify-center bg-red border border-black'>
-                    FILTER
-                </div>
-                <div className='w-full h-full overflow-auto'>
+                <div className='grid grid-cols-2 gap-4 w-full h-full'>
                     {drivers.map((driver) => (
-                        <ResourceCard key={driver.id} resource={driver} openEditForm={openEditForm} profilActive={false} />
+                        <Link key={driver.id} href={`/drivers/${driver.id}`}>
+                            <ResourceCard key={driver.id} resource={driver} profilActive={false} />
+                        </Link>
                     ))}
                 </div>
             </div>
-            {formModalResource && isEditFormOpen &&
-                <ResourceEditForm resource={formModalResource} onClose={closeEditForm} />
-            }
 
+            { formModalResource && isEditFormOpen &&
+                <ResourceEditForm resource={formModalResource} onClose={closeEditForm} />   
+            }
         </div>
     );
 }

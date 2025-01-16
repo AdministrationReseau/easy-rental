@@ -20,3 +20,14 @@ export interface DriverProps {
     insurance_policy: string;
     profile_picture?: string; // Optional
 }
+
+export interface FilterDriverProps {
+    rating: number | null;
+    ageRange: [number, number];
+    location?: string; // Optional
+}
+
+export interface DriverListProps {
+    drivers: DriverProps[];
+    filters: FilterDriverProps;
+}
