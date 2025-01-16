@@ -184,7 +184,7 @@ const ContactForm: React.FC = () => {
                 {isSent && <p className="text-green-500 mb-4">Message sent successfully!</p>}
                 {error && <p className="text-red-500 mb-4">Failed to send message. Please try again.</p>}
                 <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
                         <input
                             type="text"
                             name="name"
@@ -210,7 +210,7 @@ const ContactForm: React.FC = () => {
                         placeholder="Subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-green-500 mb-4"
+                        className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-green-500 mb-2"
                         required
                     />
                     <textarea
@@ -218,7 +218,7 @@ const ContactForm: React.FC = () => {
                         placeholder="Your Message"
                         value={formData.message}
                         onChange={handleChange}
-                        className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-green-500 mb-4 h-24"
+                        className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-green-500 mb-2 h-24"
                         required
                     />
                     <button

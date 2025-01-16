@@ -1,7 +1,6 @@
 "use client";
-
-import React from 'react';
-import SchoolMap from "@/components/combiner-components/SchoolMap";
+import dynamic from 'next/dynamic';
+const SchoolMap = dynamic(() => import('@/components/combiner-components/SchoolMap'), { ssr: false });
 import ContactForm from "@/components/ContactForm";
 
 export default function Page() {
