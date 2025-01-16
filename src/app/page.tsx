@@ -41,7 +41,7 @@ import { PlayCircle } from '@mui/icons-material';
 >
   <div className="absolute inset-0"></div>
   <div className="mx-auto px-4 w-full h-full">
-    <div className="flex items-center justify-around h-full w-full flex-col md:flex-row">
+    <div className="flex items-center p-6 justify-around h-full w-full flex-col md:flex-row">
       {/* Texte */}
       <div className="text-center text-white relative z-10 md:text-left md:w-1/2">
         <h1 className="text-5xl font-bold m-4">

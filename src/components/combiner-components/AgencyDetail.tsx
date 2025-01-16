@@ -123,7 +123,7 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
 
   return (
     <div className=" mx-auto p-5 w-full flex justify-center items-center">
-      <div className="gap-4 w-full flex flex-wrap ">
+      <div className="gap-4 w-full flex justify-center flex-wrap ">
         {vehicles.length > 0 ? (
           vehicles.map((vehicle) => (
             <CarCard
@@ -174,10 +174,10 @@ const AgencyDetail: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
       </Link>
       {/* Titre de l'agencies */}
       <div className="flex flex-col md:flex-row gap-6 w-full rounded-lg ">
-        <div className="w-[60%]  px-4">
+        <div className="md:w-[60%]  px-4">
           <AgencyImage agency={agency} />
         </div>
-        <div className="w-[40%] px-4 ">
+        <div className="md:w-[40%] px-4 ">
           <AgencyInfo agency={agency} />
         </div>
       </div>

@@ -157,10 +157,10 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       {/* Car Details Section */}
       <div className="flex flex-col md:flex-row gap-6 w-full rounded-lg ">
         {/* Car Description */}
-        <div className="w-[60%]  px-4">
+        <div className="md:w-[60%]  px-4">
           <VehicleImage vehicle={vehicle} />
         </div>
-        <div className="w-[40%] px-4 ">
+        <div className="md:w-[40%] px-4 ">
           {/* Car Info */}
           <VehicleInfo vehicle={vehicle} />
         </div>

@@ -106,9 +106,9 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
       const matchesType = selectedTypes.length === 0 || selectedTypes.includes(agency.type);
 
       const matchesStatus = statusFilter === 'all' || isAgencyOpen(agency);
-
-      return matchesRating && matchesFollowers && matchesCity && matchesType && matchesStatus;
       setPopupOpen(false); // Close popup after applying
+      return matchesRating && matchesFollowers && matchesCity && matchesType && matchesStatus;
+      
     });
 
     const filters: FilterAgencyProps = {
@@ -140,6 +140,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
       status: 'all',
       followers: [0, 100],
     });
+    setPopupOpen(false); // Close popup after applying
   };
 
   return (
@@ -156,7 +157,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
           {popupOpen && (
             
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white relative rounded-lg shadow-lg w-[60%] max-h-[90%] overflow-y-auto p-4">
+              <div className="bg-white relative rounded-lg shadow-lg w-[80%] max-h-[90%] overflow-y-auto p-4">
               
               <button
                   className="absolute top-3 right-3 text-gray-600"

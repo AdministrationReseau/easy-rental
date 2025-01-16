@@ -57,6 +57,8 @@ const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: Filter
     onFilter(filters);
     console.log(filters);
     console.log(selectedPassengers)
+    setIsPopupOpen(false)
+
   };
 
   const clearFilters = () => {
@@ -71,6 +73,7 @@ const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: Filter
       capacity: null,
       priceRange: [0, 100000],
     });
+    setIsPopupOpen(false)
   };
 
   return (
@@ -87,7 +90,7 @@ const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: Filter
         {/* Popup */}
         {isPopupOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg p-6 w-[60%] max-h-[90%] overflow-y-auto shadow-lg relative">
+            <div className="bg-white rounded-lg p-6 w-[80%] max-h-[90%] overflow-y-auto shadow-lg relative">
               <button
                 className="absolute top-3 right-3 text-gray-600"
                 onClick={() => setIsPopupOpen(false)}

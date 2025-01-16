@@ -6,6 +6,7 @@ import AgencyList from '@/components/customer/AgencyList';
 // import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
 import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 import AgencyDetail from '@/components/combiner-components/AgencyDetail';
+import Link from 'next/link';
 
 
 
@@ -68,6 +69,11 @@ const AgencyDetails: React.FC = () => {
           <AgencyDetail agency={agency} />
           <AgencyList agencies={agencies} filters={filters} />
         </div>
+        <Link href="/customer/agencies">
+          <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
+              Voir plus de véhicules
+          </button>
+          </Link>
       </main>
     </div>
   );
