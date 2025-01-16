@@ -20,12 +20,12 @@ const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
       <div className="px-2 w-full">
         {/* Main Image Section */}
         <div
-          className="relative bg-cover bg-center min-h-[300px] min-w-[500px] rounded-lg shadow-lg w-full"
+          className="relative bg-cover bg-center min-h-[300px] min-w-[200px] rounded-lg shadow-lg w-full"
           style={{ backgroundImage: `url(${currentImage})` }}
         ></div>
 
         {/* Thumbnail Images Section */}
-        <div className="flex justify-left mt-6 w-full  gap-6">
+        <div className="flex justify-left flex-wrap mt-6 w-full  gap-6">
           {agency.images.slice(0, 3).map((image, index) => (
             <div
               key={index}
@@ -43,9 +43,9 @@ const AgencyImage: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
 
 const AgencyInfo: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
+    <div className="relative bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
     {/* Favorite Icon Placeholder */}
-    <div className="absolute top-32 right-20 text-4xl text-gray-400 hover:text-red-500 cursor-pointer">
+    <div className="absolute top-10 right-10 text-4xl text-gray-400 hover:text-red-500 cursor-pointer">
       ♥
     </div>
       <div>
@@ -100,6 +100,17 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   const [vehicles, setVehicles] = useState<CarProps[]>([]);
   // On doir rechercher les véhicules qui possedent en clé étrangere l'id de l'agency
   const id_agency = agency.id;
+
+  // Pagination
+    const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
+    const itemsPerPage = 8; // Nombre d'éléments par page
+  
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedVehicles = vehicles.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(vehicles.length / itemsPerPage);
+  
+  
   console.log(id_agency);
   useEffect(() => {
     fetch('/data/cars.json')
@@ -122,10 +133,10 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   }, []);
 
   return (
-    <div className=" mx-auto p-5 w-full flex justify-center items-center">
+    <div className=" mx-auto p-5 w-full flex flex-col justify-center items-center">
       <div className="gap-4 w-full flex justify-center flex-wrap ">
-        {vehicles.length > 0 ? (
-          vehicles.map((vehicle) => (
+      {paginatedVehicles.length > 0 ? (
+          paginatedVehicles.map((vehicle) => (
             <CarCard
             key={vehicle.id}
             id={vehicle.id}
@@ -160,6 +171,28 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
           </p>
         )}
       </div>
+      {/* Pagination */}
+      {vehicles.length > itemsPerPage && (
+        <div className="flex justify-center items-center mt-6 space-x-4">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-gray-200 text-gray-600 rounded hover:bg-gray-300 disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-gray-600">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-gray-200 text-gray-600 rounded hover:bg-gray-300 disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -168,7 +201,7 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
 const AgencyDetail: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
 
   return (
-    <div className="space-y-8 bg-red w-full">
+    <div className="relative space-y-8 bg-red w-full">
       <Link href="/customer/agencies">
         <h1 className="p-4 m-4">&gt; Back to Agencies</h1>
       </Link>

@@ -52,31 +52,27 @@ const VehicleDetails: React.FC = () => {
   }
 
   return (
-    <div className='m-2 '>
-      <main className="flex ">
+      <main className="flex  ">
         {/* Section filtre */}
         {/* <div className="filter-container">
           <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
         </div> */}
           {/* Liste des véhicules */}
-          <div className="flex m-4">
+          <div className="w-screen-full relative">
             <div className="flex justify-center items-center flex-col">
               {/* <LocationFilter /> */}
               {/* Détails du véhicule sélectionné */}
               <CarDetail vehicle={vehicle} />
               <VehicleList vehicles={vehicles} filters={filters} />
               <Link href="/customer/cars">
-          <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
-              Voir plus de véhicules
-          </button>
-          </Link>
+              <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
+                  Voir plus de véhicules
+              </button>
+              </Link>
           </div>
          
         </div>
-
-        
       </main>
-    </div>
   );
 };
 

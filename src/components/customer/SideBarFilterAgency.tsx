@@ -182,6 +182,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
                     ))}
                   </select>
                 </div>
+                <div className="flex justify-between">
                 <div className="mb-6">
             <h3 className="text-md font-medium mb-2">Stars</h3>
             <ul className="space-y-2">
@@ -199,7 +200,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
               ))}
             </ul>
           </div>
-
+          
           <div className="mb-6">
             <h3 className="text-md font-medium mb-2">Type</h3>
             <ul className="space-y-2">
@@ -227,7 +228,7 @@ const SidebarAgencyFilter: React.FC<{ agencies: AgencyProps[]; onFilter: (filter
               <span>Open Only</span>
             </label>
           </div>
-
+          </div>
           <div className="m-4 w-[80%]">
             <h3 className="text-md font-medium mb-2">Followers</h3>
             <Slider

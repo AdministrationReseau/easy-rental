@@ -64,7 +64,7 @@ const AgencyDetails: React.FC = () => {
         </div> */}
 
         {/* <Filter/> */}
-        <div className='flex justify-center items-center flex-col m-4'>
+        <div className='flex justify-center items-center flex-col'>
           {/* <LocationFilter/> */}
           <AgencyDetail agency={agency} />
        

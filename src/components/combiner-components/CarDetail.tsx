@@ -23,12 +23,12 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
     <div className="px-2 w-full">
       {/* Main Image Section */}
       <div
-        className="relative bg-cover bg-center min-h-[300px] min-w-[500px] rounded-lg shadow-lg w-full"
+        className="relative bg-cover bg-center min-h-[300px] min-w-[200px] rounded-lg shadow-lg"
         style={{ backgroundImage: `url(${currentImage})` }}
       ></div>
 
       {/* Thumbnail Images Section */}
-      <div className="flex justify-left mt-6 w-full  gap-6">
+      <div className="flex justify-left flex-wrap mt-6 w-full  gap-6">
         {vehicle.images.slice(0, 3).map((image, index) => (
           <div
             key={index}
@@ -45,9 +45,9 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
 export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
+    <div className=" bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
       {/* Favorite Icon Placeholder */}
-      <div className="absolute top-40 text-4xl right-20 text-gray-400 hover:text-red-500 cursor-pointer">
+      <div className="absolute top-30 text-4xl right-20 text-gray-400 hover:text-red-500 cursor-pointer">
         ♥
       </div>
 
@@ -135,7 +135,7 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
   const isValidFeaturesObject = vehicleFeatures && typeof vehicleFeatures === 'object';
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-3 gap-4 text-gray-500">
+    <div className="w-full bg-white rounded-lg shadow-lg p-6 grid grid-cols-3 gap-4 text-gray-500">
       {features.map((feature, index) => (
         <CheckboxOne
           key={index}
@@ -149,7 +149,7 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
 
 const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="w-full space-y-8 bg-red w-full">
+    <div className="space-y-8 w-full">
       <Link href="/customer/cars">
         <h1 className="p-4 m-4">&gt; Back to Vehicles</h1>
       </Link>
@@ -157,10 +157,10 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       {/* Car Details Section */}
       <div className="flex justify-center flex-col md:flex-row gap-6 w-full rounded-lg ">
         {/* Car Description */}
-        <div className="md:w-[60%]  px-4">
+        <div className="md:w-[55%]  px-4">
           <VehicleImage vehicle={vehicle} />
         </div>
-        <div className="md:w-[40%] px-4 ">
+        <div className="md:w-[35%] px-4 ">
           {/* Car Info */}
           <VehicleInfo vehicle={vehicle} />
         </div>
