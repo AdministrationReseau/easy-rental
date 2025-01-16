@@ -123,7 +123,7 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
 
   return (
     <div className=" mx-auto p-5 w-full flex justify-center items-center">
-      <div className="gap-4 w-full flex flex-wrap ml-12 ">
+      <div className="gap-4 w-full flex flex-wrap ">
         {vehicles.length > 0 ? (
           vehicles.map((vehicle) => (
             <CarCard

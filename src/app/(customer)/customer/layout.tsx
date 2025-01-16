@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="flex flex-col flex-grow bg-whitish-background h-full">
                 <NavBar />
 
-                <main className="flex-grow">
+                <main className="flex-grow p-4">
                     {children}
                 </main>
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import AgencyList from '@/components/customer/AgencyList';
-import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
+// import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
 import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 import AgencyDetail from '@/components/combiner-components/AgencyDetail';
 
@@ -13,7 +13,7 @@ const AgencyDetails: React.FC = () => {
   const { id } = useParams();
   const [agency, setAgency] = React.useState<AgencyProps | null>(null);
   const [agencies, setAgencies] = useState<AgencyProps[]>([]);
-  const [filters, setFilters] = useState<FilterAgencyProps>({
+  const [filters] = useState<FilterAgencyProps>({
     city: [],
     rating: null,
     type: [],
@@ -50,17 +50,17 @@ const AgencyDetails: React.FC = () => {
     return <p>Loading...</p>;
   }
 
-  const handleFilterChange = (newFilters: FilterAgencyProps) => {
-    setFilters(newFilters);
-  };
+  // const handleFilterChange = (newFilters: FilterAgencyProps) => {
+  //   setFilters(newFilters);
+  // };
 
 
   return (
     <div >
       <main className="flex">
-        <div className="filter-container">
+        {/* <div className="filter-container">
           <SidebarFilterAgency agencies={agencies} onFilter={handleFilterChange} />
-        </div>
+        </div> */}
 
         {/* <Filter/> */}
         <div className='flex justify-center items-center flex-col m-4'>

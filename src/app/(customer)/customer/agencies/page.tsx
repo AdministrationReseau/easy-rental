@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <main className="flex flex-row m-2">
+      <main className="flex flex-row">
         <div className="">
           <SidebarFilterAgency agencies={agencies} onFilter={handleFilterChange} />
         </div>

@@ -13,12 +13,12 @@ interface LocationFilterProps {
 
 function LocationFilter({ type }: LocationFilterProps) {
     return (
-        <div className="relative">
+        <div className="relative bg-white  rounded-lg shadow-md p-4">
             <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-3 rounded-full bg-primary-blue shadow-[0_0_10px_2px_rgba(0,96,254,0.6)]"></div>
                 <span className="font-semibold text-primary-blue capitalize">{type}</span>
             </div>
-            <div className="w-full flex flex-row gap-4">
+            <div className="w-full flex flex-row gap-3">
                 <div className="w-[30%] flex flex-col flex-grow">
                     <label className="text-gray-500 text-sm mb-1">Select country - region</label>
                     <CountryPicker />
@@ -46,7 +46,7 @@ function LocationFilterContainer() {
     };
 
     return (
-        <div className="bg-white p-6 m-6 rounded-lg shadow-md flex flex-col lg:flex-row justify-between items-center gap-6 relative w-[70] ">
+        <div className=" px-2 flex flex-col lg:flex-row justify-between items-center gap-6 relative w-[70] ">
             <div className="relative w-full flex  lg:flex-row flex-col gap-6 justify-between md:items-center">
                 {isDepartureFirst ? (
                     <>
