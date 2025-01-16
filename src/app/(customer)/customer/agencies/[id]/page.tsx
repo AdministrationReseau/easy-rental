@@ -67,13 +67,24 @@ const AgencyDetails: React.FC = () => {
         <div className='flex justify-center items-center flex-col m-4'>
           {/* <LocationFilter/> */}
           <AgencyDetail agency={agency} />
+       
+          <Link href="/customer/agencies">
+          <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
+              Voir plus d'agences
+          </button>
+          </Link>
+             {/* Recommendations Section */}
+             <div className="bg-white w-full rounded-lg shadow-lg p-6">
+            <h4 className="font-bold text-lg">You would also like</h4>
+          </div>
           <AgencyList agencies={agencies} filters={filters} />
-        </div>
-        <Link href="/customer/agencies">
+          <Link href="/customer/cars">
           <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
               Voir plus de véhicules
           </button>
           </Link>
+        </div>
+ 
       </main>
     </div>
   );

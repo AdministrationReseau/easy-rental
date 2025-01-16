@@ -45,7 +45,7 @@ const AgencyInfo: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
     {/* Favorite Icon Placeholder */}
-    <div className="absolute top-10 right-10 text-gray-400 hover:text-red-500 cursor-pointer">
+    <div className="absolute top-32 right-20 text-4xl text-gray-400 hover:text-red-500 cursor-pointer">
       ♥
     </div>
       <div>
@@ -199,11 +199,7 @@ const AgencyDetail: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
       </div>
       <AgencyVehicles agency={agency}/>
 
-      {/* Recommendations Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h4 className="font-bold text-lg">You would also like</h4>
-
-      </div>
+      
     </div>
   );
 };

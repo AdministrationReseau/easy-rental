@@ -53,8 +53,8 @@ const VehicleDetails: React.FC = () => {
   }
 
   return (
-    <div className='m-2'>
-      <main className="flex">
+    <div className='m-2 '>
+      <main className="flex ">
         {/* Section filtre */}
         {/* <div className="filter-container">
           <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
