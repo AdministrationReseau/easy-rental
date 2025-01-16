@@ -310,14 +310,15 @@ import LocationFilterContainer from "@/components/LocationFilter";
     );
   }
 
-  import React, {useRef } from "react";
+  import React, {useRef, useMemo} from "react";
   import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
   import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
   import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
   import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-  
-  function Stats() {
-    const stats = [
+function Stats() {
+  // Mémoriser l'objet `stats` pour éviter qu'il change à chaque rendu
+  const stats = useMemo(
+    () => [
       {
         icon: <CalendarMonthIcon className="text-4xl text-white" />,
         number: 60,
@@ -338,110 +339,105 @@ import LocationFilterContainer from "@/components/LocationFilter";
         number: 67,
         label: "Total Branches",
       },
-    ];
-  
-    const [visible, setVisible] = useState(false);
-    const containerRef = useRef(null);
-    const [counts, setCounts] = useState(stats.map(() => 0)); // Initialiser tous les compteurs à 0
+    ],
+    []
+  );
 
-    // Observer pour détecter l'apparition
-    useEffect(() => {
-      const currentRef = containerRef.current; // Stocker la référence dans une variable locale
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-          }
-        },
-        { threshold: 0.5 } // 50% du composant visible déclenche l'animation
-      );
-  
-      if (currentRef) {
-        observer.observe(currentRef);
-      }
-  
-      return () => {
-        if (currentRef) {
-          observer.unobserve(currentRef);
+  const [visible, setVisible] = useState(false);
+  const containerRef = useRef(null);
+  const [counts, setCounts] = useState(stats.map(() => 0)); // Initialiser tous les compteurs à 0
+
+  // Observer pour détecter l'apparition
+  useEffect(() => {
+    const currentRef = containerRef.current; // Stocker la référence dans une variable locale
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
         }
-      };
-    }, []);
-  
-    // Fonction pour animer le compteur
-    useEffect(() => {
-      if (!visible) return;
-  
-      const durations = 200000; // Durée totale de l'animation
-      const interval = 300; // Intervalle pour incrémenter les valeurs
-  
-      const timers = stats.map((stat, index) => {
-        const steps = Math.ceil(durations / interval);
-        const increment = stat.number / steps;
-        let currentValue = 0;
-  
-        const timer = setInterval(() => {
-          currentValue += increment;
-          setCounts((prevCounts) => {
-            const newCounts = [...prevCounts];
-            newCounts[index] = Math.min(Math.round(currentValue), stat.number);
-            return newCounts;
-          });
-  
-          if (currentValue >= stat.number) {
-            clearInterval(timer);
-          }
-        }, interval);
-  
-        return timer;
-      });
-  
-      return () => timers.forEach((timer) => clearInterval(timer));
-    }, [visible, stats]);
-  
-  
-    return (
-      <section
-        className="py-16 bg-secondary-blue m-8 rounded-lg"
-        style={{ backgroundImage: "url('/Ads 1.png')" }}
-        ref={containerRef}
-      >
-        <div className="mx-auto px-4">
-          <h1 className="text-4xl text-center p-4 text-white font-bold">
-            Facts In Numbers
-          </h1>
-          <p className="text-sm text-white p-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam unde
-            sapiente officiis, ab alias rerum nulla sunt eligendi ducimus quam
-            facilis hic assumenda nostrum dolorem tempora consequatur adipisci
-            temporibus corrupti.
-          </p>
-          <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
-            {stats.map((stat, index) => {
-              // const count = counters[index]; // Récupérer la valeur pré-calculée
-              // const count = useCounter(stat.number, 2000, visible?1:0); // 2000ms duration
-              return (
-                <div
-                  key={index}
-                  className="flex flex-row justify-around bg-white rounded-lg m-4 p-4"
-                >
-                  <span className="w-[50%] rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
-                    {stat.icon}
-                  </span>
-                  <div className="w-[50%]">
-                    <div className="text-3xl font-bold text-primary-text mb-2">
-                    {counts[index]}+
-                    </div>
-                    <p className="text-primary-text">{stat.label}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      },
+      { threshold: 0.5 } // 50% du composant visible déclenche l'animation
     );
-  }
-  
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  // Fonction pour animer le compteur
+  useEffect(() => {
+    if (!visible) return;
+
+    const durations = 4000; // Durée totale de l'animation
+    const interval = 50; // Intervalle pour incrémenter les valeurs
+
+    stats.forEach((stat, index) => {
+      const steps = Math.ceil(durations / interval);
+      const increment = stat.number / steps;
+      let currentValue = 0;
+
+      const timer = setInterval(() => {
+        currentValue += increment;
+        setCounts((prevCounts) => {
+          const newCounts = [...prevCounts];
+          newCounts[index] = Math.min(Math.round(currentValue), stat.number);
+          return newCounts;
+        });
+
+        if (currentValue >= stat.number) {
+          clearInterval(timer);
+        }
+      }, interval);
+
+      return () => clearInterval(timer); // Nettoyer les timers après l'animation
+    });
+  }, [visible, stats]);
+
+  return (
+    <section
+      className="py-16 bg-secondary-blue m-8 rounded-lg"
+      style={{ backgroundImage: "url('/Ads 1.png')" }}
+      ref={containerRef}
+    >
+      <div className="mx-auto px-4">
+        <h1 className="text-4xl text-center p-4 text-white font-bold">
+          Facts In Numbers
+        </h1>
+        <p className="text-sm text-white p-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam unde
+          sapiente officiis, ab alias rerum nulla sunt eligendi ducimus quam
+          facilis hic assumenda nostrum dolorem tempora consequatur adipisci
+          temporibus corrupti.
+        </p>
+        <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="flex flex-row justify-around bg-white rounded-lg m-4 p-4"
+            >
+              <span className="w-[50%] rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
+                {stat.icon}
+              </span>
+              <div className="w-[50%]">
+                <div className="text-3xl font-bold text-primary-text mb-2">
+                  {counts[index]}+
+                </div>
+                <p className="text-primary-text">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
   import { LocationOn, Handshake, } from '@mui/icons-material';
 import Stars from "@/components/Stars";
 import Image from "next/image";

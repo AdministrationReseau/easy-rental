@@ -70,7 +70,7 @@ const AgencyDetails: React.FC = () => {
        
           <Link href="/customer/agencies">
           <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
-              Voir plus d'agences
+              See More Agencies
           </button>
           </Link>
              {/* Recommendations Section */}
@@ -80,7 +80,7 @@ const AgencyDetails: React.FC = () => {
           <AgencyList agencies={agencies} filters={filters} />
           <Link href="/customer/cars">
           <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
-              Voir plus de véhicules
+              See More Vehicles
           </button>
           </Link>
         </div>
