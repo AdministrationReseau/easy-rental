@@ -12,7 +12,11 @@ interface CheckboxProps {
 // Checkbox Component
 const CustomCheckbox: React.FC<CheckboxProps> = ({ label, checked, onChange }) => {
     return (
-        <div style={{overflow: 'auto' }}>
+        <div 
+            className={`space-y-4 w-full flex items-center justify-between p-4 rounded-lg border bg-whitish-background text-primary-text `}
+            style={{overflow: 'auto' 
+
+            }}>
             <FormControlLabel
                 control={
                     <Checkbox

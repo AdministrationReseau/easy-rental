@@ -52,46 +52,36 @@ const OrgSidebar: React.FC = () => {
             {/* Toggle Button */}
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="text-secondary-text p-3 mt-2 text-[18px] focus:outline-none hover:text-primary-blue"
+                className="text-nowrap text-secondary-text p-3 mt-2 text-[18px] focus:outline-none hover:text-primary-blue"
             >
-                {isCollapsed ? <Menu/> : <MenuOpen/>} Dashboard
+                {isCollapsed ? <Menu/> : <MenuOpen/>}
+                {isCollapsed ? "" : "Dashboard" }
             </button>
 
             {/* Main Menu Section */}
             <div className="mt-4">
                 <ul>
                     {mainMenuItems.map((item, index) => (
-                        <li
-                            key={index}
-                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                isActive(item.link)
-                                    ? "bg-primary-blue text-white"
-                                    : "hover:bg-gray-100 text-secondary-text"
-                            }`}
-                        >
-                            <span
-                                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                        <Link key={index} href={item.link}>
+                            <li
+                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "border-white bg-white text-primary-blue"
-                                        : "border-gray-200 bg-white text-gray-200"
+                                        ? "bg-primary-blue text-white  m-2"
+                                        : "hover:bg-gray-100 hover:mx-2 text-secondary-text"
                                 }`}
                             >
-                                {item.icon}
-                            </span>
-                            {!isCollapsed && (
-                                <Link href={item.link}>
-                                    <p
-                                        className={`transition-colors duration-200 ${
-                                            isActive(item.link)
-                                                ? "text-white"
-                                                : "text-secondary-text"
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </p>
-                                </Link>
-                            )}
-                        </li>
+                                <span
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                        isActive(item.link)
+                                            ? "border-white bg-white text-primary-blue"
+                                            : "border-gray-200 bg-white text-gray-200"
+                                    }`}
+                                >
+                                    {item.icon}
+                                </span>
+                                {!isCollapsed && <p>{item.name}</p>}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>
@@ -103,61 +93,52 @@ const OrgSidebar: React.FC = () => {
             <div className="mt-1">
                 <ul>
                     {preferenceItems.map((item, index) => (
-                        <li
-                            key={index}
-                            className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
-                                isActive(item.link)
-                                    ? "bg-primary-blue text-white"
-                                    : "hover:bg-gray-100 text-secondary-text"
-                            }`}
-                        >
-                            <span
-                                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                        <Link key={index} href={item.link}>
+                            <li
+                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "border-white bg-white text-primary-blue"
-                                        : "border-gray-200 bg-white text-gray-200"
+                                        ? "bg-primary-blue text-white"
+                                        : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
-                                {item.icon}
-                            </span>
-                            {!isCollapsed && (
-                                <Link href={item.link}>
-                                    <p
-                                        className={`transition-colors duration-200 ${
-                                            isActive(item.link)
-                                                ? "text-white"
-                                                : "text-secondary-text"
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </p>
-                                </Link>
-                            )}
-                        </li>
+                                <span
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                        isActive(item.link)
+                                            ? "border-white bg-white text-primary-blue"
+                                            : "border-gray-200 bg-white text-gray-200"
+                                    }`}
+                                >
+                                    {item.icon}
+                                </span>
+                                {!isCollapsed && <p>{item.name}</p>}
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </div>
 
             {/* Logout Section */}
             <div className="p-4">
-                <button
-                    className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                        isActive("/logout")
-                            ? "bg-red-500 text-white"
-                            : "hover:bg-gray-100 text-red-500"
-                    }`}
-                >
-                    <span
-                        className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
-                            isActive("/logout")
-                                ? "border-white bg-white text-red-500"
-                                : "border-red-500 bg-white text-red-500"
+                <Link href="/">
+                    <li
+                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
+                            isActive("/")
+                                ? "bg-red-500 text-white"
+                                : "hover:bg-gray-100 text-red-500"
                         }`}
                     >
-                        <Logout/>
-                    </span>
-                    {!isCollapsed && <span>Log Out</span>}
-                </button>
+                        <span
+                            className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                isActive("/logout")
+                                    ? "border-white bg-white text-red-500"
+                                    : "border-red-500 bg-white text-red-500"
+                            }`}
+                        >
+                            <Logout />
+                        </span>
+                        {!isCollapsed && <span>Log Out</span>}
+                    </li>
+                </Link>
             </div>
         </div>
     );

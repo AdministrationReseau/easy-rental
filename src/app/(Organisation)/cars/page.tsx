@@ -2,41 +2,46 @@
 
 import { useState, useEffect } from 'react';
 import ResourceEditForm from '../../../components/ResourceEditForm';
-import { Vehicle } from '@/utils/types/resources';
 import { ResourceCard } from '@/components/ResourceCard';
+import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
+import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
+import Link from 'next/link';
 
 export default function VehiclesPage() {
     const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
-    const [formModalResource, setFormModalResource] = useState<Vehicle | null>(null);
+    const [formModalResource, setFormModalResource] = useState<CarProps | null>(null);
 
     const closeEditForm = () => {
         setFormModalResource(null);
         setIsEditFormOpen(false);
     }
 
-    const openEditForm = (resourceId: number) => {
-        setFormModalResource(vehicles.find((vehicle) => vehicle.id === resourceId) || null);
-        setIsEditFormOpen(true);
-    }
+    // const openEditForm = (resourceId: number) => {
+    //     setFormModalResource(vehicles.find((vehicle) => vehicle.id === resourceId) || null);
+    //     setIsEditFormOpen(true);
+    // }
 
-    const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    const [vehicles, setVehicles] = useState<CarProps[]>([]);
 
     useEffect(() => {
-        const fetchVehicles = async () => {
-        try {
-            const response = await fetch("/data/cars.json");
+        fetch('/data/cars.json')
+          .then((response) => {
             if (!response.ok) {
-            throw new Error("Failed to fetch vehicles");
+              throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const data: Vehicle[] = await response.json();
-            setVehicles(data);
-        } catch (error) {
-            console.error("Error fetching vehicles:", error);
-        }
-        };
-
-        fetchVehicles();
-    }, []);
+            return response.json();
+          })
+          .then((data) => {
+            if (data && Array.isArray(data.vehicles)) {
+              setVehicles(data.vehicles);
+            } else {
+              console.error('Unexpected data format:', data);
+            }
+          })
+          .catch((error) => {
+            console.error('Error loading vehicles:', error);
+          });
+      }, []);
 
     const [showAlert, setShowAlert] = useState(false);
 
@@ -47,16 +52,21 @@ export default function VehiclesPage() {
         }
     }, [showAlert]);
 
-    // const handleDelete = (id: number) => {
-    //     setVehicles((prev) => prev.filter((vehicle) => vehicle.id !== id));
-    //     setShowAlert(true);
-    // };
+    const [, setFilters] = useState<FilterVehicleProps>({
+        type: [],
+        capacity: null,
+        priceRange: [0, Infinity],
+    });
+
+    const handleFilterChange = (newFilters: FilterVehicleProps) => {
+        setFilters(newFilters);
+    };
 
     return (
-        <div className='h-full w-full p-4 flex flex-col gap-2 bg-primary-blue/5 rounded-md'>
+        <div className='h-full w-full flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
                 <div>
-                    <h2 className='font-bold text-xl'>Your vehicles</h2>
+                    <h2 className='text-2xl font-bold'>Your vehicles</h2>
                     <div className='text-gray-600 text-sm'>
                         Actually, you have <span className='font-black'>{vehicles.length} vehicles</span>
                     </div>
@@ -66,13 +76,15 @@ export default function VehiclesPage() {
                     <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
                 </div>
             </div>
+            <div className="my-4">
+                <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
+            </div>
             <div className='h-full flex flex-row gap-0'>
-                <div className='w-1/5 h-full flex items-center justify-center bg-red border border-black'>
-                    FILTER
-                </div>
-                <div className='w-full h-full overflow-auto'>
+                <div className='grid grid-cols-2 gap-4 w-full h-full overflow-auto'>
                     {vehicles.map((vehicle) => (
-                        <ResourceCard key={vehicle.id} resource={vehicle} openEditForm={openEditForm} profilActive={false} />
+                        <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
+                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} />
+                        </Link>
                     ))}
                 </div>
             </div>

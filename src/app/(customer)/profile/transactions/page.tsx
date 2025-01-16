@@ -45,9 +45,9 @@ const Transaction = () => {
 
     return (
         <div>
-            <main className="flex-grow overflow-y-auto p-6">
+            <main className="flex-grow overflow-y-auto md:p-6 min-h-screen">
 
-                <div className="flex flex-row justify-center">
+                <div className="flex flex-col justify-center items-center md:flex-row ">
                     <TransactionInfoCard
                         title= "Total Earnings"
                         device="FCFA"
@@ -73,7 +73,7 @@ const Transaction = () => {
                     />
                 </div>
 
-                <div className="ml-[25px] mt-[20px]">
+                <div className="mt-[20px]">
                     <div>
                         <TransactionList transactions={transactions} />
                     </div>

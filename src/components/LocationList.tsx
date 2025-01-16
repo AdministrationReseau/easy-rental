@@ -22,10 +22,10 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                 {locations.map((location) => (
                     <div
                         key={location.id}
-                        className="flex items-center justify-between bg-whitish-background p-4 rounded-lg shadow-sm"
+                        className="flex flex-col md:flex-row items-center justify-between bg-whitish-background p-4 rounded-lg shadow-sm"
                     >
                         {/* Image et informations */}
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center justify-between space-x-4">
                             <Image
                                 src={location.image}
                                 alt={location.name}
@@ -40,7 +40,7 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                         </div>
 
                         {/* Prix et date */}
-                        <div className="flex flex-col items-end space-y-1">
+                        <div className="flex justify-between w-full mt-2 md:mt-0 md:flex-col flex-row items-end space-y-1">
                             <p className="text-sm font-semibold text-primary-text">{location.price}</p>
                             <p className="text-sm text-secondary-text">{location.date}</p>
                         </div>

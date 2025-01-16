@@ -55,6 +55,8 @@ const ComboBox: React.FC<ComboBoxProps> = ({ options, onChange, width = "100%" }
                     <Image
                         src={option.icon}
                         alt={option.name}
+                        width={100}
+                        height={100}
                         className="w-auto h-10 max-w-15"
                     />
                 </div>

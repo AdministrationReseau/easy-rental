@@ -14,3 +14,8 @@ export enum ProcessColor {
     SUCCESS = 'bg-green-text',
     OUTPRIMARY = 'outlined bg-primary-blue',
 }
+
+export enum LocationFilterEnum {
+    PICKUP = 'Pick-Up',
+    DROPOFF = 'Drop-Off'
+}
