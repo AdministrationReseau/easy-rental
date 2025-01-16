@@ -80,9 +80,9 @@ export default function NotificationPage() {
   };
 
   return (
-    <div className="relative w-full px-4 max-h-screen mx-auto mt-4 p-4 flex flex-col gap-4">
+    <div className="relative w-full px-4  mx-auto mt-4 p-4 flex flex-col gap-4">
       {/* Barre de recherche et suppression multiple */}
-        <div className="absolute left-10 top-2 w-11/12 flex flex-row gap-8 items-center justify-center">
+        <div className="relative left-10 top-2 w-11/12 flex flex-row gap-8 items-center justify-center">
             <SearchField placeholder="Rechercher" onSearch={handleSearch} />
             {checkedNotifications.length > 0 && (
             <Delete
@@ -95,13 +95,13 @@ export default function NotificationPage() {
 
       {/* Alerte */}
       {showAlert && (
-        <div className="absolute top-16 mb-10 left-10 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg">
+        <div className="relative top-16 mb-10 left-10 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg">
           {showAlert}
         </div>
       )}
 
       {/* Liste des notifications */}
-      <div className="w-11/12 max-w-3xl h-full mx-auto mt-10 p-4 flex flex-col gap-4">
+      <div className="w-11/12 max-w-3xl  mx-auto mt-10 p-4 flex flex-col gap-4">
         {filteredNotifications.map((notification) => (
           <div
             key={notification.id}

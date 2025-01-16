@@ -156,10 +156,10 @@ const Agence = () => {
                 </button>
 
                 {/* Agency Cards */}
-                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 max-w-full">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-full">
                     {filteredAgencies.map((agency) => (
                         <Link href={`/agencies/${agency.id}`} key={agency.id}>
-                            <div className="bg-white shadow rounded p-4 w-full sm:w-[350px] md:w-[350px] lg:w-[380px] cursor-pointer">
+                            <div className="bg-white shadow rounded p-4 w-full  cursor-pointer">
                                 <Image
                                     src={agency.images[0]}
                                     alt={agency.name}
