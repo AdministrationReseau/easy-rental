@@ -76,16 +76,16 @@ const SidebarFilter: React.FC<{ drivers: DriverProps[]; onFilter: (filters: Filt
   return (
     <div className="mx-auto flex flex-col h-fit w-[95%]">
       <div className="bg-white rounded-md shadow-lg flex flex-col h-full w-[95%]">
-        <div className="w-full h-full overflow-y-auto relative">
-          <div className="flex w-full items-center px-4">
+        <div className="w-full h-full relative">
+          <div className="flex flex-col w-full items-center px-4">
             <h2 className="w-1/6 text-lg font-semibold" onClick={showFilters}>Filters</h2>
             
             <div className="w-full flex gap-8">
               {!(ratingOpened) &&
-                <div className="flex flex-row gap-4 items-center">
+                <div className="flex flex-row gap-4 justify-center items-center">
                   <h3 className={`cursor-pointer bg-primary-blue/80 text-white p-1 px-2 rounded-lg text-md" ${ageOpened ? 'font-bold' : 'font-medium'}`} onClick={toogleAge}>Age {ageOpened ? ':' : ''}</h3>
                   {ageOpened &&
-                    <div className="flex flex-row gap-4 w-64 items-center">
+                    <div className="flex flex-row justify-center gap-4 w-64 items-center">
                       <Slider
                         value={ageRange}
                         onChange={handleAgeChange}
@@ -100,7 +100,7 @@ const SidebarFilter: React.FC<{ drivers: DriverProps[]; onFilter: (filters: Filt
               }
 
               {!(ageOpened) &&
-                <div className="flex flex-row gap-4 items-center">
+                <div className="flex flex-row gap-4 justify-center items-center">
                   <h3 className={`cursor-pointer bg-primary-blue/80 text-white p-1 px-2 rounded-lg text-md" ${ratingOpened ? 'font-bold' : 'font-medium'}`} onClick={toogleRating}>Rating {ratingOpened ? ':' : ''}</h3>
                   {ratingOpened &&
                     <div className="flex flex-row gap-4 w-64 items-center">

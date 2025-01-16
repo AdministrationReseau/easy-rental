@@ -28,11 +28,11 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       ></div>
 
       {/* Thumbnail Images Section */}
-      <div className="flex justify-left mt-6 w-full  gap-6">
+      <div className="flex justify-center items-center mt-6 w-full  gap-3">
         {vehicle.images.slice(0, 3).map((image, index) => (
           <div
             key={index}
-            className="relative bg-cover bg-center w-36 h-40 rounded-lg cursor-pointer"
+            className="relative bg-cover bg-center w-40 h-40 rounded-lg cursor-pointer"
             style={{ backgroundImage: `url(${image})` }}
             onClick={() => setCurrentImage(image)}
           ></div>
@@ -155,7 +155,7 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
         <div className="w-[60%]  px-4">
           <VehicleImage vehicle={vehicle} />
         </div>
-        <div className="w-[40%] px-4 ">
+        <div className="w-[70%] px-2 ">
           {/* Car Info */}
           <VehicleInfo vehicle={vehicle} />
         </div>
