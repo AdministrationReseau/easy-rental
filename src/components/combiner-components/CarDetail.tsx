@@ -66,7 +66,7 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       <p className="text-sm text-gray-500 py-2">{vehicle.description.join(' ')}</p>
 
       {/* Specifications */}
-      <div className="grid grid-cols-4 gap-4 text-sm text-gray-500 py-4">
+      <div className="grid grid-cols-4 text-sm text-gray-500 py-4">
         <div>
           <span className="block py-2">Type</span>
           <span className="block font-bold text-gray-800">{vehicle.type}</span>
@@ -88,10 +88,10 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       {/* Price and Button */}
       <div className="flex justify-between items-center py-4">
         <div>
-          <span className="text-xl font-bold text-gray-800">${vehicle.pricePerDay}.00</span>
+          <span className="text-xl font-bold text-gray-800">{vehicle.pricePerDay}.00 XAF</span>
           <span className="text-sm text-gray-400"> / day</span>
           <p className="text-xs text-gray-400 line-through">
-            ${vehicle.pricePerDay * 1.25}.00
+            {vehicle.pricePerDay * 1.25}.00 XAF
           </p>
         </div>
         <Link href={`/customer/cars/${vehicle.id}/location`}>
@@ -135,7 +135,7 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
   const isValidFeaturesObject = vehicleFeatures && typeof vehicleFeatures === 'object';
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-lg p-6 grid grid-cols-3 gap-4 text-gray-500">
+    <div className="w-full bg-white rounded-lg shadow-lg p-6 grid md:grid-cols-3 grid-cols-2 gap-4 text-gray-500">
       {features.map((feature, index) => (
         <CheckboxOne
           key={index}
@@ -167,7 +167,7 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       </div>
 
       {/* Specifications Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-4 gap-4 text-center text-gray-500">
+      <div className="bg-white rounded-lg shadow-lg p-6 grid md:grid-cols-4 grid-cols-2 gap-4 text-center text-gray-500">
         <div className="flex flex-col">
           <span><AddRoadIcon /></span>
           <span className="material-icons">speed</span>
