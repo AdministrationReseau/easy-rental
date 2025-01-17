@@ -95,7 +95,7 @@ import { PlayCircle } from '@mui/icons-material';
  function AboutSection() {
     return (
         <div className="relative flex  items-center rounded-lg p-8 flex-col md:flex-row">
-        <div className="flex  md:bg-white rounded-l-lg h-full items-center">
+        <div className="flex  md:bg-white rounded-l-lg h-[370px] items-center">
             <div className="h-full w-[400px] md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
                 <Image
                     src="/about_rental.png"
@@ -109,7 +109,7 @@ import { PlayCircle } from '@mui/icons-material';
         </div>
 
         {/* Section droite (bleu) */}
-        <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-l-lg md:rounded-r-0   rounded-r-lg h-full">
+        <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-l-lg md:rounded-l-0   rounded-r-lg h-full">
             {/* <div className="flex-1 ">
 
             </div> */}

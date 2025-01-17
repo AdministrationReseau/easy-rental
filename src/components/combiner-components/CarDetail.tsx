@@ -47,7 +47,7 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
     <div className=" bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
       {/* Favorite Icon Placeholder */}
-      <div className="absolute top-25 text-3xl right-10 text-gray-400 hover:text-red-500 cursor-pointer">
+      <div className="absolute top-25 text-3xl right-16 text-gray-400 hover:text-red-500 cursor-pointer">
         ♥
       </div>
 
@@ -157,10 +157,10 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       {/* Car Details Section */}
       <div className="flex justify-center flex-col md:flex-row gap-6 w-full rounded-lg ">
         {/* Car Description */}
-        <div className="md:w-[55%]  px-4">
+        <div className="md:w-[55%]  ">
           <VehicleImage vehicle={vehicle} />
         </div>
-        <div className="md:w-[35%] px-4 ">
+        <div className="md:w-[35%] ">
           {/* Car Info */}
           <VehicleInfo vehicle={vehicle} />
         </div>
