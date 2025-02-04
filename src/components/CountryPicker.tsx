@@ -17,7 +17,7 @@ export const CountryPickerStyled = ({ valueCountry, valueRegion, onChangeCountry
   
 
   return (
-    <div className="w-full ">
+    <div className="w-full my-2 h-[50px] ">
       <div className="flex flex-col gap-4">
         <div className="relative">
           <label className="block font-medium mb-1">Country</label>

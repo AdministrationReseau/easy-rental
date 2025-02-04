@@ -269,7 +269,7 @@ const MultiStepForm: React.FC = () => {
                             <div className="w-3 h-3 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
                             <span>Pick-Up</span>
                         </div>
-                        <div className='flex flex-row justify-between'>
+                        <div className='flex flex-row gap-4'>
                             <div className="flex flex-col w-[70%]">
                                 <div className="flex h-full ">
                                     <CountryPickerStyled 
@@ -298,7 +298,7 @@ const MultiStepForm: React.FC = () => {
                             <div className="w-3 h-3 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
                             <span>Back-Off</span>
                         </div>
-                        <div className='flex flex-row justify-between'>
+                        <div className='flex flex-row gap-4'>
                             <div className="flex flex-col w-[70%]">
                                 <div className="flex h-full ">
                                     <CountryPickerStyled 
@@ -333,7 +333,7 @@ const MultiStepForm: React.FC = () => {
                             <p>Please choose a driver</p>
                             <p>Step {currentStep} of {totalSteps}</p>
                         </div>
-                        <div className='w-full overflow-x-scroll relative'>
+                        <div className='w-full overflow-x-auto relative'>
                             <DriverList vehicleId={Number(id)} onSelectedDriversChange={handleSelectedDriversChange} />
                         </div>
                     </>

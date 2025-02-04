@@ -21,9 +21,9 @@ export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
     };
 
     return (
-        <div className="w-full mx-auto">
+        <div className="w-full my-2 h-[50px]">
             <div className="flex flex-col gap-4">
-                <div className="w-full relative">
+                <div className="relative">
                     <label htmlFor="datePicker" className="block mb-1 text-sm font-medium text-black dark:text-white">
                         Select Date
                     </label>
