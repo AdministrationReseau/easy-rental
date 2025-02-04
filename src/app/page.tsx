@@ -96,7 +96,7 @@ import { PlayCircle } from '@mui/icons-material';
     return (
         <div className="relative flex  items-center rounded-lg p-8 flex-col md:flex-row">
         <div className="flex  md:bg-white rounded-l-lg h-[370px] items-center">
-            <div className="h-full w-[400px] md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
+            <div className="h-full md:w-[400px] md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
                 <Image
                     src="/about_rental.png"
                     alt="Welcome"
@@ -113,7 +113,7 @@ import { PlayCircle } from '@mui/icons-material';
             {/* <div className="flex-1 ">
 
             </div> */}
-            <div className=" flex-[4] md:w-2/3 w-full mt-6  md:text-base md:ml-[90px] rounded-lg flex flex-col justify-around text-left">
+            <div className=" flex-[4] md:w-2/3 w-full my-10  md:text-base md:ml-[90px] rounded-lg flex flex-col justify-around text-left">
                 <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
                     Welcome to Easy Rent
                 </h2>
