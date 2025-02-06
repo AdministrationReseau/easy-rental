@@ -41,7 +41,7 @@ const OrgSidebar: React.FC = () => {
         { name: "Help", icon: <Help />, link: "/help" },
     ];
 
-    const isActive = (link: string) => pathname === link;
+    const isActive = (link: string) =>  pathname.startsWith(link);
 
     return (
         <div
@@ -87,7 +87,7 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-300 mt-auto"></div>
+            <div className="border-t bottom-0 border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
             <div className="mt-1">
@@ -118,7 +118,7 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="p-4">
+            <div className="p-4 bottom-0">
                 <Link href="/">
                     <li
                         className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
