@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+// 'use client'
+
+import React from 'react';
 import Link from 'next/link';
 import { CheckCircle } from '@mui/icons-material';
 import { motion } from 'framer-motion';
