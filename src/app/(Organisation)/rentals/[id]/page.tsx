@@ -4,12 +4,21 @@ import { useParams } from 'next/navigation';
 import { CarProps } from '@/utils/types/CarProps';
 import { RentalSummaryOrg } from '@/components/organisation/RentalSummaryOrg';
 
+interface Location1 {
+    id: string;
+    name: string;
+    type: string;
+    date: string;
+    price: string;
+    image: string;
+}
 const Renting = () => {
-
+        const [location, setLocation] = useState<Location1>();
         const { id } = useParams(); // Récupération de l'ID via Next.js
         const [vehicle, setVehicle] = useState<CarProps| null>(null);
-        const [vehicles, setVehicles] = useState<CarProps[]>([]);
-        console.log(vehicles);
+        const [loading, setLoading] = useState<boolean>(true);
+        const [error, setError] = useState<string | null>(null);
+    
     // Chargement des données des véhicules
         useEffect(() => {
             fetch('/data/cars.json')
@@ -21,7 +30,6 @@ const Renting = () => {
                 })
                 .then((data) => {
                     if (data && Array.isArray(data.vehicles)) {
-                        setVehicles(data.vehicles);
                         const foundVehicle = data.vehicles.find(
                             (v: CarProps) => v.id.toString() === id
                         );
@@ -35,6 +43,31 @@ const Renting = () => {
                 });
         }, [id]);
     
+        
+    // Chargement des données des véhicules
+    useEffect(() => {
+            const fetchLocations = async () => {
+                try {
+                    const response = await fetch("/data/locations.json");
+                    // console.log(response)
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch locations");
+                    }
+                    const data = await response.json();
+                    const foundLocation = data.find(
+                        (l: Location1) => l.id.toString() === id
+                    );
+                    setLocation(foundLocation|| null);
+                    
+                } catch (err) {
+                    setError((err as Error).message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+            fetchLocations();
+        }, []);
+    
     
         if (!vehicle) {
             return (
@@ -43,6 +76,9 @@ const Renting = () => {
                 </div>
             );
         }
+        if (loading) return <p>Loading ...</p>
+        if (error) return <p>Error: {error}</p>
+
         // État pour stocker les informations saisies
             const rentalInfo= {
                 pickUpDate: '',
@@ -61,6 +97,7 @@ const Renting = () => {
             };
     return (
         <div>
+            <p className='text-xl font-semi-blod'>Location request since : {location?.date}</p>
             
             <aside className="w-full  p-4 m-auto">
                 <RentalSummaryOrg

@@ -1,24 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Image from 'next/image';
+import { Person, CalendarMonth, CreditCard } from '@mui/icons-material';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';
-import { DateValue } from 'react-aria-components';
-
-export interface rentalInfoProps {
-    pickUpDate: DateValue | string | ReactNode;
-    pickUpTime: string;
-    pickUpPlace: string;
-    backOffDate: DateValue | string | ReactNode;
-    backOffTime: string;
-    backOffPlace: string;
-    billingName: string;
-    billingPhone: string;
-    billingAddress: string;
-    billingCity: string;
-    paymentMethod: string;  // Added payment method field
-    driverName: string| undefined;
-    promoCode: string;
-}
+import { rentalInfoProps } from '@/utils/types/RentalInfoProps';
+import DriverList from '../customer/DriverList';
 
 const RentalSummaryOrg: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
     brand,
@@ -27,110 +13,120 @@ const RentalSummaryOrg: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = 
     reviews,
     pricePerDay,
     images,
+    id,
     rentalInfo
 }) => {
     return (
-        <div className="bg-white text-gray-700 rounded-lg p-4 max-w-full shadow-md overflow-hidden">
-            {/* Header - Brand, Model, Like Button */}
-            <div className="flex flex-col py-2">
-                <h2 className="text-lg font-semibold text-gray-800">
-                    <b>Rental Summary</b>
-                </h2>
-                <p className='text-secondary-text text-sm'>Prices may change depending on the length of the rental and the price of your rental car</p>
-            </div>
-            <div className='flex py-6 flex-row justify-between items-center'>
-                {/* Image Section */}
-                <div className="flex items-center justify-center bg-gray-100">
-                    {images?.[0] && (
-                        <Image
-                            src={images[0]}
-                            alt={`${brand} ${model}`}
-                            width={200}
-                            height={200}
-                            className="object-contain rounded-lg"
-                        />
-                    )}
-                </div>
+        <div className="w-[80%] bg-white text-gray-700 rounded-2xl p-6 mx-auto shadow-xl border border-gray-100 space-y-6">
+            {/* Car Header */}
+            <div className="flex items-center justify-between">
                 <div>
-                    <span>
-                        <h1 className='text-xl text-primary-text'><b>{brand} {model}</b></h1>
-                    </span>
-                    <span className='flex flex-row w-full py-4'>
-                        <Stars value={rating  ?? 0} precision={1} />
-                       <span className='px-4'>{reviews.length} + Reviewer</span> 
-                    </span>
+                    <h1 className='text-2xl font-bold text-gray-800'>{brand} {model}</h1>
+                    <div className='flex items-center space-x-3 mt-2'>
+                        <Stars value={rating ?? 0} precision={1} />
+                        <span className='text-gray-500'>{reviews.length} Reviews</span>
+                    </div>
                 </div>
-            </div>
-            <div className='flex justify-center'>
-                <hr className='w-[80%] h-4'/>
-            </div>
-            <div>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Name:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingName || ''}</p>
-                </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Phone:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingPhone || ''}</p>
-                </span><span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>City:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingCity || ''}</p>
-                </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Billing Address:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingAddress || ''}</p>
-                </span>
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Date:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpDate || ''}</p>
-                </span> */}
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Time:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpTime || ''}</p>
-                </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Place:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpPlace || ''}</p>
-                </span>
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Date:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffDate || ''}</p>
-                </span> */}
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Time:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffTime || ''}</p>
-                </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Place:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffPlace || ''}</p>
-                </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Payment Method:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.paymentMethod || ''}</p>
-                </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Driver Name:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.driverName || ''}</p>
-                </span>
-                
+                {images?.[0] && (
+                    <Image
+                        src={images[0]}
+                        alt={`${brand} ${model}`}
+                        width={200}
+                        height={200}
+                        className="object-contain rounded-lg"
+                    />
+                )}
             </div>
 
-            <div className='flex flex-row justify-between py-2'>
-                <h1 className='text-secondary-text'> Subtotal</h1>
-                <p><b>{pricePerDay} Francs cfa</b></p>
-            </div>
-            <div className='flex flex-row justify-between py-2'>
-                <h1 className='text-secondary-text'> Tax</h1>
-                <p><b>0 Francs cfa</b></p>
-            </div>
-            <div className='flex flex-row justify-between py-2'>
-                <span className='flex flex-col py-2 '>
-                    <h1><b>Total Rental price</b></h1>
-                    <p className='text-secondary-text text-sm'>Overall price and includes rental discount</p>
-                </span>
-                <span className='flex items-center text-xl'>
-                    <b>{pricePerDay} FCFA</b>
-                </span>
+            {/* 3 Sections Layout */}
+            <div className="grid grid-cols-1 gap-6">
+                {/* 1. Renter Information Section */}
+                <div className="bg-blue-50 rounded-xl p-4 space-y-4">
+                    <div className="flex items-center space-x-3">
+                        <Person className="text-blue-600" />
+                        <h3 className="font-bold text-blue-800">Renter Details</h3>
+                    </div>
+                    <div className='flex flex-row w-full justify-between flex-wrap'>
+                    <div>
+                        <p className="text-sm text-gray-600">Name</p>
+                        <p className="font-medium">{rentalInfo?.billingName || 'N/A'}</p>
+                    </div>
+                    <div>
+                        <p className="text-sm text-gray-600">Phone</p>
+                        <p className="font-medium">{rentalInfo?.billingPhone || 'N/A'}</p>
+                    </div>
+                    <div>
+                        <p className="text-sm text-gray-600">City</p>
+                        <p className="font-medium">{rentalInfo?.billingCity || 'N/A'}</p>
+                    </div>
+                    </div>
+                </div>
+                {/* 2. Rental Information Section */}
+                <div className="bg-green-50 rounded-xl p-4 space-y-4">
+                    <div className="flex items-center space-x-3">
+                        <CalendarMonth className="text-green-600" />
+                        <h3 className="font-bold text-green-800">Rental Details</h3>
+                    </div>
+                    <div  className='grid grid-cols-2 w-full'>
+                        <div>
+                            <div>
+                                <p className="text-sm text-gray-600">Pick-Up Time</p>
+                                <p className="font-medium">{rentalInfo?.pickUpTime || 'N/A'}</p>
+                            </div>
+                            <div>
+                                <p className="text-sm text-gray-600">Pick-Up Place</p>
+                                <p className="font-medium">{rentalInfo?.pickUpPlace || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p className="text-sm text-gray-600">Return Time</p>
+                                <p className="font-medium">{rentalInfo?.backOffTime || 'N/A'}</p>
+                            </div>
+                            <div>
+                                <p className="text-sm text-gray-600">Return Place</p>
+                                <p className="font-medium">{rentalInfo?.backOffPlace || 'N/A'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 4.Section Driver */}
+                <div className="bg-pink-50 rounded-xl p-4 space-y-4">
+                    <div className="flex items-center space-x-3">
+                        <CreditCard className="text-pink-600" />
+                        <h3 className="font-bold text-pink-800">Driver Detail</h3>
+                    </div>
+                    <div className='w-full overflow-x-auto relative'>
+                        <DriverList vehicleId={Number(id)} onSelectedDriversChange={() => true} />
+                    </div>
+                </div>
+                
+               
+                {/* 3. Payment Information Section */}
+                <div className="bg-purple-50 rounded-xl p-4 space-y-4">
+                    <div className="flex items-center space-x-3">
+                        <CreditCard className="text-purple-600" />
+                        <h3 className="font-bold text-purple-800">Payment Details</h3>
+                    </div>
+                    <div>
+                        <p className="text-sm text-gray-600">Payment Method</p>
+                        <p className="font-medium">{rentalInfo?.paymentMethod || 'N/A'}</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-3 mt-4">
+                        <div className="flex justify-between">
+                            <span className="text-gray-600">Subtotal</span>
+                            <span className="font-semibold">{pricePerDay} FCFA</span>
+                        </div>
+                        <hr className="my-2 border-purple-100"/>
+                        <div className="flex justify-between">
+                            <span className="font-bold text-purple-800">Total</span>
+                            <span className="text-xl font-bold text-purple-900">{pricePerDay} FCFA</span>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     );
