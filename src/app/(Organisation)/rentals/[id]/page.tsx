@@ -2,7 +2,6 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'next/navigation';
 import { CarProps } from '@/utils/types/CarProps';
-import { RentalSummary } from '@/components/customer/RentalSummary';
 import { RentalSummaryOrg } from '@/components/organisation/RentalSummaryOrg';
 
 const Renting = () => {

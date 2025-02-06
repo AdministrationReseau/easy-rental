@@ -6,8 +6,13 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/module
 import DriverCard from './DriverCard';
 import { DriverProps } from '@/utils/types/DriverProps';
 
-const DriverCarousel: React.FC = () => {
+interface DriverListProps {
+    vehicleId: number; // ID du véhicule pour filtrer les chauffeurs
+    onSelectedDriversChange: (selectedDriver: DriverProps | null) => void; // Fonction pour le chauffeur sélectionné
+  }
+const DriverCarousel: React.FC<DriverListProps> = ({onSelectedDriversChange }) => {
     const [drivers, setDrivers] = useState<DriverProps[]>([]);
+     const [selectedDriver, setSelectedDriver] = useState<DriverProps | null>(null);
 
     useEffect(() => {
         const fetchDrivers = async () => {
@@ -30,10 +35,15 @@ const DriverCarousel: React.FC = () => {
         fetchDrivers();
     }, []);
 
-    const handleDriverSelect = (driver: DriverProps) => {
-        // Handle driver selection logic here
-        console.log('Driver selected:', driver);
-    };
+    // const handleDriverSelect = (driver: DriverProps) => {
+    //     // Handle driver selection logic here
+    //     console.log('Driver selected:', driver);
+    // };
+     const handleDriverSelection = (driver: DriverProps | null) => {
+        setSelectedDriver(driver);
+        onSelectedDriversChange(driver);
+      };
+    
 
     return (
         <div className="container mx-auto py-8">
@@ -50,12 +60,18 @@ const DriverCarousel: React.FC = () => {
                     480: { slidesPerView: 1 },
                 }}
             >
-                {drivers.map((driver) => (
+                {drivers.map((driver, index) => (
                     <SwiperSlide key={driver.id}>
-                        <DriverCard
+                        {/* <DriverCard
                             {...driver} // Spread the driver props directly here
                             onSelect={handleDriverSelect}
-                        />
+                        /> */}
+                        <DriverCard
+                        key={index}
+                        {...driver}
+                        onSelect={() => handleDriverSelection(selectedDriver?.id === driver.id ? null : driver)}
+                        isSelected={false}
+                    />
                     </SwiperSlide>
                 ))}
             </Swiper>

@@ -20,10 +20,10 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
         <div className="w-full">
             {/* <h2 className="text-xl font-semibold mb-4 text-primary-text">Recent Locations</h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {locations.map((location) => (
-                    <Link href={`/rentals/${location.id}`}>
+                {locations.map((location, index) => (
+                    <Link href={`/rentals/${location.id}`} key={index}>
                     <div
-                        key={location.id}
+                        key={index}
                         className=" w-full flex flex-col md:flex-row items-center justify-between bg-whitish-background p-4 rounded-lg shadow-sm"
                     >
                         {/* Image et informations */}
