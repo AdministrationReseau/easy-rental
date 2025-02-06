@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
     Home,
     DirectionsCar,
@@ -21,8 +21,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const OrgSidebar: React.FC = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const pathname = usePathname();
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setIsCollapsed(false);
+            } else {
+                setIsCollapsed(true);
+            }
+        };
+
+        // Running the function on initial load and on window resize
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        // Cleaning up the event listener
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const mainMenuItems = [
         { name: "Dashboard", icon: <Home />, link: "/Dashboard" },

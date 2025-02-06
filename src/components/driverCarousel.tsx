@@ -35,15 +35,17 @@ const DriverCarousel: React.FC<DriverListProps> = ({onSelectedDriversChange }) =
         fetchDrivers();
     }, []);
 
-    // const handleDriverSelect = (driver: DriverProps) => {
-    //     // Handle driver selection logic here
-    //     console.log('Driver selected:', driver);
-    // };
+
      const handleDriverSelection = (driver: DriverProps | null) => {
         setSelectedDriver(driver);
         onSelectedDriversChange(driver);
       };
-    
+
+    const handleDriverSelect = (driver: DriverProps | null) => {
+        // Handle driver selection logic here
+        setSelectedDriver(driver);
+        console.log('Driver selected:', driver);
+    };
 
     return (
         <div className="container mx-auto py-8">
