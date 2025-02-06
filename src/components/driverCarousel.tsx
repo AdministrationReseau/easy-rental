@@ -9,6 +9,8 @@ import { DriverProps } from '@/utils/types/DriverProps';
 const DriverCarousel: React.FC = () => {
     const [drivers, setDrivers] = useState<DriverProps[]>([]);
 
+    const [selectedDriver, setSelectedDriver] = useState<DriverProps | null>(null);
+
     useEffect(() => {
         const fetchDrivers = async () => {
             try {
@@ -30,8 +32,9 @@ const DriverCarousel: React.FC = () => {
         fetchDrivers();
     }, []);
 
-    const handleDriverSelect = (driver: DriverProps) => {
+    const handleDriverSelect = (driver: DriverProps | null) => {
         // Handle driver selection logic here
+        setSelectedDriver(driver);
         console.log('Driver selected:', driver);
     };
 
@@ -53,6 +56,7 @@ const DriverCarousel: React.FC = () => {
                 {drivers.map((driver) => (
                     <SwiperSlide key={driver.id}>
                         <DriverCard
+                            isSelected={selectedDriver?.id === driver.id}
                             {...driver} // Spread the driver props directly here
                             onSelect={handleDriverSelect}
                         />
