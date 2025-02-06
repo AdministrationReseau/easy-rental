@@ -6,6 +6,7 @@ import AgencyList from '@/components/customer/AgencyList';
 // import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
 import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 import AgencyDetail from '@/components/combiner-components/AgencyDetail';
+import Link from 'next/link';
 
 
 
@@ -63,11 +64,27 @@ const AgencyDetails: React.FC = () => {
         </div> */}
 
         {/* <Filter/> */}
-        <div className='flex justify-center items-center flex-col m-4'>
+        <div className='flex justify-center items-center flex-col'>
           {/* <LocationFilter/> */}
           <AgencyDetail agency={agency} />
+       
+          <Link href="/customer/cars">
+          <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
+              See More Vehicles
+          </button>
+          </Link>
+             {/* Recommendations Section */}
+             <div className="bg-white w-full rounded-lg shadow-lg p-6">
+            <h4 className="font-bold text-lg">You would also like</h4>
+          </div>
           <AgencyList agencies={agencies} filters={filters} />
+          <Link href="/customer/agencies">
+          <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
+              See More Agencies
+          </button>
+          </Link>
         </div>
+ 
       </main>
     </div>
   );

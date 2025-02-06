@@ -23,12 +23,12 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
     <div className="px-2 w-full">
       {/* Main Image Section */}
       <div
-        className="relative bg-cover bg-center min-h-[300px] min-w-[500px] rounded-lg shadow-lg w-full"
+        className="relative bg-cover bg-center min-h-[300px] min-w-[200px] rounded-lg shadow-lg"
         style={{ backgroundImage: `url(${currentImage})` }}
       ></div>
 
       {/* Thumbnail Images Section */}
-      <div className="flex justify-left mt-6 w-full  gap-6">
+      <div className="flex justify-left flex-wrap mt-6 w-full gap-2 md:gap-4">
         {vehicle.images.slice(0, 3).map((image, index) => (
           <div
             key={index}
@@ -45,9 +45,9 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
 export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
+    <div className=" bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
       {/* Favorite Icon Placeholder */}
-      <div className="absolute top-10 right-10 text-gray-400 hover:text-red-500 cursor-pointer">
+      <div className="absolute top-25 text-3xl right-16 text-gray-400 hover:text-red-500 cursor-pointer">
         ♥
       </div>
 
@@ -66,7 +66,7 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       <p className="text-sm text-gray-500 py-2">{vehicle.description.join(' ')}</p>
 
       {/* Specifications */}
-      <div className="grid grid-cols-4 gap-4 text-sm text-gray-500 py-4">
+      <div className="grid grid-cols-4 text-sm text-gray-500 py-4">
         <div>
           <span className="block py-2">Type</span>
           <span className="block font-bold text-gray-800">{vehicle.type}</span>
@@ -88,10 +88,10 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       {/* Price and Button */}
       <div className="flex justify-between items-center py-4">
         <div>
-          <span className="text-xl font-bold text-gray-800">${vehicle.pricePerDay}.00</span>
+          <span className="text-xl font-bold text-gray-800">{vehicle.pricePerDay}.00 XAF</span>
           <span className="text-sm text-gray-400"> / day</span>
           <p className="text-xs text-gray-400 line-through">
-            ${vehicle.pricePerDay * 1.25}.00
+            {vehicle.pricePerDay * 1.25}.00 XAF
           </p>
         </div>
         <Link href={`/customer/cars/${vehicle.id}/location`}>
@@ -135,7 +135,7 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
   const isValidFeaturesObject = vehicleFeatures && typeof vehicleFeatures === 'object';
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-3 gap-4 text-gray-500">
+    <div className="w-full bg-white rounded-lg shadow-lg p-6 grid md:grid-cols-3 grid-cols-2 gap-4 text-gray-500">
       {features.map((feature, index) => (
         <CheckboxOne
           key={index}
@@ -149,25 +149,25 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
 
 const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="space-y-8 bg-red w-full">
+    <div className="space-y-8 w-full">
       <Link href="/customer/cars">
         <h1 className="p-4 m-4">&gt; Back to Vehicles</h1>
       </Link>
 
       {/* Car Details Section */}
-      <div className="flex flex-col md:flex-row gap-6 w-full rounded-lg ">
+      <div className="flex justify-center flex-col md:flex-row gap-6 w-full rounded-lg ">
         {/* Car Description */}
-        <div className="w-[60%]  px-4">
+        <div className="md:w-[55%]  ">
           <VehicleImage vehicle={vehicle} />
         </div>
-        <div className="w-[40%] px-4 ">
+        <div className="md:w-[35%] ">
           {/* Car Info */}
           <VehicleInfo vehicle={vehicle} />
         </div>
       </div>
 
       {/* Specifications Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-4 gap-4 text-center text-gray-500">
+      <div className="bg-white rounded-lg shadow-lg p-6 grid md:grid-cols-4 grid-cols-2 gap-4 text-center text-gray-500">
         <div className="flex flex-col">
           <span><AddRoadIcon /></span>
           <span className="material-icons">speed</span>

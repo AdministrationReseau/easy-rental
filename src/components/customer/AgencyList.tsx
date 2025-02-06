@@ -48,9 +48,9 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
   const totalPages = Math.ceil(filteredAgencies.length / itemsPerPage);
 
   return (
-    <div className="px-5 w-full">
+    <div className="px-5 my-6 w-full">
       {/* Liste des agences */}
-      <div className="flex flex-row flex-wrap gap-6 w-full justify-center">
+      <div className="flex flex-row flex-wrap gap-4 w-full justify-center">
         {paginatedAgencies.length > 0 ? (
           paginatedAgencies.map((agency) => (
             <AgencyCard

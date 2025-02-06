@@ -96,7 +96,7 @@ export default function Home() {
                     <div>
                         <div className="mx-5 flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
-                            <h3 className="font-light text-lg text-secondary-text text-centeritems-center">
+                            <h3 className="font-light text-lg text-secondary-text text-center items-center">
                                 Find the best agencies to meet your needs
                             </h3>
 

@@ -49,7 +49,7 @@ const CarCard: React.FC<CarProps> = ({
     };
 
     return (
-        <div className="bg-white text-gray-700 rounded-lg shadow-md overflow-hidden w-[280px]">
+        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[280px]">
             {/* Header - Brand, Model, Like Button */}
             <div className="flex justify-between items-center p-4 h-[50px]">
                 <h2 className="text-md font-semibold text-gray-800">

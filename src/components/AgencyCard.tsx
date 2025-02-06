@@ -87,7 +87,7 @@ const AgencyCard: React.FC<AgencyProps> = ({
     const isOpen = isAgencyOpen(agency);
 
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[280px] h-[450px]">
+        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[280px]">
             {/* Première ligne - Nom et Like/Dislike */}
             <div className="flex justify-between items-center p-4">
                 <h2 className="text-xl font-semibold text-primary-text">{name}</h2>

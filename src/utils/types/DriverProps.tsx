@@ -19,6 +19,7 @@ export interface DriverProps {
     insurance_provider: string;
     insurance_policy: string;
     profile_picture?: string; // Optional
+    isSelected?: boolean | undefined;
 }
 
 export interface FilterDriverProps {

@@ -63,7 +63,7 @@ export default function VehiclesPage() {
     };
 
     return (
-        <div className='h-full w-full flex flex-col gap-2 rounded-md'>
+        <div className='h-full w-[100%] flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
                 <div>
                     <h2 className='text-2xl font-bold'>Your vehicles</h2>
@@ -80,7 +80,7 @@ export default function VehiclesPage() {
                 <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
             </div>
             <div className='h-full flex flex-row gap-0'>
-                <div className='grid grid-cols-2 gap-4 w-full h-full overflow-auto'>
+                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
                     {vehicles.map((vehicle) => (
                         <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
                             <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} />
