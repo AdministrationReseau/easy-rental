@@ -23,7 +23,7 @@ export interface DriverProps {
 }
 
 export interface FilterDriverProps {
-    rating: number | null;
+    ratingRange: [number, number];
     ageRange: [number, number];
     location?: string; // Optional
 }

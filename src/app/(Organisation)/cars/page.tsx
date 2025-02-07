@@ -1,27 +1,20 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import ResourceEditForm from '../../../components/ResourceEditForm';
-import { ResourceCard } from '@/components/ResourceCard';
 import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
-import Link from 'next/link';
+import CarDetail from '@/components/organisation/CarDetail';
+import OrgVehicleList from '@/components/organisation/OrgVehicleList';
 
 export default function VehiclesPage() {
-    const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
-    const [formModalResource, setFormModalResource] = useState<CarProps | null>(null);
-
-    const closeEditForm = () => {
-        setFormModalResource(null);
-        setIsEditFormOpen(false);
-    }
-
-    // const openEditForm = (resourceId: number) => {
-    //     setFormModalResource(vehicles.find((vehicle) => vehicle.id === resourceId) || null);
-    //     setIsEditFormOpen(true);
-    // }
-
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
+    const [filters, setFilters] = useState<FilterVehicleProps>({
+        type: [],
+        capacity: null,
+        priceRange: [0, Infinity],
+      });
+    const [selectedVehicle] = useState<CarProps | null>(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     useEffect(() => {
         fetch('/data/cars.json')
@@ -43,21 +36,6 @@ export default function VehiclesPage() {
           });
       }, []);
 
-    const [showAlert, setShowAlert] = useState(false);
-
-    useEffect(() => {
-        if (showAlert) {
-            const timer = setTimeout(() => setShowAlert(false), 1000);
-            return () => clearTimeout(timer);
-        }
-    }, [showAlert]);
-
-    const [, setFilters] = useState<FilterVehicleProps>({
-        type: [],
-        capacity: null,
-        priceRange: [0, Infinity],
-    });
-
     const handleFilterChange = (newFilters: FilterVehicleProps) => {
         setFilters(newFilters);
     };
@@ -76,22 +54,28 @@ export default function VehiclesPage() {
                     <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
                 </div>
             </div>
-            <div className="my-4">
-                <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
+            <div className={`my-4 ${isPopupOpen ? 'block' : 'hidden'} lg:block`}>
+                <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange}  isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen}/>
             </div>
-            <div className='h-full flex flex-row gap-0'>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
-                    {vehicles.map((vehicle) => (
-                        <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
-                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} />
-                        </Link>
-                    ))}
-                </div>
-            </div>
+            <div className='w-full h-full'>
+                {/* Display CarDetail if a vehicle is selected */}
+                {selectedVehicle && (
+                    <div className="mb-4">
+                        <CarDetail vehicle={selectedVehicle} />
+                    </div>
+                )}
 
-            { formModalResource && isEditFormOpen &&
-                <ResourceEditForm resource={formModalResource} onClose={closeEditForm} />   
-            }
+                <OrgVehicleList
+                    vehicles={vehicles}
+                    filters={filters}
+                />
+            </div>
+            <button
+                className="lg:hidden fixed bottom-4 right-4 bg-primary-blue text-white p-3 rounded-full shadow-lg"
+                onClick={() => setIsPopupOpen(true)}
+                >
+                Filters
+            </button>
         </div>
     );
 }
