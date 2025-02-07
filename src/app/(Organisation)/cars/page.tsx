@@ -6,6 +6,8 @@ import { ResourceCard } from '@/components/ResourceCard';
 import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import Link from 'next/link';
+import Image from "next/image";
+
 
 export default function VehiclesPage() {
     const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
@@ -22,6 +24,15 @@ export default function VehiclesPage() {
     // }
 
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
+    //Etat des champs des formulaires
+    const [vehicleDescription, setVehicleDescription] = useState<string[]>([]);
+    const [vehicleType, setVehicleType] = useState("");
+    const [vehicleModel, setVehicleModel] = useState("");
+    const [vehiclePricePerDay, setVehiclePricePerDay] = useState<number>(0);
+    const [vehicleBrand, setVehicleBrand] = useState("");
+    const [vehicleFuel_EfficiencyCity, setVehicleFuel_EfficiencyCity] = useState("");
+    const [VehicleFuel_EfficiencyHighway, setVehicleFuel_EfficiencyHighway] = useState("");
+
 
     useEffect(() => {
         fetch('/data/cars.json')
@@ -63,6 +74,96 @@ export default function VehiclesPage() {
     };
 
    const [showModal, setShowModal] = useState(false);
+   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+
+   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files) {
+            const imageUrls = Array.from(files).map((file) =>
+                URL.createObjectURL(file)
+            );
+            setSelectedImages(imageUrls);
+        }
+    };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        
+        switch(name) {
+            case 'vehicleBrand':
+                setVehicleBrand(value);
+                break;
+            case 'vehicleType':
+                setVehicleType(value);
+                break;
+            case 'vehicleFuel_EfficiencyCity':
+                setVehicleFuel_EfficiencyCity(value);
+                break;
+            case 'vehicleFuel_EfficiencyHighway':
+                setVehicleFuel_EfficiencyHighway(value);
+                break;
+            case 'vehiclePricePerDay':
+                setVehiclePricePerDay(Number(value));
+                break;
+            case 'vehicleModel':
+                setVehicleModel(value);
+                break;
+        }
+    };
+    
+    
+
+    const handleAddVehicle = (event: React.FormEvent) => {
+        event.preventDefault();
+    
+        const newVehicle: CarProps = {
+            id: vehicles.length + 1, // ID unique (à remplacer par un vrai ID si backend)
+            type: vehicleType,
+            passenger: 3,
+            description: vehicleDescription,
+            pricePerDay: vehiclePricePerDay,
+            model: vehicleModel,
+            brand: vehicleBrand,
+            fuel_efficiency: { city: vehicleFuel_EfficiencyCity, highway: VehicleFuel_EfficiencyHighway },
+            images: selectedImages,
+            fonctionnalities: {
+                air_condition: false,
+                usb_input: false,
+                seat_belt: false,
+                audio_input: false,
+                child_seat: false,
+                bluetooth: false,
+                sleeping_bed: false,
+                onboard_computer: false,
+                gps: false,
+                luggage: false,
+                water: false,
+                additional_covers: false
+            },
+            engine: {
+                type: undefined,
+                horsepower: undefined,
+                capacity: undefined
+            },
+            service_history: [],
+            reviews: [],
+            favorite: false
+        };
+    
+        // Mettre à jour la liste des véhicules avec le nouveau véhicule
+        setVehicles([...vehicles, newVehicle]);
+    
+        // Fermer le modal après l'ajout
+        setShowModal(false);
+    
+        // Réinitialiser le formulaire
+        // setVehicleName("");
+        // setVehicleModel("");
+        // setVehicleBrand("");
+        // setVehicleYear("");
+        setSelectedImages([]);
+    };
+    
 
     return (
         <div className='h-full w-[100%] flex flex-col gap-2 rounded-md'>
@@ -78,17 +179,17 @@ export default function VehiclesPage() {
                     <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
                 </div>
             </div>
+            
             <div className="my-4">
                 <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
             </div>
-
-            <h1 className="text-2xl font-bold mb-4">Your Vehicles List</h1>
-                <button
+            
+            <button
                     className="bg-blue-500 inherit w-60 text-white px-4 py-3 rounded mb-4"
                     onClick={() => setShowModal(true)}
                 >
                     + ADD A VEHICLE
-                </button>
+                </button> 
 
             <div className='h-full flex flex-row gap-0'>
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
@@ -103,6 +204,125 @@ export default function VehiclesPage() {
             { formModalResource && isEditFormOpen &&
                 <ResourceEditForm resource={formModalResource} onClose={closeEditForm} />   
             }
+
+            {/* Modal de création */}
+                            {showModal && (
+                                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                                    <div className="bg-white p-6 rounded shadow-lg">
+                                        <h2 className="text-lg font-bold mb-4">Create Vehicule</h2>
+                                        <form onSubmit={handleAddVehicle}>
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">Name</label>
+                                                <input
+                                                    type="text"
+                                                    name="vehicleBrand"
+                                                    value={vehicleBrand}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                />
+                                            </div>
+                                            <textarea
+                                                name="vehicleDescription"
+                                                value={vehicleDescription.join("\n")}
+                                                onChange={(e) => setVehicleDescription(e.target.value.split("\n"))}
+                                                className="border border-gray-300 rounded w-full p-2"
+                                            />
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">Type</label>
+                                                <input
+                                                    type="text"
+                                                    name="vehicleType"
+                                                    value={vehicleType}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">
+                                                    City
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="vehicleFuel_EfficiencyCity"
+                                                    value={vehicleFuel_EfficiencyCity}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                    placeholder="number of persons"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">
+                                                    Highway
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="VehicleFuel_EfficiencyHighway"
+                                                    value={VehicleFuel_EfficiencyHighway}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                    placeholder="Transmission mode"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">
+                                                    Price per day
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="vehiclePricePerDay"
+                                                    value={vehiclePricePerDay}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">
+                                                    Images
+                                                </label>
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    multiple
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                    onChange={handleImageChange}
+                                                />
+                                            </div>
+            
+                                            <div className="grid grid-cols-3 gap-2 mb-4">
+                                                {selectedImages.map((src, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="border border-gray-300 rounded overflow-hidden"
+                                                    >
+                                                        <Image
+                                                            src={src}
+                                                            alt={`Preview ${index + 1}`}
+                                                            width={100}
+                                                            height={100}
+                                                            className="object-cover"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+            
+                                            <div className="flex justify-end gap-2">
+                                                <button
+                                                    className="bg-gray-500 text-white px-4 py-2 rounded"
+                                                    onClick={() => setShowModal(false)}
+                                                >
+                                                    Cancel
+                                                </button>
+                                                <button
+                                                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                                                    type="submit"
+                                                >
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            )}
         </div>
     );
 }

@@ -55,7 +55,7 @@ const AgencyDetails = () => {
             </Link>
             <h1 className="text-3xl font-bold text-primary-blue mb-2 ml-4">{agency.name}</h1>
 
-            <div className="flex flex-col w-full xl:flex-row center justify-center gap-4">
+            <div className="flex flex-row  gap-4 flex flex-col w-full xl:flex-row center justify-center gap-4">
                 <div className="bg-white shadow-lg rounded-lg p-4 w-[100%] xl:w-[1100px] flex justify-center">
                     <Image
                         src={selectedImage}
@@ -66,7 +66,7 @@ const AgencyDetails = () => {
                     />
                 </div>
 
-                <div className="flex flex-row xl:flex-col gap-4 justify-center">
+                <div className="flex flex-row xl:flex-col gap-4 justify-center flex flex-col  xl:flex-row center justify-center gap-4">
                     {agency.images.map((img, index) => (
                         <div
                             key={index}
@@ -80,7 +80,7 @@ const AgencyDetails = () => {
                     ))}
                 </div>
             </div>
-            <div className="flex flex-col lg:flex-row gap-4 mt-4">
+            <div className="flex flex-col lg:flex-row gap-4 mt-4 justify-center w-full">
                 <div className="t-8 bg-white p-6 shadow-lg rounded-lg lg:w-[700px]">
                     <div className="flex flex-row justify-between">
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">Description</h2>
