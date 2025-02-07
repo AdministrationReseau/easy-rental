@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 
 import React from 'react';
 import Link from 'next/link';
@@ -45,7 +45,7 @@ const RentalSuccess = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.9 }}
         >
-          <Link href="/dashboard">
+          <Link href="/">
             <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
               Return to Dashboard
             </button>

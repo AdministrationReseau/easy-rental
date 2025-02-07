@@ -452,7 +452,7 @@ const MultiStepForm: React.FC = () => {
                         >
                             Previous
                         </button>
-                        <Link href={`${currentStep === totalSteps ? `/cars/${id}/location/success`:''}`}>
+                        <Link href={`${currentStep === totalSteps ? `/customer/cars/${id}/location/success`:''}`}>
                         <button
                             onClick={() => setCurrentStep((prev) => Math.min(prev + 1, totalSteps))}
                             className={`py-2 px-4 rounded-md transition ${currentStep === totalSteps

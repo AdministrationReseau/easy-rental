@@ -3,59 +3,31 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'next/navigation';
 import { CarProps } from '@/utils/types/CarProps';
 import { RentalSummaryOrg } from '@/components/organisation/RentalSummaryOrg';
+import { LocationProps } from '@/utils/types/RentalInfoProps';
+import { DriverProps } from '@/utils/types/DriverProps';
 
-interface Location1 {
-    id: string;
-    name: string;
-    type: string;
-    date: string;
-    price: string;
-    image: string;
-}
+
 const Renting = () => {
-        const [location, setLocation] = useState<Location1>();
+        const [location, setLocation] = useState<LocationProps>();
         const { id } = useParams(); // Récupération de l'ID via Next.js
         const [vehicle, setVehicle] = useState<CarProps| null>(null);
         const [loading, setLoading] = useState<boolean>(true);
         const [error, setError] = useState<string | null>(null);
-    
-    // Chargement des données des véhicules
-        useEffect(() => {
-            fetch('/data/cars.json')
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    if (data && Array.isArray(data.vehicles)) {
-                        const foundVehicle = data.vehicles.find(
-                            (v: CarProps) => v.id.toString() === id
-                        );
-                        setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
-                    } else {
-                        console.error('Unexpected data format:', data);
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error loading vehicles:', error);
-                });
-        }, [id]);
+        const [driver, setDriver] = useState<DriverProps| null>(null);
     
         
-    // Chargement des données des véhicules
+    // Chargement des données de location
     useEffect(() => {
             const fetchLocations = async () => {
                 try {
-                    const response = await fetch("/data/locations.json");
+                    const response = await fetch("/data/location.json");
                     // console.log(response)
                     if (!response.ok) {
                         throw new Error("Failed to fetch locations");
                     }
                     const data = await response.json();
                     const foundLocation = data.find(
-                        (l: Location1) => l.id.toString() === id
+                        (l: LocationProps) => l.id.toString() === id
                     );
                     setLocation(foundLocation|| null);
                     
@@ -66,7 +38,55 @@ const Renting = () => {
                 }
             };
             fetchLocations();
-        }, []);
+        }, [id]);
+
+        
+    // Chargement des données du véhicules
+    useEffect(() => {
+        fetch('/data/cars.json')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data && Array.isArray(data.vehicles)) {
+                    const foundVehicle = data.vehicles.find(
+                        (v: CarProps) => v.id === location?.vehicle.vehicle_id
+                    );
+                    setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
+                } else {
+                    console.error('Unexpected data format:', data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error loading vehicles:', error);
+            });
+    }, [location?.vehicle.vehicle_id]);
+
+    // Chargement des données du chauffeur
+    useEffect(() => {
+        fetch('/data/drivers.json')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data && Array.isArray(data)) {
+                    const foundDriver = data.find(
+                        (d: DriverProps) => d.id === location?.driver.driver_id                    );
+                    setDriver(foundDriver || null); // Trouve le véhicule correspondant à l'ID
+                } else {
+                    console.error('Unexpected data format:', data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error loading vehicles:', error);
+            });
+    }, [location?.driver.driver_id]);
     
     
         if (!vehicle) {
@@ -79,58 +99,23 @@ const Renting = () => {
         if (loading) return <p>Loading ...</p>
         if (error) return <p>Error: {error}</p>
 
-        // État pour stocker les informations saisies
-            const rentalInfo= {
-                pickUpDate: '',
-                pickUpTime: '',
-                pickUpPlace: '',
-                backOffDate: '',
-                backOffTime: '',
-                backOffPlace: '',
-                billingName: '',
-                billingPhone: '',
-                billingAddress: '',
-                billingCity: '',
-                promoCode: '',
-                paymentMethod:'',
-                driverName:'',
-            };
     return (
         <div>
             <p className='text-xl font-semi-blod'>Location request since : {location?.date}</p>
             
             <aside className="w-full  p-4 m-auto">
                 <RentalSummaryOrg
-                    key={vehicle.id}
-                    id={vehicle.id}
-                    images={vehicle.images}
-                    brand={vehicle.brand}
-                    rating={vehicle.rating}
-                    reviews={vehicle.reviews}
-                    model={vehicle.model}
-                    transmission={vehicle.transmission}
-                    engine={vehicle.engine}
-                    passenger={vehicle.passenger || 4}
-                    pricePerDay={vehicle.pricePerDay}
-                    type={vehicle.type} 
-                    year={vehicle.year} 
-                    description ={vehicle.description} 
-                    vin={vehicle.vin} 
-                    fonctionnalities={vehicle.fonctionnalities}
-                    color={vehicle.color} 
-                    fuel_efficiency={vehicle.fuel_efficiency} 
-                    license_plate={vehicle.license_plate} 
-                    registration={vehicle.registration} 
-                    owner={vehicle.owner} 
-                    service_history={vehicle.service_history} 
-                    insurance={vehicle.insurance} 
-                    favorite = {vehicle.favorite}
-                    onLike={function (id: number): void {console.log(id)}} 
-                    onDislike={function (id: number): void {console.log(id)} }
-                    rentalInfo={rentalInfo} // Passer l'état dynamique
-                                    />
-                     
+                    location={location}
+                    driver={driver}
+                    vehicle={vehicle}
+                /> 
             </aside>
+            <div className='w-full text-center '>
+               <button className='w-[60%] p-4 m-auto rounded-md text-white bg-secondary-blue hover:bg-primary-blue hover:m-2 text-2xl'>
+                    Validate the rent
+                </button>  
+            </div>
+           
 
         </div>
     );

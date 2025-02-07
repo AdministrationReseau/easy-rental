@@ -4,7 +4,7 @@
     "name": "Nissan GT-R",
     "type": "Sport Car",
     "date": "20 July 2024",
-    "price": "$80.00",
+    "price": "80.00",
     "image": "/assets/organisation/cars/camry.jpeg"
   },
   {
@@ -12,7 +12,7 @@
     "name": "Koenigsegg",
     "type": "Sport Car",
     "date": "19 July 2024",
-    "price": "$99.00",
+    "price": "99.00",
     "image": "/assets/organisation/cars/car.png"
   },
   {
