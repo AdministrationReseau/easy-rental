@@ -49,24 +49,24 @@ const AgencyDetails = () => {
     }
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[100%]">
             <Link href="/agencies" className="text-primary-blue font-bold text-lg mb-4">
                 <ArrowBack /> Back
             </Link>
             <h1 className="text-3xl font-bold text-primary-blue mb-2 ml-4">{agency.name}</h1>
 
-            <div className="flex flex-row gap-4">
-                <div className="bg-white shadow-lg rounded-lg p-4 w-[1100px] flex justify-center">
+            <div className="flex flex-col w-full xl:flex-row center justify-center gap-4">
+                <div className="bg-white shadow-lg rounded-lg p-4 w-[100%] xl:w-[1100px] flex justify-center">
                     <Image
                         src={selectedImage}
                         alt="Main image"
                         width={1400}
                         height={100}
-                        className="rounded w-[1400px] h-[600px]"
+                        className="rounded w-[100%] h-auto xl:w-[1400px] lg:h-[600px]"
                     />
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-row xl:flex-col gap-4 justify-center">
                     {agency.images.map((img, index) => (
                         <div
                             key={index}
@@ -75,18 +75,18 @@ const AgencyDetails = () => {
                                 selectedImage === img ? "border-2 border-primary-blue" : "border"
                             }`}
                         >
-                            <Image src={img} alt={`Thumbnail ${index}`} width={200} height={60} />
+                            <Image src={img} alt={`Thumbnail ${index}`} className='xl:w-[200px]' width={100} height={60} />
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="flex flex-row gap-4 mt-4">
-                <div className="t-8 bg-white p-6 shadow-lg rounded-lg w-[700px]">
+            <div className="flex flex-col lg:flex-row gap-4 mt-4">
+                <div className="t-8 bg-white p-6 shadow-lg rounded-lg lg:w-[700px]">
                     <div className="flex flex-row justify-between">
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">Description</h2>
                         <Stars value={agency.stars} precision={0.5} />
                     </div>
-                    <p className="text-gray-600 mb-4">{agency.description}</p>
+                    <p className="text-gray-600 mb-4 w-auto">{agency.description}</p>
                 </div>
 
                 <div className="flex flex-col gap-4 shadow-lg rounded-lg w-[380px] p-14">

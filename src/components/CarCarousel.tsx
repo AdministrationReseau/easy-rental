@@ -49,7 +49,7 @@ const CarCarousel: React.FC = () => {
                 className='py-9 h-full md:w-full'
             >
                 {vehicles?.map((carData, index) => (
-                    <SwiperSlide key={carData.id || index}>
+                    <SwiperSlide key={carData.id || index} className='md:ml-0 ml-2'>
                         {/* <span className='mx-4'> */}
                         <CarCard
                             id={carData.id || 0} // Provide a fallback value

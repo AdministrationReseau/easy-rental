@@ -155,7 +155,7 @@ const ContactForm: React.FC = () => {
                         </div>
 
                         <div className="ml-2 w-[80%] sm:w-[70%]">
-                            <a href="mailto:rentalreseau01@gmail.com" className="text-secondary-text hover:underline">
+                            <a href="mailto:rentalreseau01@gmail.com" className="text-secondary-text hover:underline text-[clamp(1rem,1.35vw,1rem)]">
                                 rentalreseau01@gmail.com
                             </a>
                         </div>

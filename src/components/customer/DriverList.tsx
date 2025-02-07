@@ -41,23 +41,29 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
     setFilteredDrivers(filtered);
   }, [drivers, vehicleId]);
 
-  const handleDriverSelection = (driver: DriverProps) => {
-    setSelectedDriver(driver);
-    onSelectedDriversChange(driver);
-  };
+  // const handleDriverSelection = (driver: DriverProps) => {
+  //   setSelectedDriver(driver);
+  //   onSelectedDriversChange(driver);
+  // };
 
   if (loading) {
     return <p>Loading drivers...</p>;
   }
 
+  const handleDriverSelection = (driver: DriverProps | null) => {
+    setSelectedDriver(driver);
+    onSelectedDriversChange(driver);
+  };
+  
   return (
     <div className="flex flex-row gap-4 overflow-x-auto">
       {filteredDrivers.length > 0 ? (
         filteredDrivers.map((driver, index) => (
           <DriverCard
-           key={index}
+            key={index}
             {...driver}
-            onSelect={() => handleDriverSelection(driver)}
+            onSelect={() => handleDriverSelection(selectedDriver?.id === driver.id ? null : driver)}
+            isSelected={selectedDriver?.id === driver.id}
           />
         ))
       ) : (
@@ -67,6 +73,6 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
       )}
     </div>
   );
-};
+}
 
 export default DriverList;

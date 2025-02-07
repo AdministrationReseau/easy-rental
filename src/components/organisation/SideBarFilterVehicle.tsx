@@ -91,13 +91,13 @@ const SidebarFilter: React.FC<{ vehicles: CarProps[]; onFilter: (filters: Filter
 
 
   return (
-    <div className="mx-auto flex flex-col h-fit w-[95%]">
+    <div className="mx-auto flex flex-col h-fit w-[100%]">
       <div className='bg-white rounded-md shadow-lg flex flex-col h-full w-[95%]'>
-        <div className='w-full h-full overflow-y-scroll relative'>
-          <div className='flex w-full items-center px-4'>
+        <div className='w-full h-full relative'>
+          <div className='flex flex-col w-full items-center px-4'>
             <h2 className="w-1/6 text-lg font-semibold" onClick={showFilters}>Filters</h2>
             
-            <div className='w-full flex gap-8'>
+            <div className='w-full flex justify-center gap-8'>
               {!(capacityOpened || priceOpened) &&
                 <div className="flex gap-4">
                   <h3 className={`cursor-pointer bg-primary-blue/80 text-white p-1 px-2 rounded-lg text-md ${typeOpened ? 'font-bold' : 'font-medium'}`} onClick={toogleType}>Type {typeOpened ? ':' : ''}</h3>

@@ -47,7 +47,7 @@ const Transaction = () => {
         <div>
             <main className="flex-grow overflow-y-auto p-6">
 
-                <div className="flex flex-row justify-center">
+                <div className="flex flex-row w-full flex-wrap justify-center">
                     <TransactionInfoCard
                         title= "Total Earnings"
                         device="FCFA"

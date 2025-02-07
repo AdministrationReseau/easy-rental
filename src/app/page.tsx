@@ -9,9 +9,10 @@ export default function Home() {
     <main className="bg-whitish-background">
       <Navbar />
       <Hero />
-    <div className="rounded-r p-8 flex justify-between gap-4">
-    <h3 className="text-2xl text-primary-text font-semibold mb-6">Better Way to Rent Your Perfect Cars</h3>
+    <div className="rounded-r p-8 flex flex-col md:flex-row justify-between gap-4">
+    <h3 className="text-2xl text-primary-text font-semibold md:opacity-100 opacity-0 mb-6">Better Way to Rent Your Perfect Cars</h3>
     <RentalSteps />
+    <h3 className="text-2xl text-primary-text text-center font-semibold mb-6 opacity-100 md:opacity-0 md:hidden">Better Way to Rent Your Perfect Cars</h3>
     </div>
     <div className="p-8">
       <LocationFilterContainer/>
@@ -39,8 +40,8 @@ import { PlayCircle } from '@mui/icons-material';
   style={{ backgroundImage: "url('/Ads 1.png')" }}
 >
   <div className="absolute inset-0"></div>
-  <div className="container mx-auto px-4 h-full">
-    <div className="flex items-center justify-between h-full flex-col md:flex-row">
+  <div className="mx-auto px-4 w-full h-full">
+    <div className="flex items-center p-6 justify-around h-full w-full flex-col md:flex-row">
       {/* Texte */}
       <div className="text-center text-white relative z-10 md:text-left md:w-1/2">
         <h1 className="text-5xl font-bold m-4">
@@ -93,14 +94,14 @@ import { PlayCircle } from '@mui/icons-material';
 // components/AboutSection.tsx
  function AboutSection() {
     return (
-        <div className="relative flex  items-center rounded-lg  md:h-[500px] p-8 flex-col md:flex-row">
-        <div className="flex  md:w-1/3  md:bg-white rounded-l-lg h-full items-center">
-            <div className="h-full md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
+        <div className="relative flex  items-center rounded-lg p-8 flex-col md:flex-row">
+        <div className="flex  md:bg-white rounded-l-lg h-[370px] items-center">
+            <div className="h-full md:w-[400px] md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
                 <Image
                     src="/about_rental.png"
                     alt="Welcome"
-                    width={300}
-                    height={400}
+                    width={500}
+                    height={500}
                     objectFit="cover"  
                     className="h-full w-auto fit-cover "
                 />
@@ -108,15 +109,15 @@ import { PlayCircle } from '@mui/icons-material';
         </div>
 
         {/* Section droite (bleu) */}
-        <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-r-lg h-full">
-            <div className="flex-1 ">
+        <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-l-lg md:rounded-l-0   rounded-r-lg h-full">
+            {/* <div className="flex-1 ">
 
-            </div>
-            <div className=" flex-[4] md:w-2/3 w-full mt-6  md:text-base rounded-lg flex flex-col justify-around text-left">
+            </div> */}
+            <div className=" flex-[4] md:w-2/3 w-full my-10  md:text-base md:ml-[90px] rounded-lg flex flex-col justify-around text-left">
                 <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
                     Welcome to Easy Rent
                 </h2>
-                <p className=" mb-4">
+                <p className="w-full mb-4">
                     A small river named Duden flows by their place and supplies it with
                     the necessary regelialia. It is a paradisematic country, in which
                     roasted parts of sentences fly into your mouth.
@@ -309,61 +310,133 @@ import LocationFilterContainer from "@/components/LocationFilter";
     );
   }
 
-  import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-  import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-  import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-  import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-  // components/Stats.tsx
-   function Stats() {
-    const stats = [
+  import React, {useRef, useMemo} from "react";
+  import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+  import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+  import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+  import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+function Stats() {
+  // Mémoriser l'objet `stats` pour éviter qu'il change à chaque rendu
+  const stats = useMemo(
+    () => [
       {
-        icon: <CalendarMonthIcon className="text-4xl text-white"/>,
+        icon: <CalendarMonthIcon className="text-4xl text-white" />,
         number: 60,
-        label: "Year Experienced"
+        label: "Year Experienced",
       },
       {
-        icon: <DirectionsCarIcon className="text-4xl text-white"/>,
+        icon: <DirectionsCarIcon className="text-4xl text-white" />,
         number: 1090,
-        label: "Total Cars"
+        label: "Total Cars",
       },
       {
-        icon: <PeopleAltIcon className="text-4xl text-white"/>,
+        icon: <PeopleAltIcon className="text-4xl text-white" />,
         number: 2590,
-        label: "Happy Customers"
+        label: "Happy Customers",
       },
       {
-        icon: <TrendingUpIcon className="text-4xl text-white"/>,
+        icon: <TrendingUpIcon className="text-4xl text-white" />,
         number: 67,
-        label: "Total Branches"
+        label: "Total Branches",
+      },
+    ],
+    []
+  );
+
+  const [visible, setVisible] = useState(false);
+  const containerRef = useRef(null);
+  const [counts, setCounts] = useState(stats.map(() => 0)); // Initialiser tous les compteurs à 0
+
+  // Observer pour détecter l'apparition
+  useEffect(() => {
+    const currentRef = containerRef.current; // Stocker la référence dans une variable locale
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.5 } // 50% du composant visible déclenche l'animation
+    );
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
-    ];
-  
-    return (
-      <section className="py-16 bg-secondary-blue m-8 rounded-lg " style={{ backgroundImage: "url('/Ads 1.png')" }} >
-        
-        <div className=" mx-auto px-4">
-        <h1 className="text-4xl text-center p-4 text-white font-bold">Facts In Numbers</h1>
-        <p className="text-sm text-white p-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam unde sapiente officiis, ab alias rerum nulla sunt eligendi ducimus quam facilis hic assumenda nostrum dolorem tempora consequatur adipisci temporibus corrupti.</p>
-          <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
-            {stats.map((stat, index) => (
-              <div key={index} className=" flex flex-row justify-around  bg-white rounded-lg   m-4 p-4">
-                <span className="w-[50%] rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
-                  {stat.icon}
-                </span>
-                <div className="w-[50%]">
+    };
+  }, []);
+
+  // Fonction pour animer le compteur
+  useEffect(() => {
+    if (!visible) return;
+
+    const durations = 4000; // Durée totale de l'animation
+    const interval = 50; // Intervalle pour incrémenter les valeurs
+
+    stats.forEach((stat, index) => {
+      const steps = Math.ceil(durations / interval);
+      const increment = stat.number / steps;
+      let currentValue = 0;
+
+      const timer = setInterval(() => {
+        currentValue += increment;
+        setCounts((prevCounts) => {
+          const newCounts = [...prevCounts];
+          newCounts[index] = Math.min(Math.round(currentValue), stat.number);
+          return newCounts;
+        });
+
+        if (currentValue >= stat.number) {
+          clearInterval(timer);
+        }
+      }, interval);
+
+      return () => clearInterval(timer); // Nettoyer les timers après l'animation
+    });
+  }, [visible, stats]);
+
+  return (
+    <section
+      className="py-16 bg-secondary-blue m-8 rounded-lg"
+      style={{ backgroundImage: "url('/Ads 1.png')" }}
+      ref={containerRef}
+    >
+      <div className="mx-auto px-4">
+        <h1 className="text-4xl text-center p-4 text-white font-bold">
+          Facts In Numbers
+        </h1>
+        <p className="text-sm text-white p-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam unde
+          sapiente officiis, ab alias rerum nulla sunt eligendi ducimus quam
+          facilis hic assumenda nostrum dolorem tempora consequatur adipisci
+          temporibus corrupti.
+        </p>
+        <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="flex flex-row justify-around bg-white rounded-lg m-4 p-4"
+            >
+              <span className="w-[50%] rounded-lg bg-primary-blue relative h-[80px] w-[80px] flex justify-center items-center">
+                {stat.icon}
+              </span>
+              <div className="w-[50%]">
                 <div className="text-3xl font-bold text-primary-text mb-2">
-                  {stat.number}+
+                  {counts[index]}+
                 </div>
                 <p className="text-primary-text">{stat.label}</p>
-              
-                </div>
-                </div>
-            ))}
-          </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}
 
   import { LocationOn, Handshake, } from '@mui/icons-material';
 import Stars from "@/components/Stars";
