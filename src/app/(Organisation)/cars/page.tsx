@@ -62,6 +62,8 @@ export default function VehiclesPage() {
         setFilters(newFilters);
     };
 
+   const [showModal, setShowModal] = useState(false);
+
     return (
         <div className='h-full w-[100%] flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
@@ -79,6 +81,15 @@ export default function VehiclesPage() {
             <div className="my-4">
                 <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
             </div>
+
+            <h1 className="text-2xl font-bold mb-4">Your Vehicles List</h1>
+                <button
+                    className="bg-blue-500 inherit w-60 text-white px-4 py-3 rounded mb-4"
+                    onClick={() => setShowModal(true)}
+                >
+                    + ADD A VEHICLE
+                </button>
+
             <div className='h-full flex flex-row gap-0'>
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
                     {vehicles.map((vehicle) => (
