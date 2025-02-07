@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
     Home,
     DirectionsCar,
@@ -21,8 +21,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const OrgSidebar: React.FC = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const pathname = usePathname();
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setIsCollapsed(false);
+            } else {
+                setIsCollapsed(true);
+            }
+        };
+
+        // Running the function on initial load and on window resize
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        // Cleaning up the event listener
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const mainMenuItems = [
         { name: "Dashboard", icon: <Home />, link: "/Dashboard" },
@@ -41,7 +58,7 @@ const OrgSidebar: React.FC = () => {
         { name: "Help", icon: <Help />, link: "/help" },
     ];
 
-    const isActive = (link: string) => pathname === link;
+    const isActive = (link: string) =>  pathname.startsWith(link);
 
     return (
         <div
@@ -87,7 +104,7 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-300 mt-auto"></div>
+            <div className="border-t bottom-0 border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
             <div className="mt-1">
@@ -118,7 +135,7 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="p-4">
+            <div className="p-4 bottom-0">
                 <Link href="/">
                     <li
                         className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${

@@ -14,6 +14,7 @@ import DriverList from '@/components/customer/DriverList';
 import { DateValue } from 'react-aria-components';
 import { DriverProps } from '@/utils/types/DriverProps';
 import { CarProps } from '@/utils/types/CarProps';
+import Link from 'next/link';
 
 const MultiStepForm: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(1); // État pour suivre l'étape actuelle
@@ -451,6 +452,7 @@ const MultiStepForm: React.FC = () => {
                         >
                             Previous
                         </button>
+                        <Link href={`${currentStep === totalSteps ? `/customer/cars/${id}/location/success`:''}`}>
                         <button
                             onClick={() => setCurrentStep((prev) => Math.min(prev + 1, totalSteps))}
                             className={`py-2 px-4 rounded-md transition ${currentStep === totalSteps
@@ -460,6 +462,7 @@ const MultiStepForm: React.FC = () => {
                         >
                             {currentStep === totalSteps ? 'Rent Now' : 'Next'}
                         </button>
+                        </Link>
                     </div>
                 </div>
                 {/* Barre des étapes */}

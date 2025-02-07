@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Location {
     id: string;
@@ -13,19 +14,20 @@ interface Location {
 interface LocationListProps {
     locations: Location[];
 }
-
+ 
 const LocationList: React.FC<LocationListProps> = ({ locations }) => {
     return (
         <div className="w-full">
-            <h2 className="text-xl font-semibold mb-4 text-primary-text">Recent Locations</h2>
+            {/* <h2 className="text-xl font-semibold mb-4 text-primary-text">Recent Locations</h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {locations.map((location) => (
+                {locations.map((location, index) => (
+                    <Link href={`/rentals/${location.id}`} key={index}>
                     <div
-                        key={location.id}
-                        className="flex flex-col md:flex-row items-center justify-between bg-whitish-background p-4 rounded-lg shadow-sm"
+                        key={index}
+                        className=" w-full flex flex-col md:flex-row items-center justify-between bg-whitish-background p-4 rounded-lg shadow-sm"
                     >
                         {/* Image et informations */}
-                        <div className="flex items-center justify-between space-x-4">
+                        <div className="w-full h-full flex items-center justify-between space-x-2">
                             <Image
                                 src={location.image}
                                 alt={location.name}
@@ -33,8 +35,8 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                                 width={100}
                                 height={100}
                             />
-                            <div>
-                                <h3 className="text-sm font-medium text-primary-text">{location.name}</h3>
+                            <div className="flex flex-col justify-around h-full w-[50%]">
+                                <h3 className="text-md font-medium text-primary-text">{location.name}</h3>
                                 <p className="text-xs text-secondary-text">{location.type}</p>
                             </div>
                         </div>
@@ -45,6 +47,7 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                             <p className="text-sm text-secondary-text">{location.date}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>
