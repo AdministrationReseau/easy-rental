@@ -13,6 +13,11 @@ export default function ResourceProfilPage() {
     const [driverHistories, setDriverHistories] = useState<DriverHistory[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [filters, setFilters] = useState("");
+
+    const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setFilters(e.target.value);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,6 +59,12 @@ export default function ResourceProfilPage() {
     if (!requestedDriver || !requestedDriverHistory) {
         return <div>Invalid driver ID or no history available</div>;
     }
+
+    const filteredHistory = requestedDriverHistory.history.filter((location) => {
+        const matchesVehicle = filters ? location.vehicleModel.toLowerCase().includes(filters.toLowerCase()) : true;
+
+        return matchesVehicle;
+    });
 
     const downloadHistoryPDF = () => {
         const doc = new jsPDF({
@@ -215,42 +226,67 @@ export default function ResourceProfilPage() {
             <div className="mt-8">
                 <div className="flex flex-row justify-between">
                     <h2 className="text-2xl font-bold mb-4">Driver History</h2>
+
+                    {/* Filter Section */}
+                    <div>
+                        <input
+                            type="text"
+                            name="vehicleModel"
+                            value={filters}
+                            onChange={handleFilterChange}
+                            placeholder="Filter by Vehicle Model"
+                            className="p-2 border rounded-lg"
+                        />
+                    </div>
+
+
                     <button
                         onClick={downloadHistoryPDF}
-                        className="px-4 py-4 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
+                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mb-4"
                     >
                         Download History
                     </button>
                 </div>
 
 
-                <div className="space-y-4">
-                    {requestedDriverHistory.history.map((location: PassedDriverLocation) => (
-                        <div key={location.id} className="p-4 border rounded-lg shadow-md">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {filteredHistory.map((location: PassedDriverLocation) => (
+                        <div key={location.id} className="border rounded-lg shadow-md bg-white">
                             <div className="space-y-2">
-                                <div>
-                                    <strong>Date:</strong> {location.date} <strong>Time:</strong> {location.time}
-                                </div>
-                                <div>
-                                    <strong>Address:</strong> {location.address}
-                                </div>
-                                <div>
-                                    <strong>Vehicle:</strong> {location.vehicleModel} (ID: {location.vehicleId})
-                                </div>
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center justify-center">
                                     <img
                                         src={location.vehicleImage}
-                                        alt={`${location.vehicleModel}`}
-                                        className="w-24 h-24 rounded-lg"
+                                        alt={location.vehicleModel}
+                                        className="w-50 h-50 rounded-lg object-cover"
                                     />
                                 </div>
-                                <div>
-                                    <strong>Interval of Use:</strong> {new Date(location.intervalOfUse.startTime).toLocaleString()} to {new Date(location.intervalOfUse.endTime).toLocaleString()}
+
+                                <div className="p-3">
+                                    <div>
+                                        <strong>Vehicle:</strong> {location.vehicleModel}
+                                    </div>
+
+                                    <div className="text-sm">
+                                        <strong>Address:</strong> <span
+                                        className="text-sm text-gray-700">{location.address}</span>
+                                    </div>
+
+                                    <div className="text-sm">
+                                        <strong>Start:</strong> <span
+                                        className="text-sm text-gray-700">{new Date(location.intervalOfUse.startTime).toLocaleString()}</span>
+                                    </div>
+
+                                    <div className="text-sm">
+                                        <strong>End:</strong> <span
+                                        className="text-sm text-gray-700">{new Date(location.intervalOfUse.endTime).toLocaleString()}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
+
             </div>
         </div>
     );
