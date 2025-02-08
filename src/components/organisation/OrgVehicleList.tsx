@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CarCard } from '@/components/CarCard';
+import { CarCard } from '@/components/organisation/CarCard';
 import { VehicleListProps } from '@/utils/types/CarProps';
 
-const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
+const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 6; // Nombre d'éléments par page
+  const itemsPerPage = 8; // Nombre d'éléments par page
 
   // Filtrer les véhicules selon les critères
   const filteredVehicles = vehicles.filter((vehicle) => {
@@ -67,6 +67,8 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
               favorite={vehicle.favorite}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
+              onEdit={(id: number) => console.log(id)}
+              onDelete={(id: number) => console.log(id)}
             />
           ))
         ) : (
@@ -102,4 +104,4 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   );
 };
 
-export default VehicleList;
+export default OrgVehicleList;
