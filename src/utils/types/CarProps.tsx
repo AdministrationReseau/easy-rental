@@ -6,14 +6,13 @@ export interface CarProps {
     year?: Date;                  // Optional
     rating?: number;              // Optional
     passenger?: number;           // Optional
-    description: string[];       // Optional
+    description: string;       // Optional
     pricePerDay: number;         // Optional
-    vin?: string;                 // Optional
-    plate_number?: string;
+    vin?: string;        
     documents?:{
-        carte_grise: string[];
-        visite_technique: string[];
-        assurance: string[];
+        carte_grise: string;
+        visite_technique: string;
+        assurance: string;
         vignette: string[];
     };
     fonctionnalities: {          // Optional

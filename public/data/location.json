@@ -15,10 +15,8 @@
         "driver_id":1
     },
       "pick_up_date":"2024-02-07T10:00:00",
-      "pick_up_time":"8h30",
       "pick_up_place":"Essos",
       "drop_off_date":"10 September 2024",
-      "drop_off_time":"20h30",
       "drop_off_place": "Essos",
       "date": "20 July 2024",
       "payment_method": "Visa",
@@ -41,7 +39,7 @@
             "driver_id":1
         },
         "pick_up_date":"2024-02-07T10:00:00",
-        "pick_up_time":"8h30",
+
         "pick_up_place":"Essos",
         "back_up_date":"2024-09-09T08:00:00",
         "back_up_time":"20h30",
@@ -67,7 +65,7 @@
             "driver_id":1
         },
           "pick_up_date":"2024-02-07T10:00:00",
-          "pick_up_time":"8h30",
+  
           "pick_up_place":"Essos",
           "back_up_date":"2024-09-09T08:00:00",
           "back_up_time":"20h30",
@@ -93,7 +91,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -119,7 +117,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -145,7 +143,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -171,7 +169,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -197,7 +195,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -223,7 +221,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -249,7 +247,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -275,7 +273,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -301,7 +299,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -327,7 +325,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -353,7 +351,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -379,7 +377,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -405,7 +403,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -431,7 +429,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -457,7 +455,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -483,7 +481,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -509,7 +507,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -535,7 +533,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -560,7 +558,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -586,7 +584,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -612,7 +610,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -638,7 +636,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -664,7 +662,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",
@@ -690,7 +688,7 @@
                 "driver_id":1
             },
             "pick_up_date":"2024-02-07T10:00:00",
-            "pick_up_time":"8h30",
+    
             "pick_up_place":"Essos",
             "back_up_date":"2024-09-09T08:00:00",
             "back_up_time":"20h30",

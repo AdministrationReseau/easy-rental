@@ -20,8 +20,8 @@ export interface DriverProps {
         year: number;
     };
     rating: number;
-    insurance_provider: string;
-    insurance_policy: string;
+    insurance_provider?: string;
+    insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
 }
