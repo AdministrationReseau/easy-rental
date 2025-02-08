@@ -27,7 +27,6 @@ const Location = () => {
                     throw new Error("Failed to fetch locations");
                 }
                 const data = await response.json();
-                // console.log(data)
                 setLocations(data);
                 
             } catch (err) {
