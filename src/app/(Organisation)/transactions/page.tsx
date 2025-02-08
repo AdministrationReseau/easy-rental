@@ -1,22 +1,11 @@
 "use client";
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import TransactionInfoCard from "@/components/TransactionInfoCard";
 import TransactionList from "@/components/TransactionList";
-
-interface Transaction1 {
-    id: string;
-    title: string;
-    description: string;
-    date: string;
-    time: string;
-    amount: string;
-    status: string;
-    icon: string;
-}
+import { TransactionProp} from "@/utils/types/HistoryProp";
 
 const Transaction = () => {
-
-    const [transactions, setTransactions] = useState<Transaction1[]>([]);
+    const [transactions, setTransactions] = useState<TransactionProp[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -24,7 +13,7 @@ const Transaction = () => {
         const fetchTransactions = async () => {
             try {
                 const response = await fetch("/data/transactions.json");
-                console.log(response)
+                console.log(response);
                 if (!response.ok) {
                     throw new Error("Failed to fetch transactions");
                 }
@@ -46,33 +35,29 @@ const Transaction = () => {
     return (
         <div>
             <main className="flex-grow overflow-y-auto p-6">
-
                 <div className="flex flex-row w-full flex-wrap justify-center">
                     <TransactionInfoCard
-                        title= "Total Earnings"
+                        title="Total Earnings"
                         device="FCFA"
                         value={130000.00}
-                        subtitle= "as of 01 November 2024"
-                        type= "transactions"
+                        subtitle="as of 01 November 2024"
+                        type="transactions"
                     />
-
                     <TransactionInfoCard
-                        title= "Confirmed Earnings"
+                        title="Confirmed Earnings"
                         device="FCFA"
                         value={43000.00}
-                        subtitle= "as of 01 November 2024"
-                        type= "earnings"
+                        subtitle="as of 01 November 2024"
+                        type="earnings"
                     />
-
                     <TransactionInfoCard
-                        title= "Pending Earnings"
+                        title="Pending Earnings"
                         device="FCFA"
                         value={50000.00}
-                        subtitle= "as of 01 November 2024"
-                        type= "payments"
+                        subtitle="as of 01 November 2024"
+                        type="payments"
                     />
                 </div>
-
                 <div className="ml-[25px] mt-[20px]">
                     <div>
                         <TransactionList transactions={transactions} />

@@ -18,7 +18,7 @@ export interface DriverProps {
     rating: number;
     insurance_provider: string;
     insurance_policy: string;
-    profile_picture?: string; // Optional
+    profile_picture?: string;
     isSelected?: boolean | undefined;
 }
 
