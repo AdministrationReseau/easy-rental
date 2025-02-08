@@ -28,8 +28,8 @@ const SidebarFilter: React.FC<{
     setAgeRange([minAge, maxAge]);
 
     const ratings = drivers.map((driver) => driver.rating);
-    const minRating = ratings.length > 0 ? Math.min(...ratings) : 0;
-    const maxRating = ratings.length > 0 ? Math.max(...ratings) : 5;
+    const minRating = ratings.length > 0 ? Math.floor(Math.min(...ratings)) : 0;
+    const maxRating = ratings.length > 0 ? Math.ceil(Math.max(...ratings)) : 5;
     setRatingRange([minRating, maxRating]);
 
     const uniqueLocations = Array.from(new Set(drivers.map((driver) => driver.location)));
@@ -66,8 +66,8 @@ const SidebarFilter: React.FC<{
       Math.max(...drivers.map((driver) => driver.age)),
     ]);
     setRatingRange([
-      Math.min(...drivers.map((driver) => driver.rating)),
-      Math.max(...drivers.map((driver) => driver.rating)),
+      Math.floor(Math.min(...drivers.map((driver) => driver.rating))), 
+      Math.ceil(Math.max(...drivers.map((driver) => driver.rating))),
     ]);
     setLocation('');
     
@@ -101,8 +101,8 @@ const SidebarFilter: React.FC<{
                       value={ageRange}
                       onChange={handleAgeChange}
                       valueLabelDisplay="auto"
-                      min={18}
-                      max={65}
+                      min={Math.min(...drivers.map((driver) => driver.age))}
+                      max={Math.max(...drivers.map((driver) => driver.age))}
                     />
                     <span className='text-nowrap'>{`${ageRange[0]} - ${ageRange[1]} years`}</span>
                   </div>
@@ -115,8 +115,8 @@ const SidebarFilter: React.FC<{
                       value={ratingRange}
                       onChange={handleRatingChange}
                       valueLabelDisplay="auto"
-                      min={0}
-                      max={5}
+                      min={Math.floor(Math.min(...drivers.map((driver) => driver.rating)))}
+                      max={Math.ceil(Math.max(...drivers.map((driver) => driver.rating)))}
                     />
                     <span className='text-nowrap'>{`${ratingRange[0]} - ${ratingRange[1]} stars`}</span>
                   </div>
@@ -163,8 +163,8 @@ const SidebarFilter: React.FC<{
                           value={ageRange}
                           onChange={handleAgeChange}
                           valueLabelDisplay="auto"
-                          min={18}
-                          max={65}
+                          min={Math.min(...drivers.map((driver) => driver.age))}
+                          max={Math.max(...drivers.map((driver) => driver.age))}
                         />
                         <span className='text-nowrap'>{`${ageRange[0]} - ${ageRange[1]} years`}</span>
                       </div>
@@ -177,8 +177,8 @@ const SidebarFilter: React.FC<{
                           value={ratingRange}
                           onChange={handleRatingChange}
                           valueLabelDisplay="auto"
-                          min={0}
-                          max={5}
+                          min={Math.floor(Math.min(...drivers.map((driver) => driver.rating)))}
+                          max={Math.ceil(Math.max(...drivers.map((driver) => driver.rating)))}
                         />
                         <span className='text-nowrap'>{`${ratingRange[0]} - ${ratingRange[1]} stars`}</span>
                       </div>

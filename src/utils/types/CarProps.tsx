@@ -3,7 +3,7 @@ export interface CarProps {
     type?: string;                // Optional
     brand?: string;               // Optional
     model?: string;               // Optional
-    year?: Date;                  // Optional
+    year?: number;                  // Optional
     rating?: number;              // Optional
     passenger?: number;           // Optional
     description: string[];       // Optional

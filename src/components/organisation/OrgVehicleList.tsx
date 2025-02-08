@@ -15,16 +15,24 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
     const matchesType =
       filters.type.length === 0 || (vehicle.type && filters.type.includes(vehicle.type));
 
+    console.log('type: ', matchesType);
+
     const matchesCapacity =
       filters.capacity === null || (vehicle.passenger && vehicle.passenger >= filters.capacity);
+
+      console.log('capacity:', matchesCapacity);
 
     const matchesPrice =
       typeof vehicle.pricePerDay === 'number' &&
       vehicle.pricePerDay >= filters.priceRange[0] &&
       vehicle.pricePerDay <= filters.priceRange[1];
 
+    console.log('price:', matchesPrice);
+
     return matchesType && matchesCapacity && matchesPrice;
   });
+
+  console.log(filteredVehicles.length);
 
   // Calculer les indices de début et de fin pour la pagination
   const startIndex = (currentPage - 1) * itemsPerPage;

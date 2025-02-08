@@ -17,20 +17,13 @@ const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
       driver.rating >= filters.ratingRange[0] &&
       driver.rating <= filters.ratingRange[1];
 
-    console.log('rating:', matchesRating);
-
     const matchesAge =
       typeof driver.age === 'number' &&
       driver.age >= filters.ageRange[0] &&
       driver.age <= filters.ageRange[1];
 
-    console.log('age:', matchesAge);
-    console.log('filters:', filters);
-
     const matchesLocation =
       filters.location === '' || (driver.location && filters.location && driver.location.includes(filters.location));
-
-    console.log('location:', matchesLocation);
 
     return matchesRating && matchesAge && matchesLocation;
   });
