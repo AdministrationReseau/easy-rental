@@ -57,6 +57,18 @@ export default function DriversPage() {
         setFilters(newFilters);
     };
 
+    const handleDeleteDriver = (id: number) => {
+        // Trouver l'index du conducteur ayant l'ID donné
+        const index = drivers.findIndex(driver => driver.id === id);
+    
+        // Vérifier si l'index est valide
+        if (index !== -1) {
+            const newDrivers = [...drivers]; // Copier la liste actuelle
+            newDrivers.splice(index, 1); // Supprimer l'élément à l'index trouvé
+            setDrivers(newDrivers); // Mettre à jour l'état
+        }
+    };
+
     return (
         <div className='h-full w-full flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
@@ -78,7 +90,7 @@ export default function DriversPage() {
                 <div className='grid grid-cols-1 gap-4 w-full h-full'>
                     {drivers.map((driver) => (
                         <Link key={driver.id} href={`/drivers/${driver.id}`}>
-                            <ResourceCard key={driver.id} resource={driver} profilActive={false} />
+                            <ResourceCard key={driver.id} resource={driver} profilActive={false} onDelete={() => handleDeleteDriver(driver.id)}/>
                         </Link>
                     ))}
                 </div>

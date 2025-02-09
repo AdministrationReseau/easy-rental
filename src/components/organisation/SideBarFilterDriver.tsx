@@ -82,7 +82,7 @@ const SidebarFilter: React.FC<{ drivers: DriverProps[]; onFilter: (filters: Filt
             
             <div className="w-full flex gap-8">
               {!(ratingOpened) &&
-                <div className="flex flex-row gap-4 justify-center items-center">
+                <div className="flex flex-col w-full md:w-1/2 bg-gray-100 p-4 rounded-lg shadow-sm">
                   <h3 className={`cursor-pointer bg-primary-blue/80 text-white p-1 px-2 rounded-lg text-md" ${ageOpened ? 'font-bold' : 'font-medium'}`} onClick={toogleAge}>Age {ageOpened ? ':' : ''}</h3>
                   {ageOpened &&
                     <div className="flex flex-row justify-center gap-4 w-64 items-center">
@@ -100,7 +100,7 @@ const SidebarFilter: React.FC<{ drivers: DriverProps[]; onFilter: (filters: Filt
               }
 
               {!(ageOpened) &&
-                <div className="flex flex-row gap-4 justify-center items-center">
+                <div className="flex flex-col w-full md:w-1/2 bg-gray-100 p-4 rounded-lg shadow-sm">
                   <h3 className={`cursor-pointer bg-primary-blue/80 text-white p-1 px-2 rounded-lg text-md" ${ratingOpened ? 'font-bold' : 'font-medium'}`} onClick={toogleRating}>Rating {ratingOpened ? ':' : ''}</h3>
                   {ratingOpened &&
                     <div className="flex flex-row gap-4 w-64 items-center">
@@ -117,6 +117,7 @@ const SidebarFilter: React.FC<{ drivers: DriverProps[]; onFilter: (filters: Filt
                 </div>
               }
             </div>
+            {/*Boutons d'action */}
             <div className="w-2/6 flex gap-4 m-4">
               <button className="bg-primary-blue text-white p-2 rounded-lg flex-grow" onClick={applyFilters}>
                 Apply Filters

@@ -157,11 +157,23 @@ export default function VehiclesPage() {
         setShowModal(false);
     
         // Réinitialiser le formulaire
-        // setVehicleName("");
-        // setVehicleModel("");
-        // setVehicleBrand("");
-        // setVehicleYear("");
+        setVehicleDescription([]);
+        setVehicleModel("");
+        setVehicleBrand("");
+        setVehicleType("");
+        setVehicleFuel_EfficiencyCity("");
+        setVehicleFuel_EfficiencyHighway("");
+        setVehiclePricePerDay(0);
         setSelectedImages([]);
+    };
+
+    const handleDeleteVehicle = (id: number) =>{
+        // console.log(vehicles);
+        const newVehicles = [...vehicles];
+        newVehicles.splice(id, 1);
+        setVehicles(newVehicles);
+        // setVehicles((prevVehicles) => prevVehicles.filter(vehicle => vehicle.id !== id));
+
     };
     
 
@@ -195,7 +207,7 @@ export default function VehiclesPage() {
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
                     {vehicles.map((vehicle) => (
                         <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
-                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} />
+                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} onDelete={() => handleDeleteVehicle(vehicle.id)} />
                         </Link>
                     ))}
                 </div>
