@@ -63,14 +63,23 @@ export default function VehiclesPage() {
         }
     }, [showAlert]);
 
-    const [, setFilters] = useState<FilterVehicleProps>({
+    const [filters, setFilters] = useState<FilterVehicleProps>({
         type: [],
         capacity: null,
         priceRange: [0, Infinity],
     });
 
+    const filteredCarrs = vehicles.filter((vehicle) => {
+        const isInType = filters.type !== null ? vehicle.type == filters.type[0] : true;
+        const isCapacityInRange = filters.capacity !== null ? vehicle.engine.capacity == filters.capacity : true;
+        const isPriceInRange = filters.priceRange !== null ? vehicle.pricePerDay >= filters.priceRange[0] && vehicle.pricePerDay <= filters.priceRange[1]: true;
+    
+        return isInType && isCapacityInRange && isPriceInRange;
+    });
+
     const handleFilterChange = (newFilters: FilterVehicleProps) => {
         setFilters(newFilters);
+        setVehicles(filteredCarrs);
     };
 
    const [showModal, setShowModal] = useState(false);

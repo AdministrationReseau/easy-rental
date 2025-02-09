@@ -47,7 +47,7 @@ export default function DriversPage() {
         }
     }, [showAlert]);
 
-    const [, setFilters] = useState<FilterDriverProps>({
+    const [filters, setFilters] = useState<FilterDriverProps>({
         rating: null,
         ageRange: [0, 100],
         location: '',
@@ -55,7 +55,15 @@ export default function DriversPage() {
 
     const handleFilterChange = (newFilters: FilterDriverProps) => {
         setFilters(newFilters);
+        setDrivers(filteredDrivers);
     };
+
+    const filteredDrivers = drivers.filter((driver) => {
+        const isAgeInRange = driver.age >= filters.ageRange[0] && driver.age <= filters.ageRange[1];
+        const isRatingInRange = filters.rating !== null ? driver.rating >= filters.rating : true;
+    
+        return isAgeInRange && isRatingInRange;
+    });
 
     const handleDeleteDriver = (id: number) => {
         // Trouver l'index du conducteur ayant l'ID donné
@@ -63,9 +71,9 @@ export default function DriversPage() {
     
         // Vérifier si l'index est valide
         if (index !== -1) {
-            const newDrivers = [...drivers]; // Copier la liste actuelle
-            newDrivers.splice(index, 1); // Supprimer l'élément à l'index trouvé
-            setDrivers(newDrivers); // Mettre à jour l'état
+            const newDrivers = [...drivers];
+            newDrivers.splice(index, 1);
+            setDrivers(newDrivers); 
         }
     };
 
