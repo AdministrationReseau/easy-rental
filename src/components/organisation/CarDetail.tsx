@@ -63,7 +63,7 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-gray-500 py-2">{vehicle.description.join(' ')}</p>
+      <p className="text-sm text-gray-500 py-2">{vehicle.description}</p>
 
       {/* Specifications */}
       <div className="grid grid-cols-4 gap-4 text-sm text-gray-500 py-4">

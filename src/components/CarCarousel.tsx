@@ -66,7 +66,7 @@ const CarCarousel: React.FC = () => {
                             } // Provide a fallback object for engine
                             passenger={carData.passenger || 0} // Fallback to 0 passengers
                             pricePerDay={carData.pricePerDay || 0} // Fallback to 0 price
-                            description={carData.description || ['No description available']} // Fallback for description
+                            description={carData.description || 'No description available'} // Fallback for description
                             fonctionnalities={
                                 carData.fonctionnalities || {
                                     air_condition: false,

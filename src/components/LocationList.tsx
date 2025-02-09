@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LocationProps } from "@/utils/types/RentalInfoProps";
 
 
-interface LocationListProps {
+export interface LocationListProps {
     locations: LocationProps[];
 }
  

@@ -60,9 +60,9 @@ const AgencyCard: React.FC<AgencyProps> = ({
     const toggleLike = () => {
         setIsLiked(!isLiked);
         if (!isLiked) {
-            onLike(id); // Appel de la fonction onLike si le véhicule est aimé
+            if (onLike) onLike(id); // Appel de la fonction onLike si le véhicule est aimé
         } else {
-            onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
+            if(onDislike) onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
         }
     };
     const agency = {

@@ -25,7 +25,7 @@ export default function VehiclesPage() {
 
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
     //Etat des champs des formulaires
-    const [vehicleDescription, setVehicleDescription] = useState<string[]>([]);
+    const [vehicleDescription, setVehicleDescription] = useState<string>("");
     const [vehicleType, setVehicleType] = useState("");
     const [vehicleModel, setVehicleModel] = useState("");
     const [vehiclePricePerDay, setVehiclePricePerDay] = useState<number>(0);
@@ -166,7 +166,7 @@ export default function VehiclesPage() {
         setShowModal(false);
     
         // Réinitialiser le formulaire
-        setVehicleDescription([]);
+        setVehicleDescription("");
         setVehicleModel("");
         setVehicleBrand("");
         setVehicleType("");
@@ -242,12 +242,17 @@ export default function VehiclesPage() {
                                                     className="border border-gray-300 rounded w-full p-2"
                                                 />
                                             </div>
-                                            <textarea
-                                                name="vehicleDescription"
-                                                value={vehicleDescription.join("\n")}
-                                                onChange={(e) => setVehicleDescription(e.target.value.split("\n"))}
-                                                className="border border-gray-300 rounded w-full p-2"
-                                            />
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">Name</label>
+                                                <textarea
+                                                    name="vehicleDescription"
+                                                    value={vehicleDescription}
+                                                    onChange={(e) => setVehicleDescription(e.target.value)}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                />
+                                            </div>
+                                            
+                                            
                                             <div className="mb-4">
                                                 <label className="block text-sm font-medium">Type</label>
                                                 <input
