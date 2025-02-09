@@ -6,10 +6,15 @@ export interface CarProps {
     year?: Date;                  // Optional
     rating?: number;              // Optional
     passenger?: number;           // Optional
-    description: string[];       // Optional
+    description: string;       // Optional
     pricePerDay: number;         // Optional
-    vin?: string;                 // Optional
-
+    vin?: string;        
+    documents?:{
+        carte_grise: string;
+        visite_technique: string;
+        assurance: string;
+        vignette: string[];
+    };
     fonctionnalities: {          // Optional
         air_condition: boolean;
         usb_input: boolean;
@@ -72,7 +77,7 @@ export interface CarProps {
         comment: string;
         rating: number;
     }[];
-    favorite : boolean;
+    favorite? : boolean;
     onLike?: (id: number) => void;    // Optional
     onDislike?: (id: number) => void; // Optional
 }

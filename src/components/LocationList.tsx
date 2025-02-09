@@ -1,18 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { LocationProps } from "@/utils/types/RentalInfoProps";
 
-interface Location {
-    id: string;
-    name: string;
-    type: string;
-    date: string;
-    price: string;
-    image: string;
-}
 
 interface LocationListProps {
-    locations: Location[];
+    locations: LocationProps[];
 }
  
 const LocationList: React.FC<LocationListProps> = ({ locations }) => {
@@ -29,15 +22,15 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                         {/* Image et informations */}
                         <div className="w-full h-full flex items-center justify-between space-x-2">
                             <Image
-                                src={location.image}
-                                alt={location.name}
+                                src={location.vehicle?.image[0]}
+                                alt={location.vehicle?.brand}
                                 className="w-[100px] h-auto rounded-lg object-cover"
                                 width={100}
                                 height={100}
                             />
                             <div className="flex flex-col justify-around h-full w-[50%]">
-                                <h3 className="text-md font-medium text-primary-text">{location.name}</h3>
-                                <p className="text-xs text-secondary-text">{location.type}</p>
+                                <h3 className="text-md font-medium text-primary-text">{location.vehicle.brand}</h3>
+                                <p className="text-xs text-secondary-text">{location.status}</p>
                             </div>
                         </div>
 

@@ -50,14 +50,12 @@ const MultiStepForm: React.FC = () => {
         console.log("Option sélectionnée :", value);
         setRentalInfo((prev) => ({
             ...prev,
-            ["paymentMethod"]: value
+            ["payment_method"]: value
         }));
     };
 
     const [selectedPickDate, setSelectedPickDate] = useState<DateValue | null>(null);
     const [selectedBackDate, setSelectedBackDate] = useState<DateValue | null>(null);
-    // const [selectedPickTime, setSelectedPickTime] = useState<string | null>(null);
-    // const [selectedBackTime, setSelectedBackTime] = useState<string | null>(null);
     const [selectedPickCountry, setSelectedPickCountry] = useState<string>('');
     const [selectedPickRegion, setSelectedPickRegion] = useState<string>('');
     const [selectedBackCountry, setSelectedBackCountry] = useState<string>('');
@@ -70,13 +68,15 @@ const MultiStepForm: React.FC = () => {
             console.log('Selected driver:', driver.first_name);
             setRentalInfo((prev) => ({
                 ...prev,
-                driverName: driver.first_name, // Directly set the driver name
+                ["driver.name"]: driver.first_name, // Directly set the driver name
+                ["driver.id"]: driver.id, // Directly set the driver name
+                
             }));
         } else {
             console.log('No driver selected');
             setRentalInfo((prev) => ({
                 ...prev,
-                driverName: '', // Reset driver name when no driver is selected
+                ["driver.name"]: '', // Reset driver name when no driver is selected
             }));
         }
     };
@@ -91,7 +91,7 @@ const MultiStepForm: React.FC = () => {
             setSelectedPickDate(value); // Met à jour l'état avec la nouvelle date sélectionnée
             setRentalInfo((prev) => ({
                 ...prev,
-                ["pickUpDate"]: formattedDate,
+                ["pick_up.date"]: formattedDate,
             }));
         } else {
             console.log('No date selected');
@@ -105,21 +105,13 @@ const MultiStepForm: React.FC = () => {
             setSelectedBackDate(value); // Met à jour l'état avec la nouvelle date sélectionnée
             setRentalInfo((prev) => ({
                 ...prev,
-                ["backOffDate"]: formattedDate,
+                ["drop_off.date"]: formattedDate,
             }));
         } else {
             console.log('No date selected');
         }
     };
 
-    // const handlePickTimeChange = (time: string) => {
-    //     setSelectedPickTime(time);
-    //     console.log(time);
-    // };
-
-    // const handleBackTimeChange = (time: string) => {
-    //     setSelectedBackTime(time);
-    // };
 
     const handlePickCountryChange = (country: string) => {
         setSelectedPickCountry(country);
@@ -133,7 +125,7 @@ const MultiStepForm: React.FC = () => {
         setSelectedPickRegion(region);
         setRentalInfo((prev) => ({
             ...prev,
-            ["pickUpPlace"]: selectedPickCountry + ' at '+ region,
+            ["pick_up.place"]: selectedPickCountry + ' at '+ region,
         }));
     };
 
@@ -141,26 +133,34 @@ const MultiStepForm: React.FC = () => {
         setSelectedBackRegion(region);
         setRentalInfo((prev) => ({
             ...prev,
-            ["backOffPlace"]: selectedBackCountry +' at '+ region,
+            ["drop_off.place"]: selectedBackCountry +' at '+ region,
         }));
     };
 
 
     // État pour stocker les informations saisies
     const [rentalInfo, setRentalInfo] = useState({
-        pickUpDate: '',
-        pickUpTime: '',
-        pickUpPlace: '',
-        backOffDate: '',
-        backOffTime: '',
-        backOffPlace: '',
-        billingName: '',
-        billingPhone: '',
-        billingAddress: '',
-        billingCity: '',
-        promoCode: '',
-        paymentMethod:'',
-        driverName:'',
+        pick_up:{
+                date:'',
+                place: '',
+            },
+        drop_off:{
+            date:  '',
+            place: '',
+        },
+        user:{
+            // id: undefined,
+            name: '',
+            phone: '',
+            address: '',
+            city: '',
+        },
+        driver:{
+            // id: undefined,
+            name: '',
+        },
+        payment_method: '',
+        promo_code: '',
     });
 
 
@@ -172,12 +172,7 @@ const MultiStepForm: React.FC = () => {
         }));
     };
 
-
     const { id } = useParams(); // Récupération de l'ID via Next.js
-
-
-    // const [vehicle, setVehicle] = useState<Vehicle | null>(null); // État pour le véhicule
-    // const [loading, setLoading] = useState(true); // État de chargement
 
     // Charger les données du véhicule
     const [vehicle, setVehicle] = useState<CarProps| null>(null);

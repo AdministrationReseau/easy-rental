@@ -1,19 +1,11 @@
 "use client";
 import React, {useEffect, useState} from 'react';
 import LocationList from "@/components/LocationList";
-
-interface Location1 {
-    id: string;
-    name: string;
-    type: string;
-    date: string;
-    price: string;
-    image: string;
-}
+import { LocationProps } from '@/utils/types/RentalInfoProps';
 
 const Location = () => {
 
-    const [locations, setLocations] = useState<Location1[]>([]);
+    const [locations, setLocations] = useState<LocationProps[]>([]);
     // const [recentLocations, setRecentLocations] = useState<Location1[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

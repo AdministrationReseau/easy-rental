@@ -7,7 +7,7 @@ export interface AgencyProps {
     quater: string;
     openingTime: string;
     closingTime: string;
-    followers: number;   // A retirer
+    followers: number;   
     rating: number;
     type: string;
     createdAt: Date;
@@ -19,8 +19,8 @@ export interface AgencyProps {
           comment: string;
           rating: number;
         }[];
-    onLike: (id: number) => void; // Fonction pour gérer les likes
-    onDislike: (id: number) => void; // Fonction pour gérer les dislikes
+    onLike?: (id: number) => void; // Fonction pour gérer les likes
+    onDislike?: (id: number) => void; // Fonction pour gérer les dislikes
 }
 
 export interface FilterAgencyProps {

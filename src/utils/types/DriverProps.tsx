@@ -9,6 +9,10 @@ export interface DriverProps {
     phone: string;
     email: string;
     location?: string;
+    documents?:{
+        id_card:string;
+        driver_licence:string;
+    };
     vehicle_assigned?: {
         id: number;
         make: string;
@@ -16,8 +20,8 @@ export interface DriverProps {
         year: number;
     };
     rating: number;
-    insurance_provider: string;
-    insurance_policy: string;
+    insurance_provider?: string;
+    insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
 }
