@@ -14,7 +14,7 @@ export interface DriverProps {
         make: string;
         model: string;
         year: number;
-    };
+    }[];
     rating: number;
     insurance_provider: string;
     insurance_policy: string;
