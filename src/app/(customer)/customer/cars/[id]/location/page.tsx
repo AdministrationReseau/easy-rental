@@ -223,7 +223,7 @@ const MultiStepForm: React.FC = () => {
                             <p>Step {currentStep} of {totalSteps}</p>
 
                         </div>
-                        <div className='flex flex-row gap-4'>
+                        <div className='flex flex-col gap-4'>
                             <Field
                                 label="Name"
                                 placeholder="Your name"
@@ -235,8 +235,7 @@ const MultiStepForm: React.FC = () => {
                                 placeholder="Phone number"
                                 required={true}
                                 onChange={(e) => handleRentalChange('billingPhone', e.target.value)} />
-                        </div>
-                        <div className='flex flex-row gap-4'>
+                        
                             <Field
                                 label="Address"
                                 placeholder="Your address"
@@ -281,16 +280,16 @@ const MultiStepForm: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-row gap-4'>
-                            <div className="flex flex-col w-[70%]">
+                        {/* <div className='flex flex-row gap-4'> */}
+                            {/* <div className="flex flex-col w-[70%]">
                                 <div className="flex h-full items-center">
-                                    {/* <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
-                                    <TimePickerStyled/>
+                                    <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
+                                    {/* <TimePickerStyled/>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className="flex flex-row gap-2 items-center">
+                        <div className="flex pt-28 flex-row gap-2 items-center">
                             <div className="w-3 h-3 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
                             <span>Back-Off</span>
                         </div>
@@ -310,15 +309,15 @@ const MultiStepForm: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-row gap-4'>
+                        {/* <div className='flex flex-row gap-4'>
                             <div className="flex flex-col w-[70%]">
-                                <div className="flex h-full items-center">
+                                <div className="flex h-full items-center"> */}
                                     {/* <TimePickerStyled onChange={handleBackTimeChange} value={selectedBackTime} /> */}
-                                    <TimePickerStyled />
-                                </div>
+                                    {/* <TimePickerStyled /> */}
+                                {/* </div>
                             </div>
 
-                        </div>
+                        </div> */}
                     </>
                 );
             case 3:
@@ -427,22 +426,22 @@ const MultiStepForm: React.FC = () => {
 
 
     return (
-        <div className='flex m-4 flex-col lg:flex-row'>
-            <div className="m-auto w-full">
+        <div className='h-[750px]  flex m-4 flex-col lg:flex-row'>
+            <div className="m-auto h-[80%] w-full">
 
 
                 {/* Formulaire dynamique */}
-                <div className="bg-white rounded-lg shadow-md p-6 w-[full] space-y-4 ">
+                <div className="bg-white h-full rounded-lg shadow-md p-6 w-[full] space-y-4 ">
 
 
-                    <div className="space-y-4">{renderStepContent()}</div>
+                    <div className="h-full space-y-4">{renderStepContent()}</div>
 
                     {/* Boutons de navigation */}
-                    <div className="flex justify-between mt-6">
+                    <div className="flex justify-between pt-6">
                         <button
                             onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 1))}
                             disabled={currentStep === 1}
-                            className={`py-2 px-4 rounded-md transition ${currentStep === 1 ? 'bg-gray-300 text-gray-500' : 'bg-gray-200 hover:bg-gray-400'
+                            className={` py-2 px-4 rounded-md transition ${currentStep === 1 ? 'bg-gray-300 text-gray-500' : 'bg-gray-200 hover:bg-gray-400'
                                 }`}
                         >
                             Previous
