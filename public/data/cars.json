@@ -110,14 +110,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 5000,
       "vin": "1HD1BJY14GB123456",
       "fonctionnalities": {
@@ -207,14 +207,14 @@
         "Reliability and comfort combined with exceptional towing and payload capacity.",
         "The Ford F-150 embodies strength and innovation, inspired by decades of leadership in the truck segment."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 3000,
       "vin": "1FTEW1E42JKD12345",
       "fonctionnalities": {
@@ -304,14 +304,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 1500,
       "vin": "5UXTY9C08N0B12345",
       "fonctionnalities": {
@@ -401,14 +401,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 10000,
       "vin": "W1X6D6BB8LP123456",
       "fonctionnalities": {
@@ -498,14 +498,14 @@
         "Safety and comfort while driving a futuristic and elegant sports car.",
         "NISMO has become the embodiment of Nissan‘s outstanding performance, inspired by the most unforgiving proving ground, the “race track“."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 2500,
       "vin": "1HGBH41JXMN109186",
       "fonctionnalities": {
@@ -595,14 +595,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 5000,
       "vin": "1HD1BJY14GB123456",
       "fonctionnalities": {
@@ -692,14 +692,14 @@
         "Reliability and comfort combined with exceptional towing and payload capacity.",
         "The Ford F-150 embodies strength and innovation, inspired by decades of leadership in the truck segment."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 3000,
       "vin": "1FTEW1E42JKD12345",
       "fonctionnalities": {
@@ -789,14 +789,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 1500,
       "vin": "5UXTY9C08N0B12345",
       "fonctionnalities": {
@@ -886,14 +886,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 10000,
       "vin": "W1X6D6BB8LP123456",
       "fonctionnalities": {
@@ -983,14 +983,14 @@
         "Safety and comfort while driving a futuristic and elegant sports car.",
         "NISMO has become the embodiment of Nissan‘s outstanding performance, inspired by the most unforgiving proving ground, the “race track“."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 2500,
       "vin": "1HGBH41JXMN109186",
       "fonctionnalities": {
@@ -1080,14 +1080,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 5000,
       "vin": "1HD1BJY14GB123456",
       "fonctionnalities": {
@@ -1177,14 +1177,14 @@
         "Reliability and comfort combined with exceptional towing and payload capacity.",
         "The Ford F-150 embodies strength and innovation, inspired by decades of leadership in the truck segment."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 3000,
       "vin": "1FTEW1E42JKD12345",
       "fonctionnalities": {
@@ -1274,14 +1274,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 1500,
       "vin": "5UXTY9C08N0B12345",
       "fonctionnalities": {
@@ -1371,14 +1371,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 10000,
       "vin": "W1X6D6BB8LP123456",
       "fonctionnalities": {
@@ -1468,14 +1468,14 @@
         "Safety and comfort while driving a futuristic and elegant sports car.",
         "NISMO has become the embodiment of Nissan‘s outstanding performance, inspired by the most unforgiving proving ground, the “race track“."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 2500,
       "vin": "1HGBH41JXMN109186",
       "fonctionnalities": {
@@ -1565,14 +1565,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 5000,
       "vin": "1HD1BJY14GB123456",
       "fonctionnalities": {
@@ -1662,14 +1662,14 @@
         "Reliability and comfort combined with exceptional towing and payload capacity.",
         "The Ford F-150 embodies strength and innovation, inspired by decades of leadership in the truck segment."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 3000,
       "vin": "1FTEW1E42JKD12345",
       "fonctionnalities": {
@@ -1759,14 +1759,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 1500,
       "vin": "5UXTY9C08N0B12345",
       "fonctionnalities": {
@@ -1856,14 +1856,14 @@
         "Experience ultimate comfort and cutting-edge technology in a premium driving experience.",
         "The BMW X5 combines elegance and power, setting new standards for modern SUVs."
       ],
-      "documents":[
+      "documents":
         {
           "cregistration_certificate":"/assets/document.pdf",
           "technical_inspection":"/assets/document.pdf",
           "insurance":"/assets/document.pdf",
           "tax_sticker":"/assets/document.pdf"
         }
-      ],
+      ,
       "pricePerDay": 10000,
       "vin": "W1X6D6BB8LP123456",
       "fonctionnalities": {

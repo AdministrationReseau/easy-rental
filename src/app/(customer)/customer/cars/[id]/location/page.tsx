@@ -5,7 +5,6 @@ import Field from '@/components/base-component/fields';
 import { RentalSummary } from "@/components/customer/RentalSummary";
 import { useParams } from "next/navigation";
 import { CountryPickerStyled } from '@/components/CountryPicker';
-import { TimePickerStyled } from '@/components/TimePicker';
 import { DatePickerStyled } from '@/components/DatePicker';
 import Image from 'next/image';
 import ComboBox from '@/components/ComboBox';
@@ -36,7 +35,7 @@ const MultiStepForm: React.FC = () => {
         option3: false,
     });
 
-   
+
 
     // Gestion du changement de valeur
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,15 +46,15 @@ const MultiStepForm: React.FC = () => {
         }));
     };
     const handleSelectionChange = (value: string) => {
-        console.log("Option sélectionnée :", value);
+        // console.log("Option sélectionnée :", value);
         setRentalInfo((prev) => ({
             ...prev,
             ["payment_method"]: value
         }));
     };
 
-    const [selectedPickDate, setSelectedPickDate] = useState<DateValue | null>(null);
-    const [selectedBackDate, setSelectedBackDate] = useState<DateValue | null>(null);
+    const [selectedPickDate, setSelectedPickDate] = useState<Date | null>(null);
+    const [selectedBackDate, setSelectedBackDate] = useState<Date | null>(null);
     const [selectedPickCountry, setSelectedPickCountry] = useState<string>('');
     const [selectedPickRegion, setSelectedPickRegion] = useState<string>('');
     const [selectedBackCountry, setSelectedBackCountry] = useState<string>('');
@@ -65,15 +64,15 @@ const MultiStepForm: React.FC = () => {
     const handleSelectedDriversChange = (driver: DriverProps | null) => {
         setSelectedDriver(driver);
         if (driver) {
-            console.log('Selected driver:', driver.first_name);
+            // console.log('Selected driver:', driver.first_name);
             setRentalInfo((prev) => ({
                 ...prev,
                 ["driver.name"]: driver.first_name, // Directly set the driver name
                 ["driver.id"]: driver.id, // Directly set the driver name
-                
+
             }));
         } else {
-            console.log('No driver selected');
+            // console.log('No driver selected');
             setRentalInfo((prev) => ({
                 ...prev,
                 ["driver.name"]: '', // Reset driver name when no driver is selected
@@ -81,31 +80,46 @@ const MultiStepForm: React.FC = () => {
         }
     };
     console.log(selectedDriver)
-    
 
-    const handlePickDateChange = (value: DateValue | null) => {
+
+    const handlePickDateChange = (value: Date | null) => {
         if (value) {
-            console.log(value); // Affiche l'objet DateValue
-            const formattedDate = `${value.year}-${String(value.month).padStart(2, '0')}-${String(value.day).padStart(2, '0')}`;
-            console.log(formattedDate); // Affiche la date sélectionnée sous la forme "YYYY-MM-DD"
+            console.log('Date complète:',value); // Affiche l'objet DateValue
+            console.log('Format ISO:', value.toISOString());
+            // Vous pouvez accéder à toutes les propriétés de l'objet Date
+            console.log('Année:', value.getFullYear());
+            console.log('Mois:', value.getMonth() + 1); // +1 car les mois commencent à 0
+            console.log('Jour:', value.getDate());
+            console.log('Heures:', value.getHours());
+            console.log('Minutes:', value.getMinutes());
+            // const formattedDate = `${value.year}-${String(value.month).padStart(2, '0')}-${String(value.day).padStart(2, '0')}`;
+            // console.log(formattedDate); // Affiche la date sélectionnée sous la forme "YYYY-MM-DD"
             setSelectedPickDate(value); // Met à jour l'état avec la nouvelle date sélectionnée
             setRentalInfo((prev) => ({
                 ...prev,
-                ["pick_up.date"]: formattedDate,
+                ["pick_up.date"]: value.toISOString(),
             }));
         } else {
             console.log('No date selected');
         }
     };
-    const handleBackDateChange = (value: DateValue | null) => {
+    const handleBackDateChange = (value: Date | null) => {
         if (value) {
             console.log(value); // Affiche l'objet DateValue
-            const formattedDate = `${value.year}-${String(value.month).padStart(2, '0')}-${String(value.day).padStart(2, '0')}`;
-            console.log(formattedDate); // Affiche la date sélectionnée sous la forme "YYYY-MM-DD"
+            console.log('Date complète:',value); // Affiche l'objet DateValue
+            console.log('Format ISO:', value.toISOString());
+            // Vous pouvez accéder à toutes les propriétés de l'objet Date
+            console.log('Année:', value.getFullYear());
+            console.log('Mois:', value.getMonth() + 1); // +1 car les mois commencent à 0
+            console.log('Jour:', value.getDate());
+            console.log('Heures:', value.getHours());
+            console.log('Minutes:', value.getMinutes());
+            // const formattedDate = `${value.year}-${String(value.month).padStart(2, '0')}-${String(value.day).padStart(2, '0')}`;
+            // console.log(formattedDate); // Affiche la date sélectionnée sous la forme "YYYY-MM-DD"
             setSelectedBackDate(value); // Met à jour l'état avec la nouvelle date sélectionnée
             setRentalInfo((prev) => ({
                 ...prev,
-                ["drop_off.date"]: formattedDate,
+                ["drop_off.date"]: value.toISOString(),
             }));
         } else {
             console.log('No date selected');
@@ -125,7 +139,7 @@ const MultiStepForm: React.FC = () => {
         setSelectedPickRegion(region);
         setRentalInfo((prev) => ({
             ...prev,
-            ["pick_up.place"]: selectedPickCountry + ' at '+ region,
+            ["pick_up.place"]: selectedPickCountry + ' at ' + region,
         }));
     };
 
@@ -133,29 +147,29 @@ const MultiStepForm: React.FC = () => {
         setSelectedBackRegion(region);
         setRentalInfo((prev) => ({
             ...prev,
-            ["drop_off.place"]: selectedBackCountry +' at '+ region,
+            ["drop_off.place"]: selectedBackCountry + ' at ' + region,
         }));
     };
 
 
     // État pour stocker les informations saisies
     const [rentalInfo, setRentalInfo] = useState({
-        pick_up:{
-                date:'',
-                place: '',
-            },
-        drop_off:{
-            date:  '',
+        pick_up: {
+            date: '',
             place: '',
         },
-        user:{
+        drop_off: {
+            date: '',
+            place: '',
+        },
+        user: {
             // id: undefined,
             name: '',
             phone: '',
             address: '',
             city: '',
         },
-        driver:{
+        driver: {
             // id: undefined,
             name: '',
         },
@@ -175,9 +189,9 @@ const MultiStepForm: React.FC = () => {
     const { id } = useParams(); // Récupération de l'ID via Next.js
 
     // Charger les données du véhicule
-    const [vehicle, setVehicle] = useState<CarProps| null>(null);
+    const [vehicle, setVehicle] = useState<CarProps | null>(null);
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
-    console.log(vehicles);
+    // console.log(vehicles);
     // Chargement des données des véhicules
     useEffect(() => {
         fetch('/data/cars.json')
@@ -235,7 +249,7 @@ const MultiStepForm: React.FC = () => {
                                 placeholder="Phone number"
                                 required={true}
                                 onChange={(e) => handleRentalChange('billingPhone', e.target.value)} />
-                        
+
                             <Field
                                 label="Address"
                                 placeholder="Your address"
@@ -264,60 +278,39 @@ const MultiStepForm: React.FC = () => {
                             <div className="w-3 h-3 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
                             <span>Pick-Up</span>
                         </div>
-                        <div className='flex flex-row gap-4'>
-                            <div className="flex flex-col w-[70%]">
-                                <div className="flex h-full ">
-                                    <CountryPickerStyled 
-                                        onChangeCountry={handlePickCountryChange} 
+                            <div className="flex flex-col">
+                                <div className="flex w-full  ">
+                                    <CountryPickerStyled
+                                        onChangeCountry={handlePickCountryChange}
                                         onChangeRegion={handlePickRegionChange}
                                         valueCountry={selectedPickCountry}
                                         valueRegion={selectedPickRegion} />
                                 </div>
-                            </div>
-                            <div className="flex flex-col">
                                 <div className="flex h-full ">
-                                    <DatePickerStyled onChange={handlePickDateChange} value={selectedPickDate} />
+                                    <DatePickerStyled 
+                                        onChange={handlePickDateChange} 
+                                        value={selectedPickDate} />
+                                    {/* <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
+                                    
                                 </div>
                             </div>
-                        </div>
-                        {/* <div className='flex flex-row gap-4'> */}
-                            {/* <div className="flex flex-col w-[70%]">
-                                <div className="flex h-full items-center">
-                                    <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
-                                    {/* <TimePickerStyled/>
-                                </div>
-                            </div>
-                        </div> */}
 
-                        <div className="flex pt-28 flex-row gap-2 items-center">
+                        <div className="flex pt-4 flex-row gap-2 items-center ">
                             <div className="w-3 h-3 rounded-full bg-primary-blue bg-005FFE shadow-[0_0_10px_1px_rgba(0,96,254,0.6)]"></div>
                             <span>Back-Off</span>
                         </div>
-                        <div className='flex flex-row gap-4'>
-                            <div className="flex flex-col w-[70%]">
-                                <div className="flex h-full ">
-                                    <CountryPickerStyled 
-                                        onChangeCountry={handleBackCountryChange}
-                                        onChangeRegion={handleBackRegionChange} 
-                                        valueCountry={selectedBackCountry}
-                                        valueRegion={selectedBackRegion} />
-                                </div>
+                        <div className="flex flex-col pb-4">
+                            <div className="flex w-full">
+                                <CountryPickerStyled
+                                    onChangeCountry={handleBackCountryChange}
+                                    onChangeRegion={handleBackRegionChange}
+                                    valueCountry={selectedBackCountry}
+                                    valueRegion={selectedBackRegion} />
                             </div>
-                            <div className="flex flex-col">
-                                <div className="flex h-full ">
-                                    <DatePickerStyled onChange={handleBackDateChange} value={selectedBackDate} />
-                                </div>
+                            <div className="flex h-full ">
+                                <DatePickerStyled onChange={handleBackDateChange} value={selectedBackDate} />
                             </div>
                         </div>
-                        {/* <div className='flex flex-row gap-4'>
-                            <div className="flex flex-col w-[70%]">
-                                <div className="flex h-full items-center"> */}
-                                    {/* <TimePickerStyled onChange={handleBackTimeChange} value={selectedBackTime} /> */}
-                                    {/* <TimePickerStyled /> */}
-                                {/* </div>
-                            </div>
-
-                        </div> */}
                     </>
                 );
             case 3:
@@ -426,41 +419,11 @@ const MultiStepForm: React.FC = () => {
 
 
     return (
-        <div className='h-[750px]  flex m-4 flex-col lg:flex-row'>
-            <div className="m-auto h-[80%] w-full">
+        <div className=' flex m-4 flex-col lg:flex-row'>
+            <div className="m-auto w-full h-[730px] ">
 
-
-                {/* Formulaire dynamique */}
-                <div className="bg-white h-full rounded-lg shadow-md p-6 w-[full] space-y-4 ">
-
-
-                    <div className="h-full space-y-4">{renderStepContent()}</div>
-
-                    {/* Boutons de navigation */}
-                    <div className="flex justify-between pt-6">
-                        <button
-                            onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 1))}
-                            disabled={currentStep === 1}
-                            className={` py-2 px-4 rounded-md transition ${currentStep === 1 ? 'bg-gray-300 text-gray-500' : 'bg-gray-200 hover:bg-gray-400'
-                                }`}
-                        >
-                            Previous
-                        </button>
-                        <Link href={`${currentStep === totalSteps ? `/customer/cars/${id}/location/success`:''}`}>
-                        <button
-                            onClick={() => setCurrentStep((prev) => Math.min(prev + 1, totalSteps))}
-                            className={`py-2 px-4 rounded-md transition ${currentStep === totalSteps
-                                ? 'bg-green-500 text-white'
-                                : 'bg-primary-blue text-white hover:bg-blue-600'
-                                }`}
-                        >
-                            {currentStep === totalSteps ? 'Rent Now' : 'Next'}
-                        </button>
-                        </Link>
-                    </div>
-                </div>
                 {/* Barre des étapes */}
-                <div className="flex mt-10 justify-center items-center mb-6">
+                <div className="top-0 flex justify-center items-center mb-6">
                     {Array.from({ length: totalSteps }, (_, index) => (
                         <div
                             key={index}
@@ -469,16 +432,50 @@ const MultiStepForm: React.FC = () => {
                         ></div>
                     ))}
                 </div>
+
+                {/* Formulaire dynamique */}
+                <div className="bg-white  rounded-lg shadow-md p-6 w-[full] space-y-4 ">
+
+
+
+
+
+                    {/* Boutons de navigation */}
+                    <div className="flex justify-between">
+                        <button
+                            onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 1))}
+                            disabled={currentStep === 1}
+                            className={` py-2 px-4 rounded-md transition ${currentStep === 1 ? 'bg-gray-300 text-gray-500' : 'bg-gray-200 hover:bg-gray-400'
+                                }`}
+                        >
+                            Previous
+                        </button>
+                        <Link href={`${currentStep === totalSteps ? `/customer/cars/${id}/location/success` : ''}`}>
+                            <button
+                                onClick={() => setCurrentStep((prev) => Math.min(prev + 1, totalSteps))}
+                                className={`py-2 px-4 rounded-md transition ${currentStep === totalSteps
+                                    ? 'bg-green-500 text-white'
+                                    : 'bg-primary-blue text-white hover:bg-blue-600'
+                                    }`}
+                            >
+                                {currentStep === totalSteps ? 'Rent Now' : 'Next'}
+                            </button>
+                        </Link>
+                    </div>
+
+
+                    <div className="space-y-4">{renderStepContent()}</div>
+                </div>
             </div>
             <aside className="w-full  p-4 m-auto">
                 <RentalSummary
                     key={vehicle.id}
                     {...vehicle}
-                    onLike={function (id: number): void { console.log(id); } }
-                    onDislike={function (id: number): void { console.log(id); } }
+                    onLike={function (id: number): void { console.log(id); }}
+                    onDislike={function (id: number): void { console.log(id); }}
                     rentalInfo={rentalInfo} // Passer l'état dynamique
-                                               />
-                     
+                />
+
             </aside>
         </div>
     );

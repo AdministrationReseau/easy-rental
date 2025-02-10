@@ -21,7 +21,21 @@ import { DriverProps } from '@/utils/types/DriverProps';
 
 export const DocumentList = ({ documents }: { documents?: { registration_certificate: string; technical_inspection: string; insurance: string; tax_sticker: string[] } }) => {
     if (!documents) return null; // Gestion du cas undefined
+    // États pour contrôler l'ouverture de la modale et l'URL du PDF
+    const [modalOpen, setModalOpen] = useState(false);
+    const [pdfUrl, setPdfUrl] = useState<string>("");
 
+     // Fonction pour ouvrir la modale avec le PDF
+     const openPdfModal = (pdfUrl: string) => {
+        setPdfUrl(pdfUrl);  // Mettez l'URL du PDF dans l'état
+        setModalOpen(true);  // Ouvrir la modale
+    };
+
+    // Fonction pour fermer la modale
+    const closeModal = () => {
+        setModalOpen(false);
+        setPdfUrl("");  // Réinitialiser l'URL du PDF
+    };
     const documentLabels: { [key: string]: string } = {
         registration_certificate: "Registration_certificate",
         technical_inspection : "Technical_inspection",
@@ -31,16 +45,25 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
 
     console.log(documents);
 
-    // Fonction pour ouvrir la modale avec un PDF
-const openPdfModal = (pdfUrl: string) => {
-    // Logique pour ouvrir la modale ou afficher le PDF
-    console.log("Ouverture du PDF", pdfUrl);
-    // Par exemple, tu pourrais mettre à jour l'état pour afficher une modale
-    // setModalOpen(true);
-    // setPdfUrl(pdfUrl);
-};
 
     return (
+        <>
+            {/* Modale pour afficher le PDF */}
+            {modalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+                    <div className="bg-white p-4 rounded-lg">
+                        <button onClick={closeModal} className="text-red-500">Close</button>
+                        <iframe 
+                            src={pdfUrl} 
+                            width="600" 
+                            height="400" 
+                            title="PDF Viewer" 
+                            frameBorder="0">
+                        </iframe>
+                    </div>
+                </div>
+            )}
+
         <div className="space-y-4">
             {Object.entries(documents).map(([key, value], index) => (
                 <div key={index}
@@ -63,7 +86,8 @@ const openPdfModal = (pdfUrl: string) => {
                             ))
                         ) : (
                             <button 
-                            className="text-blue-500 hover:text-blue-600 ml-4">
+                                onClick={() => openPdfModal(value)}  // Ouvre la modale avec l'URL du PDF
+                                className="text-blue-500 hover:text-blue-600">
                                 Voir
                             </button>
 
@@ -72,6 +96,7 @@ const openPdfModal = (pdfUrl: string) => {
                 </div>
             ))}
         </div>
+    </>
     );
 };
 
@@ -132,7 +157,7 @@ const LocationDetails = () => {
     
         return anniversairePasse ? diff : diff - 1;
     }
-    console.log(differenceEnAnnees("2020-09-09T08:00:00")); // Exemple avec le 18 août 2010
+    // console.log(differenceEnAnnees("2020-09-09T08:00:00")); // Exemple avec le 18 août 2010
     
     // Chargement des données de location
         useEffect(() => {
@@ -233,17 +258,17 @@ const LocationDetails = () => {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-6">
+        <div className="text-primary-text min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-6">
             <div className="max-w-7xl mx-auto space-y-6">
                 <div
                     className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 w-full max-w-3xl mx-auto">
                     <div className="flex flex-wrap justify-between items-center gap-4">
                         <div className="w-full sm:w-auto">
                             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                                Détails de la Location
+                                Rental details
                             </h1>
                             <p className="text-gray-500 mt-1 text-sm sm:text-base">
-                                Réf: #LOC-2024-0207
+                                Ref: #LOC-2024-0207
                             </p>
                         </div>
                         <div className="flex flex-col items-start sm:items-end w-full sm:w-auto">
@@ -262,7 +287,7 @@ const LocationDetails = () => {
                     <div className="lg:col-span-2 space-y-6">
                         <div className="bg-white rounded-xl p-4 shadow-sm">
                             <div className="flex space-x-4 border-b">
-                                {['info', 'documents', 'trajet'].map((tab) => (
+                                {['info', 'documents', 'ride'].map((tab) => (
                                     <button
                                         key={tab}
                                         onClick={() => setActiveTab(tab)}
@@ -283,7 +308,7 @@ const LocationDetails = () => {
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-2">
                                         <CarIcon className="h-5 w-5 text-blue-500"/>
-                                        Véhicule
+                                        Vehicle
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
@@ -320,7 +345,7 @@ const LocationDetails = () => {
                         {activeTab === 'documents' && (
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Documents du véhicule</CardTitle>
+                                    <CardTitle>Documents of vehicle</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <DocumentList documents={vehicle?.documents}/>
@@ -328,27 +353,27 @@ const LocationDetails = () => {
                             </Card>
                         )}
 
-                        {activeTab === 'trajet' && (
+                        {activeTab === 'ride' && (
                             <Card>
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-2">
                                         <MapIcon className="h-5 w-5 text-blue-500"/>
-                                        Trajet
+                                        Ride
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <div className="space-y-4">
                                         <div
                                             className="bg-gray-100 w-full h-64 rounded-lg flex items-center justify-center">
-                                            <p className="text-gray-500">Carte du trajet</p>
+                                            <p className="text-gray-500">Route map</p>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                             <div className="p-4 bg-green-50 rounded-lg">
-                                                <p className="text-sm text-gray-500">Départ</p>
+                                                <p className="text-sm text-gray-500">Departure</p>
                                                 <p className="font-medium">{location.pick_up.place}</p>
                                             </div>
                                             <div className="p-4 bg-red-50 rounded-lg">
-                                                <p className="text-sm text-gray-500">Arrivée</p>
+                                                <p className="text-sm text-gray-500">Arrival</p>
                                                 <p className="font-medium">{location.drop_off.place}</p>
                                             </div>
                                         </div>
@@ -365,7 +390,7 @@ const LocationDetails = () => {
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <CalendarIcon className="h-5 w-5 text-blue-500"/>
-                                    Détails de la location
+                                    Rental details
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -373,14 +398,14 @@ const LocationDetails = () => {
                                     <Alert>
                                         <AlertCircleIcon className="h-4 w-4"/>
                                         <AlertDescription>
-                                            Location en cours - Retour prévu dans 2h
+                                        Ongoing rental - Return expected in 2 hours
                                         </AlertDescription>
                                     </Alert>
 
                                     <div className="space-y-3">
                                         <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                                             <div>
-                                                <p className="text-sm text-gray-500">Début</p>
+                                                <p className="text-sm text-gray-500">Begining</p>
                                                 <p className="font-medium">
                                                     {new Date(location.pick_up.date).toLocaleString('fr-FR')}
                                                 </p>
@@ -390,7 +415,7 @@ const LocationDetails = () => {
 
                                         <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                                             <div>
-                                                <p className="text-sm text-gray-500">Fin</p>
+                                                <p className="text-sm text-gray-500">Ending</p>
                                                 <p className="font-medium">
                                                     {new Date(location.drop_off.date).toLocaleString('fr-FR')}
                                                 </p>
@@ -400,7 +425,7 @@ const LocationDetails = () => {
 
                                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                                             <div>
-                                                <p className="text-sm text-gray-500">Montant</p>
+                                                <p className="text-sm text-gray-500">Amount</p>
                                                 <p className="font-medium text-lg">
                                                     {location.price}€
                                                 </p>
@@ -436,7 +461,7 @@ const LocationDetails = () => {
                                             <div>
                                                 <p className="font-medium">{driver?.first_name} {driver?.last_name} </p>
                                                 <RatingStars rating={driver?.rating}/>
-                                                <p className="text-sm text-gray-500">{differenceEnAnnees(driver?.created_at)} an(s) d&#39;expérience</p>
+                                                <p className="text-sm text-gray-500">{differenceEnAnnees(driver?.created_at)} an(s) d&#39;experience</p>
                                             </div>
                                         </div>
 
@@ -448,7 +473,7 @@ const LocationDetails = () => {
                                             </a>
                                             <div className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
                                                 <KeyIcon className="h-4 w-4 text-gray-500"/>
-                                                <span className="text-sm">Permis: {driver.license_number}</span>
+                                                <span className="text-sm">Licence: {driver.license_number}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -2,33 +2,63 @@ import React, { useState } from 'react';
 import { Button, Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker as ReactDatePicker, DateSegment, Dialog, Group, Heading, Popover, DateValue } from 'react-aria-components';
 
 interface DatePickerStyledProps {
-  value: DateValue | null;
-  onChange?: (value: DateValue | null) => void; // ici on spécifie que onChange attend une fonction qui prend une DateValue ou null
+    value?: Date | null;
+    onChange?: (value: Date | null) => void;
 }
 
-export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
+export const DatePickerStyled = ({
+    value,
+    onChange,
+    }: DatePickerStyledProps) => {
     const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [selectedTime, setSelectedTime] = useState<string>("12:00");
+    const [error, setError] = useState<string | null>();
     console.log(selectedDate)
     const handleDateChange = (newDate: DateValue | null) => {
         if (newDate) {
-            setSelectedDate(newDate);
-            setError(null);
-            if (onChange) onChange(newDate);
+          setSelectedDate(newDate);
+          setError(null);
+          updateDateTime(newDate, selectedTime);
         } else {
-            setError('Please select a valid date.');
+          setError('Please select a valid date.');
         }
-    };
+      };
+    
+      const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newTime = event.target.value;
+        setSelectedTime(newTime);
+        if (selectedDate) {
+          updateDateTime(selectedDate, newTime);
+        }
+      };
+      const updateDateTime = (date: DateValue, time: string) => {
+        // Extraire les heures et minutes du temps sélectionné
+        const [hours, minutes] = time.split(':').map(Number);
+        
+        // Créer un nouvel objet Date avec la date et l'heure combinées
+        const completeDate = new Date(
+          date.year,
+          date.month - 1, // Les mois en JS commencent à 0
+          date.day,
+          hours,
+          minutes
+        );
+    
+        if (onChange) {
+          onChange(completeDate);
+        }
+      };
 
     return (
-        <div className="w-full my-2 h-[50px]">
-            <div className="flex flex-col gap-4">
-                <div className="relative">
-                    <label htmlFor="datePicker" className="block mb-1 text-sm font-medium text-black dark:text-white">
+        <div className="w-full text-primary-text my-2">
+            <div className="flex flex-row w-full gap-4">
+                 {/* Date Selection */}
+                <div className="relative w-full">
+                    <label htmlFor="datePicker" className="block mb-1 font-medium dark:text-white">
                         Select Date
                     </label>
                     <ReactDatePicker onChange={handleDateChange}>
-                        <Group className="flex flex-row w-full rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+                        <Group className="flex flex-row w-full rounded-md border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
                             <DateInput className="w-full flex items-center justify-between gap-1 text-gray-700">
                                 {segment => (
                                     <DateSegment
@@ -45,7 +75,7 @@ export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
                                 <Calendar className="flex flex-col items-center gap-4">
                                     <header className="flex items-center justify-between w-full px-2">
                                         <Button slot="previous" className="text-primary-blue hover:text-blue-600 focus:outline-none focus:ring-primary-blue focus:ring-2 rounded-full">◀</Button>
-                                        <Heading className="text-sm font-medium text-gray-700" />
+                                        <Heading className=" font-medium text-gray-700" />
                                         <Button slot="next" className="text-primary-blue hover:text-blue-600 focus:outline-none focus:ring-primary-blue focus:ring-2 rounded-full">▶</Button>
                                     </header>
                                     <CalendarGrid className="grid grid-cols-7 gap-1 w-full">
@@ -61,10 +91,50 @@ export const DatePickerStyled = ({onChange }: DatePickerStyledProps) => {
                         </Popover>
                     </ReactDatePicker>
                 </div>
+                {/* Time Selection */}
+            {selectedDate && (
+                <div className="relative w-full">
+                <label htmlFor="timePicker" className="block mb-1 font-medium dark:text-white">
+                    Select Time
+                </label>
+                <input
+                    type="time"
+                    id="timePicker"
+                    value={selectedTime}
+                    onChange={handleTimeChange}
+                    className="w-full flex justify-around rounded-md border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                />
+                </div>
+            )}
             </div>
         </div>
     );
 };
+
+export const DateTime = () => {
+    
+    const [time, setTime] = useState<string>('12:00');
+    const handleDateTimeChange = (dateTime: Date | null) => {
+        if (dateTime) {
+          console.log('Date complète:', dateTime);
+          console.log('Format ISO:', dateTime.toISOString());
+          // Vous pouvez accéder à toutes les propriétés de l'objet Date
+          console.log('Année:', dateTime.getFullYear());
+          console.log('Mois:', dateTime.getMonth() + 1); // +1 car les mois commencent à 0
+          console.log('Jour:', dateTime.getDate());
+          console.log('Heures:', dateTime.getHours());
+          console.log('Minutes:', dateTime.getMinutes());
+        }
+      };
+
+    return (
+      <div className="w-full">
+        <DatePickerStyled
+          onChange={handleDateTimeChange}
+        />
+      </div>
+    );
+  };
 
 export const DatePicker = () => {
     return (
