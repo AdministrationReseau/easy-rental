@@ -69,11 +69,16 @@ export interface CarProps {
         policy_number?: string;
         expiry?: Date;
     };
+    agency:{
+        id:number;
+    }
 
     images: string[];            // Optional
 
     reviews: {                   // Optional
-        reviewer: string;
+        id?: number;
+        reviewer_name: string;
+        reviewer_id?:number;
         comment: string;
         rating: number;
     }[];
