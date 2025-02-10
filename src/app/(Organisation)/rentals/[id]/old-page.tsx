@@ -86,7 +86,7 @@ const Renting = () => {
             .catch((error) => {
                 console.error('Error loading vehicles:', error);
             });
-    }, [location?.driver, location?.driver?.id]);
+    }, [location?.driver?.id]);
     
     
         if (!vehicle) {

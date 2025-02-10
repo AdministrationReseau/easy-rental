@@ -10,10 +10,11 @@ import { DriverProps } from "@/utils/types/DriverProps";
 interface ResourceCardProps {
     resource: DriverProps | CarProps,
     profilActive: boolean,
-    onDelete: () => void
+    onDelete: () => void,
+    onEdit: () => void
 }
 
-export const ResourceCard = ({resource, profilActive = false, onDelete}: ResourceCardProps) => {
+export const ResourceCard = ({resource, profilActive = false, onDelete,onEdit}: ResourceCardProps) => {
     const isVehicle: boolean = 'brand' in resource;
     const vehicleResource = resource as CarProps;
     const driverResource = resource as Driver;
@@ -62,8 +63,8 @@ export const ResourceCard = ({resource, profilActive = false, onDelete}: Resourc
             </div>
 
             <div className={`flex ${profilActive ? 'flex-row' : 'flex-col'} gap-1 pr-1`}>
-                <Edit style={{ color: 'blue' }} />
-                <Delete style={{ color: 'red' }} onClick={onDelete} />
+                <Edit style={{ color: 'blue' }} onClick={(event) => { event.stopPropagation(); onEdit();}}/>
+                <Delete style={{ color: 'red' }} onClick={(event) => { event.stopPropagation(); onDelete();}} />
             </div>
 
         </div>

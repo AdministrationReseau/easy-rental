@@ -26,6 +26,7 @@ export default function VehiclesPage() {
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
     //Etat des champs des formulaires
     const [vehicleDescription, setVehicleDescription] = useState<string>("");
+    const [vehicleLicensePlate, setVehicleLicensePlate] = useState("");
     const [vehicleType, setVehicleType] = useState("");
     const [vehicleModel, setVehicleModel] = useState("");
     const [vehiclePricePerDay, setVehiclePricePerDay] = useState<number>(0);
@@ -55,6 +56,7 @@ export default function VehiclesPage() {
       }, []);
 
     const [showAlert, setShowAlert] = useState(false);
+    // const [showAlert, setShowAlert] = useState<string | null>(null);
 
     useEffect(() => {
         if (showAlert) {
@@ -117,6 +119,9 @@ export default function VehiclesPage() {
             case 'vehicleModel':
                 setVehicleModel(value);
                 break;
+            case 'vehicleLicensePlate':
+                setVehicleLicensePlate(value);
+                break;
         }
     };
     
@@ -133,6 +138,7 @@ export default function VehiclesPage() {
             pricePerDay: vehiclePricePerDay,
             model: vehicleModel,
             brand: vehicleBrand,
+            license_plate: vehicleLicensePlate,
             fuel_efficiency: { city: vehicleFuel_EfficiencyCity, highway: VehicleFuel_EfficiencyHighway },
             images: selectedImages,
             fonctionnalities: {
@@ -164,9 +170,19 @@ export default function VehiclesPage() {
     
         // Fermer le modal après l'ajout
         setShowModal(false);
+        // fs.writeFileSync(filePath, JSON.stringify(vehicles, null, 2), 'utf8');
+        // fs.writeFile('data/user.json', JSON.stringify(vehicles, null, 2), (err) => {
+        //     if (err) {
+        //         console.log('Error writing file:', err);
+        //     } else {
+        //         console.log('Successfully wrote file');
+        //     }
+        // });
+        setShowAlert(true);
     
         // Réinitialiser le formulaire
         setVehicleDescription("");
+        setVehicleLicensePlate("");
         setVehicleModel("");
         setVehicleBrand("");
         setVehicleType("");
@@ -177,13 +193,19 @@ export default function VehiclesPage() {
     };
 
     const handleDeleteVehicle = (id: number) =>{
-        // console.log(vehicles);
+        console.log(vehicles);
         const newVehicles = [...vehicles];
         newVehicles.splice(id, 1);
         setVehicles(newVehicles);
         // setVehicles((prevVehicles) => prevVehicles.filter(vehicle => vehicle.id !== id));
 
     };
+
+    const handleModifyVehicle = (id: number) => {
+        setIsEditFormOpen(true);
+        setFormModalResource(vehicles.find((vehicle) => vehicle.id === id) || null);
+
+    }
     
 
     return (
@@ -216,7 +238,7 @@ export default function VehiclesPage() {
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
                     {vehicles.map((vehicle) => (
                         <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
-                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} onDelete={() => handleDeleteVehicle(vehicle.id)} />
+                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} onDelete={() => handleDeleteVehicle(vehicle.id)} onEdit = {() => handleModifyVehicle(vehicle.id)} />
                         </Link>
                     ))}
                 </div>
@@ -233,7 +255,7 @@ export default function VehiclesPage() {
                                         <h2 className="text-lg font-bold mb-4">Create Vehicule</h2>
                                         <form onSubmit={handleAddVehicle}>
                                             <div className="mb-4">
-                                                <label className="block text-sm font-medium">Name</label>
+                                                <label className="block text-sm font-medium">Brand</label>
                                                 <input
                                                     type="text"
                                                     name="vehicleBrand"
@@ -243,7 +265,17 @@ export default function VehiclesPage() {
                                                 />
                                             </div>
                                             <div className="mb-4">
-                                                <label className="block text-sm font-medium">Name</label>
+                                                <label className="block text-sm font-medium">Model</label>
+                                                <input
+                                                    type="text"
+                                                    name="vehicleModel"
+                                                    value={vehicleModel}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label className="block text-sm font-medium">Description</label>
                                                 <textarea
                                                     name="vehicleDescription"
                                                     value={vehicleDescription}
@@ -264,6 +296,16 @@ export default function VehiclesPage() {
                                                 />
                                             </div>
                                             <div className="mb-4">
+                                                <label className="block text-sm font-medium">License Plate</label>
+                                                <input
+                                                    type="text"
+                                                    name="vehicleLicensePlate"
+                                                    value={vehicleLicensePlate}
+                                                    onChange={handleInputChange}
+                                                    className="border border-gray-300 rounded w-full p-2"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
                                                 <label className="block text-sm font-medium">
                                                     City
                                                 </label>
@@ -273,7 +315,7 @@ export default function VehiclesPage() {
                                                     value={vehicleFuel_EfficiencyCity}
                                                     onChange={handleInputChange}
                                                     className="border border-gray-300 rounded w-full p-2"
-                                                    placeholder="number of persons"
+                                                    placeholder='L/100KM'
                                                 />
                                             </div>
                                             <div className="mb-4">
@@ -282,11 +324,10 @@ export default function VehiclesPage() {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="VehicleFuel_EfficiencyHighway"
+                                                    name="vehicleFuel_EfficiencyHighway"
                                                     value={VehicleFuel_EfficiencyHighway}
                                                     onChange={handleInputChange}
                                                     className="border border-gray-300 rounded w-full p-2"
-                                                    placeholder="Transmission mode"
                                                 />
                                             </div>
                                             <div className="mb-4">

@@ -77,6 +77,12 @@ export default function DriversPage() {
         }
     };
 
+    const handleModifyDriver = (id: number) => {
+        setIsEditFormOpen(true);
+        setFormModalResource(drivers.find((driver) => driver.id === id) || null);
+
+    }
+
     return (
         <div className='h-full w-full flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
@@ -98,7 +104,7 @@ export default function DriversPage() {
                 <div className='grid grid-cols-1 gap-4 w-full h-full'>
                     {drivers.map((driver) => (
                         <Link key={driver.id} href={`/drivers/${driver.id}`}>
-                            <ResourceCard key={driver.id} resource={driver} profilActive={false} onDelete={() => handleDeleteDriver(driver.id)}/>
+                            <ResourceCard key={driver.id} resource={driver} profilActive={false} onDelete={() => handleDeleteDriver(driver.id)} onEdit={() => handleModifyDriver(driver.id)}/>
                         </Link>
                     ))}
                 </div>
