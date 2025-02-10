@@ -69,7 +69,7 @@ export interface CarProps {
         policy_number?: string;
         expiry?: Date;
     };
-    agency:{
+    agency?:{
         id:number;
     }
 
