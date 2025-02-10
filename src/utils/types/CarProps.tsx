@@ -10,10 +10,10 @@ export interface CarProps {
     pricePerDay: number;         // Optional
     vin?: string;        
     documents?:{
-        carte_grise: string;
-        visite_technique: string;
-        assurance: string;
-        vignette: string[];
+        registration_certificate: string;
+        technical_inspection: string;
+        insurance: string;
+        tax_sticker: string[];
     };
     fonctionnalities: {          // Optional
         air_condition: boolean;

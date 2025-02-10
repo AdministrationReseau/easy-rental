@@ -6,7 +6,6 @@ import { LocationProps } from '@/utils/types/RentalInfoProps';
 const Location = () => {
 
     const [locations, setLocations] = useState<LocationProps[]>([]);
-    // const [recentLocations, setRecentLocations] = useState<Location1[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 

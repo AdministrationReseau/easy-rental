@@ -53,7 +53,7 @@ const Renting = () => {
             .then((data) => {
                 if (data && Array.isArray(data.vehicles)) {
                     const foundVehicle = data.vehicles.find(
-                        (v: CarProps) => v.id === location?.vehicle.vehicle_id
+                        (v: CarProps) => v.id === location?.vehicle.id
                     );
                     setVehicle(foundVehicle || null); // Trouve le véhicule correspondant à l'ID
                 } else {
@@ -63,7 +63,7 @@ const Renting = () => {
             .catch((error) => {
                 console.error('Error loading vehicles:', error);
             });
-    }, [location?.vehicle.vehicle_id]);
+    }, [location?.vehicle.id]);
 
     // Chargement des données du chauffeur
     useEffect(() => {
@@ -77,7 +77,7 @@ const Renting = () => {
             .then((data) => {
                 if (data && Array.isArray(data)) {
                     const foundDriver = data.find(
-                        (d: DriverProps) => d.id === location?.driver.driver_id                    );
+                        (d: DriverProps) => d.id === location?.driver?.id                    );
                     setDriver(foundDriver || null); // Trouve le véhicule correspondant à l'ID
                 } else {
                     console.error('Unexpected data format:', data);
@@ -86,7 +86,7 @@ const Renting = () => {
             .catch((error) => {
                 console.error('Error loading vehicles:', error);
             });
-    }, [location?.driver.driver_id]);
+    }, [location?.driver?.id]);
     
     
         if (!vehicle) {
