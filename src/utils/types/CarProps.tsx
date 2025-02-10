@@ -44,7 +44,7 @@ export interface CarProps {
         highway?: string;
     };
 
-    license_plate?: string;       // Optional
+    license_plate: string;       // Optional
 
     registration?: {              // Optional
         state?: string;
