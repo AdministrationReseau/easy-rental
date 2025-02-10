@@ -9,6 +9,10 @@ export interface DriverProps {
     phone: string;
     email: string;
     location?: string;
+    documents?:{
+        id_card:string;
+        driver_licence:string;
+    };
     vehicle_assigned?: {
         id: number;
         make: string;
