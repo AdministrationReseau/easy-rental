@@ -24,7 +24,7 @@ export interface DriverProps {
     insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
-    availability:boolean;
+    availability?:boolean;
     created_at: Date;
 }
 

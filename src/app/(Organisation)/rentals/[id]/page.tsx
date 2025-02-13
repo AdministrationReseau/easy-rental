@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from 'react';
 import {
     MapIcon,
@@ -17,14 +18,22 @@ import { useParams } from 'next/navigation';
 import { LocationProps } from '@/utils/types/RentalInfoProps';
 import { CarProps } from '@/utils/types/CarProps';
 import { DriverProps } from '@/utils/types/DriverProps';
+import Image from 'next/image';
 
-
-export const DocumentList = ({ documents }: { documents?: { registration_certificate: string; technical_inspection: string; insurance: string; tax_sticker: string[] } }) => {
-    if (!documents) return null; // Gestion du cas undefined
-    // États pour contrôler l'ouverture de la modale et l'URL du PDF
+type Documents = {
+    registration_certificate: string;
+    technical_inspection: string;
+    insurance: string;
+    tax_sticker: string[];
+  };
+  
+const DocumentList = ({ documents }: { documents?: Documents }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [pdfUrl, setPdfUrl] = useState<string>("");
 
+    if (!documents) return null; // Gestion du cas undefined
+    // États pour contrôler l'ouverture de la modale et l'URL du PDF
+ 
      // Fonction pour ouvrir la modale avec le PDF
      const openPdfModal = (pdfUrl: string) => {
         setPdfUrl(pdfUrl);  // Mettez l'URL du PDF dans l'état
@@ -36,7 +45,7 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
         setModalOpen(false);
         setPdfUrl("");  // Réinitialiser l'URL du PDF
     };
-    const documentLabels: { [key: string]: string } = {
+    const documentLabels:Record<keyof Documents, string> = {
         registration_certificate: "Registration_certificate",
         technical_inspection : "Technical_inspection",
         insurance: "Insurance",
@@ -65,12 +74,12 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
             )}
 
         <div className="space-y-4">
-            {Object.entries(documents).map(([key, value], index) => (
-                <div key={index}
+            {Object.entries(documents as Documents).map(([key, value]) => (
+                <div key={key}
                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                     <div className="flex items-center space-x-3">
                         <KeyIcon className="h-5 w-5 text-gray-500"/>
-                        <span>{documentLabels[key] || key}</span>
+                        <span>{documentLabels[key as keyof Documents] || key}</span>
                     </div>
                     <div className="text-right">
                         {Array.isArray(value) ? (
@@ -100,7 +109,7 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
     );
 };
 
-export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({ vehicleFeatures }) => {
+const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({ vehicleFeatures }) => {
   const features = [
     "Air Condition",
     "Child Seat",
@@ -135,10 +144,11 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
   </>
   );
 };
-const LocationDetails = () => {
+const LocationDetails: React.FC = () => {
+    
+    const { id } = useParams(); // Récupération de l'ID via Next.js
     const [activeTab, setActiveTab] = useState('info');
     const [location, setLocation] = useState<LocationProps>();
-    const { id } = useParams(); // Récupération de l'ID via Next.js
     const [vehicle, setVehicle] = useState<CarProps| null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -314,9 +324,11 @@ const LocationDetails = () => {
                                 <CardContent>
                                     <div className="space-y-6">
                                         <div className="relative group">
-                                            <img
-                                                src={vehicle?.images[0]}
+                                            <Image
+                                                src={vehicle?.images[0]||""}
                                                 alt={vehicle?.brand || "vehicle's image"}
+                                                width={300}
+                                                height={300}
                                                 className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
                                             />
                                             <div
@@ -450,8 +462,10 @@ const LocationDetails = () => {
                                     <div className="space-y-4">
                                         <div className="flex items-center space-x-4">
                                             <div className="relative">
-                                                <img
-                                                    src={driver?.profile_picture}
+                                                <Image
+                                                    src={driver?.profile_picture||""}
+                                                    width={300}
+                                                    height={300}
                                                     alt={driver?.first_name}
                                                     className="w-16 h-16 rounded-full object-cover ring-2 ring-blue-500 ring-offset-2"
                                                 />

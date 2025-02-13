@@ -24,6 +24,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
   vehicle_assigned,
   insurance_provider,
   insurance_policy,
+  created_at,
   onSelect,
   isSelected,
 }) => {
@@ -48,6 +49,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
         vehicle_assigned,
         insurance_provider,
         insurance_policy,
+        created_at
       });
     }
   };

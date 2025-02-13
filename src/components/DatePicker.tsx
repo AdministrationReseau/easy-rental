@@ -7,7 +7,7 @@ interface DatePickerStyledProps {
 }
 
 export const DatePickerStyled = ({
-    value,
+    // value,
     onChange,
     }: DatePickerStyledProps) => {
     const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
@@ -113,7 +113,7 @@ export const DatePickerStyled = ({
 
 export const DateTime = () => {
     
-    const [time, setTime] = useState<string>('12:00');
+    // const [time, setTime] = useState<string>('12:00');
     const handleDateTimeChange = (dateTime: Date | null) => {
         if (dateTime) {
           console.log('Date complète:', dateTime);

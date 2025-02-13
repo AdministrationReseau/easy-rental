@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Driver } from "@/utils/types/resources";
+// import { Driver } from "@/utils/types/resources";
 import {
     Delete,
     Edit,
@@ -15,7 +15,7 @@ interface ResourceCardProps {
 export const ResourceCard = ({resource, profilActive = false}: ResourceCardProps) => {
     const isVehicle: boolean = 'brand' in resource;
     const vehicleResource = resource as CarProps;
-    const driverResource = resource as Driver;
+    const driverResource = resource as DriverProps;
 
     const imgPath = isVehicle
         ? vehicleResource.images[0]
@@ -40,7 +40,7 @@ export const ResourceCard = ({resource, profilActive = false}: ResourceCardProps
         <div className='bg-white rounded-md p-2 flex flex-row gap-2 w-full h-48 m-2 mx-auto border border-primary-blue/15 hover:border-primary-blue/15 hover:shadow-sm'>
             <div className='relative w-full h-full border border-black/5 rounded-md'>
                 <Image 
-                    src={imgPath}
+                    src={imgPath||""}
                     alt={isVehicle ? 'Car Profile' : 'Driver Profile'}
                     fill 
                     style={{ objectFit: 'contain' }} 
