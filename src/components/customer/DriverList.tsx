@@ -37,8 +37,6 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
   useEffect(() => {
     const filtered = drivers.filter(
       (driver) => driver.vehicle_assigned?.some(vehicle => vehicle.id === vehicleId)
-    );
-      (driver) => driver.vehicle_assigned?.some(vehicle => vehicle.id === vehicleId)
     );    
     setFilteredDrivers(filtered);
   }, [drivers, vehicleId]);
