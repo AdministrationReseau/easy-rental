@@ -145,7 +145,8 @@ export default function ResourceProfilPage() {
                                         src={location.vehicle.image[0]}
                                         alt={location.vehicle.brand}
                                         layout="responsive"
-                                        className="w-50 h-50 rounded-lg object-cover"
+                                        width={50}
+                                        height={50}
                                     />
                                 </div>
 

@@ -207,7 +207,9 @@ export default function ResourceProfilPage() {
                                             <Image
                                                 src={history.driver?.image || "/assets/default-driver.jpeg"} // Use driver image
                                                 alt={history.driver?.name || "Driver"}
-                                                layout="responsive" // Make the image responsive
+                                                layout="responsive"
+                                                width={50}
+                                                height={32}
                                                 className="w-full h-32 object-cover rounded-lg mb-4"
                                             />
                                             <div>

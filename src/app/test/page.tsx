@@ -139,14 +139,7 @@ import OrgSidebar from "@/components/OrgSidebar";
 // import AgencyDetail from "@/components/combiner-components/agency-detail";
 
 const Test = () => {
-    // const options = [
-    //     { label: "2 team members", available: true },
-    //     { label: "20GB Cloud storage", available: true },
-    //     { label: "Integration help", available: true },
-    //     { label: "Sketch Files", available: true },
-    //     { label: "API Access", available: true },
-    //     { label: "Complete documentation", available: true },
-    //     { label: "24×7 phone & email support", available: true },
+
     // ];
     return (
         <div>
