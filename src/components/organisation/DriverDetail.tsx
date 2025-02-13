@@ -50,7 +50,19 @@ export const DriverInfo: React.FC<{ driver: DriverProps }> = ({ driver }) => {
         {/* Vehicle Assigned */}
         {driver.vehicle_assigned && (
           <div className="pt-4">
-            <p><strong>Assigned Vehicle:</strong> {driver.vehicle_assigned[0].make} {driver.vehicle_assigned[0].model} ({driver.vehicle_assigned[0].year})</p>
+            <p><strong>Assigned Vehicles:</strong></p>
+            {driver.vehicle_assigned.length > 0 ?(
+              driver.vehicle_assigned.map((vehicle, key)=>(
+                <p key={key}>
+                {vehicle.make} 
+                {vehicle.model} 
+                ({vehicle.year})
+                </p>
+            ))
+            ):(
+            <p>Not any</p>
+            )}
+
           </div>
         )}
 

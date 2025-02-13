@@ -190,7 +190,7 @@ const MultiStepForm: React.FC = () => {
     // Charger les données du véhicule
     const [vehicle, setVehicle] = useState<CarProps | null>(null);
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
-    // console.log(vehicles);
+    console.log(vehicles);
     // Chargement des données des véhicules
     useEffect(() => {
         fetch('/data/cars.json')

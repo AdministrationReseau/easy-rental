@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';

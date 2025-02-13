@@ -7,6 +7,7 @@ interface DatePickerStyledProps {
 }
 
 export const DatePickerStyled = ({
+    // value,
     onChange,
     }: DatePickerStyledProps) => {
     const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
