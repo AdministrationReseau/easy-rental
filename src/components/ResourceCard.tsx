@@ -10,8 +10,8 @@ import { DriverProps } from "@/utils/types/DriverProps";
 interface ResourceCardProps {
     resource: DriverProps | CarProps,
     profilActive: boolean,
-    onDelete: () => void,
-    onEdit: () => void
+    onDelete: (e: React.MouseEvent) => void,
+    onEdit: (e: React.MouseEvent) => void
 }
 
 export const ResourceCard = ({resource, profilActive = false, onDelete,onEdit}: ResourceCardProps) => {
@@ -63,8 +63,8 @@ export const ResourceCard = ({resource, profilActive = false, onDelete,onEdit}: 
             </div>
 
             <div className={`flex ${profilActive ? 'flex-row' : 'flex-col'} gap-1 pr-1`}>
-                <Edit style={{ color: 'blue' }} onClick={(event) => { event.stopPropagation(); onEdit();}}/>
-                <Delete style={{ color: 'red' }} onClick={(event) => { event.stopPropagation(); onDelete();}} />
+                <Edit style={{ color: 'blue' }} onClick={(event) => { event.preventDefault(); event.stopPropagation(); onEdit(event);}}/>
+                <Delete style={{ color: 'red' }} onClick={(event) => { event.stopPropagation(); onDelete(event);}} />
             </div>
 
         </div>

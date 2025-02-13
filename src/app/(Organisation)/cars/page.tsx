@@ -1,160 +1,301 @@
 'use client'
 
+
 import { useState, useEffect } from 'react';
-import ResourceEditForm from '../../../components/ResourceEditForm';
+// import ResourceEditForm from '../../../components/ResourceEditForm';
 import { ResourceCard } from '@/components/ResourceCard';
 import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import Link from 'next/link';
 import Image from "next/image";
+// import { CarCard } from '@/components/CarCard';
+import { CustomCheckbox } from '@/components/FormComponents';
 
-
-export default function VehiclesPage() {
-    const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
-    const [formModalResource, setFormModalResource] = useState<CarProps | null>(null);
-
-    const closeEditForm = () => {
-        setFormModalResource(null);
-        setIsEditFormOpen(false);
-    }
-
-    // const openEditForm = (resourceId: number) => {
-    //     setFormModalResource(vehicles.find((vehicle) => vehicle.id === resourceId) || null);
-    //     setIsEditFormOpen(true);
-    // }
-
-    const [vehicles, setVehicles] = useState<CarProps[]>([]);
-    //Etat des champs des formulaires
-    const [vehicleDescription, setVehicleDescription] = useState<string>("");
-    const [vehicleLicensePlate, setVehicleLicensePlate] = useState("");
-    const [vehicleType, setVehicleType] = useState("");
-    const [vehicleModel, setVehicleModel] = useState("");
-    const [vehiclePricePerDay, setVehiclePricePerDay] = useState<number>(0);
-    const [vehicleBrand, setVehicleBrand] = useState("");
-    const [vehicleFuel_EfficiencyCity, setVehicleFuel_EfficiencyCity] = useState("");
-    const [VehicleFuel_EfficiencyHighway, setVehicleFuel_EfficiencyHighway] = useState("");
-
-
-    useEffect(() => {
-        fetch('/data/cars.json')
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then((data) => {
-            if (data && Array.isArray(data.vehicles)) {
-              setVehicles(data.vehicles);
-            } else {
-              console.error('Unexpected data format:', data);
-            }
-          })
-          .catch((error) => {
-            console.error('Error loading vehicles:', error);
-          });
-      }, []);
-
-    const [showAlert, setShowAlert] = useState(false);
-    // const [showAlert, setShowAlert] = useState<string | null>(null);
-
-    useEffect(() => {
-        if (showAlert) {
-            const timer = setTimeout(() => setShowAlert(false), 1000);
-            return () => clearTimeout(timer);
+// VehicleModal component for reuse between create and edit
+const VehicleModal = ({ 
+    isOpen, 
+    onClose, 
+    onSubmit, 
+    initialData = null,
+    title 
+}: {
+    isOpen: boolean;
+    onClose: () => void;
+    onSubmit: (vehicleData: Partial<CarProps>) => void;
+    initialData?: CarProps | null;
+    title: string;
+}) => {
+    const [vehicleData, setVehicleData] = useState({
+        description: initialData?.description || "",
+        license_plate: initialData?.license_plate || "",
+        type: initialData?.type || "",
+        model: initialData?.model || "",
+        pricePerDay: initialData?.pricePerDay || 0,
+        brand: initialData?.brand || "",
+        passenger: initialData?.passenger || 3,
+        images: initialData?.images || [],
+        fonctionnalities: initialData?.fonctionnalities || {
+            air_condition: false,
+            usb_input: false,
+            seat_belt: false,
+            audio_input: false,
+            child_seat: false,
+            bluetooth: false,
+            sleeping_bed: false,
+            onboard_computer: false,
+            gps: false,
+            luggage: false,
+            water: false,
+            additional_covers: false
         }
-    }, [showAlert]);
-
-    const [filters, setFilters] = useState<FilterVehicleProps>({
-        type: [],
-        capacity: null,
-        priceRange: [0, Infinity],
     });
 
-    const filteredCarrs = vehicles.filter((vehicle) => {
-        const isInType = filters.type !== null ? vehicle.type == filters.type[0] : true;
-        const isCapacityInRange = filters.capacity !== null ? vehicle.engine.capacity == filters.capacity : true;
-        const isPriceInRange = filters.priceRange !== null ? vehicle.pricePerDay >= filters.priceRange[0] && vehicle.pricePerDay <= filters.priceRange[1]: true;
-    
-        return isInType && isCapacityInRange && isPriceInRange;
-    });
+    const features = [
+        "Air Condition",
+        "Child Seat",
+        "GPS",
+        "USB Input",
+        "Bluetooth",
+        "Luggage",
+        "Seat Belt",
+        "Sleeping Bed",
+        "Water",
+        "Audio Input",
+        "Onboard Computer",
+        "Additional Covers",
+    ];
 
-    const handleFilterChange = (newFilters: FilterVehicleProps) => {
-        setFilters(newFilters);
-        setVehicles(filteredCarrs);
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
+        setVehicleData(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
-   const [showModal, setShowModal] = useState(false);
-   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-
-   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files) {
             const imageUrls = Array.from(files).map((file) =>
                 URL.createObjectURL(file)
             );
-            setSelectedImages(imageUrls);
+            setVehicleData(prev => ({
+                ...prev,
+                images: [...prev.images, ...imageUrls]
+            }));
         }
     };
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        
-        switch(name) {
-            case 'vehicleBrand':
-                setVehicleBrand(value);
-                break;
-            case 'vehicleType':
-                setVehicleType(value);
-                break;
-            case 'vehicleFuel_EfficiencyCity':
-                setVehicleFuel_EfficiencyCity(value);
-                break;
-            case 'vehicleFuel_EfficiencyHighway':
-                setVehicleFuel_EfficiencyHighway(value);
-                break;
-            case 'vehiclePricePerDay':
-                setVehiclePricePerDay(Number(value));
-                break;
-            case 'vehicleModel':
-                setVehicleModel(value);
-                break;
-            case 'vehicleLicensePlate':
-                setVehicleLicensePlate(value);
-                break;
-        }
-    };
-    
-    
-
-    const handleAddVehicle = (event: React.FormEvent) => {
-        event.preventDefault();
-    
-        const newVehicle: CarProps = {
-            id: vehicles.length + 1, // ID unique (à remplacer par un vrai ID si backend)
-            type: vehicleType,
-            passenger: 3,
-            description: vehicleDescription,
-            pricePerDay: vehiclePricePerDay,
-            model: vehicleModel,
-            brand: vehicleBrand,
-            license_plate: vehicleLicensePlate,
-            fuel_efficiency: { city: vehicleFuel_EfficiencyCity, highway: VehicleFuel_EfficiencyHighway },
-            images: selectedImages,
+    const handleFeatureChange = (feature: string, checked: boolean) => {
+        const featureKey = feature.toLowerCase().replace(" ", "_");
+        setVehicleData(prev => ({
+            ...prev,
             fonctionnalities: {
-                air_condition: false,
-                usb_input: false,
-                seat_belt: false,
-                audio_input: false,
-                child_seat: false,
-                bluetooth: false,
-                sleeping_bed: false,
-                onboard_computer: false,
-                gps: false,
-                luggage: false,
-                water: false,
-                additional_covers: false
-            },
+                ...prev.fonctionnalities,
+                [featureKey]: checked
+            }
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSubmit(vehicleData);
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-auto">
+            <div className="bg-white p-6 rounded shadow-lg w-fit h-fit fit-content max-w-6xl w-full">
+                <h2 className="text-lg font-bold mb-4">{title}</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="flex flex-row gap-6">
+                        <div className="flex flex-col flex-1">
+                        
+                        
+                        {/* Basic Information */}
+                        <div className=" mb-4">
+                            <div className=" mb-4">
+                                <label className="block text-sm font-medium">Brand</label>
+                                <input
+                                    type="text"
+                                    name="brand"
+                                    value={vehicleData.brand}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                />
+                            </div>
+                            <div className=" mb-4">
+                                <label className="block text-sm font-medium">Model</label>
+                                <input
+                                    type="text"
+                                    name="model"
+                                    value={vehicleData.model}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                />
+                            </div>
+                        
+
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium">Description</label>
+                                <textarea
+                                    name="description"
+                                    value={vehicleData.description}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                    rows={3}
+                                />
+                            </div>
+
+                        
+                            <div className=" mb-4">
+                                <label className="block text-sm font-medium">Type</label>
+                                <input
+                                    type="text"
+                                    name="type"
+                                    value={vehicleData.type}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                />
+                            </div>
+                            <div className=" mb-4">
+                                <label className="block text-sm font-medium">License Plate</label>
+                                <input
+                                    type="text"
+                                    name="license_plate"
+                                    value={vehicleData.license_plate}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                />
+                            </div>
+                        
+                            <div className=" mb-4">
+                                <label className="block text-sm font-medium">Price per day</label>
+                                <input
+                                    type="number"
+                                    name="pricePerDay"
+                                    value={vehicleData.pricePerDay}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                />
+                            </div>
+                            <div className=" mb-4">
+                                <label className="block text-sm font-medium">Passengers</label>
+                                <input
+                                    type="number"
+                                    name="passenger"
+                                    value={vehicleData.passenger}
+                                    onChange={handleInputChange}
+                                    className="border border-gray-300 rounded w-full p-2"
+                                />
+                            </div>
+                        
+
+                            {/* Images */}
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium">Images</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    className="border border-gray-300 rounded w-full p-2"
+                                    onChange={handleImageChange}
+                                />
+                                
+                            </div>
+                        </div>
+                    
+
+                    </div>
+                        <div className="flex flex-col flex-1">
+                           
+                            <div className=" w-[300px] h-[300px] mt-2 rounded fit-content border border-gray-300">
+                                {vehicleData.images.map((src, index) => (
+                                    <div key={index} className="relative">
+                                        <Image
+                                            src={src}
+                                            alt={`Preview ${index + 1}`} 
+                                            layout='responsive'
+                                            width={300}
+                                            height={300}
+                                            className="object-cover rounded"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            {/* Features */}
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium mb-2">Features</label>
+                                <div className="grid grid-cols-2 gap-4">
+                                    {features.map((feature) => (
+                                        <div key={feature} className="flex items-center">
+                                            <CustomCheckbox
+                                                label={feature}
+                                                checked={vehicleData.fonctionnalities[feature.toLowerCase().replace(" ", "_") as keyof typeof vehicleData.fonctionnalities]}
+                                                onChange={(e: { target: { checked: boolean; }; }) => handleFeatureChange(feature, e.target.checked)}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="flex justify-end gap-2">
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="bg-gray-500 text-white px-4 py-2 rounded"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                        >
+                            {initialData ? 'Update' : 'Create'}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default function VehiclesPage() {
+    const [vehicles, setVehicles] = useState<CarProps[]>([]);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [editingVehicle, setEditingVehicle] = useState<CarProps | null>(null);
+    const [filters, setFilters] = useState<FilterVehicleProps>({
+        type: [],
+        capacity: null,
+        priceRange: [0, Infinity],
+    });
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        fetch('/data/cars.json')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data && Array.isArray(data.vehicles)) {
+                    setVehicles(data.vehicles);
+                }
+            })
+            .catch((error) => {
+                console.error('Error loading vehicles:', error);
+            });
+    }, []);
+
+    const handleCreateVehicle = (vehicleData: Partial<CarProps>) => {
+        const newVehicle: CarProps = {
+            ...vehicleData as CarProps,
+            id: vehicles.length + 1,
             engine: {
                 type: undefined,
                 horsepower: undefined,
@@ -164,49 +305,36 @@ export default function VehiclesPage() {
             reviews: [],
             favorite: false
         };
-    
-        // Mettre à jour la liste des véhicules avec le nouveau véhicule
+
         setVehicles([...vehicles, newVehicle]);
-    
-        // Fermer le modal après l'ajout
-        setShowModal(false);
-        // fs.writeFileSync(filePath, JSON.stringify(vehicles, null, 2), 'utf8');
-        // fs.writeFile('data/user.json', JSON.stringify(vehicles, null, 2), (err) => {
-        //     if (err) {
-        //         console.log('Error writing file:', err);
-        //     } else {
-        //         console.log('Successfully wrote file');
-        //     }
-        // });
+        setShowCreateModal(false);
         setShowAlert(true);
-    
-        // Réinitialiser le formulaire
-        setVehicleDescription("");
-        setVehicleLicensePlate("");
-        setVehicleModel("");
-        setVehicleBrand("");
-        setVehicleType("");
-        setVehicleFuel_EfficiencyCity("");
-        setVehicleFuel_EfficiencyHighway("");
-        setVehiclePricePerDay(0);
-        setSelectedImages([]);
     };
 
-    const handleDeleteVehicle = (id: number) =>{
-        console.log(vehicles);
-        const newVehicles = [...vehicles];
-        newVehicles.splice(id, 1);
-        setVehicles(newVehicles);
-        // setVehicles((prevVehicles) => prevVehicles.filter(vehicle => vehicle.id !== id));
-
+    const handleModifyVehicle = ( vehicleData: Partial<CarProps>) => {
+        if (!editingVehicle) return;
+        
+        const updatedVehicles = vehicles.map(vehicle => 
+            vehicle.id === editingVehicle.id ? { ...vehicle, ...vehicleData } : vehicle
+        );
+        
+        setVehicles(updatedVehicles);
+        // setEditingVehicle(null);
+        setShowAlert(true);
     };
 
-    const handleModifyVehicle = (id: number) => {
-        setIsEditFormOpen(true);
-        setFormModalResource(vehicles.find((vehicle) => vehicle.id === id) || null);
+    const handleDeleteVehicle = (e: React.MouseEvent, id: number) => {
+        e.preventDefault(); // Empêche la navigation du Link
+        e.stopPropagation();
+        setVehicles(vehicles.filter(vehicle => vehicle.id !== id));
+    };
 
-    }
-    
+    const filteredVehicles = vehicles.filter((vehicle) => {
+        const isInType = filters.type.length === 0 || (vehicle.type && filters.type.includes(vehicle.type));
+        const isCapacityInRange = !filters.capacity || vehicle.engine.capacity === filters.capacity;
+        const isPriceInRange = vehicle.pricePerDay >= filters.priceRange[0] && vehicle.pricePerDay <= filters.priceRange[1];
+        return isInType && isCapacityInRange && isPriceInRange;
+    });
 
     return (
         <div className='h-full w-[100%] flex flex-col gap-2 rounded-md'>
@@ -218,179 +346,55 @@ export default function VehiclesPage() {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor='filter-start-date' className='text-gray-500 mr-2'>Show data from :</label>
+                    <label htmlFor='filter-start-date' className='text-gray-500 mr-2'>Show data from:</label>
                     <input id='filter-start-date' type='date' className='border border-primary-blue/15 p-1 rounded-sm' />
                 </div>
             </div>
-            
+
             <div className="my-4">
-                <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
+                <SidebarFilter vehicles={vehicles} onFilter={setFilters} />
             </div>
-            
+
             <button
-                    className="bg-blue-500 inherit w-60 text-white px-4 py-3 rounded mb-4"
-                    onClick={() => setShowModal(true)}
-                >
-                    + ADD A VEHICLE
-                </button> 
+                className="bg-blue-500 inherit w-60 text-white px-4 py-3 rounded mb-4"
+                onClick={() => setShowCreateModal(true)}
+            >
+                + ADD A VEHICLE
+            </button>
 
-            <div className='h-full flex flex-row gap-0'>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full h-full'>
-                    {vehicles.map((vehicle) => (
-                        <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
-                            <ResourceCard key={vehicle.id} resource={vehicle} profilActive={false} onDelete={() => handleDeleteVehicle(vehicle.id)} onEdit = {() => handleModifyVehicle(vehicle.id)} />
-                        </Link>
-                    ))}
-                </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full'>
+                {filteredVehicles.map((vehicle) => (
+                    <Link href={`/cars/${vehicle.id}`} key={vehicle.id}>
+                        <ResourceCard 
+                            resource={vehicle} 
+                            profilActive={false} 
+                            onDelete={(e) => handleDeleteVehicle(e,vehicle.id)}
+                            onEdit={(e) => { setEditingVehicle(vehicle); console.log(editingVehicle); }}
+                        />
+                    </Link>
+                ))}
             </div>
 
-            { formModalResource && isEditFormOpen &&
-                <ResourceEditForm resource={formModalResource} onClose={closeEditForm} />   
-            }
+            <VehicleModal
+                isOpen={showCreateModal}
+                onClose={() => setShowCreateModal(false)}
+                onSubmit={handleCreateVehicle}
+                title="Create Vehicle"
+            />
 
-            {/* Modal de création */}
-                            {showModal && (
-                                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                                    <div className="bg-white p-6 rounded shadow-lg">
-                                        <h2 className="text-lg font-bold mb-4">Create Vehicule</h2>
-                                        <form onSubmit={handleAddVehicle}>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">Brand</label>
-                                                <input
-                                                    type="text"
-                                                    name="vehicleBrand"
-                                                    value={vehicleBrand}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">Model</label>
-                                                <input
-                                                    type="text"
-                                                    name="vehicleModel"
-                                                    value={vehicleModel}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">Description</label>
-                                                <textarea
-                                                    name="vehicleDescription"
-                                                    value={vehicleDescription}
-                                                    onChange={(e) => setVehicleDescription(e.target.value)}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            
-                                            
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">Type</label>
-                                                <input
-                                                    type="text"
-                                                    name="vehicleType"
-                                                    value={vehicleType}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">License Plate</label>
-                                                <input
-                                                    type="text"
-                                                    name="vehicleLicensePlate"
-                                                    value={vehicleLicensePlate}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">
-                                                    City
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="vehicleFuel_EfficiencyCity"
-                                                    value={vehicleFuel_EfficiencyCity}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                    placeholder='L/100KM'
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">
-                                                    Highway
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="vehicleFuel_EfficiencyHighway"
-                                                    value={VehicleFuel_EfficiencyHighway}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">
-                                                    Price per day
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="vehiclePricePerDay"
-                                                    value={vehiclePricePerDay}
-                                                    onChange={handleInputChange}
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label className="block text-sm font-medium">
-                                                    Images
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    multiple
-                                                    className="border border-gray-300 rounded w-full p-2"
-                                                    onChange={handleImageChange}
-                                                />
-                                            </div>
-            
-                                            <div className="grid grid-cols-3 gap-2 mb-4">
-                                                {selectedImages.map((src, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className="border border-gray-300 rounded overflow-hidden"
-                                                    >
-                                                        <Image
-                                                            src={src}
-                                                            alt={`Preview ${index + 1}`}
-                                                            width={100}
-                                                            height={100}
-                                                            className="object-cover"
-                                                        />
-                                                    </div>
-                                                ))}
-                                            </div>
-            
-                                            <div className="flex justify-end gap-2">
-                                                <button
-                                                    className="bg-gray-500 text-white px-4 py-2 rounded"
-                                                    onClick={() => setShowModal(false)}
-                                                >
-                                                    Cancel
-                                                </button>
-                                                <button
-                                                    className="bg-blue-500 text-white px-4 py-2 rounded"
-                                                    type="submit"
-                                                >
-                                                    Submit
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            )}
+            <VehicleModal
+                isOpen={!!editingVehicle}
+                onClose={() => setEditingVehicle(null)}
+                onSubmit={handleModifyVehicle}
+                initialData={editingVehicle}
+                title="Edit Vehicle"
+            />
+
+            {showAlert && (
+                <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded shadow-lg">
+                    Vehicle successfully {editingVehicle ? 'updated' : 'created'}!
+                </div>
+            )}
         </div>
     );
 }
-
