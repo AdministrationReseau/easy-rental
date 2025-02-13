@@ -325,7 +325,7 @@ const LocationDetails: React.FC = () => {
                                     <div className="space-y-6">
                                         <div className="relative group">
                                             <Image
-                                                src={vehicle?.images[0]||""}
+                                                src={vehicle?.images[0]||"/placeholder.png"}
                                                 alt={vehicle?.brand || "vehicle's image"}
                                                 width={300}
                                                 height={300}
@@ -463,7 +463,7 @@ const LocationDetails: React.FC = () => {
                                         <div className="flex items-center space-x-4">
                                             <div className="relative">
                                                 <Image
-                                                    src={driver?.profile_picture||""}
+                                                    src={driver?.profile_picture||"/placeholder.png"}
                                                     width={300}
                                                     height={300}
                                                     alt={driver?.first_name}
