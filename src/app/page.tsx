@@ -55,7 +55,7 @@ import { PlayCircle } from '@mui/icons-material';
           <PlayCircle className="mr-2" />
           <span>Easy steps for renting a car</span>
         </button>
-        <Link href="/dashboard">
+        <Link href="/Dashboard">
         <button className="transition text-xl ease-out duration-300 bg-primary-blue hover:bg-blue-700 text-white font-semibold py-4 px-6 m-4 rounded">
           Dashboard
         </button>
@@ -289,7 +289,7 @@ import LocationFilterContainer from "@/components/LocationFilter";
                 <div className="flex justify-between w-full">
                     <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-4">
                     <Image 
-                        src={testimonial.image} 
+                        src={testimonial.image ?? '/voiture.png'}
                         alt={testimonial.name}
                         width={400}
                         height={400}   

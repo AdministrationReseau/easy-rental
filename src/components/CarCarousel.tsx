@@ -56,7 +56,7 @@ const CarCarousel: React.FC = () => {
                             images={carData.images || []} // Handle undefined images
                             brand={carData.brand || 'Unknown Brand'}
                             model={carData.model || 'Unknown Model'}
-                            transmission={carData.transmission || 'Unknown Transmission'}
+                            transmission={carData?.transmission || 'Unknown Transmission'}
                             engine={
                                 carData.engine || {
                                     type: 'Unknown',
@@ -67,7 +67,7 @@ const CarCarousel: React.FC = () => {
                             passenger={carData.passenger || 0} // Fallback to 0 passengers
                             license_plate={carData.license_plate ?? ''}
                             pricePerDay={carData.pricePerDay || 0} // Fallback to 0 price
-                            description={carData.description || ['No description available']} // Fallback for description
+                            description={carData.description || 'No description available'} // Fallback for description
                             fonctionnalities={
                                 carData.fonctionnalities || {
                                     air_condition: false,

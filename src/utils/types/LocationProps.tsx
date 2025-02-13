@@ -2,25 +2,29 @@ import { GeofenceProps } from "./GeofenceProps";
 
 export interface LocationProps {
     id: number;
-    user: {
-        user_id: number,
-        user_name: string;
-        user_phone: string;
-        user_address: string;
-        user_image: string;
+    pick_up:{
+        date: Date;
+        place: string;
+    }
+    drop_off:{
+        date:  Date;
+        place: string;
+    }
+    user:{
+        id?:number;
+        name: string;
+        phone: string;
+        address: string;
+        city: string;
     }
     vehicle:{
-        vehicle_id: number;
+        id: number;
     },
-    driver?: {
-        driver_id: number;
+    driver?:{
+        id: number;
+        name: string | undefined;
     }
-    pick_up_date:  Date;
-    pick_up_time?: string;
-    pick_up_place: string;
-    drop_off_date: Date;
-    drop_off_time?: string;
-    drop_off_place: string;
+
     payment_method: string;
     promo_formula:number;
     date: string;

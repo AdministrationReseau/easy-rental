@@ -9,7 +9,6 @@ export interface DriverProps {
     phone: string;
     email: string;
     location?: string;
-    available: boolean;
     documents?:{
         id_card:string;
         driver_licence:string;
@@ -19,12 +18,14 @@ export interface DriverProps {
         make: string;
         model: string;
         year: number;
-    };
+    }[];
     rating: number;
-    insurance_provider: string;
-    insurance_policy: string;
+    insurance_provider?: string;
+    insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
+    available: boolean;
+    created_at: Date;
 }
 
 export interface FilterDriverProps {

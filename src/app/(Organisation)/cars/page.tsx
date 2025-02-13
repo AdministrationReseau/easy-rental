@@ -6,7 +6,6 @@ import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import CarDetail from '@/components/organisation/CarDetail';
 import OrgVehicleList from '@/components/organisation/OrgVehicleList';
 // import { AddBox } from '@mui/icons-material';
-import CarForm from '@/components/organisation/CarForm';
 
 export default function VehiclesPage() {
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
@@ -17,7 +16,6 @@ export default function VehiclesPage() {
       });
     const [selectedVehicle] = useState<CarProps | null>(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [addCarFormOpened, setAddCarFormOpened] = useState(false);
 
     useEffect(() => {
         fetch('/data/cars.json')
@@ -43,10 +41,6 @@ export default function VehiclesPage() {
         setFilters(newFilters);
     };
 
-    const addVehicle = (vehicle: CarProps) => {
-        setVehicles(prev => [...prev, { ...vehicle, id: Date.now() }]);
-    };  
-
     return (
         <div className='h-full w-[100%] flex flex-col gap-2 rounded-md'>
             <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
@@ -56,13 +50,6 @@ export default function VehiclesPage() {
                         Actually, you have <span className='font-black'>{vehicles.length} vehicles</span>
                     </div>
                 </div>
-                {/* <div>
-                  <button
-                    className='bg-primary-blue/90 hover:bg-primary-blue rounded-lg text-white p-2 flex items-center gap-1'
-                    onClick={ () => setAddCarFormOpened(true) }>
-                    <AddBox/>Add a new car
-                  </button>
-                </div> */}
             </div>
             <div className={`my-4 ${isPopupOpen ? 'block' : 'hidden'} lg:block`}>
                 <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange}  isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen}/>
@@ -86,10 +73,6 @@ export default function VehiclesPage() {
                 >
                 Filters
             </button>
-
-            { addCarFormOpened && 
-              <CarForm addVehicle={addVehicle} carFormOpened={addCarFormOpened} setAddCarFormOpened={setAddCarFormOpened} />
-            }
         </div>
     );
 }

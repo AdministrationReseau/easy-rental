@@ -28,6 +28,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
   insurance_provider,
   insurance_policy,
   available,
+  created_at,
   onSelect,
   isSelected,
   onEdit,
@@ -55,6 +56,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
         insurance_provider,
         insurance_policy,
         available,
+        created_at,
       });
     }
   };
@@ -81,21 +83,21 @@ const DriverCard: React.FC<DriverCardProps> = ({
           <Stars value={rating} precision={0.5} />
         </div>
 
-        <div className="text-gray-600 text-sm">
+        <div className="text-gray-600 text-sm space-y-2">
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">mail</span>
+            <span className="material-icons text-blue-500 mr-2">Mail:</span>
             <p>{email}</p>
           </div>
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">place</span>
-            <p className="truncate whitespace-nowrap text-ellipsis">{location || address}</p>
+            <span className="material-icons text-blue-500 mr-2">Adress:</span>
+            <p>{location || address}</p>
           </div>
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">calendar_today</span>
+            <span className="material-icons text-blue-500 mr-2">Age:</span>
             <p>{age} years old</p>
           </div>
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">call</span>
+            <span className="material-icons text-blue-500 mr-2">Phone:</span>
             <p>{phone}</p>
           </div>
         </div>

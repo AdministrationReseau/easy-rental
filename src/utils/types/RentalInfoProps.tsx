@@ -1,18 +1,73 @@
 import { ReactNode } from "react";
 import { DateValue } from "react-aria-components";
 
+
+export interface LocationProps {
+    id: string;
+    user: {
+        id: number,
+        name: string;
+        phone: string;
+        address: string;
+        image: string;
+    }
+    vehicle:{
+        id: number;
+        image: string[];
+        brand: string;
+    },
+    driver?: {
+        id: number;
+    }
+    pick_up:{
+        date:  Date;
+        place: string;
+    };
+    drop_off:{
+        date: Date;
+        place: string;
+    }
+    payment_method: string;
+    promo_formula:number;
+    date: string;
+    price: string;
+    ride?: geofence;
+    status: "pending"|"completed"|"cancelled";
+}
+
+
 export interface rentalInfoProps {
-    pickUpDate: DateValue | string | ReactNode | Date;
-    pickUpTime: string;
-    pickUpPlace: string;
-    backOffDate: DateValue | string | ReactNode;
-    backOffTime: string;
-    backOffPlace: string;
-    billingName: string;
-    billingPhone: string;
-    billingAddress: string;
-    billingCity: string;
-    paymentMethod: string;
-    driverName: string | undefined;
-    promoCode: string;
+    pick_up:{
+        date: DateValue | string | ReactNode | Date;
+        place: string;
+    }
+    drop_off:{
+        date:  DateValue | string | ReactNode;
+        place: string;
+    }
+    user:{
+        id?:number;
+        name: string;
+        phone: string;
+        address: string;
+        city: string;
+    }
+    driver?:{
+        id: number;
+        name: string | undefined;
+    }
+    payment_method: string;
+    promo_code: string;
+}
+
+
+interface geofence{
+    geofence_id: number;
+    event: string;
+    points:{
+        latitude: number;
+        longitude: number;
+        accuracy: number;
+        timestamp: Date;
+    }[];
 }

@@ -136,7 +136,7 @@ const Dashboard = () => {
 
     const carsData: MyBarListDataItem[] = Object.values(
         locations.reduce((acc: Record<number, MyBarListDataItem>, item) => {
-        const vehicleId = item.vehicle.vehicle_id;
+        const vehicleId = item.vehicle.id;
         const car: CarProps | undefined = cars.find((car: CarProps) => car.id === vehicleId);
         const carName: string = car ? ( (car.brand ?? '') + ' ' + (car.model ?? '') ) : `Car ${vehicleId}`;
         const locationPrice = isNaN(Number(item.price)) ? 0 : Number(item.price);
@@ -153,7 +153,7 @@ const Dashboard = () => {
         locations.reduce((acc: Record<number, MyBarListDataItem>, item) => {
         
         if (item.driver) {
-            const driverId = item.driver.driver_id;
+            const driverId = item.driver.id;
             const driver: DriverProps | undefined = drivers.find((driver: DriverProps) => driver.id === driverId);
             const driverName: string = driver ? (driver.first_name ?? '' + driver.last_name ?? '') : `Driver ${driverId}`;
             const locationPrice = isNaN(Number(item.price)) ? 0 : Number(item.price);
@@ -177,17 +177,20 @@ const Dashboard = () => {
         date: month,
         carsLocAmount: 0,
         driversLocAmount: 0,
-    }));
+    }))
 
-    locations.forEach((item) => {
-        const month = item.date.split(" ")[1];
-        const monthIndex = months.indexOf(month.slice(0, 3));
-        const locAmount = isNaN(Number(item.price)) ? 0 : Number(item.price);
-    
-        if (monthIndex !== -1) {
-            locationsDetailsData[monthIndex][item.driver ? "driversLocAmount" : "carsLocAmount"] += locAmount;
-        }
-    });
+    if (locations.length > 0) {
+        locations.forEach((item) => {
+            const month = item.date.split(" ")[1];
+            const monthIndex = months.indexOf(month.slice(0, 3));
+            
+            const locAmount = isNaN(Number(item.price)) ? 0 : Number(item.price);
+        
+            if (monthIndex !== -1) {
+                locationsDetailsData[monthIndex][item.driver ? "driversLocAmount" : "carsLocAmount"] += locAmount;
+            }
+        });
+    }
 
     const [totalLocGain, setTotalLocGain] = useState<number>(0);
 

@@ -161,8 +161,8 @@ const RentalSummaryOrg: React.FC<{vehicle?: CarProps} & { location?: LocationPro
                     <div className='w-full  grid grid-cols-2 md:grid-cols-4'>
                         <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-2">
                             <Image 
-                                src={location? location.user.user_image : "/BG1.png"} 
-                                alt={location? location.user.user_name : "default_profile"}
+                                src={"/BG1.png"} 
+                                alt={location? location.user.name : "default_profile"}
                                 width={100}
                                 height={100}   
                                 className="w-full h-full object-cover"
@@ -170,15 +170,15 @@ const RentalSummaryOrg: React.FC<{vehicle?: CarProps} & { location?: LocationPro
                         </div>
                         <div>
                             <p className="text-md text-secondary-text">Name</p>
-                            <p className="font-medium">{location?.user.user_name || 'N/A'}</p>
+                            <p className="font-medium">{location?.user.name || 'N/A'}</p>
                         </div>
                         <div>
                             <p className="text-md text-secondary-text">Phone</p>
-                            <p className="font-medium">{location?.user.user_phone || 'N/A'}</p>
+                            <p className="font-medium">{location?.user.phone || 'N/A'}</p>
                         </div>
                         <div>
                             <p className="text-md text-secondary-text">City</p>
-                            <p className="font-medium">{location?.user.user_address || 'N/A'}</p>
+                            <p className="font-medium">{location?.user.address || 'N/A'}</p>
                         </div>
                     </div>
                 </div>
@@ -186,10 +186,10 @@ const RentalSummaryOrg: React.FC<{vehicle?: CarProps} & { location?: LocationPro
                 
                 <div className="bg-blue-50 rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* 4.Section Driver */}
-                    <RentalSection pickUpDate={location? location.pick_up_date: null} 
-                                    pickUpPlace={location? location.pick_up_place:''} 
-                                    backOffDate={location? location.drop_off_date: null}
-                                    backOffPlace={location? location.drop_off_place:''}
+                    <RentalSection pickUpDate={location? location.pick_up.date: null} 
+                                    pickUpPlace={location? location.pick_up.place:''} 
+                                    backOffDate={location? location.drop_off.date: null}
+                                    backOffPlace={location? location.drop_off.place:''}
                                     />
                    
                     { driver? <DriverSection driver={driver} />
