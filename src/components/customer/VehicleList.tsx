@@ -65,6 +65,7 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
               service_history={vehicle.service_history}
               insurance={vehicle.insurance}
               favorite={vehicle.favorite}
+              available={vehicle.available}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
             />

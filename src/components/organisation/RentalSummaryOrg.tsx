@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { Person, CalendarMonth, CreditCard, Email, Phone, LocationOn } from '@mui/icons-material';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';
-import { LocationProps } from '@/utils/types/RentalInfoProps';
 import { DriverProps } from '@/utils/types/DriverProps';
+import { LocationProps } from '@/utils/types/LocationProps';
 
 const DriverSection :React.FC<{ driver: DriverProps}> = ({
     driver

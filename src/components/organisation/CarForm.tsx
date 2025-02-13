@@ -47,6 +47,7 @@ export default function CarForm({ addVehicle, carFormOpened, setAddCarFormOpened
         images: [],
         reviews: [],
         favorite: false,
+        available: false,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -57,14 +58,6 @@ export default function CarForm({ addVehicle, carFormOpened, setAddCarFormOpened
     const handleDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.target;
         setCar(prev => ({ ...prev, description: [value] }));
-    };
-    
-    const handleImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setCar(prev => ({
-            ...prev,
-            images: [...prev.images, value]
-        }));
     };
 
     const handleFeatureChange = (e: React.ChangeEvent<HTMLInputElement>) => {

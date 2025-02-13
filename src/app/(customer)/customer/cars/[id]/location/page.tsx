@@ -476,7 +476,7 @@ const MultiStepForm: React.FC = () => {
                     ))}
                 </div>
             </div>
-            <aside className="w-full  p-4 m-auto">
+            <aside className="w-full p-4 m-auto">
                 <RentalSummary
                     key={vehicle.id}
                     id={vehicle.id}
@@ -502,6 +502,7 @@ const MultiStepForm: React.FC = () => {
                     service_history={vehicle.service_history} 
                     insurance={vehicle.insurance} 
                     favorite = {vehicle.favorite}
+                    available = {vehicle.available}
                     onLike={function (id: number): void {console.log(id)}} 
                     onDislike={function (id: number): void {console.log(id)} }
                     rentalInfo={rentalInfo} // Passer l'état dynamique

@@ -59,6 +59,7 @@ const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
               vehicle_assigned={driver.vehicle_assigned}
               insurance_provider={driver.insurance_provider}
               insurance_policy={driver.insurance_policy}
+              available={driver.available}
               onSelect={() => {}}
               isSelected={false}
               onEdit={(id: number) => console.log(id)}

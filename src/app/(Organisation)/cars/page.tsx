@@ -5,7 +5,7 @@ import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import CarDetail from '@/components/organisation/CarDetail';
 import OrgVehicleList from '@/components/organisation/OrgVehicleList';
-import { AddBox } from '@mui/icons-material';
+// import { AddBox } from '@mui/icons-material';
 import CarForm from '@/components/organisation/CarForm';
 
 export default function VehiclesPage() {
@@ -56,13 +56,13 @@ export default function VehiclesPage() {
                         Actually, you have <span className='font-black'>{vehicles.length} vehicles</span>
                     </div>
                 </div>
-                <div>
+                {/* <div>
                   <button
                     className='bg-primary-blue/90 hover:bg-primary-blue rounded-lg text-white p-2 flex items-center gap-1'
                     onClick={ () => setAddCarFormOpened(true) }>
                     <AddBox/>Add a new car
                   </button>
-                </div>
+                </div> */}
             </div>
             <div className={`my-4 ${isPopupOpen ? 'block' : 'hidden'} lg:block`}>
                 <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange}  isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen}/>

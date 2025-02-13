@@ -45,33 +45,34 @@ const Favorite: React.FC = () => {
                             {vehicles.length > 0 ? (
                                 vehicles.map((vehicle) => (
                                     <CarCard
-                                                key={vehicle.id}
-                                                id={vehicle.id}
-                                                images={vehicle.images}
-                                                brand={vehicle.brand}
-                                                rating={vehicle.rating}
-                                                reviews={vehicle.reviews}
-                                                model={vehicle.model}
-                                                transmission={vehicle.transmission}
-                                                engine={vehicle.engine}
-                                                passenger={vehicle.passenger || 4}
-                                                pricePerDay={vehicle.pricePerDay}
-                                                type={vehicle.type} 
-                                                year={vehicle.year} 
-                                                description ={vehicle.description} 
-                                                vin={vehicle.vin} 
-                                                fonctionnalities={vehicle.fonctionnalities}
-                                                color={vehicle.color} 
-                                                fuel_efficiency={vehicle.fuel_efficiency} 
-                                                license_plate={vehicle.license_plate} 
-                                                registration={vehicle.registration} 
-                                                owner={vehicle.owner} 
-                                                service_history={vehicle.service_history} 
-                                                insurance={vehicle.insurance} 
-                                                favorite={vehicle.favorite}
-                                                onLike={() => {}} // Fonction vide
-                                                onDislike={() => {}} // Fonction vide
-                                                />
+                                        key={vehicle.id}
+                                        id={vehicle.id}
+                                        images={vehicle.images}
+                                        brand={vehicle.brand}
+                                        rating={vehicle.rating}
+                                        reviews={vehicle.reviews}
+                                        model={vehicle.model}
+                                        transmission={vehicle.transmission}
+                                        engine={vehicle.engine}
+                                        passenger={vehicle.passenger || 4}
+                                        pricePerDay={vehicle.pricePerDay}
+                                        type={vehicle.type} 
+                                        year={vehicle.year} 
+                                        description ={vehicle.description} 
+                                        vin={vehicle.vin} 
+                                        fonctionnalities={vehicle.fonctionnalities}
+                                        color={vehicle.color} 
+                                        fuel_efficiency={vehicle.fuel_efficiency} 
+                                        license_plate={vehicle.license_plate} 
+                                        registration={vehicle.registration} 
+                                        owner={vehicle.owner} 
+                                        service_history={vehicle.service_history} 
+                                        insurance={vehicle.insurance} 
+                                        favorite={vehicle.favorite}
+                                        available = {vehicle.available}
+                                        onLike={() => {}} // Fonction vide
+                                        onDislike={() => {}} // Fonction vide
+                                        />
                                 ))
                             ) : (
                                 <p className="col-span-full text-center text-gray-500">

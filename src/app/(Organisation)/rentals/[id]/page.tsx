@@ -318,10 +318,10 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'next/navigation';
 import { CarProps } from '@/utils/types/CarProps';
 import { RentalSummaryOrg } from '@/components/organisation/RentalSummaryOrg';
-import { LocationProps } from '@/utils/types/RentalInfoProps';
 import { DriverProps } from '@/utils/types/DriverProps';
 // import Map from '@/components/organisation/Map';
 import dynamic from 'next/dynamic';
+import { LocationProps } from '@/utils/types/LocationProps';
 
 const Map = dynamic(() => import("@/components/organisation/Map"), { ssr: false });
 
@@ -395,7 +395,7 @@ const Renting = () => {
             .then((data) => {
                 if (data && Array.isArray(data)) {
                     const foundDriver = data.find(
-                        (d: DriverProps) => d.id === location?.driver.driver_id                    );
+                        (d: DriverProps) => d.id === location?.driver?.driver_id                    );
                     setDriver(foundDriver || null); // Trouve le véhicule correspondant à l'ID
                 } else {
                     console.error('Unexpected data format:', data);
@@ -404,7 +404,7 @@ const Renting = () => {
             .catch((error) => {
                 console.error('Error loading vehicles:', error);
             });
-    }, [location?.driver.driver_id]);
+    }, [location?.driver?.driver_id]);
     
     
         if (!vehicle) {

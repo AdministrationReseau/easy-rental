@@ -1,27 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Favorite, FavoriteBorder, People, LocalGasStation, Speed, Delete, Edit } from '@mui/icons-material';
+import { People, LocalGasStation, Speed, Delete, Edit } from '@mui/icons-material';
 import Image from 'next/image';
 import { CarProps } from '@/utils/types/CarProps';
-
-interface LikeProps {
-    isLiked: boolean;
-    onClick: () => void;
-}
-
-const LikeButton: React.FC<LikeProps> = ({ isLiked, onClick }) => {
-    return (
-        <button onClick={onClick} className="text-xl">
-            {isLiked ? (
-                <Favorite className="text-red-500" />
-            ) : (
-                <FavoriteBorder className="text-gray-500" />
-            )}
-        </button>
-    );
-};
 
 const CarCard: React.FC<CarProps> = ({
                                          id = 0,
@@ -32,26 +15,12 @@ const CarCard: React.FC<CarProps> = ({
                                          passenger = 0,
                                          pricePerDay = 0,
                                          images = [],
-                                         favorite = false,
-                                         onLike = () => {},
-                                         onDislike = () => {},
                                          onEdit = () => {},
                                          onDelete = () => {},
                                      }) => {
-    const [isLiked, setIsLiked] = useState<boolean>(favorite);
-
-    const toggleLike = () => {
-
-            setIsLiked(!isLiked);
-            if (!isLiked) {
-                onLike(id);
-            } else {
-                onDislike(id);
-            }  
-    };
 
     return (
-        <div className="bg-white text-secondary-text rounded-lg shadow-md overflow-hidden w-[280px]">
+        <div className="bg-white text-secondary-text rounded-lg overflow-hidden w-[280px]">
             {/* Header - Brand, Model, Like Button */}
             <div className="flex justify-between items-center p-4 h-[50px]">
                 <h2 className="text-md font-semibold text-gray-800">
@@ -64,7 +33,6 @@ const CarCard: React.FC<CarProps> = ({
                     <button className="rounded-full hover:bg-red-500/10">
                         <Delete style={{color: 'red'}} onClick={() => onDelete(id)} />
                     </button>
-                    <LikeButton isLiked={isLiked} onClick={toggleLike} />
                 </div>
             </div>
 

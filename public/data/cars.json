@@ -87,7 +87,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 2,
@@ -176,7 +177,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": false
     },
     {
       "id": 3,
@@ -265,7 +267,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 4,
@@ -354,7 +357,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 5,
@@ -443,7 +447,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+      "available": false
     },
     {
       "id": 6,
@@ -532,7 +537,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 7,
@@ -621,7 +627,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 8,
@@ -710,7 +717,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+      "available": false
     },
     {
       "id": 9,
@@ -799,7 +807,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 10,
@@ -888,7 +897,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 11,
@@ -977,7 +987,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 12,
@@ -1066,7 +1077,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 13,
@@ -1155,7 +1167,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 14,
@@ -1244,7 +1257,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 15,
@@ -1333,7 +1347,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 16,
@@ -1422,7 +1437,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 17,
@@ -1511,7 +1527,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 18,
@@ -1600,7 +1617,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 19,
@@ -1689,7 +1707,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     },
     {
       "id": 20,
@@ -1778,7 +1797,8 @@
           "rating": 3
         }
       ],
-      "favorite": false
+      "favorite": false,
+"available": true
     }
   ]
 }

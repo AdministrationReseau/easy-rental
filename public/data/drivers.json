@@ -18,7 +18,8 @@
     "rating": 3.5,
     "insurance_provider": "State Farm",
     "insurance_policy": "SF123456789",
-    "profile_picture": "/assets/organisation/drivers/1.jpeg"
+    "profile_picture": "/assets/organisation/drivers/1.jpeg",
+    "available": 0
   },
   {
     "id": 2,
@@ -39,7 +40,8 @@
     "rating": 4.8,
     "insurance_provider": "Allstate",
     "insurance_policy": "AL987654321",
-    "profile_picture": "/assets/organisation/drivers/2.jpeg"
+    "profile_picture": "/assets/organisation/drivers/2.jpeg",
+    "available": 1
   },
   {
     "id": 3,
@@ -60,7 +62,8 @@
     "rating": 4.6,
     "insurance_provider": "Progressive",
     "insurance_policy": "PR1234567890",
-    "profile_picture": "/assets/organisation/drivers/3.jpeg"
+    "profile_picture": "/assets/organisation/drivers/3.jpeg",
+    "available": 1
   },
   {
     "id": 4,
@@ -81,7 +84,8 @@
     "rating": 4.7,
     "insurance_provider": "Geico",
     "insurance_policy": "GE123456789",
-    "profile_picture": "/assets/organisation/drivers/4.jpeg"
+    "profile_picture": "/assets/organisation/drivers/4.jpeg",
+    "available": 0
   },
   {
     "id": 5,
@@ -102,6 +106,7 @@
     "rating": 4.9,
     "insurance_provider": "Nationwide",
     "insurance_policy": "NW123456789",
-    "profile_picture": "/assets/organisation/drivers/5.jpeg"
+    "profile_picture": "/assets/organisation/drivers/5.jpeg",
+    "available": 1
   }
 ]

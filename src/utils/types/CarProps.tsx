@@ -10,6 +10,7 @@ export interface CarProps {
     pricePerDay: number;         // Optional
     vin?: string;                 // Optional
     plate_number?: string;
+    available: boolean;
     documents?:{
         carte_grise: string[];
         visite_technique: string[];
