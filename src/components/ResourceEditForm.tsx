@@ -57,12 +57,13 @@ export interface Driver {
     address: string;
     phone: string;
     email: string;
-    vehicle_assigned: {
-        id: number;
-        make: string;
-        model: string;
-        year: number;
-    };
+    // vehicle_assigned: {
+    //     id: number;
+    //     make: string;
+    //     model: string;
+    //     year: number;
+    // };
+    vehicle_assigned: { id: number; make: string; model: string; year: number }[];
     rating: number;
     insurance_provider: string;
     insurance_policy: string;

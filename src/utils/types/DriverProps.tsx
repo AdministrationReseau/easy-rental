@@ -9,21 +9,27 @@ export interface DriverProps {
     phone: string;
     email: string;
     location?: string;
+    documents?:{
+        id_card:string;
+        driver_licence:string;
+    };
     vehicle_assigned?: {
         id: number;
         make: string;
         model: string;
         year: number;
-    };
+    }[];
     rating: number;
-    insurance_provider: string;
-    insurance_policy: string;
-    profile_picture?: string;
+    insurance_provider?: string;
+    insurance_policy?: string;
+    profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
+    availability?:boolean;
+    created_at?: Date;
 }
 
 export interface FilterDriverProps {
-    ratingRange: [number, number];
+    rating: number | null;
     ageRange: [number, number];
     location?: string; // Optional
 }

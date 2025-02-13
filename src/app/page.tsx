@@ -55,6 +55,12 @@ import { PlayCircle } from '@mui/icons-material';
           <PlayCircle className="mr-2" />
           <span>Easy steps for renting a car</span>
         </button>
+        <Link href="/dashboard">
+        <button className="transition text-xl ease-out duration-300 bg-primary-blue hover:bg-blue-700 text-white font-semibold py-4 px-6 m-4 rounded">
+          Dashboard
+        </button>
+        </Link>
+      
       </div>
 
       {/* Image */}

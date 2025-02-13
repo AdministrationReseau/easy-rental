@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import TransactionInfoCard from "@/components/TransactionInfoCard";
 import TransactionList from "@/components/TransactionList";
-import { TransactionProp} from "@/utils/types/HistoryProp";
+import { TransactionProps} from "@/utils/types/TransactionProps";
 
 const Transaction = () => {
-    const [transactions, setTransactions] = useState<TransactionProp[]>([]);
+    const [transactions, setTransactions] = useState<TransactionProps[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 

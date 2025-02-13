@@ -1,24 +1,8 @@
-import React, { ReactNode } from 'react';
 import Image from 'next/image';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';
-import { DateValue } from 'react-aria-components';
+import { rentalInfoProps } from '@/utils/types/RentalInfoProps';
 
-export interface rentalInfoProps {
-    pickUpDate: DateValue | string | ReactNode;
-    pickUpTime: string;
-    pickUpPlace: string;
-    backOffDate: DateValue | string | ReactNode;
-    backOffTime: string;
-    backOffPlace: string;
-    billingName: string;
-    billingPhone: string;
-    billingAddress: string;
-    billingCity: string;
-    paymentMethod: string;  // Added payment method field
-    driverName: string| undefined;
-    promoCode: string;
-}
 
 const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
     brand,
@@ -64,54 +48,39 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
             <div className='flex justify-center'>
                 <hr className='w-[80%] h-4'/>
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Name:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingName || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.user.name || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Phone:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingPhone || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.user.phone || ''}</p>
                 </span><span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>City:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingCity || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.user.city || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Billing Address:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.billingAddress || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.user.address || ''}</p>
                 </span>
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Date:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpDate || ''}</p>
-                </span> */}
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Time:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpTime || ''}</p>
-                </span> */}
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Pick-Up Place:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpPlace || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.pick_up.place || ''}</p>
                 </span>
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Date:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffDate || ''}</p>
-                </span> */}
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Time:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffTime || ''}</p>
-                </span> */}
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Return Place:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffPlace || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.drop_off.place || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Payment Method:</p>  {/* Added Payment Method field */}
-                    <p className='text-primary-text text-xl'>{rentalInfo?.paymentMethod || ''}</p>
+                    <p className='text-primary-text text-xl'>{rentalInfo?.payment_method || ''}</p>
                 </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Driver Name:</p>  {/* Added Payment Method field */}
-                    <p className='text-primary-text text-xl'>{rentalInfo?.driverName || ''}</p>
-                </span>
+                
+                 <span className='flex flex-row justify-between'>
+                     <p className='text-secondary-text'>Driver Name:</p> 
+                     <p className='text-primary-text text-xl'>{rentalInfo?.driver.name || ''}</p>
+                 </span>
                 
             </div>
 
