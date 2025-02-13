@@ -20,8 +20,7 @@ import { DriverProps } from '@/utils/types/DriverProps';
 
 
 export const DocumentList = ({ documents }: { documents?: { registration_certificate: string; technical_inspection: string; insurance: string; tax_sticker: string[] } }) => {
-    if (!documents) return null; // Gestion du cas undefined
-    // États pour contrôler l'ouverture de la modale et l'URL du PDF
+    if (!documents) return null;
     const [modalOpen, setModalOpen] = useState(false);
     const [pdfUrl, setPdfUrl] = useState<string>("");
 
@@ -53,11 +52,11 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
                     <div className="bg-white p-4 rounded-lg">
                         <button onClick={closeModal} className="text-red-500">Close</button>
-                        <iframe 
-                            src={pdfUrl} 
-                            width="600" 
-                            height="400" 
-                            title="PDF Viewer" 
+                        <iframe
+                            src={pdfUrl}
+                            width="600"
+                            height="400"
+                            title="PDF Viewer"
                             frameBorder="0">
                         </iframe>
                     </div>
@@ -77,7 +76,7 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
                             value.map((v, i) => (
                                 <div key={i} className="flex items-center justify-between">
                                     <span>{v}</span>
-                                    <button 
+                                    <button
                                         onClick={() => openPdfModal(v)} // Passer le lien PDF à la fonction
                                         className="text-blue-500 hover:text-blue-600 ml-4">
                                             Voir
@@ -85,7 +84,7 @@ export const DocumentList = ({ documents }: { documents?: { registration_certifi
                                 </div>
                             ))
                         ) : (
-                            <button 
+                            <button
                                 onClick={() => openPdfModal(value)}  // Ouvre la modale avec l'URL du PDF
                                 className="text-blue-500 hover:text-blue-600">
                                 Voir
@@ -124,7 +123,7 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
       {features.map((feature, index) => (
           <div key={index}
                className="bg-gray-50 p-3 rounded-lg text-center hover:bg-gray-100 transition-colors duration-200 sm:text-center">
-              {isValidFeaturesObject ? 
+              {isValidFeaturesObject ?
               <p className="text-sm font-medium text-gray-700">{feature}</p>
               :
               <p></p>
@@ -147,18 +146,18 @@ const LocationDetails = () => {
     function differenceEnAnnees(dateString: string | number | Date) {
         const dateCible = new Date(dateString);
         const dateActuelle = new Date();
-    
+
         const diff = dateActuelle.getFullYear() - dateCible.getFullYear();
-    
+
         // Vérifier si l'anniversaire est déjà passé cette année
-        const anniversairePasse = 
-            (dateActuelle.getMonth() > dateCible.getMonth()) || 
+        const anniversairePasse =
+            (dateActuelle.getMonth() > dateCible.getMonth()) ||
             (dateActuelle.getMonth() === dateCible.getMonth() && dateActuelle.getDate() >= dateCible.getDate());
-    
+
         return anniversairePasse ? diff : diff - 1;
     }
     // console.log(differenceEnAnnees("2020-09-09T08:00:00")); // Exemple avec le 18 août 2010
-    
+
     // Chargement des données de location
         useEffect(() => {
                 const fetchLocations = async () => {
@@ -173,7 +172,7 @@ const LocationDetails = () => {
                             (l: LocationProps) => l.id.toString() === id
                         );
                         setLocation(foundLocation|| null);
-                        
+
                     } catch (err) {
                         setError((err as Error).message);
                     } finally {
@@ -182,8 +181,8 @@ const LocationDetails = () => {
                 };
                 fetchLocations();
             }, [id]);
-    
-            
+
+
         // Chargement des données du véhicules
         useEffect(() => {
             fetch('/data/cars.json')
@@ -207,7 +206,7 @@ const LocationDetails = () => {
                     console.error('Error loading vehicles:', error);
                 });
         }, [location?.vehicle.id]);
-    
+
         // Chargement des données du chauffeur
         useEffect(() => {
             fetch('/data/drivers.json')
@@ -240,7 +239,7 @@ const LocationDetails = () => {
         }
         if (loading) return <p>Loading ...</p>
         if (error) return <p>Error: {error}</p>
-        
+
     const RatingStars = ({ rating }: { rating: number }) => (
         <div className="flex items-center space-x-1">
             {[...Array(5)].map((_, i) => (
@@ -329,14 +328,14 @@ const LocationDetails = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         {/* Features Section */}
                                         {vehicle?
                                         <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities} />
                                     :
                                     <p></p>
                                     }
-                                      
+
                                     </div>
                                 </CardContent>
                             </Card>
