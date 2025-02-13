@@ -369,7 +369,7 @@ export default function VehiclesPage() {
                             resource={vehicle} 
                             profilActive={false} 
                             onDelete={(e) => handleDeleteVehicle(e,vehicle.id)}
-                            onEdit={(e) => { setEditingVehicle(vehicle); console.log(editingVehicle); }}
+                            onEdit={() => { setEditingVehicle(vehicle); console.log(editingVehicle); }}
                         />
                     </Link>
                 ))}
