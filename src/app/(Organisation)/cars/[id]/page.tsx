@@ -101,28 +101,42 @@ export default function ResourceProfilPage() {
         doc.setFontSize(18);
         doc.text(`Driver History for Vehicle: ${requestedVehicle.brand} ${requestedVehicle.model}`, 10, 20);
 
-        // Add table headers
-        const headers = [['Driver Name', 'Pick-up Place', 'Drop-off Place', 'Status']];
+        // Table headers
+        const headers = ['Driver Name', 'Pick-up Place', 'Drop-off Place', 'Status'];
+        const columnWidths = [50, 50, 50, 40]; // Adjust column widths as needed
 
-        // Add table rows
-        const rows = associatedDrivers.map((history) => [
-            history.driver?.name || 'N/A', // Use driver name
-            history.pick_up.place,
-            history.drop_off.place,
-            history.status,
-        ]);
+        let y = 30; // Starting Y position
 
-        // Add table to PDF
-        (doc as any).autoTable({
-            head: headers,
-            body: rows,
-            startY: 30,
-            theme: 'striped',
+        // Draw headers
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        headers.forEach((header, index) => {
+            doc.text(header, 10 + columnWidths.slice(0, index).reduce((a, b) => a + b, 0), y);
+        });
+
+        y += 7; // Move down for rows
+        doc.setFont('helvetica', 'normal');
+
+        // Draw rows
+        associatedDrivers.forEach((history) => {
+            const row = [
+                history.driver?.name || 'N/A',
+                history.pick_up.place,
+                history.drop_off.place,
+                history.status,
+            ];
+
+            row.forEach((cell, index) => {
+                doc.text(cell, 10 + columnWidths.slice(0, index).reduce((a, b) => a + b, 0), y);
+            });
+
+            y += 7; // Move to next row
         });
 
         // Save the PDF
         doc.save(`driver_history_${requestedVehicle.brand}_${requestedVehicle.model}.pdf`);
     };
+
 
     return (
         <div>
