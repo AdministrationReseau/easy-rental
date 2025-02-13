@@ -5,7 +5,6 @@ import SidebarFilter from '@/components/organisation/SideBarFilterVehicle';
 import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import CarDetail from '@/components/organisation/CarDetail';
 import OrgVehicleList from '@/components/organisation/OrgVehicleList';
-// import { AddBox } from '@mui/icons-material';
 
 export default function VehiclesPage() {
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
@@ -76,4 +75,3 @@ export default function VehiclesPage() {
         </div>
     );
 }
-
