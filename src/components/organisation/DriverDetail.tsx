@@ -50,7 +50,11 @@ export const DriverInfo: React.FC<{ driver: DriverProps }> = ({ driver }) => {
         {/* Vehicle Assigned */}
         {driver.vehicle_assigned && (
           <div className="pt-4">
-            <p><strong>Assigned Vehicle:</strong> {driver.vehicle_assigned.make} {driver.vehicle_assigned.model} ({driver.vehicle_assigned.year})</p>
+            <p><strong>Assigned Vehicle:</strong></p> 
+            {driver.vehicle_assigned.map((vehicle,key)=>(
+              <p>{vehicle.make} {vehicle.model} ({vehicle.year})</p>
+            ))}
+            
           </div>
         )}
 
