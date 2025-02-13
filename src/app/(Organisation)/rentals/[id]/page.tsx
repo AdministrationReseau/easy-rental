@@ -1,16 +1,7 @@
 "use client";
-
 import React, { useEffect, useState } from 'react';
 import {
-    MapIcon,
-    UserIcon,
-    CarIcon,
-    CalendarIcon,
-    CreditCardIcon,
-    ClockIcon,
-    PhoneIcon,
-    KeyIcon,
-    AlertCircleIcon
+    KeyIcon
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/organisation/card';
 import { Alert, AlertDescription } from '@/components/organisation/alert';
@@ -38,35 +29,34 @@ const DocumentList = ({ documents }: { documents?: Documents }) => {
      const openPdfModal = (pdfUrl: string) => {
         setPdfUrl(pdfUrl);  // Mettez l'URL du PDF dans l'état
         setModalOpen(true);  // Ouvrir la modale
+
     };
 
-    // Fonction pour fermer la modale
+    // Function to close the modal
     const closeModal = () => {
         setModalOpen(false);
-        setPdfUrl("");  // Réinitialiser l'URL du PDF
+        setPdfUrl("");  // Reset the PDF URL
     };
+  
     const documentLabels:Record<keyof Documents, string> = {
         registration_certificate: "Registration_certificate",
         technical_inspection : "Technical_inspection",
         insurance: "Insurance",
-        tax_sticker: "Tax_sticker"
+        tax_sticker: "Tax Sticker"
     };
-
-    console.log(documents);
-
 
     return (
         <>
-            {/* Modale pour afficher le PDF */}
+            {/* Modal to display the PDF */}
             {modalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
                     <div className="bg-white p-4 rounded-lg">
                         <button onClick={closeModal} className="text-red-500">Close</button>
-                        <iframe 
-                            src={pdfUrl} 
-                            width="600" 
-                            height="400" 
-                            title="PDF Viewer" 
+                        <iframe
+                            src={pdfUrl}
+                            width="600"
+                            height="400"
+                            title="PDF Viewer"
                             frameBorder="0">
                         </iframe>
                     </div>
@@ -490,15 +480,20 @@ const LocationDetails: React.FC = () => {
                                                 <span className="text-sm">Licence: {driver.license_number}</span>
                                             </div>
                                         </div>
+
                                     </div>
-                                </CardContent>
-                            </Card>
-                        )}
+                                ))
+                            ) : (
+                                <button
+                                    onClick={() => openPdfModal(value)}  // Open the modal with the PDF URL
+                                    className="text-blue-500 hover:text-blue-600">
+                                    View
+                                </button>
+                            )}
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
-        </div>
+        </>
     );
 };
-
-export default LocationDetails;

@@ -61,6 +61,7 @@ export const DatePickerStyled = ({
                         <Group className="flex flex-row w-full rounded-md border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
                             <DateInput className="w-full flex items-center justify-between gap-1 text-gray-700">
                                 {segment => (
+
                                     <DateSegment
                                         segment={segment}
                                         className="px-1 py-0.5 hover:bg-gray-100 focus:outline-none focus:ring-primary-blue focus:ring-1 rounded-sm"

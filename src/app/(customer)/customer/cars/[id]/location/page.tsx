@@ -203,6 +203,7 @@ const MultiStepForm: React.FC = () => {
             .then((data) => {
                 if (data && Array.isArray(data.vehicles)) {
                     setVehicles(data.vehicles);
+                    console.log(vehicles)
                     const foundVehicle = data.vehicles.find(
                         (v: CarProps) => v.id.toString() === id
                     );
@@ -214,7 +215,7 @@ const MultiStepForm: React.FC = () => {
             .catch((error) => {
                 console.error('Error loading vehicles:', error);
             });
-    }, [id]);
+    }, [id, vehicles, setVehicles]);
 
 
     if (!vehicle) {

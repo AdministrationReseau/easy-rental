@@ -86,6 +86,8 @@ export interface CarProps {
     availability?: boolean;
     onLike?: (id: number) => void;    // Optional
     onDislike?: (id: number) => void; // Optional
+    onEdit?: (id: number) => void; // Optional
+    onDelete?: (id: number) => void; // Optional
 }
 
 export interface FilterVehicleProps {

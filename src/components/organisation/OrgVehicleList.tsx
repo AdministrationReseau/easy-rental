@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CarCard } from '@/components/CarCard';
+import { CarCard } from '@/components/organisation/CarCard';
 import { VehicleListProps } from '@/utils/types/CarProps';
 
-const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
+const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 6; // Nombre d'éléments par page
+  const itemsPerPage = 8; // Nombre d'éléments par page
 
   // Filtrer les véhicules selon les critères
   const filteredVehicles = vehicles.filter((vehicle) => {
@@ -42,9 +42,33 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
           paginatedVehicles.map((vehicle) => (
             <CarCard
               key={vehicle.id}
-              {...vehicle}
+              id={vehicle.id}
+              images={vehicle.images}
+              brand={vehicle.brand}
+              rating={vehicle.rating}
+              reviews={vehicle.reviews}
+              model={vehicle.model}
+              transmission={vehicle.transmission}
+              engine={vehicle.engine}
+              passenger={vehicle.passenger || 4}
+              pricePerDay={vehicle.pricePerDay}
+              type={vehicle.type}
+              year={vehicle.year}
+              description={vehicle.description}
+              vin={vehicle.vin}
+              fonctionnalities={vehicle.fonctionnalities}
+              color={vehicle.color}
+              fuel_efficiency={vehicle.fuel_efficiency}
+              license_plate={vehicle.license_plate}
+              registration={vehicle.registration}
+              owner={vehicle.owner}
+              service_history={vehicle.service_history}
+              insurance={vehicle.insurance}
+              favorite={vehicle.favorite}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
+              onEdit={(id: number) => console.log(id)}
+              onDelete={(id: number) => console.log(id)}
             />
           ))
         ) : (
@@ -80,4 +104,4 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   );
 };
 
-export default VehicleList;
+export default OrgVehicleList;

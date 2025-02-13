@@ -18,6 +18,8 @@ export interface LocationProps {
     },
     driver?: {
         id: number;
+        image: string;
+        name: string;
     }
     pick_up:{
         date:  Date;

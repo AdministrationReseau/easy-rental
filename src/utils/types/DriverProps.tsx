@@ -25,7 +25,7 @@ export interface DriverProps {
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
     availability?:boolean;
-    created_at: Date;
+    created_at?: Date;
 }
 
 export interface FilterDriverProps {
