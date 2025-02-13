@@ -17,123 +17,10 @@ import { useParams } from 'next/navigation';
 import { LocationProps } from '@/utils/types/RentalInfoProps';
 import { CarProps } from '@/utils/types/CarProps';
 import { DriverProps } from '@/utils/types/DriverProps';
+import {VehicleFeatures} from "@/components/ui/VehicleFeatures";
+import {DocumentList} from "@/components/ui/DocumentList";
+import Image from "next/image";
 
-
-export const DocumentList = ({ documents }: { documents?: { registration_certificate: string; technical_inspection: string; insurance: string; tax_sticker: string[] } }) => {
-    if (!documents) return null;
-    const [modalOpen, setModalOpen] = useState(false);
-    const [pdfUrl, setPdfUrl] = useState<string>("");
-
-     // Fonction pour ouvrir la modale avec le PDF
-     const openPdfModal = (pdfUrl: string) => {
-        setPdfUrl(pdfUrl);  // Mettez l'URL du PDF dans l'état
-        setModalOpen(true);  // Ouvrir la modale
-    };
-
-    // Fonction pour fermer la modale
-    const closeModal = () => {
-        setModalOpen(false);
-        setPdfUrl("");  // Réinitialiser l'URL du PDF
-    };
-    const documentLabels: { [key: string]: string } = {
-        registration_certificate: "Registration_certificate",
-        technical_inspection : "Technical_inspection",
-        insurance: "Insurance",
-        tax_sticker: "Tax_sticker"
-    };
-
-    console.log(documents);
-
-
-    return (
-        <>
-            {/* Modale pour afficher le PDF */}
-            {modalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                    <div className="bg-white p-4 rounded-lg">
-                        <button onClick={closeModal} className="text-red-500">Close</button>
-                        <iframe
-                            src={pdfUrl}
-                            width="600"
-                            height="400"
-                            title="PDF Viewer"
-                            frameBorder="0">
-                        </iframe>
-                    </div>
-                </div>
-            )}
-
-        <div className="space-y-4">
-            {Object.entries(documents).map(([key, value], index) => (
-                <div key={index}
-                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                    <div className="flex items-center space-x-3">
-                        <KeyIcon className="h-5 w-5 text-gray-500"/>
-                        <span>{documentLabels[key] || key}</span>
-                    </div>
-                    <div className="text-right">
-                        {Array.isArray(value) ? (
-                            value.map((v, i) => (
-                                <div key={i} className="flex items-center justify-between">
-                                    <span>{v}</span>
-                                    <button
-                                        onClick={() => openPdfModal(v)} // Passer le lien PDF à la fonction
-                                        className="text-blue-500 hover:text-blue-600 ml-4">
-                                            Voir
-                                        </button>
-                                </div>
-                            ))
-                        ) : (
-                            <button
-                                onClick={() => openPdfModal(value)}  // Ouvre la modale avec l'URL du PDF
-                                className="text-blue-500 hover:text-blue-600">
-                                Voir
-                            </button>
-
-                        )}
-                    </div>
-                </div>
-            ))}
-        </div>
-    </>
-    );
-};
-
-export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({ vehicleFeatures }) => {
-  const features = [
-    "Air Condition",
-    "Child Seat",
-    "GPS",
-    "USB Input",
-    "Bluetooth",
-    "Luggage",
-    "Seat Belt",
-    "Sleeping Bed",
-    "Water",
-    "Audio Input",
-    "Onboard Computer",
-    "Additional Covers",
-  ];
-
-  const isValidFeaturesObject = vehicleFeatures && typeof vehicleFeatures === 'object';
-
-  return (
-    <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:items-center">
-      {features.map((feature, index) => (
-          <div key={index}
-               className="bg-gray-50 p-3 rounded-lg text-center hover:bg-gray-100 transition-colors duration-200 sm:text-center">
-              {isValidFeaturesObject ?
-              <p className="text-sm font-medium text-gray-700">{feature}</p>
-              :
-              <p></p>
-                }
-          </div>
-      ))}
-  </div>
-  </>
-  );
-};
 const LocationDetails = () => {
     const [activeTab, setActiveTab] = useState('info');
     const [location, setLocation] = useState<LocationProps>();
@@ -149,16 +36,13 @@ const LocationDetails = () => {
 
         const diff = dateActuelle.getFullYear() - dateCible.getFullYear();
 
-        // Vérifier si l'anniversaire est déjà passé cette année
         const anniversairePasse =
             (dateActuelle.getMonth() > dateCible.getMonth()) ||
             (dateActuelle.getMonth() === dateCible.getMonth() && dateActuelle.getDate() >= dateCible.getDate());
 
         return anniversairePasse ? diff : diff - 1;
     }
-    // console.log(differenceEnAnnees("2020-09-09T08:00:00")); // Exemple avec le 18 août 2010
 
-    // Chargement des données de location
         useEffect(() => {
                 const fetchLocations = async () => {
                     try {
@@ -183,7 +67,6 @@ const LocationDetails = () => {
             }, [id]);
 
 
-        // Chargement des données du véhicules
         useEffect(() => {
             fetch('/data/cars.json')
                 .then((response) => {
@@ -313,9 +196,11 @@ const LocationDetails = () => {
                                 <CardContent>
                                     <div className="space-y-6">
                                         <div className="relative group">
-                                            <img
-                                                src={vehicle?.images[0]}
+                                            <Image
+                                                src={vehicle?.images?.[0] || "/default-image.jpg"}
                                                 alt={vehicle?.brand || "vehicle's image"}
+                                                width={500}
+                                                height={256}
                                                 className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
                                             />
                                             <div

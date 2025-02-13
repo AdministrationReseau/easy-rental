@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';
@@ -42,7 +42,7 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     </span>
                     <span className='flex flex-row w-full py-4'>
                         <Stars value={rating  ?? 0} precision={1} />
-                       <span className='px-4'>{reviews.length} + Reviewer</span> 
+                       <span className='px-4'>{reviews.length} + Reviewer</span>
                     </span>
                 </div>
             </div>
@@ -51,11 +51,11 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
             </div>
             <div className='flex flex-col gap-2'>
                 <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Name:</p> 
+                    <p className='text-secondary-text'>Name:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.user.name || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Phone:</p> 
+                    <p className='text-secondary-text'>Phone:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.user.phone || ''}</p>
                 </span><span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>City:</p>
@@ -66,23 +66,23 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     <p className='text-primary-text text-xl'>{rentalInfo?.user.address || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Place:</p> 
+                    <p className='text-secondary-text'>Pick-Up Place:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.pick_up.place || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Place:</p> 
+                    <p className='text-secondary-text'>Return Place:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.drop_off.place || ''}</p>
                 </span>
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Payment Method:</p>  {/* Added Payment Method field */}
                     <p className='text-primary-text text-xl'>{rentalInfo?.payment_method || ''}</p>
                 </span>
-                
+
                  <span className='flex flex-row justify-between'>
-                     <p className='text-secondary-text'>Driver Name:</p> 
+                     <p className='text-secondary-text'>Driver Name:</p>
                      <p className='text-primary-text text-xl'>{rentalInfo?.driver.name || ''}</p>
                  </span>
-                
+
             </div>
 
             <div className='flex flex-row justify-between py-2'>

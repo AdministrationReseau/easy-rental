@@ -72,7 +72,7 @@ const OrgSidebar: React.FC = () => {
                 className="text-nowrap text-secondary-text p-3 mt-2 text-[18px] focus:outline-none hover:text-primary-blue"
             >
                 {isCollapsed ? <Menu/> : <MenuOpen/>}
-                {isCollapsed ? "" : "Dashboard" }
+                {isCollapsed ? "" : "Dashboard"}
             </button>
 
             {/* Main Menu Section */}
@@ -83,8 +83,8 @@ const OrgSidebar: React.FC = () => {
                             <li
                                 className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "bg-primary-blue text-white  m-2"
-                                        : "hover:bg-gray-100 hover:mx-2 text-secondary-text"
+                                        ? "bg-primary-blue text-white"
+                                        : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
                                 <span
@@ -104,7 +104,7 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Divider */}
-            <div className="border-t bottom-0 border-gray-300 mt-auto"></div>
+            <div className="border-t border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
             <div className="mt-1">
@@ -135,11 +135,11 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="p-4 bottom-0">
-                <Link href="/">
+            <div className="p-4">
+                <Link href="/logout">
                     <li
-                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                            isActive("/")
+                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-300 ${
+                            isActive("/logout")
                                 ? "bg-red-500 text-white"
                                 : "hover:bg-gray-100 text-red-500"
                         }`}
@@ -151,7 +151,7 @@ const OrgSidebar: React.FC = () => {
                                     : "border-red-500 bg-white text-red-500"
                             }`}
                         >
-                            <Logout />
+                            <Logout/>
                         </span>
                         {!isCollapsed && <span>Log Out</span>}
                     </li>

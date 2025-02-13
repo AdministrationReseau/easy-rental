@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { Driver } from '../../../../components/ResourceEditForm';
+import { DriverProps } from '@/utils/types/DriverProps';
 import DriverDetail from '@/components/organisation/DriverDetail';
 
 export default function ResourceProfilPage() {
-    const [drivers, setDrivers] = useState<Driver[]>([]);
+    const [drivers, setDrivers] = useState<DriverProps[]>([]);
 
     useEffect(() => {
         const fetchDrivers = async () => {
@@ -15,7 +15,7 @@ export default function ResourceProfilPage() {
             if (!response.ok) {
             throw new Error("Failed to fetch drivers");
             }
-            const data: Driver[] = await response.json();
+            const data: DriverProps[] = await response.json();
             setDrivers(data);
         } catch (error) {
             console.error("Error fetching drivers:", error);
