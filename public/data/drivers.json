@@ -9,16 +9,18 @@
     "address": "123 Main St, City, CA 90001",
     "phone": "+1 123-456-7890",
     "email": "john.doe@example.com",
-    "vehicle_assigned": {
+    "vehicle_assigned": [{
       "id": 1,
       "make": "Toyota",
       "model": "Camry",
       "year": 2020
-    },
+    }],
     "rating": 4.5,
     "insurance_provider": "State Farm",
     "insurance_policy": "SF123456789",
-    "profile_picture": "/assets/organisation/drivers/1.jpeg"
+    "profile_picture": "/assets/organisation/drivers/1.jpeg",
+    "availability":true,
+    "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
     "id": 2,
@@ -30,16 +32,18 @@
     "address": "456 Park Ave, Miami, FL 33101",
     "phone": "+1 987-654-3210",
     "email": "jane.smith@example.com",
-    "vehicle_assigned": {
+    "vehicle_assigned": [{
       "id": 2,
       "make": "Harley-Davidson",
       "model": "Sportster",
       "year": 2021
-    },
+    }],
     "rating": 4.8,
     "insurance_provider": "Allstate",
     "insurance_policy": "AL987654321",
-    "profile_picture": "/assets/organisation/drivers/2.jpeg"
+    "profile_picture": "/assets/organisation/drivers/2.jpeg",
+    "availability":true,
+    "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
     "id": 3,
@@ -51,16 +55,18 @@
     "address": "789 Industrial Blvd, Dallas, TX 75201",
     "phone": "+1 321-987-6543",
     "email": "tom.harris@example.com",
-    "vehicle_assigned": {
+    "vehicle_assigned": [{
       "id": 3,
       "make": "Ford",
       "model": "F-150",
       "year": 2019
-    },
+    }],
     "rating": 4.6,
     "insurance_provider": "Progressive",
     "insurance_policy": "PR1234567890",
-    "profile_picture": "/assets/organisation/drivers/3.jpeg"
+    "profile_picture": "/assets/organisation/drivers/3.jpeg",
+    "availability":true,
+    "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
     "id": 4,
@@ -72,16 +78,18 @@
     "address": "234 Oak St, New York, NY 10001",
     "phone": "+1 432-987-6543",
     "email": "alice.johnson@example.com",
-    "vehicle_assigned": {
+    "vehicle_assigned": [{
       "id": 4,
       "make": "BMW",
       "model": "X5",
       "year": 2022
-    },
+    }],
     "rating": 4.7,
     "insurance_provider": "Geico",
     "insurance_policy": "GE123456789",
-    "profile_picture": "/assets/organisation/drivers/4.jpeg"
+    "profile_picture": "/assets/organisation/drivers/4.jpeg",
+    "availability":true,
+    "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
     "id": 5,
@@ -93,15 +101,17 @@
     "address": "567 Maple Rd, Seattle, WA 98101",
     "phone": "+1 555-123-4567",
     "email": "mike.brown@example.com",
-    "vehicle_assigned": {
+    "vehicle_assigned": [{
       "id": 5,
       "make": "Mercedes-Benz",
       "model": "Metris",
       "year": 2020
-    },
+    }],
     "rating": 4.9,
     "insurance_provider": "Nationwide",
     "insurance_policy": "NW123456789",
-    "profile_picture": "/assets/organisation/drivers/5.jpeg"
+    "profile_picture": "/assets/organisation/drivers/5.jpeg",
+    "availability":true,
+    "created_at":"2010-08-18T00:00:00.000Z"
   }
 ]

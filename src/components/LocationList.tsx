@@ -22,8 +22,8 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
                         {/* Image et informations */}
                         <div className="w-full h-full flex items-center justify-between space-x-2">
                             <Image
-                                src={location.vehicle?.image[0]}
-                                alt={location.vehicle?.brand}
+                                src={location.vehicle?.image[0]||'/placeholder.png'}
+                                alt={location.vehicle?.brand || "Photo du vehicule"}
                                 className="w-[100px] h-auto rounded-lg object-cover"
                                 width={100}
                                 height={100}

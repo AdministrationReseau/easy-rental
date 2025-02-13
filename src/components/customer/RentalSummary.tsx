@@ -49,7 +49,7 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
             <div className='flex justify-center'>
                 <hr className='w-[80%] h-4'/>
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Name:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.user.name || ''}</p>
@@ -65,18 +65,10 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     <p className='text-secondary-text'>Billing Address:</p>
                     <p className='text-primary-text text-xl'>{rentalInfo?.user.address || ''}</p>
                 </span>
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Pick-Up Date:</p>
-                    <p className='text-primary-text text-xl'>{rentalInfo?.pickUpDate || ''}</p>
-                </span> */}
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Pick-Up Place:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.pick_up.place || ''}</p>
                 </span>
-                {/* <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Return Date:</p> 
-                    <p className='text-primary-text text-xl'>{rentalInfo?.backOffDate || ''}</p>
-                </span> */}
                 <span className='flex flex-row justify-between'>
                     <p className='text-secondary-text'>Return Place:</p> 
                     <p className='text-primary-text text-xl'>{rentalInfo?.drop_off.place || ''}</p>
@@ -85,10 +77,11 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     <p className='text-secondary-text'>Payment Method:</p>  {/* Added Payment Method field */}
                     <p className='text-primary-text text-xl'>{rentalInfo?.payment_method || ''}</p>
                 </span>
-                <span className='flex flex-row justify-between'>
-                    <p className='text-secondary-text'>Driver Name:</p>  {/* Added Payment Method field */}
-                    <p className='text-primary-text text-xl'>{rentalInfo?.driver.name || ''}</p>
-                </span>
+                
+                 <span className='flex flex-row justify-between'>
+                     <p className='text-secondary-text'>Driver Name:</p> 
+                     <p className='text-primary-text text-xl'>{rentalInfo?.driver.name || ''}</p>
+                 </span>
                 
             </div>
 

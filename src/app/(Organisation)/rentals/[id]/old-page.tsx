@@ -77,7 +77,9 @@ const Renting = () => {
             .then((data) => {
                 if (data && Array.isArray(data)) {
                     const foundDriver = data.find(
+
                         (d: DriverProps) => location?.driver && d.id === location.driver.id);
+
                     setDriver(foundDriver || null); // Trouve le véhicule correspondant à l'ID
                 } else {
                     console.error('Unexpected data format:', data);

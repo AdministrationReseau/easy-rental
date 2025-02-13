@@ -197,10 +197,10 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
       <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
         <h4 className="font-bold text-lg">Reviews</h4>
 
-        {vehicle.reviews.map((review: {reviewer:string, comment: string;rating: number;}, index: number) => (
+        {vehicle.reviews.map((review: {reviewer_name:string, comment: string;rating: number;}, index: number) => (
           <Reviews
             key={index}
-            name={review.reviewer}
+            name={review.reviewer_name}
             starsValue={review.rating}
             message={review.comment}
           />

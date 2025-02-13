@@ -18,12 +18,14 @@ export interface DriverProps {
         make: string;
         model: string;
         year: number;
-    };
+    }[];
     rating: number;
     insurance_provider?: string;
     insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
+    availability?:boolean;
+    created_at: Date;
 }
 
 export interface FilterDriverProps {

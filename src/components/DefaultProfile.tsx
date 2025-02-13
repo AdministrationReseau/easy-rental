@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 function stringToColor(value: string) {
     let hash = 0;
 
-    for (let i = 0; i < value.length; i += 1) {
+    for (let i = 0; i < value?.length; i += 1) {
         hash = value.charCodeAt(i) + ((hash << 5) - hash);
     }
 
@@ -21,7 +21,7 @@ function stringToColor(value: string) {
 
 
 function stringAvatar(name: string) {
-    const initials = name.split(' ').map(part => part[0]).join('');
+    const initials = name?.split(' ').map(part => part[0]).join('');
     return {
         sx: {
             bgcolor: stringToColor(name),

@@ -3,22 +3,6 @@ import React, {useEffect, useState} from 'react';
 import LocationList from "@/components/LocationList";
 import { LocationProps } from '@/utils/types/RentalInfoProps';
 
-// interface Location1 {
-//     id: string;
-//     name: string;
-//     type: string;
-//     date: string;
-//     price: string;
-//     image: string;
-//     user: string;
-//     vehicle: string;
-//     pick_up: string;
-//     drop_off: string;
-//     status: string;
-//     payment: string;
-//     payment_method: string;
-//     promo_formula: string;
-// }
 
 const Location = () => {
 

@@ -10,10 +10,10 @@ export interface CarProps {
     pricePerDay: number;         // Optional
     vin?: string;        
     documents?:{
-        carte_grise: string;
-        visite_technique: string;
-        assurance: string;
-        vignette: string[];
+        registration_certificate: string;
+        technical_inspection: string;
+        insurance: string;
+        tax_sticker: string[];
     };
     fonctionnalities: {          // Optional
         air_condition: boolean;
@@ -69,15 +69,21 @@ export interface CarProps {
         policy_number?: string;
         expiry?: Date;
     };
+    agency?:{
+        id:number;
+    }
 
     images: string[];            // Optional
 
     reviews: {                   // Optional
-        reviewer: string;
+        id?: number;
+        reviewer_name: string;
+        reviewer_id?:number;
         comment: string;
         rating: number;
     }[];
     favorite? : boolean;
+    availability?: boolean;
     onLike?: (id: number) => void;    // Optional
     onDislike?: (id: number) => void; // Optional
 }

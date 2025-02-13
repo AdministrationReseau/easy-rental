@@ -63,8 +63,10 @@ const AgencyCard: React.FC<AgencyProps> = ({
             if (onLike) onLike(id); // Appel de la fonction onLike si le véhicule est aimé
         } else {
             if(onDislike) onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
+
         }
     };
+    
     const agency = {
         id : id,
         city : city,

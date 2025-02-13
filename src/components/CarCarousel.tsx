@@ -56,7 +56,7 @@ const CarCarousel: React.FC = () => {
                             images={carData.images || []} // Handle undefined images
                             brand={carData.brand || 'Unknown Brand'}
                             model={carData.model || 'Unknown Model'}
-                            transmission={carData.transmission || 'Unknown Transmission'}
+                            transmission={carData?.transmission || 'Unknown Transmission'}
                             engine={
                                 carData.engine || {
                                     type: 'Unknown',
