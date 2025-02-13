@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { Person, CalendarMonth, CreditCard, Email, Phone, LocationOn } from '@mui/icons-material';
 import Stars from '../Stars';
 import { CarProps } from '@/utils/types/CarProps';
-import { LocationProps } from '@/utils/types/RentalInfoProps';
 import { DriverProps } from '@/utils/types/DriverProps';
+import { LocationProps } from '@/utils/types/LocationProps';
 
 const DriverSection :React.FC<{ driver: DriverProps}> = ({
     driver
@@ -161,7 +161,7 @@ const RentalSummaryOrg: React.FC<{vehicle?: CarProps} & { location?: LocationPro
                     <div className='w-full  grid grid-cols-2 md:grid-cols-4'>
                         <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-2">
                             <Image 
-                                src={location? location.user.image : "/BG1.png"} 
+                                src={"/BG1.png"} 
                                 alt={location? location.user.name : "default_profile"}
                                 width={100}
                                 height={100}   

@@ -3,8 +3,8 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'next/navigation';
 import { CarProps } from '@/utils/types/CarProps';
 import { RentalSummaryOrg } from '@/components/organisation/RentalSummaryOrg';
-import { LocationProps } from '@/utils/types/RentalInfoProps';
 import { DriverProps } from '@/utils/types/DriverProps';
+import { LocationProps } from '@/utils/types/LocationProps';
 
 
 const Renting = () => {
@@ -15,7 +15,6 @@ const Renting = () => {
         const [error, setError] = useState<string | null>(null);
         const [driver, setDriver] = useState<DriverProps| null>(null);
     
-        
     // Chargement des données de location
     useEffect(() => {
             const fetchLocations = async () => {

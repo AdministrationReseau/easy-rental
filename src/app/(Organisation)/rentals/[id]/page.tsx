@@ -15,7 +15,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/organisation/card';
 import { Alert, AlertDescription } from '@/components/organisation/alert';
 import { useParams } from 'next/navigation';
-import { LocationProps } from '@/utils/types/RentalInfoProps';
+import { LocationProps } from '@/utils/types/LocationProps';
 import { CarProps } from '@/utils/types/CarProps';
 import { DriverProps } from '@/utils/types/DriverProps';
 import Image from 'next/image';
@@ -325,7 +325,7 @@ const LocationDetails: React.FC = () => {
                                     <div className="space-y-6">
                                         <div className="relative group">
                                             <Image
-                                                src={vehicle?.images[0]||"/placeholder.png"}
+                                                src={vehicle?.images[0]||"/car.png"}
                                                 alt={vehicle?.brand || "vehicle's image"}
                                                 width={300}
                                                 height={300}
@@ -463,7 +463,7 @@ const LocationDetails: React.FC = () => {
                                         <div className="flex items-center space-x-4">
                                             <div className="relative">
                                                 <Image
-                                                    src={driver?.profile_picture||"/placeholder.png"}
+                                                    src={driver?.profile_picture||"/car.png"}
                                                     width={300}
                                                     height={300}
                                                     alt={driver?.first_name}

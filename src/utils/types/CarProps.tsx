@@ -3,7 +3,7 @@ export interface CarProps {
     type?: string;                // Optional
     brand?: string;               // Optional
     model?: string;               // Optional
-    year?: Date;                  // Optional
+    year?: number;                  // Optional
     rating?: number;              // Optional
     passenger?: number;           // Optional
     description: string;       // Optional
@@ -43,7 +43,7 @@ export interface CarProps {
         highway?: string;
     };
 
-    license_plate?: string;       // Optional
+    license_plate: string;       // Optional
 
     registration?: {              // Optional
         state?: string;
@@ -83,9 +83,11 @@ export interface CarProps {
         rating: number;
     }[];
     favorite? : boolean;
-    availability?: boolean;
+    available: boolean;
     onLike?: (id: number) => void;    // Optional
     onDislike?: (id: number) => void; // Optional
+    onEdit?: (id: number) => void; // Optional
+    onDelete?: (id: number) => void; // Optional
 }
 
 export interface FilterVehicleProps {

@@ -24,12 +24,12 @@ export interface DriverProps {
     insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
-    availability?:boolean;
+    available: boolean;
     created_at: Date;
 }
 
 export interface FilterDriverProps {
-    rating: number | null;
+    ratingRange: [number, number];
     ageRange: [number, number];
     location?: string; // Optional
 }

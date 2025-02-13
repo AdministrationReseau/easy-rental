@@ -162,16 +162,13 @@ const MultiStepForm: React.FC = () => {
             place: '',
         },
         user: {
-            // id: undefined,
+            id: undefined,
             name: '',
             phone: '',
             address: '',
             city: '',
         },
-        driver: {
-            // id: undefined,
-            name: '',
-        },
+        driver: undefined,
         payment_method: '',
         promo_code: '',
     });
@@ -466,7 +463,7 @@ const MultiStepForm: React.FC = () => {
                     <div className="space-y-4">{renderStepContent()}</div>
                 </div>
             </div>
-            <aside className="w-full  p-4 m-auto">
+            <aside className="w-full p-4 m-auto">
                 <RentalSummary
                     key={vehicle.id}
                     {...vehicle}

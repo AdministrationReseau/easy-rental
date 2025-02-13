@@ -2,10 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import Stars from '@/components/Stars';
 import { DriverProps } from '@/utils/types/DriverProps';
+import { Delete, Edit } from '@mui/icons-material';
 
 interface DriverCardProps extends DriverProps {
   onSelect: (driver: DriverProps | null) => void;
   isSelected: boolean;
+  onEdit: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
 const DriverCard: React.FC<DriverCardProps> = ({
@@ -28,6 +31,8 @@ const DriverCard: React.FC<DriverCardProps> = ({
   created_at,
   onSelect,
   isSelected,
+  onEdit,
+  onDelete,
 }) => {
   const handleClick = () => {
     // Désélectionner si le chauffeur est déjà sélectionné
@@ -51,14 +56,14 @@ const DriverCard: React.FC<DriverCardProps> = ({
         insurance_provider,
         insurance_policy,
         available,
-        created_at
+        created_at,
       });
     }
   };
 
   return (
     <div
-      className={`bg-white rounded-xl p-5 w-[280px] transition-shadow duration-300 cursor-pointer 
+      className={`bg-white rounded-xl p-2 w-[280px] transition-shadow duration-300 cursor-pointer 
         ${isSelected ? 'border-2 border-red-500 bg-gray-200' : 'hover:shadow-lg'}
       `}
       onClick={handleClick}
@@ -99,14 +104,14 @@ const DriverCard: React.FC<DriverCardProps> = ({
 
         <div className="border-b border-gray-200"></div>
 
-        <button
-          onClick={handleClick}
-          className={`mt-3 w-full py-2 rounded-lg font-semibold transition-all duration-300 
-            ${isSelected ? 'bg-red-500 text-white' : 'bg-blue-600 text-white hover:bg-blue-700'}
-          `}
-        >
-          {isSelected ? 'Deselect Driver' : 'Select Driver'}
-        </button>
+        <div className='text-nowrap flex justify-end gap-4'>
+            <button className="rounded-full hover:bg-primary-blue/10">
+              <Edit style={{color: 'blue'}} onClick={() => onEdit(id)} />
+            </button>
+            <button className="rounded-full hover:bg-red-500/10">
+              <Delete style={{color: 'red'}} onClick={() => onDelete(id)} />
+            </button>
+        </div>
       </div>
     </div>
   );

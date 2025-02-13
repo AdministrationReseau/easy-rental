@@ -65,6 +65,7 @@ const CarCarousel: React.FC = () => {
                                 }
                             } // Provide a fallback object for engine
                             passenger={carData.passenger || 0} // Fallback to 0 passengers
+                            license_plate={carData.license_plate ?? ''}
                             pricePerDay={carData.pricePerDay || 0} // Fallback to 0 price
                             description={carData.description || 'No description available'} // Fallback for description
                             fonctionnalities={
@@ -96,6 +97,7 @@ const CarCarousel: React.FC = () => {
                             reviews={carData.reviews || []} // Fallback to an empty array for reviews
                             onLike={() => console.log('Liked')}
                             favorite={false}
+                            available = {Boolean(carData.available)}
                             onDislike={() => console.log('Disliked')}
                         />
                         {/* </span> */}

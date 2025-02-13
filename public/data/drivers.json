@@ -19,7 +19,7 @@
     "insurance_provider": "State Farm",
     "insurance_policy": "SF123456789",
     "profile_picture": "/assets/organisation/drivers/1.jpeg",
-    "availability":true,
+    "available":true,
     "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
@@ -42,7 +42,7 @@
     "insurance_provider": "Allstate",
     "insurance_policy": "AL987654321",
     "profile_picture": "/assets/organisation/drivers/2.jpeg",
-    "availability":true,
+    "available":true,
     "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
@@ -65,7 +65,7 @@
     "insurance_provider": "Progressive",
     "insurance_policy": "PR1234567890",
     "profile_picture": "/assets/organisation/drivers/3.jpeg",
-    "availability":true,
+    "available":true,
     "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
@@ -88,7 +88,7 @@
     "insurance_provider": "Geico",
     "insurance_policy": "GE123456789",
     "profile_picture": "/assets/organisation/drivers/4.jpeg",
-    "availability":true,
+    "available":true,
     "created_at":"2010-08-18T00:00:00.000Z"
   },
   {
@@ -111,7 +111,7 @@
     "insurance_provider": "Nationwide",
     "insurance_policy": "NW123456789",
     "profile_picture": "/assets/organisation/drivers/5.jpeg",
-    "availability":true,
+    "available":true,
     "created_at":"2010-08-18T00:00:00.000Z"
   }
 ]

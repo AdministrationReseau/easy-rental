@@ -52,8 +52,8 @@ export interface rentalInfoProps {
         address: string;
         city: string;
     }
-    driver:{
-        id?: number;
+    driver?:{
+        id: number;
         name: string | undefined;
     }
     payment_method: string;
