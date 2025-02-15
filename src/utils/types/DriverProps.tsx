@@ -38,3 +38,10 @@ export interface DriverListProps {
     drivers: DriverProps[];
     filters: FilterDriverProps;
 }
+
+export interface DriverCardProps extends DriverProps {
+    onSelect: (driver: DriverProps | null) => void;
+    isSelected: boolean;
+    onEdit: (id: number) => void;
+    onDelete: (id: number) => void;
+}

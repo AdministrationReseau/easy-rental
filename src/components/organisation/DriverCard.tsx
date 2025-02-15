@@ -1,16 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import Stars from '@/components/Stars';
-import { DriverProps } from '@/utils/types/DriverProps';
 import { Delete, Edit, Email, Phone, Timelapse } from '@mui/icons-material';
 import Link from 'next/link';
+import {DriverCardProps} from "@/utils/types/DriverProps";
 
-interface DriverCardProps extends DriverProps {
-  onSelect: (driver: DriverProps | null) => void;
-  isSelected: boolean;
-  onEdit: (id: number) => void;
-  onDelete: (id: number) => void;
-}
 
 const DriverCard: React.FC<DriverCardProps> = ({
   first_name,

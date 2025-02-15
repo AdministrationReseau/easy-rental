@@ -98,5 +98,15 @@ export interface FilterVehicleProps {
 
 export interface VehicleListProps {
     vehicles: CarProps[];
+    setVehicles: (vehicles: CarProps[]) => void;
     filters: FilterVehicleProps;
+}
+
+
+export interface VehicleModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onSubmit: (vehicleData: Partial<CarProps>) => void;
+    initialData?: CarProps | null;
+    title: string;
 }
