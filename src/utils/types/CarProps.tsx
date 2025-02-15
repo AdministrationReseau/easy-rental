@@ -98,7 +98,7 @@ export interface FilterVehicleProps {
 
 export interface VehicleListProps {
     vehicles: CarProps[];
-    setVehicles: (vehicles: CarProps[]) => void;
+    setVehicles?: (vehicles: CarProps[]) => void;
     filters: FilterVehicleProps;
 }
 
