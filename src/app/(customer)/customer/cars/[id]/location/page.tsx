@@ -186,6 +186,7 @@ const MultiStepForm: React.FC = () => {
 
     // Charger les données du véhicule
     const [vehicle, setVehicle] = useState<CarProps | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
     console.log(vehicles);
     // Chargement des données des véhicules
@@ -283,11 +284,11 @@ const MultiStepForm: React.FC = () => {
                                         valueRegion={selectedPickRegion} />
                                 </div>
                                 <div className="flex h-full ">
-                                    <DatePickerStyled 
-                                        onChange={handlePickDateChange} 
+                                    <DatePickerStyled
+                                        onChange={handlePickDateChange}
                                         value={selectedPickDate} />
                                     {/* <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
-                                    
+
                                 </div>
                             </div>
 

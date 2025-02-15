@@ -13,7 +13,7 @@ interface StatCardProps {
     value: string,
     icon: React.ReactNode,
     className?: string
-};
+}
 
 interface TitleProps {
     icon: React.ReactNode

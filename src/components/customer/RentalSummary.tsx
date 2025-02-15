@@ -42,7 +42,7 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                     </span>
                     <span className='flex flex-row w-full py-4'>
                         <Stars value={rating  ?? 0} precision={1} />
-                       <span className='px-4'>{reviews.length} + Reviewer</span> 
+                        <span className='px-4'>{reviews.length} + Reviewer</span>
                     </span>
                 </div>
             </div>

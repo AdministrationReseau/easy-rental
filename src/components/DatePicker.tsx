@@ -7,7 +7,6 @@ interface DatePickerStyledProps {
 }
 
 export const DatePickerStyled = ({
-    // value,
     onChange,
     }: DatePickerStyledProps) => {
     const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
@@ -23,7 +22,7 @@ export const DatePickerStyled = ({
           setError('Please select a valid date.');
         }
       };
-    
+
       const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newTime = event.target.value;
         setSelectedTime(newTime);
@@ -34,7 +33,7 @@ export const DatePickerStyled = ({
       const updateDateTime = (date: DateValue, time: string) => {
         // Extraire les heures et minutes du temps sélectionné
         const [hours, minutes] = time.split(':').map(Number);
-        
+
         // Créer un nouvel objet Date avec la date et l'heure combinées
         const completeDate = new Date(
           date.year,
@@ -114,6 +113,7 @@ export const DatePickerStyled = ({
 export const DateTime = () => {
     
     // const [time, setTime] = useState<string>('12:00');
+
     const handleDateTimeChange = (dateTime: Date | null) => {
         if (dateTime) {
           console.log('Date complète:', dateTime);

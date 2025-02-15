@@ -133,15 +133,23 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="bottom-0">
+            <div className="p-4 bottom-0">
                 <Link href="/">
                     <li
-                        className="flex items-center gap-4 p-3 w-full cursor-pointer rounded-lg transition-all duration-200 hover:bg-gray-100 text-red-500"
+                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-300 ${
+                            isActive("/logout")
+                                ? "bg-red-500 text-white"
+                                : "hover:bg-gray-100 text-red-500"
+                        }`}
                     >
                         <span
-                            className="w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 bg-white text-red-500"
+                            className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                isActive("/logout")
+                                    ? "border-white bg-white text-red-500"
+                                    : "border-red-500 bg-white text-red-500"
+                            }`}
                         >
-                            <Logout />
+                            <Logout/>
                         </span>
                         {!isCollapsed && <span>Log Out</span>}
                     </li>
