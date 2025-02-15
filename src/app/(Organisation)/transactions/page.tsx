@@ -51,10 +51,10 @@ export default function TransactionsPage() {
         if (filters.endDate) {
             filtered = filtered.filter(t => new Date(t.date) <= new Date(filters.endDate));
         }
-        if (filters.status) {
+        if (filters.status && filters.status !== 'all') { // Skip if status is "all"
             filtered = filtered.filter(t => t.status === filters.status);
         }
-        if (filters.paymentMethod) {
+        if (filters.paymentMethod && filters.paymentMethod !== 'all') { // Skip if paymentMethod is "all"
             filtered = filtered.filter(t => t.paymentMethod === filters.paymentMethod);
         }
 
@@ -62,14 +62,14 @@ export default function TransactionsPage() {
     }, [filters, transactions]);
 
     const statusOptions = [
-        { label: 'Tous les statuts', value: '' },
+        { label: 'Tous les statuts', value: 'all' }, // Changed from "" to "all"
         { label: 'Complété', value: 'completed' },
         { label: 'En attente', value: 'pending' },
         { label: 'Échoué', value: 'failed' }
     ];
 
     const paymentMethodOptions = [
-        { label: 'Toutes les méthodes', value: '' },
+        { label: 'Toutes les méthodes', value: 'all' }, // Changed from "" to "all"
         { label: 'MTN Money', value: 'mtn' },
         { label: 'Orange Money', value: 'orange' },
         { label: 'Carte Bancaire', value: 'card' }
@@ -142,6 +142,7 @@ export default function TransactionsPage() {
                                 </SelectContent>
                             </Select>
                         </div>
+
                         <div>
                             <label className="text-sm font-medium">Méthode de paiement</label>
                             <Select

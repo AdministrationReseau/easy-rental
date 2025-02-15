@@ -15,10 +15,11 @@ const TabsList = React.forwardRef<
       inline-flex
       h-12
       items-center
-      justify-center
+      justify-between
       rounded-lg
       bg-gray-100
       p-1
+      w-full
       ${className}
     `}
         {...props}
@@ -33,30 +34,33 @@ const TabsTrigger = React.forwardRef<
     <TabsPrimitive.Trigger
         ref={ref}
         className={`
-      inline-flex
-      items-center
-      justify-center
-      whitespace-nowrap
-      rounded-md
-      px-3
-      py-2
-      text-sm
-      font-medium
-      ring-offset-white
-      transition-all
-      focus-visible:outline-none
-      focus-visible:ring-2
-      focus-visible:ring-offset-2
-      disabled:pointer-events-none
-      disabled:opacity-50
-      data-[state=active]:bg-white
-      data-[state=active]:text-primary
-      data-[state=active]:shadow-sm
-      data-[state=inactive]:bg-transparent
-      data-[state=inactive]:text-gray-500
-      data-[state=inactive]:hover:bg-gray-200
-      data-[state=inactive]:hover:text-gray-900
-      ${className}
+            inline-flex
+            items-center
+            justify-center
+            whitespace-nowrap
+            rounded-md
+            px-3
+            py-2
+            text-sm
+            font-medium
+            ring-offset-white
+            transition-all
+            data-[state=active]:text-primary
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-offset-2
+            disabled:pointer-events-none
+            disabled:opacity-50
+            data-[state=active]:bg-white
+            data-[state=active]:text-primary-blue
+            data-[state=active]:border-primary-blue
+            data-[state=active]:border-2
+            data-[state=active]:shadow-md
+            data-[state=inactive]:bg-transparent
+            data-[state=inactive]:text-gray-500
+            data-[state=inactive]:hover:bg-gray-200
+            data-[state=inactive]:hover:text-gray-900
+            ${className}
     `}
         {...props}
     />

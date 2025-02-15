@@ -20,9 +20,9 @@ import { DriverProps } from '@/utils/types/DriverProps';
 import {VehicleFeatures} from "@/components/ui/VehicleFeatures";
 import {DocumentList} from "@/components/ui/DocumentList";
 import Image from "next/image";
+import { Tabs, TabsList, TabsTrigger, TabsContent} from "@/components/ui/tabs";
 
 const LocationDetails = () => {
-    const [activeTab, setActiveTab] = useState('info');
     const [location, setLocation] = useState<LocationProps>();
     const { id } = useParams();
     const [vehicle, setVehicle] = useState<CarProps| null>(null);
@@ -33,14 +33,14 @@ const LocationDetails = () => {
     function differenceEnAnnees(dateString: string | number | Date) {
         const dateCible = new Date(dateString);
         const dateActuelle = new Date();
-    
+
         const diff = dateActuelle.getFullYear() - dateCible.getFullYear();
 
         // Vérifier si l'anniversaire est déjà passé cette année
         const anniversairePasse =
             (dateActuelle.getMonth() > dateCible.getMonth()) ||
             (dateActuelle.getMonth() === dateCible.getMonth() && dateActuelle.getDate() >= dateCible.getDate());
-    
+
         return anniversairePasse ? diff : diff - 1;
     }
 
@@ -57,7 +57,7 @@ const LocationDetails = () => {
                             (l: LocationProps) => l.id.toString() === id
                         );
                         setLocation(foundLocation|| null);
-                        
+
                     } catch (err) {
                         setError((err as Error).message);
                     } finally {
@@ -168,105 +168,89 @@ const LocationDetails = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-6">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                            <div className="flex space-x-4 border-b">
-                                {['info', 'documents', 'ride'].map((tab) => (
-                                    <button
-                                        key={tab}
-                                        onClick={() => setActiveTab(tab)}
-                                        className={`pb-2 px-4 transition-colors duration-200 ${
-                                            activeTab === tab
-                                                ? 'border-b-2 border-blue-500 text-blue-600 font-medium'
-                                                : 'text-gray-500 hover:text-gray-700'
-                                        }`}
-                                    >
-                                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        <div className="lg:col-span-2 space-y-6">
+                            {/* Use the Radix UI Tabs component */}
+                            <Tabs defaultValue="info" className="bg-white rounded-xl p-4 shadow-sm">
+                                <TabsList className="flex space-x-4 border-b">
+                                    <TabsTrigger value="info" className="sm:w-[200px]">Info</TabsTrigger>
+                                    <TabsTrigger value="documents" className="sm:w-[200px]">Documents</TabsTrigger>
+                                    <TabsTrigger value="ride" className="sm:w-[200px]">Ride</TabsTrigger>
+                                </TabsList>
 
-                        {activeTab === 'info' && (
-                            <Card className="hover:shadow-lg transition-shadow duration-300">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-2">
-                                        <CarIcon className="h-5 w-5 text-blue-500"/>
-                                        Vehicle
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-6">
-                                        <div className="relative group">
-                                            <Image
-                                                src={vehicle?.images[0]||"/car.png"}
-                                                alt={vehicle?.brand || "vehicle's image"}
-                                                width={300}
-                                                height={300}
-                                                className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
-                                            />
-                                            <div
-                                                className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-end">
-                                                <div className="p-4 text-white">
-                                                    <h3 className="font-bold">{vehicle?.brand}</h3>
-                                                    <p>
-                                                        {/* {vehicle?.year}   */}
-                                                        - {vehicle?.model}</p>
+                                <TabsContent value="info">
+                                    <Card className="hover:shadow-lg transition-shadow duration-300 mt-4">
+                                        <CardHeader>
+                                            <CardTitle className="flex items-center gap-2">
+                                                <CarIcon className="h-5 w-5 text-blue-500"/>
+                                                Vehicle
+                                            </CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <div className="space-y-6">
+                                                <div className="relative group">
+                                                    <Image
+                                                        src={vehicle?.images[0] || "/car.png"}
+                                                        alt={vehicle?.brand || "vehicle's image"}
+                                                        width={300}
+                                                        height={300}
+                                                        className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
+                                                    />
+                                                    <div
+                                                        className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-end">
+                                                        <div className="p-4 text-white">
+                                                            <h3 className="font-bold">{vehicle?.brand}</h3>
+                                                            <p>{vehicle?.model}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {vehicle && <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities}/>}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </TabsContent>
+
+                                <TabsContent value="documents">
+                                    <Card className="mt-4">
+                                        <CardHeader>
+                                            <CardTitle>Documents of vehicle</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <DocumentList documents={vehicle?.documents}/>
+                                        </CardContent>
+                                    </Card>
+                                </TabsContent>
+
+                                <TabsContent value="ride">
+                                    <Card className="mt-4">
+                                        <CardHeader>
+                                            <CardTitle className="flex items-center gap-2">
+                                                <MapIcon className="h-5 w-5 text-blue-500"/>
+                                                Ride
+                                            </CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <div className="space-y-4">
+                                                <div className="bg-gray-100 w-full h-64 rounded-lg flex items-center justify-center">
+                                                    <p className="text-gray-500">Route map</p>
+                                                </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                                    <div className="p-4 bg-green-50 rounded-lg">
+                                                        <p className="text-sm text-gray-500">Departure</p>
+                                                        <p className="font-medium">{location.pick_up.place}</p>
+                                                    </div>
+                                                    <div className="p-4 bg-red-50 rounded-lg">
+                                                        <p className="text-sm text-gray-500">Arrival</p>
+                                                        <p className="font-medium">{location.drop_off.place}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        {/* Features Section */}
-                                        {vehicle?
-                                        <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities} />
-                                    :
-                                    <p></p>
-                                    }
-                                      
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        )}
-
-                        {activeTab === 'documents' && (
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Documents of vehicle</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <DocumentList documents={vehicle?.documents}/>
-                                </CardContent>
-                            </Card>
-                        )}
-
-                        {activeTab === 'ride' && (
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-2">
-                                        <MapIcon className="h-5 w-5 text-blue-500"/>
-                                        Ride
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-4">
-                                        <div
-                                            className="bg-gray-100 w-full h-64 rounded-lg flex items-center justify-center">
-                                            <p className="text-gray-500">Route map</p>
-                                        </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                                            <div className="p-4 bg-green-50 rounded-lg">
-                                                <p className="text-sm text-gray-500">Departure</p>
-                                                <p className="font-medium">{location.pick_up.place}</p>
-                                            </div>
-                                            <div className="p-4 bg-red-50 rounded-lg">
-                                                <p className="text-sm text-gray-500">Arrival</p>
-                                                <p className="font-medium">{location.drop_off.place}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        )}
+                                        </CardContent>
+                                    </Card>
+                                </TabsContent>
+                            </Tabs>
+                        </div>
                     </div>
+
 
                     {/* Colonne latérale */}
                     <div className="space-y-6">
