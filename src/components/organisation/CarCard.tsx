@@ -28,10 +28,18 @@ const CarCard: React.FC<CarProps> = ({
                 </h2>
                 <div className='text-nowrap'>
                     <button className="rounded-full hover:bg-primary-blue/10">
-                        <Edit style={{color: 'blue'}} onClick={() => onEdit(id)} />
+                        <Edit style={{color: 'blue'}} onClick={(e: React.MouseEvent) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            onEdit(id);
+                        }}/>
                     </button>
                     <button className="rounded-full hover:bg-red-500/10">
-                        <Delete style={{color: 'red'}} onClick={() => onDelete(id)} />
+                        <Delete style={{color: 'red'}} onClick={(e: React.MouseEvent) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            onDelete(id);
+                        }} />
                     </button>
                 </div>
             </div>

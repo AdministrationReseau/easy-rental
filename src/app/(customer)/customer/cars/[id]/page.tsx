@@ -63,7 +63,7 @@ const VehicleDetails: React.FC = () => {
               {/* <LocationFilter /> */}
               {/* Détails du véhicule sélectionné */}
               <CarDetail vehicle={vehicle} />
-              <VehicleList vehicles={vehicles} filters={filters} />
+              <VehicleList vehicles={vehicles} setVehicles={setVehicles} filters={filters} />
               <Link href="/customer/cars">
               <button className='m-4 p-4 text-white bg-primary-blue rounded-lg'>
                   Voir plus de véhicules

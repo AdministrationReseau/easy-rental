@@ -63,6 +63,7 @@ export default function VehiclesPage() {
 
                 <OrgVehicleList
                     vehicles={vehicles}
+                    setVehicles={setVehicles}
                     filters={filters}
                 />
             </div>

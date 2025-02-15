@@ -2,11 +2,52 @@
 
 import React, { useState } from 'react';
 import { CarCard } from '@/components/organisation/CarCard';
-import { VehicleListProps } from '@/utils/types/CarProps';
+import {CarProps, VehicleListProps} from '@/utils/types/CarProps';
+import VehicleModal from "@/components/VehicleModal";
 
-const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
+const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, filters }) => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
   const itemsPerPage = 8; // Nombre d'éléments par page
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingVehicle, setEditingVehicle] = useState<CarProps | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleCreateVehicle = (vehicleData: Partial<CarProps>) => {
+    const newVehicle: CarProps = {
+      ...vehicleData as CarProps,
+      id: vehicles.length + 1,
+      engine: {
+        type: undefined,
+        horsepower: undefined,
+        capacity: undefined
+      },
+      service_history: [],
+      reviews: [],
+      favorite: false
+    };
+
+    setVehicles([...vehicles, newVehicle]);
+    setShowCreateModal(false);
+    setShowAlert(true);
+  };
+
+  const handleModifyVehicle = ( vehicleData: Partial<CarProps>) => {
+    if (!editingVehicle) return;
+
+    const updatedVehicles = vehicles.map(vehicle =>
+        vehicle.id === editingVehicle.id ? { ...vehicle, ...vehicleData } : vehicle
+    );
+
+    setVehicles(updatedVehicles);
+    // setEditingVehicle(null);
+    setShowAlert(true);
+  };
+
+  // const handleDeleteVehicle = (e: React.MouseEvent, id: number) => {
+  //   e.preventDefault(); // Empêche la navigation du Link
+  //   e.stopPropagation();
+  //   setVehicles(vehicles.filter(vehicle => vehicle.id !== id));
+  // };
 
   // Filtrer les véhicules selon les critères
   const filteredVehicles = vehicles.filter((vehicle) => {
@@ -23,7 +64,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
       console.log('capacity:', matchesCapacity);
 
     const matchesPrice =
-      typeof vehicle.pricePerDay === 'number' &&
+      // typeof vehicle.pricePerDay === 'number' &&
       vehicle.pricePerDay >= filters.priceRange[0] &&
       vehicle.pricePerDay <= filters.priceRange[1];
 
@@ -76,10 +117,12 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
               available={vehicle.available}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
-              onEdit={(id: number) => console.log(id)}
-              onDelete={(id: number) => console.log(id)}
+              onEdit={() => { setEditingVehicle(vehicle); console.log(editingVehicle); }}
+              onDelete={ () => {}}
             />
           ))
+
+
         ) : (
           <p className="col-span-full text-center text-gray-500">
             No vehicles available matching your filters.
@@ -108,6 +151,27 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
             Next
           </button>
         </div>
+      )}
+
+      <VehicleModal
+          isOpen={showCreateModal}
+          onClose={() => setShowCreateModal(false)}
+          onSubmit={handleCreateVehicle}
+          title="Create Vehicle"
+      />
+
+      <VehicleModal
+          isOpen={!!editingVehicle}
+          onClose={() => setEditingVehicle(null)}
+          onSubmit={handleModifyVehicle}
+          initialData={editingVehicle}
+          title="Edit Vehicle"
+      />
+
+      {showAlert && (
+          <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded shadow-lg">
+            Vehicle successfully {editingVehicle ? 'updated' : 'created'}!
+          </div>
       )}
     </div>
   );
