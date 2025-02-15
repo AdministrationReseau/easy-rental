@@ -158,9 +158,6 @@ const LocationDetails = () => {
                             <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm sm:text-base">
                                 {location.status}
                             </span>
-                            {/* <span className="mt-2 text-xs sm:text-sm text-gray-500">
-                                {location.rental.paymentStatus}
-                            </span> */}
                         </div>
                     </div>
                 </div>
