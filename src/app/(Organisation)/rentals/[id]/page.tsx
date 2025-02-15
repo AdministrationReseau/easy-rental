@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from 'react';
 import {
     MapIcon,
@@ -15,140 +14,17 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/organisation/card';
 import { Alert, AlertDescription } from '@/components/organisation/alert';
 import { useParams } from 'next/navigation';
-import { LocationProps } from '@/utils/types/RentalInfoProps';
+import { LocationProps } from '@/utils/types/LocationProps';
 import { CarProps } from '@/utils/types/CarProps';
 import { DriverProps } from '@/utils/types/DriverProps';
-import Image from 'next/image';
+import {VehicleFeatures} from "@/components/ui/VehicleFeatures";
+import {DocumentList} from "@/components/ui/DocumentList";
+import Image from "next/image";
+import { Tabs, TabsList, TabsTrigger, TabsContent} from "@/components/ui/tabs";
 
-type Documents = {
-    registration_certificate: string;
-    technical_inspection: string;
-    insurance: string;
-    tax_sticker: string[];
-  };
-  
-const DocumentList = ({ documents }: { documents?: Documents }) => {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [pdfUrl, setPdfUrl] = useState<string>("");
-
-    if (!documents) return null; // Gestion du cas undefined
-    // États pour contrôler l'ouverture de la modale et l'URL du PDF
- 
-     // Fonction pour ouvrir la modale avec le PDF
-     const openPdfModal = (pdfUrl: string) => {
-        setPdfUrl(pdfUrl);  // Mettez l'URL du PDF dans l'état
-        setModalOpen(true);  // Ouvrir la modale
-    };
-
-    // Fonction pour fermer la modale
-    const closeModal = () => {
-        setModalOpen(false);
-        setPdfUrl("");  // Réinitialiser l'URL du PDF
-    };
-    const documentLabels:Record<keyof Documents, string> = {
-        registration_certificate: "Registration_certificate",
-        technical_inspection : "Technical_inspection",
-        insurance: "Insurance",
-        tax_sticker: "Tax_sticker"
-    };
-
-    console.log(documents);
-
-
-    return (
-        <>
-            {/* Modale pour afficher le PDF */}
-            {modalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                    <div className="bg-white p-4 rounded-lg">
-                        <button onClick={closeModal} className="text-red-500">Close</button>
-                        <iframe 
-                            src={pdfUrl} 
-                            width="600" 
-                            height="400" 
-                            title="PDF Viewer" 
-                            frameBorder="0">
-                        </iframe>
-                    </div>
-                </div>
-            )}
-
-        <div className="space-y-4">
-            {Object.entries(documents as Documents).map(([key, value]) => (
-                <div key={key}
-                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                    <div className="flex items-center space-x-3">
-                        <KeyIcon className="h-5 w-5 text-gray-500"/>
-                        <span>{documentLabels[key as keyof Documents] || key}</span>
-                    </div>
-                    <div className="text-right">
-                        {Array.isArray(value) ? (
-                            value.map((v, i) => (
-                                <div key={i} className="flex items-center justify-between">
-                                    <span>{v}</span>
-                                    <button 
-                                        onClick={() => openPdfModal(v)} // Passer le lien PDF à la fonction
-                                        className="text-blue-500 hover:text-blue-600 ml-4">
-                                            Voir
-                                        </button>
-                                </div>
-                            ))
-                        ) : (
-                            <button 
-                                onClick={() => openPdfModal(value)}  // Ouvre la modale avec l'URL du PDF
-                                className="text-blue-500 hover:text-blue-600">
-                                Voir
-                            </button>
-
-                        )}
-                    </div>
-                </div>
-            ))}
-        </div>
-    </>
-    );
-};
-
-const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({ vehicleFeatures }) => {
-  const features = [
-    "Air Condition",
-    "Child Seat",
-    "GPS",
-    "USB Input",
-    "Bluetooth",
-    "Luggage",
-    "Seat Belt",
-    "Sleeping Bed",
-    "Water",
-    "Audio Input",
-    "Onboard Computer",
-    "Additional Covers",
-  ];
-
-  const isValidFeaturesObject = vehicleFeatures && typeof vehicleFeatures === 'object';
-
-  return (
-    <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:items-center">
-      {features.map((feature, index) => (
-          <div key={index}
-               className="bg-gray-50 p-3 rounded-lg text-center hover:bg-gray-100 transition-colors duration-200 sm:text-center">
-              {isValidFeaturesObject ? 
-              <p className="text-sm font-medium text-gray-700">{feature}</p>
-              :
-              <p></p>
-                }
-          </div>
-      ))}
-  </div>
-  </>
-  );
-};
-const LocationDetails: React.FC = () => {
-    
-    const { id } = useParams(); // Récupération de l'ID via Next.js
-    const [activeTab, setActiveTab] = useState('info');
+const LocationDetails = () => {
     const [location, setLocation] = useState<LocationProps>();
+    const { id } = useParams();
     const [vehicle, setVehicle] = useState<CarProps| null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -157,19 +33,17 @@ const LocationDetails: React.FC = () => {
     function differenceEnAnnees(dateString: string | number | Date) {
         const dateCible = new Date(dateString);
         const dateActuelle = new Date();
-    
+
         const diff = dateActuelle.getFullYear() - dateCible.getFullYear();
-    
+
         // Vérifier si l'anniversaire est déjà passé cette année
-        const anniversairePasse = 
-            (dateActuelle.getMonth() > dateCible.getMonth()) || 
+        const anniversairePasse =
+            (dateActuelle.getMonth() > dateCible.getMonth()) ||
             (dateActuelle.getMonth() === dateCible.getMonth() && dateActuelle.getDate() >= dateCible.getDate());
-    
+
         return anniversairePasse ? diff : diff - 1;
     }
-    // console.log(differenceEnAnnees("2020-09-09T08:00:00")); // Exemple avec le 18 août 2010
-    
-    // Chargement des données de location
+
         useEffect(() => {
                 const fetchLocations = async () => {
                     try {
@@ -183,7 +57,7 @@ const LocationDetails: React.FC = () => {
                             (l: LocationProps) => l.id.toString() === id
                         );
                         setLocation(foundLocation|| null);
-                        
+
                     } catch (err) {
                         setError((err as Error).message);
                     } finally {
@@ -192,9 +66,8 @@ const LocationDetails: React.FC = () => {
                 };
                 fetchLocations();
             }, [id]);
-    
-            
-        // Chargement des données du véhicules
+
+
         useEffect(() => {
             fetch('/data/cars.json')
                 .then((response) => {
@@ -217,7 +90,7 @@ const LocationDetails: React.FC = () => {
                     console.error('Error loading vehicles:', error);
                 });
         }, [location?.vehicle.id]);
-    
+
         // Chargement des données du chauffeur
         useEffect(() => {
             fetch('/data/drivers.json')
@@ -250,7 +123,7 @@ const LocationDetails: React.FC = () => {
         }
         if (loading) return <p>Loading ...</p>
         if (error) return <p>Error: {error}</p>
-        
+
     const RatingStars = ({ rating }: { rating: number }) => (
         <div className="flex items-center space-x-1">
             {[...Array(5)].map((_, i) => (
@@ -285,9 +158,6 @@ const LocationDetails: React.FC = () => {
                             <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm sm:text-base">
                                 {location.status}
                             </span>
-                            {/* <span className="mt-2 text-xs sm:text-sm text-gray-500">
-                                {location.rental.paymentStatus}
-                            </span> */}
                         </div>
                     </div>
                 </div>
@@ -295,105 +165,89 @@ const LocationDetails: React.FC = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-6">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                            <div className="flex space-x-4 border-b">
-                                {['info', 'documents', 'ride'].map((tab) => (
-                                    <button
-                                        key={tab}
-                                        onClick={() => setActiveTab(tab)}
-                                        className={`pb-2 px-4 transition-colors duration-200 ${
-                                            activeTab === tab
-                                                ? 'border-b-2 border-blue-500 text-blue-600 font-medium'
-                                                : 'text-gray-500 hover:text-gray-700'
-                                        }`}
-                                    >
-                                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        <div className="lg:col-span-2 space-y-6">
+                            {/* Use the Radix UI Tabs component */}
+                            <Tabs defaultValue="info" className="bg-white rounded-xl p-4 shadow-sm">
+                                <TabsList className="flex space-x-4 border-b">
+                                    <TabsTrigger value="info" className="sm:w-[200px]">Info</TabsTrigger>
+                                    <TabsTrigger value="documents" className="sm:w-[200px]">Documents</TabsTrigger>
+                                    <TabsTrigger value="ride" className="sm:w-[200px]">Ride</TabsTrigger>
+                                </TabsList>
 
-                        {activeTab === 'info' && (
-                            <Card className="hover:shadow-lg transition-shadow duration-300">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-2">
-                                        <CarIcon className="h-5 w-5 text-blue-500"/>
-                                        Vehicle
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-6">
-                                        <div className="relative group">
-                                            <Image
-                                                src={vehicle?.images[0]||"/placeholder.png"}
-                                                alt={vehicle?.brand || "vehicle's image"}
-                                                width={300}
-                                                height={300}
-                                                className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
-                                            />
-                                            <div
-                                                className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-end">
-                                                <div className="p-4 text-white">
-                                                    <h3 className="font-bold">{vehicle?.brand}</h3>
-                                                    <p>
-                                                        {/* {vehicle?.year}   */}
-                                                        - {vehicle?.model}</p>
+                                <TabsContent value="info">
+                                    <Card className="hover:shadow-lg transition-shadow duration-300 mt-4">
+                                        <CardHeader>
+                                            <CardTitle className="flex items-center gap-2">
+                                                <CarIcon className="h-5 w-5 text-blue-500"/>
+                                                Vehicle
+                                            </CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <div className="space-y-6">
+                                                <div className="relative group">
+                                                    <Image
+                                                        src={vehicle?.images[0] || "/car.png"}
+                                                        alt={vehicle?.brand || "vehicle's image"}
+                                                        width={300}
+                                                        height={300}
+                                                        className="w-full h-64 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-shadow duration-300"
+                                                    />
+                                                    <div
+                                                        className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-end">
+                                                        <div className="p-4 text-white">
+                                                            <h3 className="font-bold">{vehicle?.brand}</h3>
+                                                            <p>{vehicle?.model}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {vehicle && <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities}/>}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </TabsContent>
+
+                                <TabsContent value="documents">
+                                    <Card className="mt-4">
+                                        <CardHeader>
+                                            <CardTitle>Documents of vehicle</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <DocumentList documents={vehicle?.documents}/>
+                                        </CardContent>
+                                    </Card>
+                                </TabsContent>
+
+                                <TabsContent value="ride">
+                                    <Card className="mt-4">
+                                        <CardHeader>
+                                            <CardTitle className="flex items-center gap-2">
+                                                <MapIcon className="h-5 w-5 text-blue-500"/>
+                                                Ride
+                                            </CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <div className="space-y-4">
+                                                <div className="bg-gray-100 w-full h-64 rounded-lg flex items-center justify-center">
+                                                    <p className="text-gray-500">Route map</p>
+                                                </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                                    <div className="p-4 bg-green-50 rounded-lg">
+                                                        <p className="text-sm text-gray-500">Departure</p>
+                                                        <p className="font-medium">{location.pick_up.place}</p>
+                                                    </div>
+                                                    <div className="p-4 bg-red-50 rounded-lg">
+                                                        <p className="text-sm text-gray-500">Arrival</p>
+                                                        <p className="font-medium">{location.drop_off.place}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        {/* Features Section */}
-                                        {vehicle?
-                                        <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities} />
-                                    :
-                                    <p></p>
-                                    }
-                                      
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        )}
-
-                        {activeTab === 'documents' && (
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Documents of vehicle</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <DocumentList documents={vehicle?.documents}/>
-                                </CardContent>
-                            </Card>
-                        )}
-
-                        {activeTab === 'ride' && (
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-2">
-                                        <MapIcon className="h-5 w-5 text-blue-500"/>
-                                        Ride
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-4">
-                                        <div
-                                            className="bg-gray-100 w-full h-64 rounded-lg flex items-center justify-center">
-                                            <p className="text-gray-500">Route map</p>
-                                        </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                                            <div className="p-4 bg-green-50 rounded-lg">
-                                                <p className="text-sm text-gray-500">Departure</p>
-                                                <p className="font-medium">{location.pick_up.place}</p>
-                                            </div>
-                                            <div className="p-4 bg-red-50 rounded-lg">
-                                                <p className="text-sm text-gray-500">Arrival</p>
-                                                <p className="font-medium">{location.drop_off.place}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        )}
+                                        </CardContent>
+                                    </Card>
+                                </TabsContent>
+                            </Tabs>
+                        </div>
                     </div>
+
 
                     {/* Colonne latérale */}
                     <div className="space-y-6">
@@ -463,7 +317,7 @@ const LocationDetails: React.FC = () => {
                                         <div className="flex items-center space-x-4">
                                             <div className="relative">
                                                 <Image
-                                                    src={driver?.profile_picture||"/placeholder.png"}
+                                                    src={driver?.profile_picture||"/car.png"}
                                                     width={300}
                                                     height={300}
                                                     alt={driver?.first_name}

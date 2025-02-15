@@ -120,7 +120,7 @@ export default function Home() {
                         </div>
 
                         <div className="w-full flex flex-row justify-center my-12">
-                            <VehicleList vehicles={vehicles.slice(0, 6)} filters={filters}/>
+                            <VehicleList vehicles={vehicles.slice(0, 6)} setVehicles={setVehicles} filters={filters}/>
                         </div>
 
                         <Link

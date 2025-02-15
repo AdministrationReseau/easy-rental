@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowBack, LocationOn } from "@mui/icons-material";
 import Stars from "@/components/Stars";
 import Link from "next/link";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 interface Agency {
     id: number;
@@ -23,6 +24,7 @@ const AgencyDetails = () => {
     const { id } = useParams();
     const [agency, setAgency] = useState<Agency | null>(null);
     const [selectedImage, setSelectedImage] = useState<string>("");
+    const [activeTab, setActiveTab] = useState('details'); // State to manage active tab
 
     useEffect(() => {
         if (!id) return;
@@ -49,62 +51,90 @@ const AgencyDetails = () => {
     }
 
     return (
-        <div className="flex flex-col w-[100%]">
-            <Link href="/agencies" className="text-primary-blue font-bold text-lg mb-4">
-                <ArrowBack /> Back
-            </Link>
-            <h1 className="text-3xl font-bold text-primary-blue mb-2 ml-4">{agency.name}</h1>
+      <div className="flex flex-col w-[100%]">
+          <Link href="/agencies" className="text-primary-blue font-bold text-lg mb-4">
+              <ArrowBack /> Back
+          </Link>
+          <h1 className="text-3xl font-bold text-primary-blue mb-2 ml-4">{agency.name}</h1>
 
-            <div className="flex flex-col w-full xl:flex-row center justify-center gap-4">
-                <div className="bg-white shadow-lg rounded-lg p-4 w-[100%] xl:w-[1100px] flex justify-center">
-                    <Image
-                        src={selectedImage}
-                        alt="Main image"
-                        width={1400}
-                        height={100}
-                        className="rounded w-[100%] h-auto xl:w-[1400px] lg:h-[600px]"
-                    />
-                </div>
+          {/* Tabs for Details and Activities */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-6">
+              <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="details">Details</TabsTrigger>
+                  <TabsTrigger value="activities">Activities</TabsTrigger>
+              </TabsList>
 
-                <div className="flex flex-row xl:flex-col gap-4 justify-center">
-                    {agency.images.map((img, index) => (
-                        <div
-                            key={index}
-                            onClick={() => setSelectedImage(img)}
-                            className={`cursor-pointer p-2 rounded-lg ${
+              {/* Details Tab Content */}
+              <TabsContent value="details" className="space-y-4">
+                  <div className="flex flex-col w-full xl:flex-row center justify-center gap-4">
+                      <div className="bg-white shadow-lg rounded-lg p-4 w-[100%] xl:w-[1100px] flex justify-center">
+                          <Image
+                            src={selectedImage}
+                            alt="Main image"
+                            width={1400}
+                            height={100}
+                            className="rounded w-[100%] h-auto xl:w-[1400px] lg:h-[600px]"
+                          />
+                      </div>
+
+                      <div className="flex flex-row xl:flex-col gap-4 justify-center">
+                          {agency.images.map((img, index) => (
+                            <div
+                              key={index}
+                              onClick={() => setSelectedImage(img)}
+                              className={`cursor-pointer p-2 rounded-lg ${
                                 selectedImage === img ? "border-2 border-primary-blue" : "border"
-                            }`}
-                        >
-                            <Image src={img} alt={`Thumbnail ${index}`} className='xl:w-[200px]' width={100} height={60} />
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="flex flex-col lg:flex-row gap-4 mt-4">
-                <div className="t-8 bg-white p-6 shadow-lg rounded-lg lg:w-[700px]">
-                    <div className="flex flex-row justify-between">
-                        <h2 className="text-xl font-semibold text-gray-700 mb-2">Description</h2>
-                        <Stars value={agency.stars} precision={0.5} />
-                    </div>
-                    <p className="text-gray-600 mb-4 w-auto">{agency.description}</p>
-                </div>
+                              }`}
+                            >
+                                <Image src={img} alt={`Thumbnail ${index}`} className='xl:w-[200px]' width={100} height={60} />
+                            </div>
+                          ))}
+                      </div>
+                  </div>
+                  <div className="flex flex-col lg:flex-row gap-4 mt-4">
+                      <div className="t-8 bg-white p-6 shadow-lg rounded-lg lg:w-[700px]">
+                          <div className="flex flex-row justify-between">
+                              <h2 className="text-xl font-semibold text-gray-700 mb-2">Description</h2>
+                              <Stars value={agency.stars} precision={0.5} />
+                          </div>
+                          <p className="text-gray-600 mb-4 w-auto">{agency.description}</p>
+                      </div>
 
-                <div className="flex flex-col gap-4 shadow-lg rounded-lg w-[380px] p-14">
-                    <div className="flex items-center mb-4">
-                        <LocationOn className="text-primary-blue mr-2" />
-                        <p className="text-gray-700">{agency.city}</p>
-                    </div>
-                    <div className="flex items-center mb-4">
-                        <LocationOn className="text-primary-blue mr-2" />
-                        <p className="text-gray-700">Ouvre à {agency.openingTime}</p>
-                    </div>
-                    <div className="flex items-center mb-4">
-                        <LocationOn className="text-primary-blue mr-2" />
-                        <p className="text-gray-700">Ferme à {agency.closingTime}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                      <div className="flex flex-col gap-4 shadow-lg rounded-lg w-[380px] p-14">
+                          <div className="flex items-center mb-4">
+                              <LocationOn className="text-primary-blue mr-2" />
+                              <p className="text-gray-700">{agency.city}</p>
+                          </div>
+                          <div className="flex items-center mb-4">
+                              <LocationOn className="text-primary-blue mr-2" />
+                              <p className="text-gray-700">Ouvre à {agency.openingTime}</p>
+                          </div>
+                          <div className="flex items-center mb-4">
+                              <LocationOn className="text-primary-blue mr-2" />
+                              <p className="text-gray-700">Ferme à {agency.closingTime}</p>
+                          </div>
+                      </div>
+                  </div>
+              </TabsContent>
+
+              {/* Activities Tab Content */}
+              <TabsContent value="activities" className="space-y-4">
+                  <div className="p-4 bg-white rounded-lg shadow-sm">
+                      <h3 className="text-xl font-bold mb-4">Agency Activities</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="p-4 bg-gray-50 rounded-lg">
+                              <p className="text-sm text-gray-500">Recent Events</p>
+                              <p className="font-medium text-lg">{/* Display recent events data */}</p>
+                          </div>
+                          <div className="p-4 bg-gray-50 rounded-lg">
+                              <p className="text-sm text-gray-500">Upcoming Events</p>
+                              <p className="font-medium text-lg">{/* Display upcoming events data */}</p>
+                          </div>
+                      </div>
+                  </div>
+              </TabsContent>
+          </Tabs>
+      </div>
     );
 };
 

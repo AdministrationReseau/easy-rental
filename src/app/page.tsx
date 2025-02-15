@@ -289,7 +289,7 @@ import LocationFilterContainer from "@/components/LocationFilter";
                 <div className="flex justify-between w-full">
                     <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-4">
                     <Image 
-                        src={testimonial.image} 
+                        src={testimonial.image ?? '/voiture.png'}
                         alt={testimonial.name}
                         width={400}
                         height={400}   
