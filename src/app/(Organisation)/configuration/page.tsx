@@ -267,7 +267,7 @@ export default function SettingsPage() {
                                         </div>
                                         <Switch
                                             checked={rentalConfig.withDriverEnabled}
-                                            onCheckedChange={(checked) =>
+                                            onCheckedChange={(checked: boolean) =>
                                                 setRentalConfig(prev => ({ ...prev, withDriverEnabled: checked }))
                                             }
                                         />
@@ -279,7 +279,7 @@ export default function SettingsPage() {
                                         </div>
                                         <Switch
                                             checked={rentalConfig.withoutDriverEnabled}
-                                            onCheckedChange={(checked) =>
+                                            onCheckedChange={(checked: boolean) =>
                                                 setRentalConfig(prev => ({ ...prev, withoutDriverEnabled: checked }))
                                             }
                                         />
@@ -324,7 +324,7 @@ export default function SettingsPage() {
                                         </div>
                                         <Switch
                                             checked={rentalConfig.depositRequired}
-                                            onCheckedChange={(checked) =>
+                                            onCheckedChange={(checked: boolean) =>
                                                 setRentalConfig(prev => ({ ...prev, depositRequired: checked }))
                                             }
                                         />
@@ -347,7 +347,7 @@ export default function SettingsPage() {
                                         </div>
                                         <Switch
                                             checked={rentalConfig.allowLateReturn}
-                                            onCheckedChange={(checked) =>
+                                            onCheckedChange={(checked: boolean) =>
                                                 setRentalConfig(prev => ({ ...prev, allowLateReturn: checked }))
                                             }
                                         />
@@ -370,7 +370,7 @@ export default function SettingsPage() {
                                         </div>
                                         <Switch
                                             checked={rentalConfig.includeInsurance}
-                                            onCheckedChange={(checked) =>
+                                            onCheckedChange={(checked: boolean) =>
                                                 setRentalConfig(prev => ({ ...prev, includeInsurance: checked }))
                                             }
                                         />
@@ -425,7 +425,7 @@ export default function SettingsPage() {
                                         </div>
                                         <Switch
                                             checked={rentalConfig.requireDriverLicense}
-                                            onCheckedChange={(checked) =>
+                                            onCheckedChange={(checked: boolean) =>
                                                 setRentalConfig(prev => ({ ...prev, requireDriverLicense: checked }))
                                             }
                                         />
