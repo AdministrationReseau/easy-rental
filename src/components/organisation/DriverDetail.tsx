@@ -54,7 +54,7 @@ export const DriverInfo: React.FC<{ driver: DriverProps }> = ({ driver }) => {
             {driver.vehicle_assigned.length > 0 ?(
               driver.vehicle_assigned.map((vehicle, key)=>(
                 <p key={key}>
-                {vehicle.make} 
+                {vehicle.brand}
                 {vehicle.model} 
                 ({vehicle.year})
                 </p>
