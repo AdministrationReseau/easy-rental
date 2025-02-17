@@ -38,7 +38,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
     );
 
     setVehicles(updatedVehicles);
-    // setEditingVehicle(null);
+    setEditingVehicle(null);
     setShowAlert(true);
   };
 
