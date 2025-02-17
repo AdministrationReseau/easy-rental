@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import "./globals.css";
 import ThemeProviderWrapper from "@/providers/ThemeProviderWrapper";
+import { BonusProvider } from "@/providers/BonusContext";
 
 export const metadata: Metadata = {
   title: "Easy Rent",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
     <AppRouterCacheProvider>
-      <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+      <BonusProvider>
+        <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+      </BonusProvider>
     </AppRouterCacheProvider>
     </html>
   );

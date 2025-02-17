@@ -30,6 +30,7 @@ export interface LocationProps {
     date: string;
     price: string;
     ride: GeofenceProps;
-    // status:status;
+    paidWithPoints: true;
+    bonusPoints: 50;
     status: "pending"|"completed"|"validated";
 }

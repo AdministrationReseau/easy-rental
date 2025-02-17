@@ -16,7 +16,8 @@
         "/assets/organisation/cars/camry.jpeg"
       ]
       
-    },
+,
+"brand":"Toyota"    },
     "driver": {
       "id": 1
     },
@@ -31,7 +32,7 @@
     "date": "19 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "80000.00",
+    "price": 80000.00,
     "status": "pending"
   },
   {
@@ -49,7 +50,8 @@
         "/assets/organisation/cars/sportster.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/sportster.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -65,7 +67,7 @@
     "date": "19 January 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "99000.00",
+    "price": 99000.00,
     "status": "pending"
   },
   {
@@ -83,7 +85,8 @@
         "/assets/organisation/cars/f-150.jpeg",
         "/assets/organisation/cars/f-150.jpeg",
         "/assets/organisation/cars/f-150.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -99,7 +102,7 @@
     "date": "18 January 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "8000.00",
+    "price": 8000.00,
     "status": "pending"
   },
   {
@@ -117,7 +120,8 @@
         "/assets/organisation/cars/x5.jpeg",
         "/assets/organisation/cars/x5.jpeg",
         "/assets/organisation/cars/x5.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -133,7 +137,7 @@
     "date": "20 January 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -151,7 +155,8 @@
         "/assets/organisation/cars/metris.jpeg",
         "/assets/organisation/cars/metris.jpeg",
         "/assets/organisation/cars/metris.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -167,7 +172,7 @@
     "date": "20 January 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -185,7 +190,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -201,7 +207,7 @@
     "date": "20 January 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -219,7 +225,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -235,7 +242,7 @@
     "date": "20 February 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -253,7 +260,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -269,7 +277,7 @@
     "date": "20 February 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -287,7 +295,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -303,7 +312,7 @@
     "date": "20 February 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -321,7 +330,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -337,7 +347,7 @@
     "date": "20 February 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -355,7 +365,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -371,7 +382,7 @@
     "date": "20 March 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -389,7 +400,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -405,7 +417,7 @@
     "date": "20 March 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -423,7 +435,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -439,7 +452,7 @@
     "date": "20 March 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -457,7 +470,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -473,7 +487,7 @@
     "date": "20 March 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -491,7 +505,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -507,7 +522,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -525,7 +540,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -541,7 +557,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -559,7 +575,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -575,7 +592,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -593,7 +610,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -609,7 +627,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -627,7 +645,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -643,7 +662,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -661,7 +680,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -677,7 +697,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -695,7 +715,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -711,7 +732,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -729,7 +750,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -745,7 +767,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -763,7 +785,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -779,7 +802,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -797,7 +820,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -813,7 +837,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -831,7 +855,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -847,7 +872,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -865,7 +890,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -881,7 +907,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   },
   {
@@ -899,7 +925,8 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
+      ],
+      "brand":"Toyota"
     },
     "driver": {
       "id": 1
@@ -915,7 +942,7 @@
     "date": "20 July 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": "1080.00",
+    "price": 1080.00,
     "status": "pending"
   }
 ]
