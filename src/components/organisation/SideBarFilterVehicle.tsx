@@ -1,25 +1,22 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { Slider } from '@mui/material';
-import { CarProps } from '@/utils/types/CarProps';
-import { FilterVehicleProps } from '@/utils/types/CarProps';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Settings2, X, Check, ChevronDown } from 'lucide-react';
+import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 
 const SidebarFilter: React.FC<{
   vehicles: CarProps[];
-  onFilter: (filters: FilterVehicleProps) => void
+  onFilter: (filters: FilterVehicleProps) => void;
   isPopupOpen: boolean;
-  setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>> }>
-
-= ({
-  vehicles,
-  onFilter,
-  isPopupOpen,
-  setIsPopupOpen,
-}) => {
+  setIsPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ vehicles, onFilter, isPopupOpen, setIsPopupOpen }) => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedPassengers, setSelectedPassengers] = useState<number[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
+  const [activeFiltersCount, setActiveFiltersCount] = useState(0);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const prices = vehicles.map((vehicle) => vehicle.pricePerDay || 0);
@@ -28,15 +25,22 @@ const SidebarFilter: React.FC<{
     setPriceRange([minPrice, maxPrice]);
   }, [vehicles]);
 
+  useEffect(() => {
+    const count = selectedTypes.length + selectedPassengers.length +
+      (priceRange[0] !== Math.min(...vehicles.map(v => v.pricePerDay || 0)) ||
+       priceRange[1] !== Math.max(...vehicles.map(v => v.pricePerDay || 100000)) ? 1 : 0);
+    setActiveFiltersCount(count);
+  }, [selectedTypes, selectedPassengers, priceRange, vehicles]);
+
   const handleTypeChange = (type: string) => {
-    setSelectedTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+    setSelectedTypes(prev =>
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
     );
   };
 
   const handleCapacityChange = (passenger: number) => {
-    setSelectedPassengers((prev) =>
-      prev.includes(passenger) ? prev.filter((c) => c !== passenger) : [...prev, passenger]
+    setSelectedPassengers(prev =>
+      prev.includes(passenger) ? prev.filter(c => c !== passenger) : [...prev, passenger]
     );
   };
 
@@ -51,10 +55,8 @@ const SidebarFilter: React.FC<{
       priceRange,
     };
     onFilter(filters);
-    console.log(filters);
-    console.log(selectedPassengers)
-
     setIsPopupOpen(false);
+    setActiveDropdown(null);
   };
 
   const clearFilters = () => {
@@ -69,157 +71,333 @@ const SidebarFilter: React.FC<{
       capacity: null,
       priceRange: [0, 100000],
     });
-
-    setIsPopupOpen(false);
+    setActiveDropdown(null);
   };
 
-  return (
-    <div>
-      {isPopupOpen ? (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-6 w-[80%] max-h-[90%] overflow-y-auto shadow-lg relative flex flex-col gap-4">
-            <button
-              className="absolute top-3 right-3 text-gray-600"
+  const DropdownButton = ({ label, active, count, onClick }: { label: string; active: boolean; count?: number; onClick: () => void }) => (
+    <button
+      onClick={onClick}
+      className={`
+        px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
+        transition-all duration-200 border
+        ${active ? 'border-blue-600 bg-blue-50 text-blue-600' : 'border-gray-300 hover:border-gray-400'}
+      `}
+    >
+      {label}
+      {count && count > 0 && (
+        <span className="bg-blue-600 text-white rounded-full text-xs px-2 py-0.5">{count}</span>
+      )}
+      <ChevronDown className={`h-4 w-4 transition-transform ${active ? 'transform rotate-180' : ''}`} />
+    </button>
+  );
+
+  const DesktopFilter = () => (
+    <Card className="w-full mx-32 rounded-lg shadow-sm bg-white">
+      <div className="p-4 mx-44 flex flex-wrap items-center gap-4">
+        {/* Type Filter */}
+        <div className="relative">
+          <DropdownButton
+            label="Vehicle Type"
+            active={activeDropdown === 'type'}
+            count={selectedTypes.length}
+            onClick={() => setActiveDropdown(activeDropdown === 'type' ? null : 'type')}
+          />
+          {activeDropdown === 'type' && (
+            <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50">
+              <div className="flex flex-wrap gap-2">
+                {Array.from(new Set(vehicles.map((vehicle) => vehicle.type || 'Unknown'))).map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => handleTypeChange(type)}
+                    className={`
+                      px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5
+                      transition-all duration-200 border
+                      ${selectedTypes.includes(type)
+                        ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-blue-600 hover:text-blue-600'
+                      }
+                    `}
+                  >
+                    {type}
+                    {selectedTypes.includes(type) && <Check className="h-3.5 w-3.5" />}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Passengers Filter */}
+        <div className="relative">
+          <DropdownButton
+            label="Passengers"
+            active={activeDropdown === 'passengers'}
+            count={selectedPassengers.length}
+            onClick={() => setActiveDropdown(activeDropdown === 'passengers' ? null : 'passengers')}
+          />
+          {activeDropdown === 'passengers' && (
+            <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50">
+              <div className="flex flex-wrap gap-2">
+                {Array.from(new Set(vehicles.map((vehicle) => vehicle.passenger || 4)))
+                  .sort((a, b) => a - b)
+                  .map((passenger) => (
+                    <button
+                      key={passenger}
+                      onClick={() => handleCapacityChange(passenger)}
+                      className={`
+                        px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5
+                        transition-all duration-200 border
+                        ${selectedPassengers.includes(passenger)
+                          ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
+                          : 'bg-white text-gray-700 border-gray-300 hover:border-blue-600 hover:text-blue-600'
+                        }
+                      `}
+                    >
+                      {passenger} {passenger === 1 ? 'seat' : 'seats'}
+                      {selectedPassengers.includes(passenger) && <Check className="h-3.5 w-3.5" />}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Price Range Filter */}
+        <div className="relative">
+          <DropdownButton
+            label="Price Range"
+            active={activeDropdown === 'price'}
+            onClick={() => setActiveDropdown(activeDropdown === 'price' ? null : 'price')}
+          />
+          {activeDropdown === 'price' && (
+            <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50">
+              <Slider
+                value={priceRange}
+                onChange={handlePriceChange}
+                valueLabelDisplay="auto"
+                min={Math.min(...vehicles.map((vehicle) => vehicle.pricePerDay || 0))}
+                max={Math.max(...vehicles.map((vehicle) => vehicle.pricePerDay || 100000))}
+                sx={{
+                  '& .MuiSlider-thumb': {
+                    backgroundColor: '#2563eb',
+                  },
+                  '& .MuiSlider-track': {
+                    backgroundColor: '#2563eb',
+                  },
+                  '& .MuiSlider-rail': {
+                    backgroundColor: '#e5e7eb',
+                  },
+                  '& .MuiSlider-valueLabel': {
+                    backgroundColor: '#2563eb',
+                  }
+                }}
+              />
+              <div className="flex justify-between mt-2 text-sm text-gray-600">
+                <span>{priceRange[0].toLocaleString()} FCFA</span>
+                <span>{priceRange[1].toLocaleString()} FCFA</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2 ml-auto">
+          {activeFiltersCount > 0 && (
+            <Button
+              variant="ghost"
+              onClick={clearFilters}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              Clear All
+            </Button>
+          )}
+          <Button
+            onClick={applyFilters}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Apply Filters
+          </Button>
+        </div>
+      </div>
+    </Card>
+  );
+
+  // Mobile view - Dialog
+  const MobileDialog = () => (
+    <Dialog open={isPopupOpen} onOpenChange={setIsPopupOpen}>
+      <DialogContent className="sm:max-w-[90vw] h-[90vh] overflow-y-auto">
+        <div className="flex flex-col h-full p-4">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold">Filters</h2>
+            <Button
+              variant="ghost"
               onClick={() => setIsPopupOpen(false)}
             >
-              ✕
-            </button>
-            <h2 className="text-xl font-semibold px-4">Filters</h2>
-            
-            {/* Type Filter */}
-            <div className='w-full flex flex-col justify-center gap-1'>
-              <div className="flex gap-4">
-                <h3 className='cursor-pointer font-bold p-1 px-2 rounded-lg text-md w-28'>Type</h3>
-                <ul className="flex gap-3">
-                  {Array.from(new Set(vehicles.map((vehicle) => vehicle.type || 'Unknown'))).map((type) => (
-                    <li key={type} className="flex items-center gap-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedTypes.includes(type)}
-                        onChange={() => handleTypeChange(type)}
-                      />
-                      <span>{type}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex gap-4">
-                <h3 className='cursor-pointer font-bold p-1 px-2 rounded-lg text-md w-28'>Passengers</h3>
-                <ul className="flex gap-2 items-center">
-                  {Array.from(new Set(vehicles.map((vehicle) => vehicle.passenger || 4))).map((passenger) => (
-                    <li key={passenger} className="flex items-center gap-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedPassengers.includes(passenger)}
-                        onChange={() => handleCapacityChange(passenger)}
-                      />
-                      <span>{`${passenger}`}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-                <div className="flex flex-row gap-4 items-center">
-                  <h3 className='cursor-pointer font-bold p-1 px-2 rounded-lg text-md w-28'>Price</h3>
-                    <div className='flex flex-row gap-4 w-64 items-center'>
-                      <Slider
-                        value={priceRange}
-                        onChange={handlePriceChange}
-                        valueLabelDisplay="auto"
-                        min={Math.min(...vehicles.map((vehicle) => vehicle.pricePerDay || 0))}
-                        max={Math.max(...vehicles.map((vehicle) => vehicle.pricePerDay || 100000))}
-                      />
-                      
-                        <span className='text-nowrap'>{priceRange[0]} - {priceRange[1]} FCFA</span>
-                      
-                    </div>
-                </div>
-            </div>
-
-            <div className="w-1/2 mx-auto flex flex-col xl:flex-row gap-2">
-              <button className="bg-primary-blue text-white p-2 rounded-lg flex-grow" onClick={applyFilters}>
-                Apply Filters
-              </button>
-              <button className="bg-gray-300 text-gray-700 p-2 rounded-lg flex-grow" onClick={clearFilters}>
-                Clear
-              </button>
-            </div>
+              <X className="h-4 w-4" />
+            </Button>
           </div>
-        </div>
-      ) : (
-        <div className="mx-auto flex flex-col h-fit w-[100%]">
-          <div className='bg-white rounded-lg shadow-sm flex flex-col h-full w-full '>
-            <div className='w-full h-full relative flex'>
-            <div className='flex w-full gap-8 justify-between items-center px-4'>
-                <h2 className="text-xl font-semibold px-4 hidden xl:block">Filters</h2>
-                
-                {/* Type Filter */}
-                <div className='flex flex-col gap-1'>
-                  <div className="flex gap-4">
-                    <h3 className='cursor-pointer font-bold p-1 px-2 rounded-lg text-md w-28'>Type</h3>
-                    <ul className="flex gap-3">
-                      {Array.from(new Set(vehicles.map((vehicle) => vehicle.type || 'Unknown'))).map((type) => (
-                        <li key={type} className="flex items-center gap-1">
-                          <input
-                            type="checkbox"
-                            checked={selectedTypes.includes(type)}
-                            onChange={() => handleTypeChange(type)}
-                          />
-                          <span>{type}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
-                  <div className="flex gap-4">
-                    <h3 className='cursor-pointer font-bold p-1 px-2 rounded-lg text-md w-28'>Passengers</h3>
-                    <ul className="flex gap-2 items-center">
-                      {Array.from(new Set(vehicles.map((vehicle) => vehicle.passenger || 4))).map((passenger) => (
-                        <li key={passenger} className="flex items-center gap-1">
-                          <input
-                            type="checkbox"
-                            checked={selectedPassengers.includes(passenger)}
-                            onChange={() => handleCapacityChange(passenger)}
-                          />
-                          <span>{`${passenger}`}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                    <div className="flex flex-row gap-4 items-center">
-                      <h3 className='cursor-pointer font-bold p-1 px-2 rounded-lg text-md w-28'>Price</h3>
-                        <div className='flex flex-row gap-4 w-64 items-center'>
-                          <Slider
-                            value={priceRange}
-                            onChange={handlePriceChange}
-                            valueLabelDisplay="auto"
-                            min={Math.min(...vehicles.map((vehicle) => vehicle.pricePerDay || 0))}
-                            max={Math.max(...vehicles.map((vehicle) => vehicle.pricePerDay || 100000))}
-                          />
-                          
-                            <span className='text-nowrap'>{priceRange[0]} - {priceRange[1]} FCFA</span>
-                          
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-col justify gap-2">
-                  <button className="bg-primary-blue text-white p-2 rounded-lg flex-grow" onClick={applyFilters}>
-                    Apply Filters
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="font-semibold">Vehicle Type</h3>
+              <div className="flex flex-wrap gap-2">
+                {Array.from(new Set(vehicles.map((vehicle) => vehicle.type || 'Unknown'))).map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => handleTypeChange(type)}
+                    className={`
+                      px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5
+                      transition-all duration-200 border
+                      ${selectedTypes.includes(type)
+                        ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-blue-600 hover:text-blue-600'
+                      }
+                    `}
+                  >
+                    {type}
+                    {selectedTypes.includes(type) && <Check className="h-3.5 w-3.5" />}
                   </button>
-                  <button className="bg-gray-300 text-gray-700 p-2 rounded-lg flex-grow" onClick={clearFilters}>
-                    Clear
-                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-semibold">Passenger Capacity</h3>
+              <div className="flex flex-wrap gap-2">
+                {Array.from(new Set(vehicles.map((vehicle) => vehicle.passenger || 4)))
+                  .sort((a, b) => a - b)
+                  .map((passenger) => (
+                    <button
+                      key={passenger}
+                      onClick={() => handleCapacityChange(passenger)}
+                      className={`
+                        px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5
+                        transition-all duration-200 border
+                        ${selectedPassengers.includes(passenger)
+                          ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
+                          : 'bg-white text-gray-700 border-gray-300 hover:border-blue-600 hover:text-blue-600'
+                        }
+                      `}
+                    >
+                      {passenger} {passenger === 1 ? 'seat' : 'seats'}
+                      {selectedPassengers.includes(passenger) && <Check className="h-3.5 w-3.5" />}
+                    </button>
+                  ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-semibold">Price Range</h3>
+              <div className="px-2">
+                <Slider
+                  value={priceRange}
+                  onChange={handlePriceChange}
+                  valueLabelDisplay="auto"
+                  min={Math.min(...vehicles.map((vehicle) => vehicle.pricePerDay || 0))}
+                  max={Math.max(...vehicles.map((vehicle) => vehicle.pricePerDay || 100000))}
+                  sx={{
+                    '& .MuiSlider-thumb': {
+                      backgroundColor: '#2563eb',
+                    },
+                    '& .MuiSlider-track': {
+                      backgroundColor: '#2563eb',
+                    },
+                    '& .MuiSlider-rail': {
+                      backgroundColor: '#e5e7eb',
+                    },
+                    '& .MuiSlider-valueLabel': {
+                      backgroundColor: '#2563eb',
+                    }
+                  }}
+                />
+                <div className="flex justify-between mt-2 text-sm text-gray-600">
+                  <span>{priceRange[0].toLocaleString()} FCFA</span>
+                  <span>{priceRange[1].toLocaleString()} FCFA</span>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="mt-auto pt-6 flex gap-2">
+            <Button
+              variant="outline"
+              onClick={clearFilters}
+              className="flex-1"
+            >
+              Clear All
+            </Button>
+            <Button
+              onClick={applyFilters}
+              className="flex-1 bg-blue-600 hover:bg-blue-700"
+            >
+              Show Results
+            </Button>
+          </div>
         </div>
-      )}
+      </DialogContent>
+    </Dialog>
+  );
+
+  // Mobile filter button
+  const MobileFilterButton = () => (
+    <div className="fixed bottom-4 right-4 z-50">
+      <button
+        onClick={() => setIsPopupOpen(true)}
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg flex items-center justify-center transition-colors"
+      >
+        <Settings2 className="h-5 w-5" />
+        {activeFiltersCount > 0 && (
+          <div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
+            {activeFiltersCount}
+          </div>
+        )}
+      </button>
     </div>
+  );
+
+  // Handle click outside dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (activeDropdown && !(event.target as Element).closest('.relative')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [activeDropdown]);
+
+  return (
+    <>
+      {/* Desktop view */}
+      <div className="hidden md:block sticky top-0 z-40">
+        <DesktopFilter />
+      </div>
+
+      {/* Mobile view */}
+      <div className="md:hidden">
+        <div className="flex items-center justify-between p-4 bg-white shadow-sm">
+          <h2 className="text-lg font-semibold">Filters</h2>
+          <Button
+            variant="outline"
+            onClick={() => setIsPopupOpen(true)}
+            className="flex items-center gap-2"
+          >
+            <Settings2 className="h-4 w-4" />
+            Filter
+            {activeFiltersCount > 0 && (
+              <span className="bg-blue-600 text-white rounded-full text-xs px-2 py-0.5">
+                {activeFiltersCount}
+              </span>
+            )}
+          </Button>
+        </div>
+        <MobileFilterButton />
+        <MobileDialog />
+      </div>
+    </>
   );
 };
 
 export default SidebarFilter;
+
+

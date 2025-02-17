@@ -38,7 +38,7 @@ const ProfileSidebar: React.FC = () => {
     }, []);
 
     const mainMenuItems = [
-        { name: "Profile", icon: <Home />, link: "/profile/page" },
+        { name: "Profile", icon: <Home />, link: "/profile" },
         { name: "Favorite", icon: <Favorite />, link: "/profile/favorites" },
         { name: "Location", icon: <LocationOn />, link: "/profile/locations" },
         { name: "Transaction", icon: <AttachMoney />, link: "/profile/transactions" },
@@ -50,7 +50,7 @@ const ProfileSidebar: React.FC = () => {
         { name: "Help & Center", icon: <Help />, link: "/profile/help" },
     ];
 
-    const isActive = (link: string) => pathname.startsWith(link);
+    const isActive = (link: string) => pathname === link;
 
     return (
         <div
@@ -146,10 +146,10 @@ const ProfileSidebar: React.FC = () => {
 
             {/* Logout Section */}
             <div className="p-3">
-                <Link href="/logout">
+                <Link href="/">
                     <button
                         className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                            isActive("/logout")
+                            isActive("/")
                                 ? "bg-red-text text-white"
                                 : "hover:bg-gray-100 text-red-text"
                         }`}

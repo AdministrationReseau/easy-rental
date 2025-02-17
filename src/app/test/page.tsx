@@ -1,169 +1,165 @@
-/*
-'use client';
+// // 'use client'
+// //
+// // import { useState, useEffect } from 'react';
+// // import Calendar from 'react-calendar';
+// //
+// // export default function Schedule() {
+// //   const [date, setDate] = useState(new Date());
+// //   const [slots, setSlots] = useState([]);
+// //
+// //   useEffect(() => {
+// //     async function fetchSlots() {
+// //       const { data } = await axios.get('/api/slots');
+// //       setSlots(data);
+// //     }
+// //     fetchSlots();
+// //   }, []);
+// //
+// //   const handleBooking = async (slotId) => {
+// //     await axios.post('/api/book', {
+// //       customerName: 'Jane Doe',
+// //       customerEmail: 'jane.doe@example.com',
+// //       slotId,
+// //       appointmentDate: date
+// //     });
+// //     alert('Appointment Booked!');
+// //   };
+// //
+// //   return (
+// //     <div>
+// //       <Calendar onChange={setDate} value={date} />
+// //       <h3>Available Slots on {date.toDateString()}:</h3>
+// //       <ul>
+// //         {slots.map(slot => (
+// //           <li key={slot.id}>
+// //             {slot.slot_time}
+// //             <button onClick={() => handleBooking(slot.id)}>Book</button>
+// //           </li>
+// //         ))}
+// //       </ul>
+// //     </div>
+// //   );
+// // }
+//
+// 'use client';
+//
+// import { useState } from 'react';
+// import Calendar from 'react-calendar';
+// import { DriverProps} from "@/utils/types/DriverProps"; // Adjust the import path as needed
+//
+// // Sample driver data
+// const drivers: DriverProps[] = [
+// 	{
+// 		id: 1,
+// 		first_name: "John",
+// 		last_name: "Doe",
+// 		age: 35,
+// 		license_number: "D1234567",
+// 		license_type: "Class C",
+// 		address: "123 Main St, City, CA 90001",
+// 		phone: "+1 123-456-7890",
+// 		email: "john.doe@example.com",
+// 		vehicle_assigned: [{ id: 1, make: "Toyota", model: "Camry", year: 2020 }],
+// 		rating: 4.5,
+// 		insurance_provider: "State Farm",
+// 		insurance_policy: "SF123456789",
+// 		profile_picture: "/assets/organisation/drivers/1.jpeg",
+// 		available: true,
+// 		created_at: "2010-08-18T00:00:00.000Z",
+// 		scheduling: {
+// 			working_hours: { start: "08:00", end: "18:00" },
+// 			days_off: ["Sunday"],
+// 			scheduled_rides: [
+// 				{ date: "2025-02-16", time: "09:30", destination: "Downtown" },
+// 				{ date: "2025-02-16", time: "14:00", destination: "Airport" },
+// 			],
+// 		},
+// 	},
+// ];
+//
+// export default function Schedule() {
+// 	const [date, setDate] = useState<Date>(new Date());
+// 	const [selectedDriver, setSelectedDriver] = useState<DriverProps | null>(drivers[0]);
+//
+// 	const selectedDateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+//
+// 	const availableRides = selectedDriver?.scheduling.scheduled_rides.filter(
+// 		(ride) => ride.date === selectedDateString
+// 	) || [];
+//
+// 	const handleBooking = (rideTime: string, destination: string) => {
+// 		alert(`Appointment booked with ${selectedDriver?.first_name} ${selectedDriver?.last_name} at ${rideTime} for ${destination}`);
+// 	};
+//
+// 	return (
+// 		<div>
+// 			<h2>Schedule a Ride</h2>
+// 			<Calendar onChange={setDate} value={date} />
+// 			<h3>Available Rides on {date.toDateString()}:</h3>
+// 			{availableRides.length > 0 ? (
+// 				<ul>
+// 					{availableRides.map((ride, index) => (
+// 						<li key={index}>
+// 							{ride.time} - {ride.destination}
+// 							<button onClick={() => handleBooking(ride.time, ride.destination)}>Book</button>
+// 						</li>
+// 					))}
+// 				</ul>
+// 			) : (
+// 				<p>No available rides for this date.</p>
+// 			)}
+// 		</div>
+// 	);
+// }
+'use client'
 
-import React, { useState } from 'react';
-import { CustomAlert } from '@/components/Alert'
-import { CustomCheckbox } from '@/components/Checkbox'
-import {CustomSelect} from '@/components/Select'
-import { CustomPassword } from '@/components/Password';
-import { CarCard } from '@/components/CarCard';
-import { AgencyCard } from '@/components/AgencyCard';
-import NavBar from '@/components/Navbar';
-
-
-const carList = [
-    {
-        id: '1',
-        imageUrl: 'car.png',
-        brand: 'Toyota',
-        model: 'Camry',
-        fuel: 80,
-        gearbox: 'Manuelle',
-        passengers: 5,
-        pricePerDay: 5000,
-    },
-    {
-        id: '2',
-        imageUrl: 'car.png',
-        brand: 'BMW',
-        model: 'X5',
-        fuel: 50,
-        gearbox: 'Automatique',
-        passengers: 5,
-        pricePerDay: 8000,
-    },
-];
-
-
-export default function Test() {
-
-    const [checked, setChecked] = useState(false);
-    const [selectedValue, setSelectedValue] = useState("");
-    const [password, setPassword] = useState('');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [likedCars, setLikedCars] = useState<string[]>([]);
-    const options = [
-        { value: "option1", label: "Option 1" },
-        { value: "option2", label: "Option 2" },
-        { value: "option3", label: "Option 3" },
-    ];
-
-
-
-    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
-    };
-
-    const handleLike = (id: string) => {
-        setLikedCars((prev) => [...prev, id]);
-    };
-
-    const handleDislike = (id: string) => {
-        setLikedCars((prev) => prev.filter((carId) => carId !== id));
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [likedAgencies, setLikedAgencies] = useState<string[]>([]); // Etat pour suivre les agences likées
-
-    // Fonction pour ajouter un like à une agencies
-    const handleLikeAgency = (id: string) => {
-        setLikedAgencies((prev) => [...prev, id]);
-        console.log(`Agence ${id} likée`);
-    };
-
-    // Fonction pour enlever un like d'une agencies
-    const handleDislikeAgency = (id: string) => {
-        setLikedAgencies((prev) => prev.filter((likedId) => likedId !== id));
-        console.log(`Agence ${id} dislikée`);
-    };
-    return (
-        <div>
-            <NavBar/>
-            <main>
-                <div>
-                    <CustomAlert message="hellloooooooo guyssss" type='warning' width="w-full sm:w-[300px] md:w-[500px] lg:w-[700px] xl:w-[900px]"/>
-
-                    <CustomCheckbox label="Agree to terms" checked={checked} onChange={handleCheck}/>
-
-                    <CustomSelect
-                        label="Sélectionnez une option"
-                        options={options}
-                        value={selectedValue}
-                        onChange={(e) => setSelectedValue(e.target.value as string)}
-                    />
-                     <CustomPassword
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Mot de passe"
-                    />
-                    <div className="flex justify-center items-center flex-wrap gap-4 p-6 bg-gray-100">
-                        {carList.map((car) => (
-                            <CarCard
-                                key={car.id}
-                                id={car.id}
-                                imageUrl={car.imageUrl}
-                                brand={car.brand}
-                                model={car.model}
-                                fuel={car.fuel}
-                                gearbox={car.gearbox}
-                                passengers={car.passengers}
-                                pricePerDay={car.pricePerDay}
-                                onLike={handleLike}
-                                onDislike={handleDislike}
-                            />
-                        ))}
-                         <AgencyCard
-                            id="1"
-                            imageUrl="ADN.png"
-                            agency="Agence 1"
-                            slogan="Votre partenaire de confiance"
-                            stars={5}
-                            followers={1200}
-                            isOpen={true}
-                            city="Yaoundé"
-                            location="Centre-ville"
-                            onLike={handleLikeAgency}
-                            onDislike={handleDislikeAgency}
-                        />
-                    </div>
-                </div>
-            </main>
-        </div>
-    );
-}
-*/
-"use client";
 import React from 'react';
-// import DriverCard from "@/components/DriverCard";
-import OrgSidebar from "@/components/OrgSidebar";
-// import AgencyDetail from "@/components/combiner-components/agency-detail";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calendar.css'
 
-const Test = () => {
-    // const options = [
-    //     { label: "2 team members", available: true },
-    //     { label: "20GB Cloud storage", available: true },
-    //     { label: "Integration help", available: true },
-    //     { label: "Sketch Files", available: true },
-    //     { label: "API Access", available: true },
-    //     { label: "Complete documentation", available: true },
-    //     { label: "24×7 phone & email support", available: true },
-    // ];
-    return (
-        <div>
+const MyCalendar = () => {
+	const daysOff = [
+		{ start: "2025-02-18", end: "2025-02-18" },
+		{ start: "2025-02-25", end: "2025-02-25" }
+	];
 
-            {/* <DriverCard
-                name="test test"
-                age={25}
-                email="test@gmail.com"
-                location="yaounde"
-                avatar="/assets/car.png"
-                stars={3.5}
-                phone="620202020"
-            /> */}
-            <OrgSidebar />
-            {/* <AgencyDetail key={1} /> */}
-        </div>
-    );
+	const scheduledRanges = [
+		{ start: "2025-02-19", end: "2025-02-20" },
+		{ start: "2025-02-22", end: "2025-02-27" }
+	];
+
+	interface DateRange {
+		start: string | Date;
+		end: string | Date;
+	}
+
+	// Function to check if a date is within any of the ranges
+	const isDateInRange = (date: string | Date, ranges: DateRange[]): boolean => {
+		const targetDate = new Date(date).setHours(0, 0, 0, 0); // Remove time
+		return ranges.some(range => {
+			const start = new Date(range.start).setHours(0, 0, 0, 0);
+			const end = new Date(range.end).setHours(0, 0, 0, 0);
+			return targetDate >= start && targetDate <= end;
+		});
+	};
+
+	return (
+		<div className="p-4">
+			<Calendar
+				tileClassName={({date}) => {
+					if (isDateInRange(date, daysOff)) {
+						return 'day-off';
+					}
+					if (isDateInRange(date, scheduledRanges)) {
+						return 'scheduled-range';
+					}
+					return null;
+				}}
+			/>
+
+		</div>
+	);
 };
 
-export default Test;
+export default MyCalendar;

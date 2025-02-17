@@ -3,11 +3,13 @@
 import React from "react";
 import ProfileSidebar from "@/components/ProfileSidebar";
 import NavBar from "@/components/organisation/NavBar";
+import Footer from "@/components/Footer";
 // import { BonusProvider } from "@/context/BonusContext";
 
 export default function Layout({children }: { children: React.ReactNode }) {
     return (
         <>
+
             {/* <BonusProvider> */}
                 <NavBar/>
                 <div className="flex h-screen">
@@ -20,6 +22,8 @@ export default function Layout({children }: { children: React.ReactNode }) {
                     </div>
 
                 </div>
+        
+                <Footer />
             {/* </BonusProvider> */}
         </>
     )
