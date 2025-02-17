@@ -289,7 +289,6 @@ const LocationDetails = () => {
                                             </div>
                                             <ClockIcon className="h-5 w-5 text-gray-400"/>
                                         </div>
-
                                         <div className="flex justify-center items-center text-sm text-green-600">
                                             <Gift className="w-4 h-4 mr-2" />
                                             <span>

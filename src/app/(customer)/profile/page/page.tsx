@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from "next/image";
+import { Gift } from 'lucide-react';
 
 const Profile = () => {
 
@@ -52,6 +53,12 @@ const Profile = () => {
                         <p className="text-sm font-semibold text-primary-text mt-1">
                             Your account is ready, you can now apply for advice.
                         </p>
+                        <div className="flex justify-left items-center text-sm text-green-600">
+                                <Gift className="w-4 h-4 mr-2" />
+                                <span>
+                                    Bonus Points :  50 points
+                                </span>
+                            </div>
                         <span className="text-sm text-secondary-text flex">mirbagheri</span>
                     </div>
                     <div className="right-[10%] top-[50%]">

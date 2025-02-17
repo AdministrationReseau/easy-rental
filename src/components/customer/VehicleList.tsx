@@ -35,9 +35,9 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   const totalPages = Math.ceil(filteredVehicles.length / itemsPerPage);
 
   return (
-    <div className="p-5 w-full">
+    <div className="p-5 w-full justify-center">
       {/* Liste des véhicules */}
-      <div className="flex flex-row flex-wrap gap-6 w-full justify-start">
+      <div className="flex justify-center flex-row flex-wrap gap-6 w-full justify-start">
         {paginatedVehicles.length > 0 ? (
           paginatedVehicles.map((vehicle) => (
             <CarCard

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { CheckCircle } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { Gift } from 'lucide-react';
 
 const RentalSuccess = () => {
   return (
@@ -39,6 +40,12 @@ const RentalSuccess = () => {
         >
           Your car rental has been successfully booked. Check your email for details.
         </motion.p>
+        <div className="flex text-xl p-6 justify-center items-center text-sm text-green-600">
+          <Gift className="w-10 h-10 mr-2" />
+          <span>
+              Congratulation!!! You have gainge 50 Bonus Points.
+          </span>
+      </div>
 
         <motion.div
           initial={{ y: 20, opacity: 0 }}
