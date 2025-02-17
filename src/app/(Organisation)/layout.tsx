@@ -15,7 +15,7 @@ export default function Layout({children }: { children: React.ReactNode }) {
                 <div className="flex flex-col flex-grow">
                     <NavOrg/>
 
-                    <div className="flex-grow overflow-y-auto bg-gray-90 p-6 ">
+                    <div className="flex-grow overflow-y-auto bg-gray-90 p-1 ">
                         {children}
                     </div>
 

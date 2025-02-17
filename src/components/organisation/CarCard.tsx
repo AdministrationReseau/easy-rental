@@ -1,94 +1,135 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { People, LocalGasStation, Speed, Delete, Edit } from '@mui/icons-material';
+import { Heart, User, Sliders, Calendar, Award, BarChart, Edit, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import { CarProps } from '@/utils/types/CarProps';
+import Link from 'next/link';
 
-const CarCard: React.FC<CarProps> = ({
-                                         id = 0,
-                                         brand = '',
-                                         model = '',
-                                         engine = { capacity: 0 },
-                                         transmission = '',
-                                         passenger = 0,
-                                         pricePerDay = 0,
-                                         images = [],
-                                         onEdit = () => {},
-                                         onDelete = () => {},
-                                     }) => {
+interface CarCardProps extends CarProps {
+  onLike: (id: number) => void;
+  onDislike: (id: number) => void;
+  onEdit: () => void;
+  onDelete: (id: number) => void;
+}
 
-    return (
-        <div className="bg-white text-secondary-text rounded-lg overflow-hidden w-[280px]">
-            {/* Header - Brand, Model, Like Button */}
-            <div className="flex justify-between items-center p-4 h-[50px]">
-                <h2 className="text-md font-semibold text-gray-800">
-                    {brand} {model}
-                </h2>
-                <div className='text-nowrap'>
-                    <button className="rounded-full hover:bg-primary-blue/10">
-                        <Edit style={{color: 'blue'}} onClick={(e: React.MouseEvent) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            onEdit(id);
-                        }}/>
-                    </button>
-                    <button className="rounded-full hover:bg-red-500/10">
-                        <Delete style={{color: 'red'}} onClick={(e: React.MouseEvent) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            onDelete(id);
-                        }} />
-                    </button>
-                </div>
-            </div>
+export const CarCard: React.FC<CarCardProps> = ({
+  id,
+  images,
+  brand,
+  model,
+  transmission,
+  year,
+  passenger,
+  pricePerDay,
+  available,
+  favorite,
+  rating,
+  type,
+  onLike,
+  onDislike,
+  onEdit,
+  onDelete,
+}) => {
+  const handleLikeClick = () => {
+    if (favorite) {
+      onDislike(id);
+    } else {
+      onLike(id);
+    }
+  };
 
-            {/* Image Section */}
-            <div className="flex items-center justify-center h-[180px]">
-                {images[0] && (
-                    <Image
-                        src={images[0]}
-                        alt={`${brand} ${model}`}
-                        width={250}
-                        height={120}
-                        className="object-contain"
-                    />
-                )}
-            </div>
-
-            {/* Details Section */}
-            <div className="flex justify-between items-center px-4 py-2 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                    <LocalGasStation className="w-5 h-5 text-gray-500" />
-                    <p>{engine.capacity}L</p>
-                </div>
-                <div className="flex items-center gap-1">
-                    <Speed className="w-5 h-5 text-gray-500" />
-                    <p>{transmission}</p>
-                </div>
-                <div className="flex items-center gap-1">
-                    <People className="w-5 h-5 text-gray-500" />
-                    <p>{passenger} People</p>
-                </div>
-            </div>
-
-            {/* Footer Section */}
-            <div className="px-4 py-2 flex justify-between items-center">
-                <div>
-                    <span className="text-xl font-semibold text-gray-800">
-                        {pricePerDay} CFA
-                    </span>
-                    <span className="text-gray-500 text-sm ml-1">/ jour</span>
-                </div>
-                <Link href={`/cars/${id}`}>
-                    <button className="text-sm py-2 px-4 bg-primary-blue text-white rounded-md transition duration-200 transform hover:scale-105 hover:bg-blue-600">
-                        View More
-                    </button>
-                </Link>
-            </div>
+  return (
+    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+      {/* Image container avec overlay pour status disponibilité */}
+      <div className="relative h-48 w-full">
+        <Image
+          src={images?.[0] || '/placeholder-car.jpg'}
+          alt={`${brand} ${model}`}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+        />
+        {/* Badge de disponibilité */}
+        <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium ${
+          available ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+        }`}>
+          {available ? 'Disponible' : 'Indisponible'}
         </div>
-    );
-};
+        {/* Badge de type de véhicule */}
+        {type && (
+          <div className="absolute top-3 right-12 px-3 py-1 rounded-full bg-blue-500 text-white text-xs font-medium">
+            {type}
+          </div>
+        )}
+        {/* Bouton favori */}
+        <button
+          onClick={handleLikeClick}
+          className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
+          aria-label={favorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+        >
+          <Heart fill={favorite ? '#f43f5e' : 'none'} color={favorite ? '#f43f5e' : '#64748b'} size={18} />
+        </button>
+      </div>
 
-export { CarCard };
+      {/* Contenu */}
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-2">
+          <div>
+            <Link href={`/cars/${id}`}>
+                <h3 className="font-semibold text-lg text-gray-800 cursor-pointer">{brand} {model}</h3>
+            </Link>
+            <p className="text-sm text-gray-500">{year}</p>
+          </div>
+          <div className="flex items-center">
+            <Award size={14} className="text-yellow-500 mr-1" />
+            <span className="text-sm font-medium">{rating}/5</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 my-3">
+          <div className="flex items-center text-gray-600">
+            <Sliders size={14} className="mr-2" />
+            <span className="text-xs">{transmission}</span>
+          </div>
+          <div className="flex items-center text-gray-600">
+            <User size={14} className="mr-2" />
+            <span className="text-xs">{passenger} places</span>
+          </div>
+          <div className="flex items-center text-gray-600">
+            <Calendar size={14} className="mr-2" />
+            <span className="text-xs">{year}</span>
+          </div>
+          <div className="flex items-center text-gray-600">
+            <BarChart size={14} className="mr-2" />
+            <span className="text-xs">{type || 'N/A'}</span>
+          </div>
+        </div>
+
+        <div className="mt-auto pt-3 border-t border-gray-100">
+          <div className="flex justify-between items-center">
+            <div>
+              <span className="font-bold text-lg text-blue-600">{pricePerDay}XAF</span>
+              <span className="text-xs text-gray-500"> /jour</span>
+            </div>
+            <div className="flex space-x-2">
+              <button
+                onClick={onEdit}
+                className="p-2 rounded-full bg-gray-100 hover:bg-blue-200 transition-colors"
+                aria-label="Modifier"
+              >
+                <Edit size={16} className="text-gray-600" />
+              </button>
+              <button
+                onClick={() => onDelete(id)}
+                className="p-2 rounded-full bg-gray-100 hover:bg-red-100 transition-colors"
+                aria-label="Supprimer"
+              >
+                <Trash2 size={16} className="text-gray-600 hover:text-red-500" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
