@@ -15,7 +15,7 @@ export default function Layout({children }: { children: React.ReactNode }) {
                         <ProfileSidebar/>
                     </div>
 
-                    <div className="flex flex-col bg-gray-100 flex-grow mt-16 w-6/7">
+                    <div className="flex flex-col bg-gray-100 flex-grow mt-16 w-6/7 overflow-y-auto">
                         {children}
                     </div>
 
