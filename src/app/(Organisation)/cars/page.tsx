@@ -6,6 +6,7 @@ import { CarProps, FilterVehicleProps } from '@/utils/types/CarProps';
 import CarDetail from '@/components/organisation/CarDetail';
 import OrgVehicleList from '@/components/organisation/OrgVehicleList';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'; // Import the Tabs components
+import VehicleModal from '@/components/VehicleModal';
 
 export default function VehiclesPage() {
   const [vehicles, setVehicles] = useState<CarProps[]>([]);
@@ -17,6 +18,8 @@ export default function VehiclesPage() {
   const [selectedVehicle] = useState<CarProps | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('general'); // State to manage active tab
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     fetch('/data/cars.json')
@@ -42,6 +45,25 @@ export default function VehiclesPage() {
     setFilters(newFilters);
   };
 
+    const handleCreateVehicle = (vehicleData: Partial<CarProps>) => {
+      const newVehicle: CarProps = {
+        ...vehicleData as CarProps,
+        id: vehicles.length + 1,
+        engine: {
+          type: undefined,
+          horsepower: undefined,
+          capacity: undefined
+        },
+        service_history: [],
+        reviews: [],
+        favorite: false
+      };
+  
+      setVehicles([...vehicles, newVehicle]);
+      setShowCreateModal(false);
+      setShowAlert(true);
+    };
+
   return (
     <div className='h-full w-[100%] flex flex-col gap-2 rounded-md'>
       <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
@@ -51,7 +73,20 @@ export default function VehiclesPage() {
             Actually, you have <span className='font-black'>{vehicles.length} vehicles</span>
           </div>
         </div>
+        <button
+                className="bg-blue-500 inherit w-60 text-white px-4 py-3 rounded mb-4"
+                onClick={() => setShowCreateModal(true)}
+            >
+                + ADD A VEHICLE
+            </button>
       </div>
+
+      <VehicleModal
+          isOpen={showCreateModal}
+          onClose={() => setShowCreateModal(false)}
+          onSubmit={handleCreateVehicle}
+          title="Create Vehicle"
+      />
 
       {/* Tabs for General and Statistics */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -117,6 +152,12 @@ export default function VehiclesPage() {
           </div>
         </TabsContent>
       </Tabs>
+
+      {showAlert && (
+          <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded shadow-lg">
+            Vehicle successfully created!
+          </div>
+      )}
     </div>
   );
 }

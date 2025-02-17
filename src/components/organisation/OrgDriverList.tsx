@@ -7,6 +7,7 @@ import DriverCard from './DriverCard';
 const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
   const itemsPerPage = 8; // Nombre d'éléments par page
+  
 
   // Filtrer les véhicules selon les critères
   const filteredDrivers = drivers.filter((driver) => {
@@ -36,6 +37,11 @@ const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
   // Calculer le nombre total de pages
   const totalPages = Math.ceil(filteredDrivers.length / itemsPerPage);
 
+  // Supprimer un véhicule
+  const handleDeleteDriver = ( id: number) => {
+    drivers = drivers.filter(driver => driver.id !== id);
+  };
+
   return (
     <div className="p-5 w-full">
       {/* Liste des véhicules */}
@@ -61,10 +67,10 @@ const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
               insurance_policy={driver.insurance_policy}
               available={driver.available}
               created_at={driver.created_at}
-              onSelect={() => {}}
+              onSelect={() => {}} 
               isSelected={false}
               onEdit={(id: number) => console.log(id)}
-              onDelete={(id: number) => console.log(id)}
+              onDelete={ () => {handleDeleteDriver( driver.id)}}
             />
           ))
         ) : (

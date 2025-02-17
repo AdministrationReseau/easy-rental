@@ -43,11 +43,9 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
     setShowAlert(true);
   };
 
-  // const handleDeleteVehicle = (e: React.MouseEvent, id: number) => {
-  //   e.preventDefault(); // Empêche la navigation du Link
-  //   e.stopPropagation();
-  //   setVehicles(vehicles.filter(vehicle => vehicle.id !== id));
-  // };
+  const handleDeleteVehicle = ( id: number) => {
+    setVehicles(vehicles.filter(vehicle => vehicle.id !== id));
+  };
 
   // Filtrer les véhicules selon les critères
   const filteredVehicles = vehicles.filter((vehicle) => {
@@ -118,7 +116,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
               onEdit={() => { setEditingVehicle(vehicle); console.log(editingVehicle); }}
-              onDelete={ () => {}}
+              onDelete={ () => {handleDeleteVehicle( vehicle.id)}}
             />
           ))
 
