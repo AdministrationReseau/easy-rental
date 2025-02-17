@@ -31,7 +31,7 @@ const Favorite: React.FC = () => {
 
     return (
         <div>
-            <main className="flex flex-row m-2">
+            <main className="flex flex-row m-2 mt-6">
                 <div>
                     {/* Display CarDetail if a vehicle is selected */}
                     {selectedVehicle && (
