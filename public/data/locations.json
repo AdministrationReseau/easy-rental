@@ -14,10 +14,9 @@
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg",
         "/assets/organisation/cars/camry.jpeg"
-      ]
-      
-,
-"brand":"Toyota"    },
+      ],
+    "brand":"Toyota"    
+  },
     "driver": {
       "id": 1
     },
@@ -107,7 +106,7 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 8000.00,
-    "status": "cancelled",
+    "status": "pending",
     "paidWithPoints": true,
     "bonusPoints":50
   },
@@ -144,7 +143,7 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "completed",
+    "status": "pending",
     "paidWithPoints": true,
     "bonusPoints":50
   },
@@ -180,10 +179,10 @@
     "date": "20 January 2024",
     "payment_method": "Visa",
     "promo_formula": 0.5,
-    "price": 1080.00,
     "status": "pending",
     "paidWithPoints": true,
-    "bonusPoints":50
+    "bonusPoints":50,
+    "price": 1080.00
   },
   {
     "id": 6,
