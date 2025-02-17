@@ -6,112 +6,116 @@ import AddRoadIcon from '@mui/icons-material/AddRoad';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import GroupIcon from '@mui/icons-material/Group';
+import { Heart } from "lucide-react";
 import Reviews from "../Reviews";
 import { CarProps } from "@/utils/types/CarProps";
 import Stars from "../Stars";
 
-export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
-  
+const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   const [currentImage, setCurrentImage] = useState(vehicle.images[0]);
 
   if (!vehicle) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex items-center justify-center min-h-[300px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
   }
 
-
   return (
-    <div className="px-2 w-full">
-      {/* Main Image Section */}
-      <div
-        className="relative bg-cover bg-center min-h-[300px] min-w-[500px] rounded-lg shadow-lg w-full"
-        style={{ backgroundImage: `url(${currentImage})` }}
-      ></div>
+    <div className="w-full space-y-4">
+      <div className="relative aspect-video rounded-xl overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-300 hover:scale-105"
+          style={{ backgroundImage: `url(${currentImage})` }}
+        />
+      </div>
 
-      {/* Thumbnail Images Section */}
-      <div className="flex justify-center items-center mt-6 w-full  gap-3">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4">
         {vehicle.images.slice(0, 3).map((image, index) => (
-          <div
+          <button
             key={index}
-            className="relative bg-cover bg-center w-40 h-40 rounded-lg cursor-pointer"
-            style={{ backgroundImage: `url(${image})` }}
+            className={`relative aspect-video rounded-lg overflow-hidden transition-all duration-200
+              ${currentImage === image ? 'ring-2 ring-blue-500 ring-offset-2' : 'hover:opacity-80'}`}
             onClick={() => setCurrentImage(image)}
-          ></div>
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${image})` }}
+            />
+          </button>
         ))}
       </div>
     </div>
   );
 };
 
+const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
 
-export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
-      {/* Favorite Icon Placeholder */}
-      <div className="absolute top-10 right-10 text-gray-400 hover:text-red-500 cursor-pointer">
-        ♥
+    <div className="bg-white rounded-xl shadow-sm p-6 space-y-6">
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+            {vehicle.brand} {vehicle.model}
+          </h1>
+          <div className="flex items-center gap-2">
+            <Stars value={vehicle.rating ?? 0} precision={1} />
+            <span className="text-sm text-gray-600">
+              ({vehicle.reviews.length} reviews)
+            </span>
+          </div>
+        </div>
+        <button
+          onClick={() => setIsFavorite(!isFavorite)}
+          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+        >
+          <Heart
+            className={`h-6 w-6 ${
+              isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-400'
+            }`}
+          />
+        </button>
       </div>
 
-      {/* Title and Rating */}
-      <div>
-        <h3 className="text-xl font-bold text-gray-800">
-          {vehicle.brand} {vehicle.model}
-        </h3>
-        <span className='flex flex-row py-4 gap-2'>
-          <Stars value={vehicle.rating ?? 0} precision={1} />
-            {vehicle.reviews.length} + Reviewer
-        </span>
+      <p className="text-gray-600 leading-relaxed">{vehicle.description}</p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {[
+          { label: "Type", value: vehicle.type },
+          { label: "Capacity", value: `${vehicle.passenger} persons` },
+          { label: "Transmission", value: vehicle.transmission },
+          { label: "Engine", value: `${vehicle.engine.capacity}L` },
+        ].map((spec, index) => (
+          <div key={index} className="bg-gray-50 p-4 rounded-lg">
+            <span className="text-sm text-gray-500 block">{spec.label}</span>
+            <span className="font-semibold text-gray-900">{spec.value}</span>
+          </div>
+        ))}
       </div>
 
-      {/* Description */}
-      <p className="text-sm text-gray-500 py-2">{vehicle.description}</p>
-
-      {/* Specifications */}
-      <div className="grid grid-cols-4 gap-4 text-sm text-gray-500 py-4">
-        <div>
-          <span className="block py-2">Type</span>
-          <span className="block font-bold text-gray-800">{vehicle.type}</span>
-        </div>
-        <div>
-          <span className="block py-2">Capacity</span>
-          <span className="block font-bold text-gray-800">{vehicle.passenger} persons</span>
-        </div>
-        <div>
-          <span className="block py-2">Steering</span>
-          <span className="block font-bold text-gray-800">{vehicle.transmission}</span>
-        </div>
-        <div>
-          <span className="block py-2">Fuel</span>
-          <span className="block font-bold text-gray-800">{vehicle.engine.capacity}L</span>
-        </div>
-      </div>
-
-      {/* Price and Button */}
-      <div className="flex justify-between items-center py-4">
-        <div>
-          <span className="text-xl font-bold text-gray-800">${vehicle.pricePerDay}.00</span>
-          <span className="text-sm text-gray-400"> / day</span>
-          <p className="text-xs text-gray-400 line-through">
-            ${vehicle.pricePerDay * 1.25}.00
+      <div className="flex items-end justify-between pt-4 border-t">
+        <div className="space-y-1">
+          <p className="text-3xl font-bold text-gray-900">
+            ${vehicle.pricePerDay}
+            <span className="text-sm font-normal text-gray-500">/day</span>
+          </p>
+          <p className="text-sm text-gray-500 line-through">
+            ${vehicle.pricePerDay * 1.25}
           </p>
         </div>
+        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          Book Now
+        </button>
       </div>
     </div>
   );
 };
 
-interface FeatureProps {
-  name: string;
-  checked: boolean;
-}
-
-const CheckboxOne: React.FC<FeatureProps> = ({ name, checked }) => (
-  <div className="flex items-center space-x-2">
-    <input type="checkbox" className="w-4 h-4" checked={checked} disabled />
-    <label className="text-sm">{name}</label>
-  </div>
-);
-
-export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({ vehicleFeatures }) => {
+const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({
+  vehicleFeatures,
+}) => {
   const features = [
     "Air Condition",
     "Child Seat",
@@ -127,80 +131,109 @@ export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean
     "Additional Covers",
   ];
 
-  const isValidFeaturesObject = vehicleFeatures && typeof vehicleFeatures === 'object';
-
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-3 gap-4 text-gray-500">
-      {features.map((feature, index) => (
-        <CheckboxOne
-          key={index}
-          name={feature}
-          checked={isValidFeaturesObject ? vehicleFeatures[feature.toLowerCase().replace(/ /g, '_')] : false}
-        />
-      ))}
+    <div className="bg-white rounded-xl shadow-sm p-6">
+      <h2 className="text-xl font-semibold text-gray-900 mb-4">Features</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {features.map((feature) => {
+          const isAvailable = vehicleFeatures[feature.toLowerCase().replace(/ /g, '_')];
+          return (
+            <div
+              key={feature}
+              className={`flex items-center gap-2 p-2 rounded-lg ${
+                isAvailable ? 'text-gray-900' : 'text-gray-400'
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isAvailable}
+                disabled
+                className="h-4 w-4 rounded border-gray-300 text-blue-600"
+              />
+              <span className="text-sm">{feature}</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
 const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   return (
-    <div className="space-y-8 bg-red w-full">
-      <Link href="/cars">
-        <h1 className="p-4 m-4">&gt; Back to Vehicles</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <Link
+        href="/cars"
+        className="inline-flex items-center text-gray-600 hover:text-gray-900"
+      >
+        <span className="mr-2">←</span>
+        Back to Vehicles
       </Link>
 
-      {/* Car Details Section */}
-      <div className="flex flex-col md:flex-row gap-6 w-full rounded-lg ">
-        {/* Car Description */}
-        <div className="w-[60%]  px-4">
+      <div className="grid lg:grid-cols-5 gap-8">
+        <div className="lg:col-span-3">
           <VehicleImage vehicle={vehicle} />
         </div>
-        <div className="w-[70%] px-2 ">
-          {/* Car Info */}
+        <div className="lg:col-span-2">
           <VehicleInfo vehicle={vehicle} />
         </div>
       </div>
 
-      {/* Specifications Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-4 gap-4 text-center text-gray-500">
-        <div className="flex flex-col">
-          <span><AddRoadIcon /></span>
-          <span className="material-icons">speed</span>
-          <p>Mileage ({vehicle.service_history[(vehicle.service_history.length - 1)].mileage}Km)</p>
-        </div>
-        <div className="flex flex-col">
-          <span><DirectionsCarIcon /></span>
-          <span className="material-icons">directions_car</span>
-          <p>Steering ({vehicle.transmission})</p>
-        </div>
-        <div className="flex flex-col">
-          <span><LocalGasStationIcon /></span>
-          <span className="material-icons">local_gas_station</span>
-          <p>Fuel ({vehicle.engine.type})</p>
-        </div>
-        <div className="flex flex-col">
-          <span><GroupIcon /></span>
-          <span className="material-icons">local_mall</span>
-          <p>Capacity ({vehicle.passenger} persons)</p>
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {[
+          {
+            icon: <AddRoadIcon className="h-6 w-6" />,
+            label: "Mileage",
+            value: `${vehicle.service_history[vehicle.service_history.length - 1].mileage}Km`
+          },
+          {
+            icon: <DirectionsCarIcon className="h-6 w-6" />,
+            label: "Transmission",
+            value: vehicle.transmission
+          },
+          {
+            icon: <LocalGasStationIcon className="h-6 w-6" />,
+            label: "Fuel Type",
+            value: vehicle.engine.type
+          },
+          {
+            icon: <GroupIcon className="h-6 w-6" />,
+            label: "Capacity",
+            value: `${vehicle.passenger} persons`
+          }
+        ].map((spec, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-xl shadow-sm p-6 flex flex-col items-center text-center space-y-2"
+          >
+            <div className="text-blue-600">{spec.icon}</div>
+            <span className="text-sm text-gray-500">{spec.label}</span>
+            <span className="font-medium text-gray-900">{spec.value}</span>
+          </div>
+        ))}
       </div>
 
-      {/* Features Section */}
       <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities} />
 
-      {/* Reviews Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
-        <h4 className="font-bold text-lg">Reviews</h4>
-
-        {vehicle.reviews.map((review: {reviewer_name:string, comment: string;rating: number;}, index: number) => (
-          <Reviews
-            key={index}
-            name={review.reviewer_name}
-            starsValue={review.rating}
-            message={review.comment}
-          />
-        ))}
-
+      <div className="bg-white rounded-xl shadow-sm p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Reviews ({vehicle.reviews.length})
+          </h2>
+          <button className="text-blue-600 hover:text-blue-700">
+            Write a Review
+          </button>
+        </div>
+        <div className="space-y-6">
+          {vehicle.reviews.map((review, index) => (
+            <Reviews
+              key={index}
+              name={review.reviewer_name}
+              starsValue={review.rating}
+              message={review.comment}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
