@@ -20,7 +20,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
 }) => {
   
   return (
-    <div className="bg-white text-secondary-text rounded-lg overflow-hidden w-[280px]">
+    <div className="bg-white text-secondary-text rounded-lg overflow-hidden w-full m-w-[280px]">
       {/* Header - Brand, Model, Like Button */}
       <div className="flex justify-between items-center p-4 h-[50px]">
           <h2 className="text-md font-semibold text-gray-800">
@@ -37,14 +37,14 @@ const DriverCard: React.FC<DriverCardProps> = ({
       </div>
 
       {/* Image Section */}
-      <div className="flex items-center justify-center h-[180px]">
+      <div className="flex items-center justify-center h-[300px] md:h-[200px]">
           {profile_picture && (
               <Image
                   src={profile_picture}
                   alt={`${first_name} ${last_name}`}
                   width={250}
                   height={120}
-                  className="object-contain"
+                  className="object-cover w-auto h-[300px] md:w-full md:h-[200px]"
               />
           )}
       </div>
