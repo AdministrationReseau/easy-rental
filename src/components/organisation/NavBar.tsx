@@ -82,7 +82,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Profile - Desktop only */}
-                    <Link href="/profile" className="hidden md:block">
+                    <Link href="/profile/page" className="hidden md:block">
                         <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
                             <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
                         </button>
@@ -130,7 +130,7 @@ const Navbar = () => {
                             </button>
                         </Link>
 
-                        <Link href="/profile">
+                        <Link href="/profile/home">
                             <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
                                 <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
                             </button>

@@ -9,7 +9,7 @@ const NavOrg = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-white py-4 px-6 shadow-md fixed sticky top-0 z-40">
+        <nav className="bg-white py-4 px-6 shadow-md fixed sticky top-0">
             <div className="flex items-center justify-between">
                 {/* Logo - Visible sur tous les écrans */}
                 <Link href="/">

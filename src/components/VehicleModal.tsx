@@ -17,6 +17,11 @@ const VehicleModal = ({
         license_plate: initialData?.license_plate || "",
         type: initialData?.type || "",
         model: initialData?.model || "",
+        engine: initialData?.engine || {
+            capacity: 2,
+            horsepower: 10,
+            type:""
+        },
         pricePerDay: initialData?.pricePerDay || 0,
         brand: initialData?.brand || "",
         passenger: initialData?.passenger || 3,
@@ -92,7 +97,7 @@ const VehicleModal = ({
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-auto m-2 z-index-[100]">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-auto m-2 z-200">
             <div className="bg-white p-6 rounded shadow-lg w-fit h-fit fit-content max-w-6xl w-full">
                 <h2 className="text-lg font-bold mb-4">{title}</h2>
                 <form onSubmit={handleSubmit}>
@@ -120,6 +125,7 @@ const VehicleModal = ({
                                         className="border border-gray-300 rounded w-full p-2"
                                     />
                                 </div>
+                                
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium">Description</label>
                                     <textarea
