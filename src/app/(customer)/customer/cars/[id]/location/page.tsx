@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import Field from '@/components/base-component/fields';
 import { RentalSummary } from "@/components/customer/RentalSummary";
@@ -13,7 +12,11 @@ import DriverList from '@/components/customer/DriverList';
 import { DriverProps } from '@/utils/types/DriverProps';
 import { CarProps } from '@/utils/types/CarProps';
 import Link from 'next/link';
+// import { rentalInfoProps } from '@/utils/types/RentalInfoProps';
+// import { Button } from '@mui/material';
 
+
+  
 const MultiStepForm: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(1); // État pour suivre l'étape actuelle
     const totalSteps = 5; // Nombre total d'étapes
@@ -59,7 +62,7 @@ const MultiStepForm: React.FC = () => {
     const [selectedBackCountry, setSelectedBackCountry] = useState<string>('');
     const [selectedBackRegion, setSelectedBackRegion] = useState<string>('');
     const [selectedDriver, setSelectedDriver] = useState<DriverProps | null>(null);
-
+    
     const handleSelectedDriversChange = (driver: DriverProps | null) => {
         setSelectedDriver(driver);
         if (driver) {
@@ -464,7 +467,7 @@ const MultiStepForm: React.FC = () => {
                     <div className="space-y-4">{renderStepContent()}</div>
                 </div>
             </div>
-            <aside className="w-full p-4 m-auto">
+            <aside className="w-full p-4 mt-6 mx-auto">
                 <RentalSummary
                     key={vehicle.id}
                     {...vehicle}
