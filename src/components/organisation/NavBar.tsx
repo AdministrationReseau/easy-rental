@@ -10,9 +10,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    const isLinkActive = (path: string) => {
-        return pathname === path;
-    };
+    const isLinkActive = (href: string) => pathname.startsWith(href)
 
     const navLinks = [
         { href: "/customer", label: "Home" },
