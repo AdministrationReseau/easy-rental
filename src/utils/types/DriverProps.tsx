@@ -1,3 +1,5 @@
+import {Scheduling} from "@/utils/types/ReservationProps";
+
 export interface DriverProps {
     id: number;
     first_name: string;
@@ -15,7 +17,7 @@ export interface DriverProps {
     };
     vehicle_assigned?: {
         id: number;
-        make: string;
+        brand: string;
         model: string;
         year: number;
     }[];
@@ -26,6 +28,10 @@ export interface DriverProps {
     isSelected?: boolean | undefined;
     available: boolean;
     created_at: Date;
+    status?: "Active" | "Available" | "Out_of_Service" | "Emergency";
+    status_updated_at?: Date;
+    status_updated_by?: string;
+    scheduling?: Scheduling;
 }
 
 export interface FilterDriverProps {

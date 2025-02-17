@@ -41,7 +41,7 @@ const OrgSidebar: React.FC = () => {
     }, []);
 
     const mainMenuItems = [
-        { name: "Dashboard", icon: <Home />, link: "/dashboard" },
+        { name: "Dashboard", icon: <Home />, link: "/Dashboard" },
         { name: "Agencies", icon: <AccountBalance />, link: "/agencies" },
         { name: "Vehicles", icon: <DirectionsCar />, link: "/cars" },
         { name: "Drivers", icon: <Person />, link: "/drivers" },

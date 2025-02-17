@@ -19,6 +19,10 @@ export interface LocationProps {
     }
     vehicle:{
         id: number;
+        brand: string;
+        model: string;
+        year: number;
+        image: string[];
     },
     driver?:{
         id: number;
