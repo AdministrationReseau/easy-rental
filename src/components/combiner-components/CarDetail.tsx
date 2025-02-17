@@ -58,7 +58,14 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
         </h3>
         <span className='flex flex-row py-4 gap-2'>
           <Stars value={vehicle.rating ?? 0} precision={1} />
-            {vehicle.reviews.length} + Reviewer
+            {vehicle.reviews.length} + 
+            {vehicle.reviews.length === 1 || vehicle.reviews.length === 0? (
+              <>Reviewer</> 
+            ):
+            (
+            <>Reviewers</>
+            )}
+            
         </span>
       </div>
 

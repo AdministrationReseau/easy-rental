@@ -107,7 +107,7 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 8000.00,
-    "status": "pending",
+    "status": "cancelled",
     "paidWithPoints": true,
     "bonusPoints":50
   },
@@ -144,7 +144,7 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending",
+    "status": "completed",
     "paidWithPoints": true,
     "bonusPoints":50
   },

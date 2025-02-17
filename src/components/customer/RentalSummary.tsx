@@ -115,9 +115,9 @@ const RentalSummary: React.FC<CarProps & { rentalInfo?: rentalInfoProps }> = ({
                         <Stars value={rating  ?? 0} precision={1} />
                         <span className='px-4'>{reviews.length} + 
                         {reviews.length === 1||reviews.length ===0? (
-                            <p>Reviewer</p>
+                            <>Reviewer</>
                         ):(
-                            <p>Reviewers</p>
+                            <>Reviewers</>
                         )}
                         </span>
                     </span>

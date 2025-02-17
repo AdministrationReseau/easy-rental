@@ -14,7 +14,7 @@ const Navbar = () => {
 
     const navLinks = [
         { href: "/customer/home", label: "Home" },
-        { href: "/customer/cars", label: "Cars" },
+        { href: "/customer/cars", label: "Vehicles" },
         { href: "/customer/agencies", label: "Agencies" },
         { href: "/customer/contact", label: "Contact" },
         { href: "/customer/about", label: "About Us" },
