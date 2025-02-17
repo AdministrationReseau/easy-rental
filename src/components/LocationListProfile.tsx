@@ -63,7 +63,7 @@ const LocationList: React.FC<LocationListProps> = ({ locations,  }) => {
             {/* <h2 className="text-xl font-semibold mb-4 text-primary-text">Recent Locations</h2> */}
             <div className="grid grid-cols-1  gap-6">
                 {locations.map((location, index) => (
-                    <Link href={`/rentals/${location.id}`} key={index}>
+                    <Link href={`/profile/locations/${location.id}`} key={index}>
                     <div
                         key={index}
                         className=" w-full flex flex-col md:flex-row items-center justify-around bg-whitish-background p-4 rounded-lg shadow-sm"

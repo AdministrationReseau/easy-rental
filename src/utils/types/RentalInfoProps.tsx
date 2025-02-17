@@ -32,8 +32,8 @@ export interface LocationProps {
     date: string;
     price: number;
     ride?: geofence;
-    paidWithPoints: true;
-    bonusPoints: 50;
+    paidWithPoints?: boolean ;
+    bonusPoints?: number ;
     status: "pending"|"completed"|"cancelled";
 }
 

@@ -33,7 +33,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 80000.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 2,
@@ -68,7 +70,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 99000.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 3,
@@ -103,7 +107,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 8000.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 4,
@@ -138,7 +144,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 5,
@@ -173,7 +181,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 6,
@@ -208,7 +218,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 7,
@@ -243,7 +255,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 8,
@@ -278,7 +292,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 9,
@@ -313,7 +329,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 10,
@@ -348,7 +366,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 11,
@@ -383,7 +403,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 12,
@@ -418,7 +440,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 13,
@@ -453,7 +477,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 14,
@@ -488,7 +514,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 15,
@@ -523,7 +551,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 16,
@@ -558,7 +588,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 17,
@@ -593,7 +625,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 18,
@@ -628,7 +662,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 19,
@@ -663,7 +699,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 20,
@@ -698,7 +736,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 21,
@@ -733,7 +773,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 22,
@@ -768,7 +810,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 23,
@@ -803,7 +847,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 24,
@@ -838,7 +884,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 25,
@@ -873,7 +921,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 26,
@@ -908,7 +958,9 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   },
   {
     "id": 27,
@@ -943,6 +995,8 @@
     "payment_method": "Visa",
     "promo_formula": 0.5,
     "price": 1080.00,
-    "status": "pending"
+    "status": "pending",
+    "paidWithPoints": true,
+    "bonusPoints":50
   }
 ]

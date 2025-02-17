@@ -8,7 +8,7 @@ export interface BonusConfig {
   description: string; // Admin's description of the calculation method
 }
 
-interface BonusContextType {
+export interface BonusContextType {
   bonusConfig: BonusConfig;
   updateBonusConfig: (config: BonusConfig) => void;
   calculateBonus: (amount: number) => number;
@@ -41,10 +41,10 @@ export function BonusProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useBonus() {
-  const context = useContext(BonusContext);
-  if (!context) {
-    throw new Error('useBonus must be used within a BonusProvider');
-  }
-  return context;
-}
+// export function useBonus() {
+//   const context = useContext(BonusContext);
+//   if (!context) {
+//     throw new Error('useBonus must be used within a BonusProvider');
+//   }
+//   return context;
+// }
