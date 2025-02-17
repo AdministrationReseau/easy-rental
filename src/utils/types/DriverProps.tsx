@@ -36,6 +36,7 @@ export interface FilterDriverProps {
 
 export interface DriverListProps {
     drivers: DriverProps[];
+    setDrivers: (drivers: DriverProps[]) => void;
     filters: FilterDriverProps;
 }
 

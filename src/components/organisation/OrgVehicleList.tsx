@@ -33,7 +33,6 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
 
   const handleModifyVehicle = ( vehicleData: Partial<CarProps>) => {
     if (!editingVehicle) return;
-
     const updatedVehicles = vehicles.map(vehicle =>
         vehicle.id === editingVehicle.id ? { ...vehicle, ...vehicleData } : vehicle
     );
@@ -115,7 +114,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
               available={vehicle.available}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
-              onEdit={() => { setEditingVehicle(vehicle); console.log(editingVehicle); }}
+              onEdit={() => { setEditingVehicle(vehicle); }}
               onDelete={ () => {handleDeleteVehicle( vehicle.id)}}
             />
           ))

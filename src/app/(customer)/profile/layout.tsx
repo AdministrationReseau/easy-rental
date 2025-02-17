@@ -17,12 +17,12 @@ export default function Layout({children }: { children: React.ReactNode }) {
                     <div className="flex-grow bg-gray-100 p-4 md:p-6">
                         {children}
                     </div>
-
+                    <Footer />
                 </div>
 
             </div>
 
-            <Footer />
+            
         </>
     )
 }

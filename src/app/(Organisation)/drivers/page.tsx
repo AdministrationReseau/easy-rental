@@ -74,7 +74,7 @@ export default function DriversPage() {
 					</div>
 
 					<div className='h-full w-full'>
-						<OrgDriverList drivers={drivers} filters={filters} />
+						<OrgDriverList drivers={drivers} filters={filters} setDrivers={setDrivers} />
 					</div>
 
 					<button

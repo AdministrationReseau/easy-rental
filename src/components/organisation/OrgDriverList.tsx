@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { DriverListProps } from '@/utils/types/DriverProps';
 import DriverCard from './DriverCard';
 
-const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
+const OrgDriverList: React.FC<DriverListProps> = ({ drivers, setDrivers, filters }) => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
   const itemsPerPage = 8; // Nombre d'éléments par page
   
@@ -39,7 +39,7 @@ const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
 
   // Supprimer un véhicule
   const handleDeleteDriver = ( id: number) => {
-    drivers = drivers.filter(driver => driver.id !== id);
+    setDrivers(drivers.filter(driver => driver.id !== id));
   };
 
   return (
@@ -70,7 +70,7 @@ const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
               onSelect={() => {}} 
               isSelected={false}
               onEdit={(id: number) => console.log(id)}
-              onDelete={ () => {handleDeleteDriver( driver.id)}}
+              onDelete={ () => {handleDeleteDriver(driver.id)}}
             />
           ))
         ) : (

@@ -104,7 +104,7 @@ const ProfileSidebar: React.FC = () => {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-300 mt-auto"></div>
+            <div className="border-t bottom-0 border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
             <div className="mt-1">
@@ -145,7 +145,7 @@ const ProfileSidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="p-3">
+            <div className="p-3 bottom-0">
                 <Link href="/">
                     <button
                         className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${

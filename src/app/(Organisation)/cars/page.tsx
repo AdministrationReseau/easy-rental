@@ -81,12 +81,7 @@ export default function VehiclesPage() {
             </button>
       </div>
 
-      <VehicleModal
-          isOpen={showCreateModal}
-          onClose={() => setShowCreateModal(false)}
-          onSubmit={handleCreateVehicle}
-          title="Create Vehicle"
-      />
+     
 
       {/* Tabs for General and Statistics */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -153,11 +148,18 @@ export default function VehiclesPage() {
         </TabsContent>
       </Tabs>
 
+
       {showAlert && (
           <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded shadow-lg">
             Vehicle successfully created!
           </div>
       )}
+            <VehicleModal
+          isOpen={showCreateModal}
+          onClose={() => setShowCreateModal(false)}
+          onSubmit={handleCreateVehicle}
+          title="Create Vehicle"
+      />
     </div>
   );
 }

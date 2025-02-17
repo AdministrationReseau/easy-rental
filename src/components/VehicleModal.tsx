@@ -9,7 +9,7 @@ const VehicleModal = ({
                           isOpen,
                           onClose,
                           onSubmit,
-                          initialData = null,
+                          initialData,
                           title
                       }: VehicleModalProps) => {
     const [vehicleData, setVehicleData] = useState({
@@ -92,7 +92,7 @@ const VehicleModal = ({
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-auto m-2 z-index-[100]">
             <div className="bg-white p-6 rounded shadow-lg w-fit h-fit fit-content max-w-6xl w-full">
                 <h2 className="text-lg font-bold mb-4">{title}</h2>
                 <form onSubmit={handleSubmit}>
