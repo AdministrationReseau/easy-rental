@@ -30,8 +30,10 @@ export interface LocationProps {
     payment_method: string;
     promo_formula:number;
     date: string;
-    price: string;
+    price: number;
     ride?: geofence;
+    paidWithPoints?: boolean ;
+    bonusPoints?: number ;
     status: "pending"|"completed"|"cancelled";
 }
 
@@ -52,8 +54,8 @@ export interface rentalInfoProps {
         address: string;
         city: string;
     }
-    driver:{
-        id?: number;
+    driver?:{
+        id: number;
         name: string | undefined;
     }
     payment_method: string;
