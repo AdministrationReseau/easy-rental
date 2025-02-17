@@ -1,11 +1,13 @@
 "use client";
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Link from 'next/link';
 import AuthLayout from '@/components/AuthLayout';
+import Navbar from '@/components/organisation/NavBar';
+import Footer from '@/components/Footer';
 
 export default function SignIn() {
-    const router = useRouter();
+    // const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -16,11 +18,13 @@ export default function SignIn() {
         e.preventDefault();
         setLoading(true);
         // Ajoutez ici votre logique d'authentification
-        await router.push('/');
+        // await router.push('/');
         setLoading(false);
     };
 
     return (
+        <>
+        <Navbar/>
         <AuthLayout
             title="Connexion"
             subtitle="Accédez à votre compte de location de véhicules"
@@ -96,6 +100,8 @@ export default function SignIn() {
                     </p>
                 </div>
             </form>
-        </AuthLayout>
+        </AuthLayout>,
+        <Footer/>
+        </>
     );
 }

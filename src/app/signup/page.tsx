@@ -1,11 +1,13 @@
 "use client";
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Link from 'next/link';
 import AuthLayout from '@/components/AuthLayout';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/organisation/NavBar';
 
 export default function SignUp() {
-    const router = useRouter();
+    // const router = useRouter();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -19,11 +21,13 @@ export default function SignUp() {
         e.preventDefault();
         setLoading(true);
         // Ajoutez ici votre logique d'inscription
-        await router.push('/signin');
+        // await router.push('/signin');
         setLoading(false);
     };
 
     return (
+        <>
+        <Navbar/>
         <AuthLayout
             title="Créer un compte"
             subtitle="Commencez à louer des véhicules dès aujourd'hui"
@@ -130,5 +134,7 @@ export default function SignUp() {
                 </div>
             </form>
         </AuthLayout>
+        <Footer/>
+        </>
     );
 }
