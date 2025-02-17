@@ -60,7 +60,7 @@ import { PlayCircle } from '@mui/icons-material';
           Dashboard
         </button>
         </Link>
-      
+
       </div>
 
       {/* Image */}
@@ -108,7 +108,7 @@ import { PlayCircle } from '@mui/icons-material';
                     alt="Welcome"
                     width={500}
                     height={500}
-                    objectFit="cover"  
+                    objectFit="cover"
                     className="h-full w-auto fit-cover "
                 />
             </div>
@@ -146,10 +146,10 @@ import { PlayCircle } from '@mui/icons-material';
     </div>
     );
   }
-  
+
   // components/Services.tsx
   import { DirectionsCar, LocationCity, FlightTakeoff, Public } from '@mui/icons-material';
-  
+
   function Services() {
     const services = [
       {
@@ -173,7 +173,7 @@ import { PlayCircle } from '@mui/icons-material';
         description: "A small river named Duden flows by their place and supplies it with the necessary regelialia."
       }
     ];
-  
+
     return (
       <section className="py-16 rounded-md">
         <div className="container mx-auto px-4">
@@ -181,7 +181,7 @@ import { PlayCircle } from '@mui/icons-material';
             <span className="text-secondary-text text-sm uppercase tracking-wider">Services</span>
             <h2 className="text-primary-text text-3xl font-bold mt-2">Our Latest Services</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div key={index} className=" flex flex-col justify-center items-center text-center">
@@ -197,29 +197,29 @@ import { PlayCircle } from '@mui/icons-material';
       </section>
     );
   }
-  
+
   // components/DriverCTA.tsx
    function DriverCTA() {
     return (
       <section className="relative m-8 ">
-        <div 
+        <div
           className="absolute inset-0 rounded-md bg-cover bg-center z-0"
           style={{ backgroundImage: "url('/Ads 2.png')" }}
         >
         </div>
-        
-        
+
+
         <div className="container flex flex-col md:flex-row md:justify-center items-center mx-auto px-4 my-auto relative z-10">
           <div className="h-[430px]">
-            <Image 
-                src="/customer.png" 
+            <Image
+                src="/customer.png"
                 alt="become locator"
                 width={400}
                 height={400}
-                objectFit="contain"  
+                objectFit="contain"
                 className="h-full w-auto"/>
           </div>
-          
+
           <div className="md:w-1/2 ml-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
               Do You Want To Earn With Us? So Don&apos;t Be Late.
@@ -240,11 +240,11 @@ import { PlayCircle } from '@mui/icons-material';
       </section>
     );
   }
-  
+
   // components/Testimonials.tsx
   import { FormatQuote } from '@mui/icons-material';
 import LocationFilterContainer from "@/components/LocationFilter";
-  
+
   function Testimonials() {
     const testimonials = [
       {
@@ -271,10 +271,10 @@ import LocationFilterContainer from "@/components/LocationFilter";
         date: "15/08/2024",
         rate: 4
       }
-      
+
       // Add more testimonials...
     ];
-  
+
     return (
       <section className="py-16 mx-8 ">
         <div className="container mx-auto px-4">
@@ -282,17 +282,17 @@ import LocationFilterContainer from "@/components/LocationFilter";
             <span className="text-secondary-text text-sm uppercase tracking-wider">Testimonial</span>
             <h2 className="text-primary-text text-3xl font-bold mt-2">Happy Clients</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white p-8 rounded-lg  shadow-lg text-center">
                 <div className="flex justify-between w-full">
                     <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-4">
-                    <Image 
-                        src={testimonial.image} 
+                    <Image
+                        src={testimonial.image ?? '/voiture.png'}
                         alt={testimonial.name}
                         width={400}
-                        height={400}   
+                        height={400}
                         className="w-full h-full object-cover"
                     />
                     </div>
@@ -300,10 +300,10 @@ import LocationFilterContainer from "@/components/LocationFilter";
                         <Stars value={testimonial.rate?? 0} precision={1} />
                         <p>{testimonial.date}</p>
                     </div>
-                    
+
                 </div>
-                
-                
+
+
                 <FormatQuote className="text-primary text-4xl mb-4" />
                 <p className="text-gray-600 mb-4">{testimonial.text}</p>
                 <h4 className="font-bold">{testimonial.name}</h4>
@@ -580,8 +580,8 @@ function PodcastSection() {
                 <p className="text-gray-700 mb-4">
                   {podcast.description}
                 </p>
-                <Link 
-                  href={podcast.url} 
+                <Link
+                  href={podcast.url}
                   className="text-primary hover:text-primary-dark font-semibold"
                 >
                   Listen Now <PlayCircle className="mr-2" />

@@ -10,12 +10,10 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    const isLinkActive = (path: string) => {
-        return pathname === path;
-    };
+    const isLinkActive = (href: string) => pathname.startsWith(href)
 
     const navLinks = [
-        { href: "/customer", label: "Home" },
+        { href: "/customer/home", label: "Home" },
         { href: "/customer/cars", label: "Cars" },
         { href: "/customer/agencies", label: "Agencies" },
         { href: "/customer/contact", label: "Contact" },
@@ -23,7 +21,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="bg-white py-4 px-6 shadow-md">
+        <nav className="bg-white py-4 px-6 shadow-md fixed top-0 left-0 w-full z-50">
             <div className="flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/">
@@ -84,7 +82,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Profile - Desktop only */}
-                    <Link href="/profile" className="hidden md:block">
+                    <Link href="/profile/page" className="hidden md:block">
                         <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
                             <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
                         </button>
@@ -132,7 +130,7 @@ const Navbar = () => {
                             </button>
                         </Link>
 
-                        <Link href="/profile">
+                        <Link href="/profile/home">
                             <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
                                 <ImageProfile imageUrl="/assets/car.png" width={40} height={40} />
                             </button>

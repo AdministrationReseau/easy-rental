@@ -24,6 +24,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
   vehicle_assigned,
   insurance_provider,
   insurance_policy,
+  available,
   created_at,
   onSelect,
   isSelected,
@@ -49,6 +50,7 @@ const DriverCard: React.FC<DriverCardProps> = ({
         vehicle_assigned,
         insurance_provider,
         insurance_policy,
+        available,
         created_at
       });
     }
@@ -78,19 +80,19 @@ const DriverCard: React.FC<DriverCardProps> = ({
 
         <div className="text-gray-600 text-sm space-y-2">
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">mail</span>
+            <span className="material-icons text-blue-500 mr-2">Mail:</span>
             <p>{email}</p>
           </div>
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">place</span>
+            <span className="material-icons text-blue-500 mr-2">Adress:</span>
             <p>{location || address}</p>
           </div>
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">calendar_today</span>
+            <span className="material-icons text-blue-500 mr-2">Age:</span>
             <p>{age} years old</p>
           </div>
           <div className="flex items-center">
-            <span className="material-icons text-blue-500 mr-2">call</span>
+            <span className="material-icons text-blue-500 mr-2">Phone:</span>
             <p>{phone}</p>
           </div>
         </div>

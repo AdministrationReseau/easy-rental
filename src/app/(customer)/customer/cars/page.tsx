@@ -56,10 +56,11 @@ const Cars: React.FC = () => {
           )}
           <div className="flex">
 
-            <div className="w-full w-[70%] flex justify-center items-center flex-col gap-8">
+            <div className="w-full flex justify-center items-center flex-col gap-8">
               <LocationFilter />
               <VehicleList
                 vehicles={vehicles}
+                setVehicles={setVehicles}
                 filters={filters}
               // Pass down the function
               />

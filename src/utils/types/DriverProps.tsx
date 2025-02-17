@@ -24,12 +24,12 @@ export interface DriverProps {
     insurance_policy?: string;
     profile_picture?: string; // Optional
     isSelected?: boolean | undefined;
-    availability?:boolean;
+    available: boolean;
     created_at: Date;
 }
 
 export interface FilterDriverProps {
-    rating: number | null;
+    ratingRange: [number, number];
     ageRange: [number, number];
     location?: string; // Optional
 }
@@ -37,4 +37,11 @@ export interface FilterDriverProps {
 export interface DriverListProps {
     drivers: DriverProps[];
     filters: FilterDriverProps;
+}
+
+export interface DriverCardProps extends DriverProps {
+    onSelect: (driver: DriverProps | null) => void;
+    isSelected: boolean;
+    onEdit: (id: number) => void;
+    onDelete: (id: number) => void;
 }

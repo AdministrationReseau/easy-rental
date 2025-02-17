@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Stars from "../Stars"; // Composant pour afficher les étoiles
+import Stars from "../Stars";
 import { DriverProps } from "@/utils/types/DriverProps";
 
 export const DriverImage: React.FC<{ driver: DriverProps }> = ({ driver }) => {

@@ -37,7 +37,7 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   return (
     <div className="p-5 w-full">
       {/* Liste des véhicules */}
-      <div className="flex flex-row flex-wrap gap-6 w-full justify-center">
+      <div className="flex flex-row flex-wrap gap-6 w-full justify-start">
         {paginatedVehicles.length > 0 ? (
           paginatedVehicles.map((vehicle) => (
             <CarCard

@@ -1,0 +1,97 @@
+{
+    "transactions": [
+        {
+            "id": "TRX-001",
+            "amount": 75000,
+            "status": "completed",
+            "paymentMethod": "orange",
+            "date": "2024-02-10T10:30:00",
+            "customer": {
+                "name": "Jean Dupont",
+                "email": "jean.dupont@email.com"
+            },
+            "vehicleRental": {
+                "vehicleId": "VH-001",
+                "vehicleName": "Toyota Land Cruiser",
+                "withDriver": true,
+                "startDate": "2024-02-15",
+                "endDate": "2024-02-20",
+                "driverName": "Marc Lambert"
+            }
+        },
+        {
+            "id": "TRX-002",
+            "amount": 45000,
+            "status": "pending",
+            "paymentMethod": "mtn",
+            "date": "2024-02-11T09:15:00",
+            "customer": {
+                "name": "Marie Martin",
+                "email": "marie.martin@email.com"
+            },
+            "vehicleRental": {
+                "vehicleId": "VH-003",
+                "vehicleName": "Hyundai Tucson",
+                "withDriver": false,
+                "startDate": "2024-02-18",
+                "endDate": "2024-02-22"
+            }
+        },
+        {
+            "id": "TRX-003",
+            "amount": 95000,
+            "status": "completed",
+            "paymentMethod": "card",
+            "date": "2024-02-09T14:20:00",
+            "customer": {
+                "name": "Sophie Bernard",
+                "email": "sophie.bernard@email.com"
+            },
+            "vehicleRental": {
+                "vehicleId": "VH-005",
+                "vehicleName": "Mercedes Classe S",
+                "withDriver": true,
+                "startDate": "2024-02-12",
+                "endDate": "2024-02-19",
+                "driverName": "Paul Dubois"
+            }
+        },
+        {
+            "id": "TRX-004",
+            "amount": 35000,
+            "status": "failed",
+            "paymentMethod": "orange",
+            "date": "2024-02-11T11:45:00",
+            "customer": {
+                "name": "Pierre Moreau",
+                "email": "pierre.moreau@email.com"
+            },
+            "vehicleRental": {
+                "vehicleId": "VH-002",
+                "vehicleName": "Renault Duster",
+                "withDriver": false,
+                "startDate": "2024-02-20",
+                "endDate": "2024-02-23"
+            }
+        },
+        {
+            "id": "TRX-005",
+            "amount": 85000,
+            "status": "completed",
+            "paymentMethod": "mtn",
+            "date": "2024-02-10T16:30:00",
+            "customer": {
+                "name": "Alice Robert",
+                "email": "alice.robert@email.com"
+            },
+            "vehicleRental": {
+                "vehicleId": "VH-004",
+                "vehicleName": "BMW X5",
+                "withDriver": true,
+                "startDate": "2024-02-14",
+                "endDate": "2024-02-21",
+                "driverName": "Thomas Michel"
+            }
+        }
+    ]
+}

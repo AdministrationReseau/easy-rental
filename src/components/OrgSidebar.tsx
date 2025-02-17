@@ -8,7 +8,6 @@ import {
     Person,
     LocationOn,
     AttachMoney,
-    BarChart,
     Notifications,
     Subscriptions,
     Settings,
@@ -44,11 +43,10 @@ const OrgSidebar: React.FC = () => {
     const mainMenuItems = [
         { name: "Dashboard", icon: <Home />, link: "/dashboard" },
         { name: "Agencies", icon: <AccountBalance />, link: "/agencies" },
-        { name: "Cars", icon: <DirectionsCar />, link: "/cars" },
+        { name: "Vehicles", icon: <DirectionsCar />, link: "/cars" },
         { name: "Drivers", icon: <Person />, link: "/drivers" },
         { name: "Locations", icon: <LocationOn />, link: "/rentals" },
         { name: "Transactions", icon: <AttachMoney />, link: "/transactions" },
-        { name: "Statistics", icon: <BarChart />, link: "/statistics" },
         { name: "Notifications", icon: <Notifications />, link: "/notifications" },
     ];
 
@@ -138,8 +136,8 @@ const OrgSidebar: React.FC = () => {
             <div className="p-4 bottom-0">
                 <Link href="/">
                     <li
-                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                            isActive("/")
+                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-300 ${
+                            isActive("/logout")
                                 ? "bg-red-500 text-white"
                                 : "hover:bg-gray-100 text-red-500"
                         }`}
@@ -151,7 +149,7 @@ const OrgSidebar: React.FC = () => {
                                     : "border-red-500 bg-white text-red-500"
                             }`}
                         >
-                            <Logout />
+                            <Logout/>
                         </span>
                         {!isCollapsed && <span>Log Out</span>}
                     </li>

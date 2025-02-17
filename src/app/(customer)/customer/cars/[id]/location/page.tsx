@@ -162,16 +162,13 @@ const MultiStepForm: React.FC = () => {
             place: '',
         },
         user: {
-            // id: undefined,
+            id: undefined,
             name: '',
             phone: '',
             address: '',
             city: '',
         },
-        driver: {
-            // id: undefined,
-            name: '',
-        },
+        driver: undefined,
         payment_method: '',
         promo_code: '',
     });
@@ -189,6 +186,7 @@ const MultiStepForm: React.FC = () => {
 
     // Charger les données du véhicule
     const [vehicle, setVehicle] = useState<CarProps | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
     console.log(vehicles);
     // Chargement des données des véhicules
@@ -286,11 +284,11 @@ const MultiStepForm: React.FC = () => {
                                         valueRegion={selectedPickRegion} />
                                 </div>
                                 <div className="flex h-full ">
-                                    <DatePickerStyled 
-                                        onChange={handlePickDateChange} 
+                                    <DatePickerStyled
+                                        onChange={handlePickDateChange}
                                         value={selectedPickDate} />
                                     {/* <TimePickerStyled onChange={handlePickTimeChange} value={selectedPickTime} /> */}
-                                    
+
                                 </div>
                             </div>
 
@@ -466,7 +464,7 @@ const MultiStepForm: React.FC = () => {
                     <div className="space-y-4">{renderStepContent()}</div>
                 </div>
             </div>
-            <aside className="w-full  p-4 m-auto">
+            <aside className="w-full p-4 m-auto">
                 <RentalSummary
                     key={vehicle.id}
                     {...vehicle}
