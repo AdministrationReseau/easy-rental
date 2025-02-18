@@ -1,13 +1,15 @@
+import {Scheduling} from "@/utils/types/ReservationProps";
+
 export interface CarProps {
     id: number;
-    type?: string;                // Optional
-    brand?: string;               // Optional
-    model?: string;               // Optional
-    year?: number;                  // Optional
-    rating?: number;              // Optional
-    passenger?: number;           // Optional
-    description: string;       // Optional
-    pricePerDay: number;         // Optional
+    type?: string;
+    brand?: string;
+    model?: string;
+    year?: number;
+    rating?: number;
+    passenger?: number;
+    description: string;
+    pricePerDay: number;
     vin?: string;        
     documents?:{
         registration_certificate: string;
@@ -83,7 +85,9 @@ export interface CarProps {
         rating: number;
     }[];
     favorite? : boolean;
-    available: boolean;
+    available?: boolean;
+    scheduling?: Scheduling;
+    driver_required?: boolean;
     onLike?: (id: number) => void;    // Optional
     onDislike?: (id: number) => void; // Optional
     onEdit?: (id: number) => void; // Optional
