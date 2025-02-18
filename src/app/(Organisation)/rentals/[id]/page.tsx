@@ -48,7 +48,7 @@ const LocationDetails = () => {
         useEffect(() => {
                 const fetchLocations = async () => {
                     try {
-                        const response = await fetch("/data/locations.json");
+                                       const response = await fetch("/data/locations.json");
                         // console.log(response)
                         if (!response.ok) {
                             throw new Error("Failed to fetch locations");

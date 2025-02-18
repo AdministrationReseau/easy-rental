@@ -3,7 +3,55 @@ import CarCarousel from "@/components/CarCarousel";
 import Navbar from "@/components/organisation/NavBar";
 import Footer from "@/components/Footer";
 
+interface VideoPlayerProps {
+  videoUrl: string;
+  buttonText: string;
+}
 
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, buttonText }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+
+  const handlePlayPause = () => {
+    if (!videoElement) {
+      return;
+    }
+
+    if (isPlaying) {
+      videoElement.pause();
+    } else {
+      videoElement.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <button
+        onClick={handlePlayPause}
+        className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
+        aria-label={isPlaying ? 'Pause' : 'Play'}
+      >
+        {isPlaying ? (
+          <PauseCircle className="mr-2" />
+        ) : (
+          <PlayCircle className="mr-2" />
+        )}
+        <span>{buttonText}</span>
+      </button>
+
+      <video
+        ref={(el) => setVideoElement(el)}
+        className="w-full max-w-2xl rounded-lg"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      >
+        <source src={videoUrl} type="video/mp4" />
+        Votre navigateur ne supporte pas la lecture de vidéos.
+      </video>
+    </div>
+  );
+};
 export default function Home() {
   return (
     <main className="bg-whitish-background">
@@ -51,10 +99,17 @@ import { PlayCircle } from '@mui/icons-material';
           A small river named Duden flows by their place and supplies it with
           the necessary regelialia.
         </p>
-        <button className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark">
+        {/* <VideoPlayer 
+          videoUrl="/assets/EasyRent-Tuto.mp4"
+          buttonText="Easy steps for renting a car"
+        /> */}
+        <button
+        className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
+        aria-label={'Play'}
+      >
           <PlayCircle className="mr-2" />
-          <span>Easy steps for renting a car</span>
-        </button>
+      </button>
+
         <Link href="/Dashboard">
         <button className="transition text-xl ease-out duration-300 bg-primary-blue hover:bg-blue-700 text-white font-semibold py-4 px-6 m-4 rounded">
           Dashboard
@@ -448,6 +503,7 @@ function Stats() {
 import Stars from "@/components/Stars";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { PauseCircle } from "lucide-react";
 
 const RentalSteps = () => {
   const [isVisible, setIsVisible] = useState(false);
