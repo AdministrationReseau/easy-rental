@@ -38,7 +38,7 @@ const ProfileSidebar: React.FC = () => {
     }, []);
 
     const mainMenuItems = [
-        { name: "Profile", icon: <Home />, link: "/profile" },
+        { name: "Profile", icon: <Home />, link: "/profile/page" },
         { name: "Favorite", icon: <Favorite />, link: "/profile/favorites" },
         { name: "Location", icon: <LocationOn />, link: "/profile/locations" },
         { name: "Transaction", icon: <AttachMoney />, link: "/profile/transactions" },
