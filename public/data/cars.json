@@ -96,7 +96,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 2,
@@ -194,7 +195,7 @@
         }
       ],
       "favorite": false,
-"available": false
+      "available": false
     },
     {
       "id": 3,
@@ -292,7 +293,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 4,
@@ -390,7 +392,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 5,
@@ -488,7 +491,8 @@
         }
       ],
       "favorite": false,
-      "available": false
+            "available": false,
+            "driver_required":false
     },
     {
       "id": 6,
@@ -586,7 +590,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 7,
@@ -684,7 +689,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 8,
@@ -782,7 +788,8 @@
         }
       ],
       "favorite": false,
-      "available": false
+      "available": false,
+      "driver_required":false
     },
     {
       "id": 9,
@@ -880,7 +887,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 10,
@@ -978,7 +986,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 11,
@@ -1076,7 +1085,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 12,
@@ -1174,7 +1184,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 13,
@@ -1272,7 +1283,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 14,
@@ -1370,7 +1382,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 15,
@@ -1468,7 +1481,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 16,
@@ -1566,7 +1580,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 17,
@@ -1664,7 +1679,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 18,
@@ -1762,7 +1778,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 19,
@@ -1860,7 +1877,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":true
     },
     {
       "id": 20,
@@ -1958,7 +1976,8 @@
         }
       ],
       "favorite": false,
-"available": true
+      "available": true,
+      "driver_required":false
     }
   ]
 }

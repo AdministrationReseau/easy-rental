@@ -107,6 +107,11 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
           </button>
         </Link>
       </div>
+      {vehicle.driver_required?(
+        <p className="text-red-600"><i>Driver Provided By Agency Required</i></p>
+      ):(
+        <p className="text-red-600"><i>Driver Provided By Agency not obligatory Required</i></p>
+      )}
     </div>
   );
 };
