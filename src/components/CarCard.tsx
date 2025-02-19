@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
 import Image from 'next/image';
 import { CarProps } from '@/utils/types/CarProps';
+import  ShareIcon  from "@mui/icons-material/share";
 
 interface LikeProps {
     isLiked: boolean;
@@ -37,7 +38,27 @@ const CarCard: React.FC<CarProps> = ({
                                          onDislike = () => {},
                                      }) => {
     const [isLiked, setIsLiked] = useState<boolean>(favorite);
-
+    const handleShare = () => {
+        const shareData = {
+            title: `${brand} ${model}`,
+            text: `Découvrez cette voiture de location : ${brand} ${model}, disponible à ${pricePerDay} CFA/jour.`,
+            url: `${window.location.origin}/customer/cars/${id}`,
+        };
+    
+        if (navigator.share) {
+            navigator.share(shareData).catch((error) => console.error("Erreur de partage :", error));
+        } else {
+            // Fallback pour les réseaux sociaux
+            const encodedUrl = encodeURIComponent(shareData.url);
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + " " + shareData.url)}`;
+            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+            const emailUrl = `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(shareData.text + " " + shareData.url)}`;
+    
+            window.open(whatsappUrl, "_blank");
+            // Ajoute d'autres réseaux sociaux ici si besoin
+        }
+    };
+    
     const toggleLike = () => {
 
             setIsLiked(!isLiked);
@@ -55,7 +76,11 @@ const CarCard: React.FC<CarProps> = ({
                 <h2 className="text-md font-semibold text-gray-800">
                     {brand} {model}
                 </h2>
-                <LikeButton isLiked={isLiked} onClick={toggleLike} />
+                <div className='flex flex-row gap-2 items-center'>
+                    <ShareIcon className='cursor-pointer' onClick={handleShare}/>
+                    <LikeButton  isLiked={isLiked} onClick={toggleLike} />
+                </div>
+                
             </div>
 
             {/* Image Section */}

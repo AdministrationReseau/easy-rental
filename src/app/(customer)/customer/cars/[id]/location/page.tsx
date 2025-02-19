@@ -80,6 +80,26 @@ const MultiStepForm: React.FC = () => {
                 ["driver.name"]: '', // Reset driver name when no driver is selected
             }));
         }
+        if (vehicle){
+            if(selectedDriver){
+            setVehicle((prev) => {
+                if (!prev) return null; // Ou retourner un objet par défaut
+                return {
+                  ...prev,
+                  pricePerDay: vehicle.pricePerDay-500,
+                };
+            })
+        }
+            else{
+                setVehicle((prev) => {
+                    if (!prev) return null; // Ou retourner un objet par défaut
+                    return {
+                      ...prev,
+                      pricePerDay: vehicle.pricePerDay+500,
+                    };
+                })
+            }
+        }
     };
     console.log(selectedDriver)
 
@@ -317,6 +337,11 @@ const MultiStepForm: React.FC = () => {
                 return (
                     <>
                         <h1><b> Choose a driver</b></h1>
+                        {vehicle.driver_required?(
+                                <p className="text-red-600"><i>Driver Provided By Agency Required</i></p>
+                            ):(
+                                <p className="text-red-600"><i>Driver Provided By Agency not obligatory Required</i></p>
+                            )}
                         <div className="flex flex-row justify-between text-secondary-text">
                             <p>Please choose a driver</p>
                             <p>Step {currentStep} of {totalSteps}</p>

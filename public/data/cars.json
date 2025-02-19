@@ -96,6 +96,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -208,6 +209,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": false,
       "scheduling": {
         "working_hours": {
@@ -320,6 +322,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -432,6 +435,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -544,6 +548,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":false,
       "available": false,
       "scheduling": {
         "working_hours": {
@@ -656,6 +661,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -768,6 +774,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -880,6 +887,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": false,
       "scheduling": {
         "working_hours": {
@@ -992,6 +1000,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1104,6 +1113,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1216,6 +1226,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1328,6 +1339,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1440,6 +1452,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1552,6 +1565,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1664,6 +1678,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1776,6 +1791,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -1888,6 +1904,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -2000,6 +2017,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -2112,6 +2130,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
@@ -2224,6 +2243,7 @@
         }
       ],
       "favorite": false,
+      "driver_required":true,
       "available": true,
       "scheduling": {
         "working_hours": {
