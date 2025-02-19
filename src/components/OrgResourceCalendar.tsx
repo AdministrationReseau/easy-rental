@@ -115,7 +115,9 @@ const SchedulingCard: React.FC<SchedulingCardProps> = ({ requestedResource }) =>
 			{/* Modal for adding schedule */}
 			<Dialog open={modalOpen} onClose={() => setModalOpen(false)} fullWidth maxWidth="sm">
 				<DialogTitle>Add Schedule</DialogTitle>
-				<DialogContent className="grid gap-4 p-4">
+
+				<DialogContent className="grid gap-4 p-4 mt-2 " style={{ maxHeight: "80vh", overflowY: "auto" }}>
+
 					<TextField
 						label="Start Date"
 						type="date"

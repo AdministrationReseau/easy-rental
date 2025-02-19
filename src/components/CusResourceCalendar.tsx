@@ -98,9 +98,11 @@ const SchedulingCard: React.FC<SchedulingCardProps> = ({ requestedResource, show
 			</CardContent>
 
 			{/* Modal for adding schedule */}
-			<Dialog open={modalOpen} onClose={() => setModalOpen(false)} fullWidth maxWidth="sm">
+			<Dialog open={modalOpen} onClose={() => setModalOpen(false)} className="h-[400px]">
 				<DialogTitle>Add Schedule</DialogTitle>
-				<DialogContent className="grid gap-4 p-4">
+
+				<DialogContent className="grid gap-4 p-4" style={{ maxHeight: "80vh", overflowY: "auto" }}>
+				{/*<DialogContent className="grid gap-4 p-4">*/}
 					<TextField
 						label="Start Date"
 						type="date"
@@ -130,6 +132,7 @@ const SchedulingCard: React.FC<SchedulingCardProps> = ({ requestedResource, show
 						<MenuItem value="scheduled-range">Scheduled</MenuItem>
 					</TextField>
 				</DialogContent>
+
 				<DialogActions>
 					<Button onClick={() => setModalOpen(false)} color="secondary">
 						Cancel
