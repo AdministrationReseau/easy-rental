@@ -84,18 +84,38 @@ const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
       <p className="text-gray-600 leading-relaxed">{vehicle.description}</p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {[
-          {label: "Type", value: vehicle.type},
-          {label: "Capacity", value: `${vehicle.passenger} persons`},
-          {label: "Transmission", value: vehicle.transmission},
-          {label: "Engine", value: `${vehicle.engine.capacity}L`},
-        ].map((spec, index) => (
-          <div key={index} className="bg-gray-50 p-4 rounded-lg">
-            <span className="text-sm text-gray-500 block">{spec.label}</span>
-            <span className="font-semibold text-gray-900">{spec.value}</span>
-          </div>
-        ))}
+      {/*<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">*/}
+      {/*  {[*/}
+      {/*    {label: "Type", value: vehicle.type},*/}
+      {/*    {label: "Capacity", value: `${vehicle.passenger} persons`},*/}
+      {/*    {label: "Transmission", value: vehicle.transmission},*/}
+      {/*    {label: "Engine", value: `${vehicle.engine.capacity}L`},*/}
+      {/*  ].map((spec, index) => (*/}
+      {/*    <div key={index} className="bg-gray-50 p-4 rounded-lg">*/}
+      {/*      <span className="text-sm text-gray-500 block">{spec.label}</span>*/}
+      {/*      <span className="font-semibold text-gray-900">{spec.value}</span>*/}
+      {/*    </div>*/}
+      {/*  ))}*/}
+      {/*</div>*/}
+
+      {/* Specifications */}
+      <div className="grid grid-cols-4 text-sm text-gray-500 py-4">
+        <div>
+          <span className="block py-2">Type</span>
+          <span className="block font-bold text-gray-800">{vehicle.type}</span>
+        </div>
+        <div>
+          <span className="block py-2">Capacity</span>
+          <span className="block font-bold text-gray-800">{vehicle.passenger} persons</span>
+        </div>
+        <div>
+          <span className="block py-2">Steering</span>
+          <span className="block font-bold text-gray-800">{vehicle.transmission}</span>
+        </div>
+        <div>
+          <span className="block py-2">Fuel</span>
+          <span className="block font-bold text-gray-800">{vehicle.engine.capacity}L</span>
+        </div>
       </div>
 
       <div className="flex items-end justify-between pt-4 border-t">
