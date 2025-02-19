@@ -134,7 +134,7 @@ const SchedulingCard: React.FC<SchedulingCardProps> = ({ requestedResource }) =>
 						onChange={(e) => setNewSchedule({ ...newSchedule, end: e.target.value })}
 						InputLabelProps={{ shrink: true }}
 						fullWidth
-						inputProps={{ min: today }} // Set min date to today
+						inputProps={{ min: today }}
 					/>
 					<TextField
 						label="Type"
