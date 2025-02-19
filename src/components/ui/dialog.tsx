@@ -87,6 +87,22 @@ export const DialogTitle: React.FC<{
     </h2>
 );
 
+export const DialogTrigger: React.FC<{
+    asChild?: boolean;
+    className?: string;
+    children: React.ReactNode;
+}> = ({ asChild, className = '', children }) => {
+    if (asChild) {
+        return React.Children.only(children);
+    }
+
+    return (
+        <div className={className}>
+            {children}
+        </div>
+    );
+};
+
 const DialogClose = React.forwardRef<HTMLButtonElement, DialogCloseProps>(
     ({ children, asChild = false, className = '' }, ref) => {
         const handleClose = () => {
