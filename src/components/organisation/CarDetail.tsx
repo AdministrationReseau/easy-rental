@@ -109,7 +109,6 @@ const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
         <Dialog open={modalOpen} onClose={() => setModalOpen(false)} >
           <DialogContent>
-            {/*<CusResourceCalendar requestedResource={vehicle} showAddButton={false}/>*/}
             <OrgResourceCalendar requestedResource={vehicle} />
           </DialogContent>
         </Dialog>
