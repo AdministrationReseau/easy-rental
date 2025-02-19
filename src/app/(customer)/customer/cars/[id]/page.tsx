@@ -43,9 +43,6 @@ const VehicleDetails: React.FC = () => {
       });
   }, [id]);
 
-  // const handleFilterChange = (newFilters: FilterVehicleProps) => {
-  //   setFilters(newFilters);
-  // };
 
   if (!vehicle) {
     return <p>Loading vehicle details...</p>; // Affiche un message de chargement si les données ne sont pas prêtes
@@ -53,10 +50,6 @@ const VehicleDetails: React.FC = () => {
 
   return (
       <main className="flex  ">
-        {/* Section filtre */}
-        {/* <div className="filter-container">
-          <SidebarFilter vehicles={vehicles} onFilter={handleFilterChange} />
-        </div> */}
           {/* Liste des véhicules */}
           <div className="w-screen-full relative">
             <div className="flex justify-center items-center flex-col">

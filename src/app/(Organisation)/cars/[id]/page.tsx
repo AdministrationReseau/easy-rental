@@ -1,12 +1,13 @@
 'use client'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { CarProps } from '@/utils/types/CarProps';
-import CarDetail from '@/components/organisation/CarDetail';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { CalendarDays, Car, CreditCard, TrendingUp } from 'lucide-react';
+import OrgResourceCalendar from "@/components/OrgResourceCalendar";
+import CarDetail from "@/components/organisation/CarDetail";
 
 interface Rental {
   id: number;
@@ -106,6 +107,7 @@ export default function ResourceProfilPage() {
 
         <TabsContent value="details">
           <CarDetail vehicle={requestedVehicle} />
+          <OrgResourceCalendar requestedResource={requestedVehicle} />
         </TabsContent>
 
         <TabsContent value="activity" className="space-y-6">

@@ -6,10 +6,12 @@ import AddRoadIcon from '@mui/icons-material/AddRoad';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import GroupIcon from '@mui/icons-material/Group';
-import { Heart } from "lucide-react";
+import {CalendarIcon, Heart} from "lucide-react";
 import Reviews from "../Reviews";
 import { CarProps } from "@/utils/types/CarProps";
 import Stars from "../Stars";
+import {Button, Dialog, DialogContent} from "@mui/material";
+import CusResourceCalendar from "@/components/CusResourceCalendar";
 
 const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   const [currentImage, setCurrentImage] = useState(vehicle.images[0]);
@@ -52,6 +54,7 @@ const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
 const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6 space-y-6">
@@ -61,7 +64,7 @@ const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
             {vehicle.brand} {vehicle.model}
           </h1>
           <div className="flex items-center gap-2">
-            <Stars value={vehicle.rating ?? 0} precision={1} />
+            <Stars value={vehicle.rating ?? 0} precision={1}/>
             <span className="text-sm text-gray-600">
               ({vehicle.reviews.length} reviews)
             </span>
@@ -83,16 +86,32 @@ const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: "Type", value: vehicle.type },
-          { label: "Capacity", value: `${vehicle.passenger} persons` },
-          { label: "Transmission", value: vehicle.transmission },
-          { label: "Engine", value: `${vehicle.engine.capacity}L` },
+          {label: "Type", value: vehicle.type},
+          {label: "Capacity", value: `${vehicle.passenger} persons`},
+          {label: "Transmission", value: vehicle.transmission},
+          {label: "Engine", value: `${vehicle.engine.capacity}L`},
         ].map((spec, index) => (
           <div key={index} className="bg-gray-50 p-4 rounded-lg">
             <span className="text-sm text-gray-500 block">{spec.label}</span>
             <span className="font-semibold text-gray-900">{spec.value}</span>
           </div>
         ))}
+      </div>
+
+      <div className="flex items-end justify-between pt-4 border-t">
+        <p className="text-gray-600 leading-relaxed">
+          Availability:
+        </p>
+        <Button onClick={() => setModalOpen(true)} className="gap-2  hover:text-primary-text">
+          <CalendarIcon className="h-5 w-5 text-blue-500" />
+          See Scheduling
+        </Button>
+
+        <Dialog open={modalOpen} onClose={() => setModalOpen(false)} >
+          <DialogContent>
+            <CusResourceCalendar requestedResource={vehicle} showAddButton={false}/>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="flex items-end justify-between pt-4 border-t">
@@ -114,8 +133,8 @@ const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 };
 
 const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({
-  vehicleFeatures,
-}) => {
+                                                                                   vehicleFeatures,
+                                                                                 }) => {
   const features = [
     "Air Condition",
     "Child Seat",
@@ -130,6 +149,7 @@ const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = 
     "Onboard Computer",
     "Additional Covers",
   ];
+
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6">
@@ -160,6 +180,7 @@ const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = 
 };
 
 const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Link
@@ -170,50 +191,60 @@ const CarDetail: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
         Back to Vehicles
       </Link>
 
+
+      {/*<SchedulingCard requestedResource={vehicle} showAddButton={true} />*/}
+
       <div className="grid lg:grid-cols-5 gap-8">
         <div className="lg:col-span-3">
           <VehicleImage vehicle={vehicle} />
         </div>
         <div className="lg:col-span-2">
           <VehicleInfo vehicle={vehicle} />
+        </div>-
+      </div>
+
+      <div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            {
+              icon: <AddRoadIcon className="h-6 w-6"/>,
+              label: "Mileage",
+              value: `${vehicle.service_history[vehicle.service_history.length - 1].mileage}Km`
+            },
+            {
+              icon: <DirectionsCarIcon className="h-6 w-6"/>,
+              label: "Transmission",
+              value: vehicle.transmission
+            },
+            {
+              icon: <LocalGasStationIcon className="h-6 w-6"/>,
+              label: "Fuel Type",
+              value: vehicle.engine.type
+            },
+            {
+              icon: <GroupIcon className="h-6 w-6"/>,
+              label: "Capacity",
+              value: `${vehicle.passenger} persons`
+            }
+          ].map((spec, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-sm p-6 flex flex-col items-center text-center space-y-2"
+            >
+              <div className="text-blue-600">{spec.icon}</div>
+              <span className="text-sm text-gray-500">{spec.label}</span>
+              <span className="font-medium text-gray-900">{spec.value}</span>
+            </div>
+          ))}
         </div>
+
+
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {[
-          {
-            icon: <AddRoadIcon className="h-6 w-6" />,
-            label: "Mileage",
-            value: `${vehicle.service_history[vehicle.service_history.length - 1].mileage}Km`
-          },
-          {
-            icon: <DirectionsCarIcon className="h-6 w-6" />,
-            label: "Transmission",
-            value: vehicle.transmission
-          },
-          {
-            icon: <LocalGasStationIcon className="h-6 w-6" />,
-            label: "Fuel Type",
-            value: vehicle.engine.type
-          },
-          {
-            icon: <GroupIcon className="h-6 w-6" />,
-            label: "Capacity",
-            value: `${vehicle.passenger} persons`
-          }
-        ].map((spec, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-sm p-6 flex flex-col items-center text-center space-y-2"
-          >
-            <div className="text-blue-600">{spec.icon}</div>
-            <span className="text-sm text-gray-500">{spec.label}</span>
-            <span className="font-medium text-gray-900">{spec.value}</span>
-          </div>
-        ))}
-      </div>
 
-      <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities} />
+
+
+      <VehicleFeatures vehicleFeatures={vehicle.fonctionnalities}/>
 
       <div className="bg-white rounded-xl shadow-sm p-6">
         <div className="flex items-center justify-between mb-6">

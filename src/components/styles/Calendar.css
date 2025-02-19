@@ -36,4 +36,12 @@
 .react-calendar__month-view__days .react-calendar__tile {
     display: flex;
     align-items: center;
-    justify-content: center;}
+    justify-content: center;
+}
+
+.grayed-out {
+    background-color: #f0f0f0; /* Light gray background */
+    color: #aaaaaa; /* Gray text color */
+    pointer-events: none; /* Disable interactions */
+}
+
