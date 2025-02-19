@@ -8,22 +8,22 @@ interface VideoPlayerProps {
   buttonText: string;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, buttonText }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+// const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, buttonText }) => {
+//   const [isPlaying, setIsPlaying] = useState(false);
+//   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
 
-  const handlePlayPause = () => {
-    if (!videoElement) {
-      return;
-    }
+//   const handlePlayPause = () => {
+//     if (!videoElement) {
+//       return;
+//     }
 
-    if (isPlaying) {
-      videoElement.pause();
-    } else {
-      videoElement.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+//     if (isPlaying) {
+//       videoElement.pause();
+//     } else {
+//       videoElement.play();
+//     }
+//     setIsPlaying(!isPlaying);
+//   };
 
   return (
     <div className="flex flex-col items-center gap-4">
