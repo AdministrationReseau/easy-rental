@@ -11,7 +11,7 @@ import Reviews from "../Reviews";
 import { CarProps } from "@/utils/types/CarProps";
 import Stars from "../Stars";
 import {Button, Dialog, DialogContent} from "@mui/material";
-import CusResourceCalendar from "@/components/CusResourceCalendar";
+import OrgResourceCalendar from "@/components/OrgResourceCalendar";
 
 const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   const [currentImage, setCurrentImage] = useState(vehicle.images[0]);
@@ -109,7 +109,8 @@ const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
         <Dialog open={modalOpen} onClose={() => setModalOpen(false)} >
           <DialogContent>
-            <CusResourceCalendar requestedResource={vehicle} showAddButton={false}/>
+            {/*<CusResourceCalendar requestedResource={vehicle} showAddButton={false}/>*/}
+            <OrgResourceCalendar requestedResource={vehicle} />
           </DialogContent>
         </Dialog>
       </div>
