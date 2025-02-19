@@ -1,0 +1,322 @@
+{
+  "personnel": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Marie",
+      "email": "marie.dupont@agence.com",
+      "telephone": "+33 6 12 34 56 78",
+      "poste": "Directeur Marketing",
+      "departement": "Marketing",
+      "dateEmbauche": "2018-03-15",
+      "salaire": 65000,
+      "statut": "Actif",
+      "adresse": "123 rue des Lilas, 75008 Paris",
+      "photo": "/images/personnel/dupont_marie.jpg",
+      "competences": ["Stratégie de marque", "Management d'équipe", "Analyse de données"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Réunion d'équipe", "duree": 60 },
+        { "date": "2025-02-18", "description": "Préparation rapport trimestriel", "duree": 120 },
+        { "date": "2025-02-19", "description": "Appel client", "duree": 45 }
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Martin",
+      "prenom": "Jean",
+      "email": "jean.martin@agence.com",
+      "telephone": "+33 6 23 45 67 89",
+      "poste": "Développeur Senior",
+      "departement": "Technique",
+      "dateEmbauche": "2019-06-01",
+      "salaire": 58000,
+      "statut": "Actif",
+      "adresse": "45 avenue Victor Hugo, 75016 Paris",
+      "photo": "/images/personnel/martin_jean.jpg",
+      "competences": ["React", "NextJS", "Node.js", "TypeScript"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Développement nouvelle fonctionnalité", "duree": 240 },
+        { "date": "2025-02-18", "description": "Code review", "duree": 90 },
+        { "date": "2025-02-19", "description": "Débogage application", "duree": 180 }
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Leroy",
+      "prenom": "Sophie",
+      "email": "sophie.leroy@agence.com",
+      "telephone": "+33 6 34 56 78 90",
+      "poste": "Designer UX/UI",
+      "departement": "Création",
+      "dateEmbauche": "2020-09-15",
+      "salaire": 49000,
+      "statut": "Actif",
+      "adresse": "78 rue du Commerce, 75015 Paris",
+      "photo": "/images/personnel/leroy_sophie.jpg",
+      "competences": ["Figma", "Adobe XD", "Sketch", "Prototypage"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": false,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Création maquettes", "duree": 180 },
+        { "date": "2025-02-18", "description": "Tests utilisateurs", "duree": 120 },
+        { "date": "2025-02-20", "description": "Révision design system", "duree": 240 }
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Bernard",
+      "prenom": "Philippe",
+      "email": "philippe.bernard@agence.com",
+      "telephone": "+33 6 45 67 89 01",
+      "poste": "Comptable",
+      "departement": "Finance",
+      "dateEmbauche": "2017-11-01",
+      "salaire": 52000,
+      "statut": "Actif",
+      "adresse": "12 rue des Martyrs, 75009 Paris",
+      "photo": "/images/personnel/bernard_philippe.jpg",
+      "competences": ["Comptabilité", "Gestion de trésorerie", "Excel avancé", "Déclarations fiscales"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Préparation bilans", "duree": 180 },
+        { "date": "2025-02-18", "description": "Paiement fournisseurs", "duree": 120 },
+        { "date": "2025-02-19", "description": "Réconciliation bancaire", "duree": 90 }
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Petit",
+      "prenom": "Claire",
+      "email": "claire.petit@agence.com",
+      "telephone": "+33 6 56 78 90 12",
+      "poste": "Responsable RH",
+      "departement": "Ressources Humaines",
+      "dateEmbauche": "2019-02-01",
+      "salaire": 56000,
+      "statut": "Actif",
+      "adresse": "34 boulevard Haussmann, 75009 Paris",
+      "photo": "/images/personnel/petit_claire.jpg",
+      "competences": ["Recrutement", "Gestion des conflits", "Formation", "Droit du travail"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Entretiens recrutement", "duree": 240 },
+        { "date": "2025-02-18", "description": "Mise à jour fiches de poste", "duree": 120 },
+        { "date": "2025-02-19", "description": "Gestion des congés", "duree": 60 }
+      ]
+    },
+    {
+      "id": 6,
+      "nom": "Moreau",
+      "prenom": "Thomas",
+      "email": "thomas.moreau@agence.com",
+      "telephone": "+33 6 67 89 01 23",
+      "poste": "Chef de projet",
+      "departement": "Opérations",
+      "dateEmbauche": "2021-04-01",
+      "salaire": 51000,
+      "statut": "Actif",
+      "adresse": "56 rue de Vaugirard, 75006 Paris",
+      "photo": "/images/personnel/moreau_thomas.jpg",
+      "competences": ["Gestion de projet", "SCRUM", "Planification", "Budgétisation"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Sprint planning", "duree": 120 },
+        { "date": "2025-02-18", "description": "Réunion client", "duree": 90 },
+        { "date": "2025-02-19", "description": "Suivi des livrables", "duree": 60 }
+      ]
+    },
+    {
+      "id": 7,
+      "nom": "Dubois",
+      "prenom": "Émilie",
+      "email": "emilie.dubois@agence.com",
+      "telephone": "+33 6 78 90 12 34",
+      "poste": "Commerciale",
+      "departement": "Ventes",
+      "dateEmbauche": "2022-01-15",
+      "salaire": 48000,
+      "statut": "Actif",
+      "adresse": "89 rue Oberkampf, 75011 Paris",
+      "photo": "/images/personnel/dubois_emilie.jpg",
+      "competences": ["Négociation", "Prospection", "CRM", "Closing"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Rendez-vous clients (3)", "duree": 180 },
+        { "date": "2025-02-18", "description": "Prospection téléphonique", "duree": 240 },
+        { "date": "2025-02-19", "description": "Rédaction propositions commerciales", "duree": 120 }
+      ]
+    },
+    {
+      "id": 8,
+      "nom": "Lambert",
+      "prenom": "Antoine",
+      "email": "antoine.lambert@agence.com",
+      "telephone": "+33 6 89 01 23 45",
+      "poste": "Community Manager",
+      "departement": "Marketing",
+      "dateEmbauche": "2022-09-01",
+      "salaire": 42000,
+      "statut": "Actif",
+      "adresse": "23 rue des Abbesses, 75018 Paris",
+      "photo": "/images/personnel/lambert_antoine.jpg",
+      "competences": ["Réseaux sociaux", "Copywriting", "Outils d'analyse", "Photoshop"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Planification contenus", "duree": 120 },
+        { "date": "2025-02-18", "description": "Création posts Instagram", "duree": 180 },
+        { "date": "2025-02-19", "description": "Analyse performances", "duree": 90 }
+      ]
+    },
+    {
+      "id": 9,
+      "nom": "Garcia",
+      "prenom": "Isabelle",
+      "email": "isabelle.garcia@agence.com",
+      "telephone": "+33 6 90 12 34 56",
+      "poste": "Assistante Administrative",
+      "departement": "Administration",
+      "dateEmbauche": "2020-06-15",
+      "salaire": 38000,
+      "statut": "Actif",
+      "adresse": "67 rue de la Roquette, 75011 Paris",
+      "photo": "/images/personnel/garcia_isabelle.jpg",
+      "competences": ["Organisation", "Suite Office", "Gestion d'agenda", "Accueil"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Gestion courrier", "duree": 60 },
+        { "date": "2025-02-18", "description": "Organisation déplacements", "duree": 120 },
+        { "date": "2025-02-19", "description": "Préparation dossiers", "duree": 180 }
+      ]
+    },
+    {
+      "id": 10,
+      "nom": "Roux",
+      "prenom": "Julien",
+      "email": "julien.roux@agence.com",
+      "telephone": "+33 6 01 23 45 67",
+      "poste": "Développeur Frontend",
+      "departement": "Technique",
+      "dateEmbauche": "2023-01-10",
+      "salaire": 45000,
+      "statut": "Actif",
+      "adresse": "42 rue Saint-Maur, 75011 Paris",
+      "photo": "/images/personnel/roux_julien.jpg",
+      "competences": ["HTML/CSS", "React", "JavaScript", "Responsive Design"],
+      "calendrierService": {
+        "2025-02-17": true,
+        "2025-02-18": true,
+        "2025-02-19": true,
+        "2025-02-20": true,
+        "2025-02-21": true,
+        "2025-02-22": false,
+        "2025-02-23": false
+      },
+      "activites": [
+        { "date": "2025-02-17", "description": "Intégration maquettes", "duree": 240 },
+        { "date": "2025-02-18", "description": "Correction bugs UI", "duree": 180 },
+        { "date": "2025-02-19", "description": "Optimisation performances", "duree": 120 }
+      ]
+    }
+  ],
+  "departements": [
+    "Marketing",
+    "Technique",
+    "Création",
+    "Finance",
+    "Ressources Humaines",
+    "Opérations",
+    "Ventes",
+    "Administration"
+  ],
+  "postes": [
+    "Directeur Marketing",
+    "Développeur Senior",
+    "Designer UX/UI",
+    "Comptable",
+    "Responsable RH",
+    "Chef de projet",
+    "Commerciale",
+    "Community Manager",
+    "Assistante Administrative",
+    "Développeur Frontend"
+  ],
+  "statuts": [
+    "Actif",
+    "Inactif",
+    "Congé",
+    "Formation"
+  ]
+}
