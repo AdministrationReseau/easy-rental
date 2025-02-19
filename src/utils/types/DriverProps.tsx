@@ -37,7 +37,7 @@ export interface DriverProps {
 export interface FilterDriverProps {
     ratingRange: [number, number];
     ageRange: [number, number];
-    location?: string; // Optional
+    location?: string;
 }
 
 export interface DriverListProps {

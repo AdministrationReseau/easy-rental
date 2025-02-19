@@ -9,6 +9,9 @@ import GroupIcon from '@mui/icons-material/Group';
 import Reviews from "../Reviews";
 import { CarProps } from "@/utils/types/CarProps";
 import Stars from "../Stars";
+import {Button, Dialog, DialogContent} from "@mui/material";
+import {CalendarIcon} from "lucide-react";
+import CusResourceCalendar from "@/components/CusResourceCalendar";
 
 export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
   
@@ -44,8 +47,10 @@ export const VehicleImage: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
 
 
 export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <div className=" bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
+    <div className="bg-white rounded-lg shadow-md p-4 w-full space-y-4 ">
       {/* Favorite Icon Placeholder */}
       <div className="absolute top-25 text-3xl right-16 text-gray-400 hover:text-red-500 cursor-pointer">
         ♥
@@ -57,13 +62,13 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
           {vehicle.brand} {vehicle.model}
         </h3>
         <span className='flex flex-row py-4 gap-2'>
-          <Stars value={vehicle.rating ?? 0} precision={1} />
-            {vehicle.reviews.length} + 
-            {vehicle.reviews.length === 1 || vehicle.reviews.length === 0? (
-              <>Reviewer</> 
-            ):
+          <Stars value={vehicle.rating ?? 0} precision={1}/>
+          {vehicle.reviews.length} +
+          {vehicle.reviews.length === 1 || vehicle.reviews.length === 0 ? (
+              <>Reviewer</>
+            ) :
             (
-            <>Reviewers</>
+              <>Reviewers</>
             )}
             
         </span>
@@ -92,6 +97,22 @@ export const VehicleInfo: React.FC<{ vehicle: CarProps }> = ({ vehicle }) => {
         </div>
       </div>
 
+      <div className="flex items-end justify-between pt-4">
+        <p className="text-gray-600 leading-relaxed">
+          Availability:
+        </p>
+        <Button onClick={() => setModalOpen(true)} className="gap-2  hover:text-primary-text">
+          <CalendarIcon className="h-5 w-5 text-blue-500"/>
+          See Scheduling
+        </Button>
+
+        <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
+          <DialogContent>
+            <CusResourceCalendar requestedResource={vehicle} showAddButton={false}/>
+          </DialogContent>
+        </Dialog>
+      </div>
+
       {/* Price and Button */}
       <div className="flex justify-between items-center py-4">
         <div>
@@ -116,14 +137,14 @@ interface FeatureProps {
   checked: boolean;
 }
 
-const CheckboxOne: React.FC<FeatureProps> = ({ name, checked }) => (
+const CheckboxOne: React.FC<FeatureProps> = ({name, checked}) => (
   <div className="flex items-center space-x-2">
-    <input type="checkbox" className="w-4 h-4" checked={checked} disabled />
+    <input type="checkbox" className="w-4 h-4" checked={checked} disabled/>
     <label className="text-sm">{name}</label>
   </div>
 );
 
-export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({ vehicleFeatures }) => {
+export const VehicleFeatures: React.FC<{ vehicleFeatures: Record<string, boolean> }> = ({vehicleFeatures}) => {
   const features = [
     "Air Condition",
     "Child Seat",
