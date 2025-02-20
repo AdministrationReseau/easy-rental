@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Favorite, FavoriteBorder, People, LocalGasStation, Speed } from '@mui/icons-material';
 import Image from 'next/image';
 import { CarProps } from '@/utils/types/CarProps';
-import  ShareIcon  from "@mui/icons-material/share";
+import {Share2Icon} from "lucide-react";
 
 interface LikeProps {
     isLiked: boolean;
@@ -49,10 +49,10 @@ const CarCard: React.FC<CarProps> = ({
             navigator.share(shareData).catch((error) => console.error("Erreur de partage :", error));
         } else {
             // Fallback pour les réseaux sociaux
-            const encodedUrl = encodeURIComponent(shareData.url);
+            // const encodedUrl = encodeURIComponent(shareData.url);
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + " " + shareData.url)}`;
-            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
-            const emailUrl = `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(shareData.text + " " + shareData.url)}`;
+            // const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+            // const emailUrl = `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(shareData.text + " " + shareData.url)}`;
     
             window.open(whatsappUrl, "_blank");
             // Ajoute d'autres réseaux sociaux ici si besoin
@@ -77,7 +77,7 @@ const CarCard: React.FC<CarProps> = ({
                     {brand} {model}
                 </h2>
                 <div className='flex flex-row gap-2 items-center'>
-                    <ShareIcon className='cursor-pointer' onClick={handleShare}/>
+                    <Share2Icon className='cursor-pointer' onClick={handleShare}/>
                     <LikeButton  isLiked={isLiked} onClick={toggleLike} />
                 </div>
                 
