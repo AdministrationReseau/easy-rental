@@ -241,7 +241,7 @@ import { PlayCircle } from '@mui/icons-material';
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div key={index} className=" flex flex-col justify-center items-center text-center">
-                <div className="bg-blue-100 h-[150px] w-[150px] rounded-full flex justify-center mb-4 flex justify-center items-center">
+                <div className="bg-blue-100 h-[150px] w-[150px] rounded-full flex justify-center mb-4 items-center">
                   {service.icon}
                 </div>
                 <h3 className="text-primary-text text-xl font-semibold mb-3">{service.title}</h3>
@@ -504,7 +504,7 @@ function Stats() {
 import Stars from "@/components/Stars";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { PauseCircle } from "lucide-react";
+// import { PauseCircle } from "lucide-react";
 
 const RentalSteps = () => {
   const [isVisible, setIsVisible] = useState(false);
