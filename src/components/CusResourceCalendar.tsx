@@ -51,12 +51,35 @@ const SchedulingCard: React.FC<SchedulingCardProps> = ({ requestedResource, show
 		type: "day-off",
 	});
 
+	// const handleAddSchedule = () => {
+	// 	if (newSchedule.start && newSchedule.end) {
+	// 		setScheduleData([...scheduleData, newSchedule]); // Add new schedule without replacing existing ones
+	// 		setModalOpen(false);
+	// 	}
+	// };
+
 	const handleAddSchedule = () => {
-		if (newSchedule.start && newSchedule.end) {
-			setScheduleData([...scheduleData, newSchedule]); // Add new schedule without replacing existing ones
-			setModalOpen(false);
+		if (!newSchedule.start || !newSchedule.end) return;
+
+		const newStart = new Date(newSchedule.start).setHours(0, 0, 0, 0);
+		const newEnd = new Date(newSchedule.end).setHours(0, 0, 0, 0);
+
+		// Check if the new schedule overlaps with existing schedules
+		const isOverlapping = scheduleData.some(({ start, end }) => {
+			const existingStart = new Date(start).setHours(0, 0, 0, 0);
+			const existingEnd = new Date(end).setHours(0, 0, 0, 0);
+			return !(newEnd < existingStart || newStart > existingEnd); // Overlapping condition
+		});
+
+		if (isOverlapping) {
+			alert("The selected date range is already scheduled or marked as a day-off.");
+			return;
 		}
+
+		setScheduleData([...scheduleData, newSchedule]);
+		setModalOpen(false);
 	};
+
 
 	const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
@@ -81,7 +104,8 @@ const SchedulingCard: React.FC<SchedulingCardProps> = ({ requestedResource, show
 						}
 						return null;
 					}}
-					tileDisabled={({ date }) => date < new Date()} // Disable past dates
+					// tileDisabled={({ date }) => date < new Date()} // Disable past dates
+					tileDisabled={({ date }) => date < new Date() || isDateInRange(date, scheduleData)}
 				/>
 
 				{/* Color Legend */}
