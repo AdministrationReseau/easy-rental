@@ -3,10 +3,10 @@ import CarCarousel from "@/components/CarCarousel";
 import Navbar from "@/components/organisation/NavBar";
 import Footer from "@/components/Footer";
 
-interface VideoPlayerProps {
-  videoUrl: string;
-  buttonText: string;
-}
+// interface VideoPlayerProps {
+//   videoUrl: string;
+//   buttonText: string;
+// }
 
 // const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl, buttonText }) => {
 //   const [isPlaying, setIsPlaying] = useState(false);
@@ -25,33 +25,34 @@ interface VideoPlayerProps {
 //     setIsPlaying(!isPlaying);
 //   };
 
-  return (
-    <div className="flex flex-col items-center gap-4">
-      <button
-        onClick={handlePlayPause}
-        className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
-        aria-label={isPlaying ? 'Pause' : 'Play'}
-      >
-        {isPlaying ? (
-          <PauseCircle className="mr-2" />
-        ) : (
-          <PlayCircle className="mr-2" />
-        )}
-        <span>{buttonText}</span>
-      </button>
+//   return (
+//     <div className="flex flex-col items-center gap-4">
+//       <button
+//         onClick={handlePlayPause}
+//         className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-colors"
+//         aria-label={isPlaying ? 'Pause' : 'Play'}
+//       >
+//         {isPlaying ? (
+//           <PauseCircle className="mr-2" />
+//         ) : (
+//           <PlayCircle className="mr-2" />
+//         )}
+//         <span>{buttonText}</span>
+//       </button>
 
-      <video
-        ref={(el) => setVideoElement(el)}
-        className="w-full max-w-2xl rounded-lg"
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-      >
-        <source src={videoUrl} type="video/mp4" />
-        Votre navigateur ne supporte pas la lecture de vidéos.
-      </video>
-    </div>
-  );
-};
+//       <video
+//         ref={(el) => setVideoElement(el)}
+//         className="w-full max-w-2xl rounded-lg"
+//         onPlay={() => setIsPlaying(true)}
+//         onPause={() => setIsPlaying(false)}
+//       >
+//         <source src={videoUrl} type="video/mp4" />
+//         Votre navigateur ne supporte pas la lecture de vidéos.
+//       </video>
+//     </div>
+//   );
+// };
+
 export default function Home() {
   return (
     <main className="bg-whitish-background">
