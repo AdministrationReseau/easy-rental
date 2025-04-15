@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import "./globals.css";
 import ThemeProviderWrapper from "@/providers/ThemeProviderWrapper";
 import {ToastProvider} from "@/components/ui/use-toast";
+import { Analytics } from "@vercel/analytics/react"
 // import { BonusProvider } from "@/context/BonusContext";
 
 export const metadata: Metadata = {
@@ -19,10 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <body> */}
+      
         <AppRouterCacheProvider>
           {/* <BonusProvider> */}
             <ToastProvider>
-            <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+              <ThemeProviderWrapper>
+                <Analytics/>
+                {children}
+              </ThemeProviderWrapper>
             </ToastProvider>
           {/* </BonusProvider> */}
         </AppRouterCacheProvider>
