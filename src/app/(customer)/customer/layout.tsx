@@ -1,16 +1,17 @@
 'use client';
 
 import React from "react";
-import NavBar from "@/components/organisation/NavBar";
+import ClientNavbar from "@/components/navbar/ClientNavbar"; // Changed import
 import Footer from "@/components/Footer";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function CustomerLayout({ children }: { children: React.ReactNode }) { // Renamed component
     return (
         <>
-            <div className="flex flex-col flex-grow bg-whitish-background h-full">
-                <NavBar />
+            <div className="flex flex-col flex-grow bg-whitish-background min-h-screen"> {/* Ensured min-h-screen */}
+                <ClientNavbar /> {/* Changed Navbar component */}
 
-                <main className="flex-grow p-6 mt-16">
+                {/* pt-16 to account for fixed navbar height */}
+                <main className="flex-grow p-6 pt-16">
                     {children}
                 </main>
 

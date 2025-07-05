@@ -1,6 +1,6 @@
 'use client'
 import CarCarousel from "@/components/CarCarousel";
-import Navbar from "@/components/organisation/NavBar";
+import GuestNavbar from "@/components/navbar/GuestNavbar"; // Changed import
 import Footer from "@/components/Footer";
 
 // interface VideoPlayerProps {
