@@ -281,13 +281,13 @@
 // export default AgencyDetail;
 
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AgencyProps } from '@/utils/types/AgencyProps';
 import Link from "next/link";
-import { CarProps } from "@/utils/types//CarProps";
+// import { CarProps } from "@/utils/types//CarProps";
 // import { RatingStars } from "@/components/ui/ratingStars";
 import { RatingStars } from "../ui/ratingStars";
-import { CarCard } from "@/components/organisation/CarCard";
+// import { CarCard } from "@/components/organisation/CarCard";
 import Image from "next/image";
 import AgencyVehiclesList from "../lists/AgencyVehiclesList";
 
@@ -485,87 +485,87 @@ const AboutSection = ({ description }: { description: string }) => {
   );
 };
 
-const AgencyVehicles = ({ agency }: { agency: AgencyProps }) => {
-  const [vehicles, setVehicles] = useState<CarProps[]>([]);
+// const AgencyVehicles = ({ agency }: { agency: AgencyProps }) => {
+//   const [vehicles, setVehicles] = useState<CarProps[]>([]);
 
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedVehicles = vehicles.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(vehicles.length / itemsPerPage);
+//   // Pagination
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const itemsPerPage = 8;
+//   const startIndex = (currentPage - 1) * itemsPerPage;
+//   const endIndex = startIndex + itemsPerPage;
+//   const paginatedVehicles = vehicles.slice(startIndex, endIndex);
+//   const totalPages = Math.ceil(vehicles.length / itemsPerPage);
 
-  useEffect(() => {
-    const fetchVehicles = async () => {
-      try {
-        const response = await fetch("/data/vehicles.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+//   useEffect(() => {
+//     const fetchVehicles = async () => {
+//       try {
+//         const response = await fetch("/data/cars.json");
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
 
-        const data: CarProps[] = await response.json();
+//         const data: CarProps[] = await response.json();
 
-        if (Array.isArray(data)) {
-          const filtered = data.filter(
-            (v) => v.agencyId === agency.id
-          );
-          setVehicles(filtered);
-        } else {
-          console.error("Invalid vehicles format:", data);
-        }
-      } catch (error) {
-        console.error("Error loading vehicles:", error);
-      }
-    };
+//         if (Array.isArray(data)) {
+//           const filtered = data.filter(
+//             (v) => v.agencyId === agency.id
+//           );
+//           setVehicles(filtered);
+//         } else {
+//           console.error("Invalid vehicles format:", data);
+//         }
+//       } catch (error) {
+//         console.error("Error loading vehicles:", error);
+//       }
+//     };
 
-    fetchVehicles();
-  }, [agency.id]);
+//     fetchVehicles();
+//   }, [agency.id]);
 
-  return (
-    <div className="mx-auto p-5 w-full">
-      <div className="gap-4 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {paginatedVehicles.length > 0 ? (
-          paginatedVehicles.map((vehicle) => (
-            <CarCard
-              key={vehicle.id}
-              {...vehicle}
-              favorite={false}
-              onLike={() => console.log(vehicle.id)}
-              onDislike={() => console.log(vehicle.id)}
-            />
-          ))
-        ) : (
-          <p className="col-span-full text-center text-gray-500">
-            No vehicles available.
-          </p>
-        )}
-      </div>
+//   return (
+//     <div className="mx-auto p-5 w-full">
+//       <div className="gap-4 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+//         {paginatedVehicles.length > 0 ? (
+//           paginatedVehicles.map((vehicle) => (
+//             <CarCard
+//               key={vehicle.id}
+//               {...vehicle}
+//               favorite={false}
+//               onLike={() => console.log(vehicle.id)}
+//               onDislike={() => console.log(vehicle.id)}
+//             />
+//           ))
+//         ) : (
+//           <p className="col-span-full text-center text-gray-500">
+//             No vehicles available.
+//           </p>
+//         )}
+//       </div>
       
-      {vehicles.length > itemsPerPage && (
-        <div className="flex justify-center items-center mt-6 space-x-4">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-4 py-2 bg-gray-200 text-gray-600 dark:text-text-dark rounded hover:bg-gray-300 disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="text-gray-600 dark:text-text-dark">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-4 py-2 bg-gray-200 text-gray-600 dark:text-text-dark rounded hover:bg-gray-300 disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
+//       {vehicles.length > itemsPerPage && (
+//         <div className="flex justify-center items-center mt-6 space-x-4">
+//           <button
+//             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+//             disabled={currentPage === 1}
+//             className="px-4 py-2 bg-gray-200 text-gray-600 dark:text-text-dark rounded hover:bg-gray-300 disabled:opacity-50"
+//           >
+//             Previous
+//           </button>
+//           <span className="text-gray-600 dark:text-text-dark">
+//             Page {currentPage} of {totalPages}
+//           </span>
+//           <button
+//             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+//             disabled={currentPage === totalPages}
+//             className="px-4 py-2 bg-gray-200 text-gray-600 dark:text-text-dark rounded hover:bg-gray-300 disabled:opacity-50"
+//           >
+//             Next
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
 export const AgencyDetail = ({ agency }: { agency: AgencyProps }) => {
   const staffMembers = [
@@ -610,7 +610,7 @@ export const AgencyDetail = ({ agency }: { agency: AgencyProps }) => {
 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
         <h3 className="text-2xl font-bold mb-6 text-center dark:text-text-dark">Our Vehicle Fleet</h3>
-        <AgencyVehicles agency={agency} />
+        {/* <AgencyVehicles agency={agency} />  */}
 
         <AgencyVehiclesList agency={agency}/>
       </div>

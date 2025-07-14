@@ -225,103 +225,115 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
 
     return (
       <div
-        ref={forwardedRef}
-        className={cx("h-40 w-40", className)}
-        tremor-id="tremor-raw"
-        {...other}
-      >
-        <ResponsiveContainer className="size-full">
-          <ReChartsDonutChart
-            onClick={
-              onValueChange && activeIndex !== undefined
-                ? () => {
-                    setActiveIndex(undefined)
-                    onValueChange(null)
-                  }
-                : undefined
+  ref={forwardedRef}
+  className={cx(
+    "h-40 w-40 transition-all duration-300 ease-in-out",
+    className
+  )}
+  tremor-id="tremor-raw"
+  {...other}
+>
+  <ResponsiveContainer className="size-full">
+    <ReChartsDonutChart
+      onClick={
+        onValueChange && activeIndex !== undefined
+          ? () => {
+              setActiveIndex(undefined);
+              onValueChange(null);
             }
-            margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
-          >
-            {showLabel && isDonut && (
-              <text
-                className="fill-gray-700 dark:fill-gray-300"
-                x="50%"
-                y="50%"
-                textAnchor="middle"
-                dominantBaseline="middle"
-              >
-                {parsedLabelInput}
-              </text>
-            )}
-            <Pie
-              className={cx(
-                "stroke-white dark:stroke-gray-950 [&_.recharts-pie-sector]:outline-none",
-                onValueChange ? "cursor-pointer" : "cursor-default",
-              )}
-              data={parseData(data, categoryColors, category)}
-              cx="50%"
-              cy="50%"
-              startAngle={90}
-              endAngle={-270}
-              innerRadius={isDonut ? "60%" : "0%"}
-              outerRadius="100%"
-              stroke=""
-              strokeLinejoin="round"
-              dataKey={value}
-              nameKey={category}
-              isAnimationActive={false}
-              onClick={handleShapeClick}
-              activeIndex={activeIndex}
-              inactiveShape={renderInactiveShape}
-              style={{ outline: "none" }}
-            />
-            {showTooltip && (
-              <Tooltip
-                wrapperStyle={{ outline: "none" }}
-                isAnimationActive={false}
-                content={({ active, payload }) => {
-                  const cleanPayload = payload
-                    ? payload.map((item: any) => ({
-                        category: item.payload[category],
-                        value: item.value,
-                        color: categoryColors.get(
-                          item.payload[category],
-                        ) as AvailableChartColorsKeys,
-                      }))
-                    : []
+          : undefined
+      }
+      margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+    >
+      {/* Étiquette centrale */}
+      {showLabel && isDonut && (
+        <text
+          className="fill-gray-700 dark:fill-gray-300 font-medium text-sm"
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {parsedLabelInput}
+        </text>
+      )}
 
-                  const payloadCategory: string = cleanPayload[0]?.category
+      {/* Secteurs du donut */}
+      <Pie
+        className={cx(
+          "stroke-white dark:stroke-gray-950 transition-opacity duration-200",
+          "[&_.recharts-pie-sector]:outline-none",
+          onValueChange ? "cursor-pointer hover:opacity-90" : "cursor-default"
+        )}
+        data={parseData(data, categoryColors, category)}
+        cx="50%"
+        cy="50%"
+        startAngle={90}
+        endAngle={-270}
+        innerRadius={isDonut ? "60%" : "0%"}
+        outerRadius="100%"
+        stroke=""
+        strokeLinejoin="round"
+        dataKey={value}
+        nameKey={category}
+        isAnimationActive={false}
+        onClick={handleShapeClick}
+        activeIndex={activeIndex}
+        inactiveShape={renderInactiveShape}
+        style={{ outline: "none" }}
+      />
 
-                  if (
-                    tooltipCallback &&
-                    (active !== prevActiveRef.current ||
-                      payloadCategory !== prevCategoryRef.current)
-                  ) {
-                    tooltipCallback({
-                      active,
-                      payload: cleanPayload,
-                    })
-                    prevActiveRef.current = active
-                    prevCategoryRef.current = payloadCategory
-                  }
+      {/* Tooltip élégant */}
+      {showTooltip && (
+        <Tooltip
+          wrapperStyle={{ outline: "none" }}
+          isAnimationActive={false}
+          content={({ active, payload }) => {
+            const cleanPayload = payload
+              ? payload.map((item: any) => ({
+                  category: item.payload[category],
+                  value: item.value,
+                  color: categoryColors.get(
+                    item.payload[category]
+                  ) as AvailableChartColorsKeys,
+                }))
+              : [];
 
-                  return showTooltip && active ? (
-                    CustomTooltip ? (
-                      <CustomTooltip active={active} payload={cleanPayload} />
-                    ) : (
-                      <ChartTooltip
-                        active={active}
-                        payload={cleanPayload}
-                        valueFormatter={valueFormatter}
-                      />
-                    )
-                  ) : null
-                }}
-              />
-            )}
-          </ReChartsDonutChart>
-        </ResponsiveContainer>
-      </div>
+            const payloadCategory: string = cleanPayload[0]?.category;
+
+            if (
+              tooltipCallback &&
+              (active !== prevActiveRef.current ||
+                payloadCategory !== prevCategoryRef.current)
+            ) {
+              tooltipCallback({
+                active,
+                payload: cleanPayload,
+              });
+              prevActiveRef.current = active;
+              prevCategoryRef.current = payloadCategory;
+            }
+
+            return showTooltip && active ? (
+              CustomTooltip ? (
+                <CustomTooltip
+                  active={active}
+                  payload={cleanPayload}
+                />
+              ) : (
+                <ChartTooltip
+                  active={active}
+                  payload={cleanPayload}
+                  valueFormatter={valueFormatter}
+                />
+              )
+            ) : null;
+          }}
+        />
+      )}
+    </ReChartsDonutChart>
+  </ResponsiveContainer>
+</div>
     )
   },
 )

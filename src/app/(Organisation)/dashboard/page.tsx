@@ -203,52 +203,90 @@ const Dashboard = () => {
     }, [locationsDetailsData]);
 
     return (
-        <div className='h-full w-[100%] flex flex-col gap-4 rounded-md'>
-            <div className='w-full h-12 p-4 flex flex-row items-center justify-between'>
-                <div>
-                    <h2 className='text-2xl font-bold'>Your statistics</h2>
-                    <div className='text-gray-600 text-sm'>
-                        Here are some data about your agency !
+        <div className="min-h-screen w-full bg-gray-50 p-6">
+            {/* Header */}
+            <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-800">Your Statistics</h2>
+                <p className="text-gray-600 text-sm mt-1">
+                Here are some data about your agency!
+                </p>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <StatCard 
+                title="Total Cars" 
+                value={`${cars.length}`} 
+                icon={<CarRental style={{ color: '#005FFE', fontSize: '1.25rem' }} />} 
+                />
+                <StatCard 
+                title="Total Drivers" 
+                value={`${drivers.length}`} 
+                icon={<Person style={{ color: '#005FFE', fontSize: '1.25rem' }} />} 
+                />
+                <StatCard 
+                title="Location Gain" 
+                value={`${totalLocGain.toLocaleString()} XAF`} 
+                icon={<Money style={{ color: '#005FFE', fontSize: '1.25rem' }} />} 
+                />
+            </div>
+
+            {/* Main Charts Row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                {/* Revenue Chart */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all hover:shadow-md">
+                <Title 
+                    icon={<Money style={{ color: '#005FFE', fontSize: '1.25rem' }} />} 
+                    title="Location Gain Details"
+                />
+                <div className="h-64">
+                    <MyBarChart data={locationsDetailsData} />
+                </div>
+                </div>
+
+                {/* Availability Chart */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all hover:shadow-md">
+                <Title
+                    icon={
+                    <div className="flex gap-2">
+                        <CarRental style={{ color: '#005FFE', fontSize: '1.25rem' }} />
+                        <Person style={{ color: '#005FFE', fontSize: '1.25rem' }} />
                     </div>
+                    }
+                    title="Cars and Drivers Availability"
+                />
+                <div className="flex flex-col sm:flex-row gap-4 justify-between h-64">
+                    <div className="w-full sm:w-1/2">
+                    <MyDonutChart title="Cars" data={availableCarsData} defaultValue={cars.length} />
+                    </div>
+                    <div className="w-full sm:w-1/2">
+                    <MyDonutChart title="Drivers" data={availableDriversData} defaultValue={drivers.length} />
+                    </div>
+                </div>
                 </div>
             </div>
-            <div className='w-full h-full flex flex-col gap-8'>
-                <div className='grid grid-cols-2 xl:grid-cols-3 gap-8 w-4/5 mx-auto'>
-                    <StatCard title='Total Cars' value={`${cars.length}`} icon={<CarRental style={ {color: '#005FFE'} }/>} />
-                    <StatCard title='Total Drivers' value={`${drivers.length}`} icon={<Person style={ {color: '#005FFE'} }/>} />
-                    <StatCard title='Location Gain' value={`${totalLocGain} XAF`} icon={<Money style={ {color: '#005FFE'} }/>} className='w-4/5 mx-auto col-span-2 xl:col-span-1'/>
+
+            {/* Bottom Charts Row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Cars Performance */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all hover:shadow-md">
+                <Title 
+                    icon={<CarRental style={{ color: '#005FFE', fontSize: '1.25rem' }} />} 
+                    title="Top Performing Cars"
+                />
+                <MyBarList data={carsData} />
                 </div>
-                <div className='flex flex-col xl:flex-row gap-8 w-full justify-around items-center xl:items-start'>
-                    <div className="w-4/5 xl:w-3/5 bg-white border-t-2 border-primary-blue py-4 px-8 rounded-lg hover:bg-primary-blue/5">
-                        <Title icon={<Money style={ {color: '#005FFE'} }/>} title='Location Gain Details'/>
-                        <MyBarChart data={locationsDetailsData} />
-                    </div>
-                    <div className="flex flex-col bg-white border-t-2 border-primary-blue p-4 px-8 rounded-lg hover:bg-primary-blue/5">
-                        <Title
-                            icon={<div>
-                                <CarRental style={ {color: '#005FFE'} }/>
-                                <Person style={ {color: '#005FFE'} }/>
-                            </div>}
-                            title='Cars and Drivers Details'
-                        />
-                        <div className='flex gap-16'>
-                            <MyDonutChart title='Total Cars' data={availableCarsData} defaultValue={cars.length} />
-                            <MyDonutChart title='Total Drivers' data={availableDriversData} defaultValue={drivers.length} />
-                        </div>
-                    </div>
-                </div>
-                <div className='flex flex-col xl:flex-row gap-8 w-11/12 mx-auto justify-around items-center xl:items-start'>
-                    <div className="w-4/5 xl:w-3/5 bg-white border-t-2 border-primary-blue py-4 px-8 rounded-lg hover:bg-primary-blue/5">
-                        <Title icon={<CarRental style={ {color: '#005FFE'} }/>} title='Cars Location Details'/>
-                        <MyBarList data={carsData}/>
-                    </div>
-                    <div className="w-4/5 xl:w-3/5 bg-white border-t-2 border-primary-blue py-4 px-8 rounded-lg hover:bg-primary-blue/5">
-                        <Title icon={<Person style={ {color: '#005FFE'} }/>} title='Drivers Location Details'/>
-                        <MyBarList data={driversData}/>
-                    </div>
+
+                {/* Drivers Performance */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all hover:shadow-md">
+                <Title 
+                    icon={<Person style={{ color: '#005FFE', fontSize: '1.25rem' }} />} 
+                    title="Top Performing Drivers"
+                />
+                <MyBarList data={driversData} />
                 </div>
             </div>
-        </div>
+            </div>
     );
 };
 

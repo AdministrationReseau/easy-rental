@@ -55,115 +55,98 @@ function BarListInner<T>(
 
   return (
     <div
-      ref={forwardedRef}
-      className={cx("flex justify-between space-x-6", className)}
-      aria-sort={sortOrder}
-      tremor-id="tremor-raw"
-      {...props}
-    >
-      <div className="relative w-full divide-y divide-primary-blue/50 space-y-1.5">
-        {sortedData.map((item, index) => (
-          <Component
-            key={item.key ?? item.id}
-            onClick={() => {
-              onValueChange?.(item)
-            }}
+  ref={forwardedRef}
+  className={cx(
+    "flex justify-between gap-4 p-1",
+    className
+  )}
+  aria-sort={sortOrder}
+  tremor-id="tremor-raw"
+  {...props}
+>
+  <div className="relative w-full space-y-2">
+    {sortedData.map((item, index) => (
+      <Component
+        key={item.key ?? item.id}
+        onClick={() => onValueChange?.(item)}
+        className={cx(
+          "group w-full rounded-lg transition-all duration-300",
+          focusRing,
+          onValueChange && [
+            "cursor-pointer hover:shadow-md",
+            "hover:bg-gradient-to-r hover:from-primary-blue/5 hover:to-white"
+          ]
+        )}
+      >
+        <div className="relative h-full overflow-hidden rounded-lg">
+          {/* Barre de progression avec effet de profondeur */}
+          <div
             className={cx(
-              // base
-              "group w-full rounded",
-              // focus
-              focusRing,
-              onValueChange
-                ? [
-                    "!-m-0 cursor-pointer",
-                    // hover
-                    "hover:bg-gray-50 hover:dark:bg-gray-900",
-                  ]
-                : "",
+              "flex items-center h-full rounded-lg transition-all duration-700",
+              "bg-gradient-to-r from-primary-blue to-primary-blue/80",
+              onValueChange && "group-hover:from-primary-blue/90 group-hover:to-primary-blue/70",
+              {
+                "mb-0": index === sortedData.length - 1,
+                "animate-grow": showAnimation,
+              }
             )}
+            style={{
+              width: `${widths[index]}%`,
+              height: rowHeight === "h-8" ? "32px" : rowHeight === "h-9" ? "36px" : "40px",
+              boxShadow: "inset 0 2px 4px rgba(255,255,255,0.2)"
+            }}
           >
-            <div
-              className={cx(
-                // base
-                "flex items-center rounded-r transition-all",
-                rowHeight,
-                // background color
-                "bg-primary-blue/60",
-                onValueChange
-                  ? "group-hover:bg-primary-blue/50"
-                  : "",
-                // margin and duration
-                {
-                  "mb-0": index === sortedData.length - 1,
-                  "duration-800": showAnimation,
-                },
-              )}
-              style={{ width: `${widths[index]}%` }}
-            >
-              <div className={cx("absolute left-2 flex max-w-full pr-2")}>
+            {/* Contenu de l'item */}
+            <div className={cx(
+              "absolute left-3 right-3 flex items-center justify-between",
+              "text-white mix-blend-lighten"
+            )}>
+              <div className="flex items-center gap-3 max-w-[80%]">
+                <div className={cx(
+                  "flex-shrink-0 flex items-center justify-center",
+                  "rounded-full w-6 h-6 border-2 border-white/80",
+                  "bg-primary-blue/90 font-medium text-xs",
+                  "group-hover:bg-white group-hover:text-primary-blue",
+                  "transition-colors duration-300"
+                )}>
+                  {index + 1}
+                </div>
+                
                 {item.href ? (
                   <a
                     href={item.href}
-                    title={`Voir plus sur ` + `${item.name}`.toUpperCase()}
+                    title={`Voir ${item.name}`}
                     className={cx(
-                      // base
-                      "flex items-center gap-1 truncate whitespace-nowrap rounded-r-lg px-1 text-sm",
-                      // text color
-                      "text-gray-800 hover:text-white group",
-                      // bg color
-                      "hover:bg-emerald-500/50",
-                      // hover
-                      "hover:underline hover:underline-offset-2",
-                      // focus
-                      focusRing,
+                      "truncate font-medium text-sm",
+                      "hover:text-white hover:underline hover:underline-offset-2",
+                      "transition-all duration-200"
                     )}
                     rel="noreferrer"
-                    onClick={(event) => event.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    <div className="flex justify-center items-center border border-primary-blue group-hover:border-white rounded-full w-6 h-6">{index + 1}</div>
                     {item.name}
                   </a>
                 ) : (
-                  <p
-                    className={cx(
-                      // base
-                      "truncate whitespace-nowrap text-sm",
-                      // text color
-                      "text-gray-900 dark:text-gray-50",
-                    )}
-                  >
+                  <p className="truncate font-medium text-sm">
                     {item.name}
                   </p>
                 )}
               </div>
+              
+              <p className={cx(
+                "text-sm font-semibold min-w-[60px] text-right",
+                "text-white/90 group-hover:text-white",
+                "transition-colors duration-200"
+              )}>
+                {valueFormatter(item.value, item.amount)}
+              </p>
             </div>
-          </Component>
-        ))}
-      </div>
-      <div>
-        {sortedData.map((item, index) => (
-          <div
-            key={item.key ?? item.id}
-            className={cx(
-              "flex items-center justify-end",
-              rowHeight,
-              index === sortedData.length - 1 ? "mb-0" : "mb-1.5",
-            )}
-          >
-            <p
-              className={cx(
-                // base
-                "truncate whitespace-nowrap text-sm leading-none",
-                // text color
-                "text-gray-900",
-              )}
-            >
-              {valueFormatter(item.value, item.amount)}
-            </p>
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </Component>
+    ))}
+  </div>
+</div>
   )
 }
 

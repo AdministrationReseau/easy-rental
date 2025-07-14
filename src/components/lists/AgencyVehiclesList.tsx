@@ -13,7 +13,7 @@ const AgencyVehiclesList = ({ agency }: { agency: AgencyProps }) => {
   useEffect(() => {
     const fetchVehicles = async () => {
       try {
-        const response = await fetch("/data/vehicles.json");
+        const response = await fetch("/data/cars.json");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
