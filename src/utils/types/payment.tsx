@@ -1,3 +1,17 @@
+export interface Payment {
+    method: 'CARD' | 'MOBILE';
+    // Pour les paiements par carte
+    cardNumber?: string;
+    expiryMonth?: string;
+    expiryYear?: string;
+    cvc?: string;
+    cardName?: string;
+
+    // Pour les paiements mobile
+    phoneNumber?: string;
+    operatorCode?: string;
+}
+
 export type PaymentMethod = 'mtn' | 'orange' | 'card';
 
 export interface PaymentConfig {

@@ -1,5 +1,6 @@
 export interface CarProps {
     id: number;
+    agencyId: number;           // Required
     type?: string;                // Optional
     brand?: string;               // Optional
     model?: string;               // Optional

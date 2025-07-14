@@ -2,6 +2,7 @@
   "vehicles": [
     {
       "id": 1,
+      "agencyId": 1, 
       "type": "Car",
       "brand": "Toyota",
       "model": "Camry",
@@ -100,6 +101,7 @@
     },
     {
       "id": 2,
+      "agencyId": 1, 
       "type": "Motorcycle",
       "brand": "Harley-Davidson",
       "model": "Sportster",
@@ -198,6 +200,7 @@
     },
     {
       "id": 3,
+      "agencyId": 8, 
       "type": "Truck",
       "brand": "Ford",
       "model": "F-150",
@@ -296,6 +299,7 @@
     },
     {
       "id": 4,
+      "agencyId": 4, 
       "type": "SUV",
       "brand": "BMW",
       "model": "X5",
@@ -394,6 +398,7 @@
     },
     {
       "id": 5,
+      "agencyId": 3, 
       "type": "Van",
       "brand": "Mercedes-Benz",
       "model": "Metris",
@@ -492,6 +497,7 @@
     },
     {
       "id": 6,
+      "agencyId": 3, 
       "type": "Car",
       "brand": "Toyota",
       "model": "Camry",
@@ -590,6 +596,7 @@
     },
     {
       "id": 7,
+      "agencyId": 1, 
       "type": "Motorcycle",
       "brand": "Harley-Davidson",
       "model": "Sportster",
@@ -688,6 +695,7 @@
     },
     {
       "id": 8,
+      "agencyId": 3, 
       "type": "Truck",
       "brand": "Ford",
       "model": "F-150",
@@ -786,6 +794,7 @@
     },
     {
       "id": 9,
+      "agencyId": 2, 
       "type": "SUV",
       "brand": "BMW",
       "model": "X5",
@@ -884,6 +893,7 @@
     },
     {
       "id": 10,
+      "agencyId": 5, 
       "type": "Van",
       "brand": "Mercedes-Benz",
       "model": "Metris",
@@ -982,6 +992,7 @@
     },
     {
       "id": 11,
+      "agencyId": 7, 
       "type": "Car",
       "brand": "Toyota",
       "model": "Camry",
@@ -1080,6 +1091,7 @@
     },
     {
       "id": 12,
+      "agencyId": 1, 
       "type": "Motorcycle",
       "brand": "Harley-Davidson",
       "model": "Sportster",
@@ -1178,6 +1190,7 @@
     },
     {
       "id": 13,
+      "agencyId": 6, 
       "type": "Truck",
       "brand": "Ford",
       "model": "F-150",
@@ -1276,6 +1289,7 @@
     },
     {
       "id": 14,
+      "agencyId": 2, 
       "type": "SUV",
       "brand": "BMW",
       "model": "X5",
@@ -1374,6 +1388,7 @@
     },
     {
       "id": 15,
+      "agencyId": 5, 
       "type": "Van",
       "brand": "Mercedes-Benz",
       "model": "Metris",
@@ -1472,6 +1487,7 @@
     },
     {
       "id": 16,
+      "agencyId": 8, 
       "type": "Car",
       "brand": "Toyota",
       "model": "Camry",
@@ -1570,6 +1586,7 @@
     },
     {
       "id": 17,
+      "agencyId": 3, 
       "type": "Motorcycle",
       "brand": "Harley-Davidson",
       "model": "Sportster",
@@ -1668,6 +1685,7 @@
     },
     {
       "id": 18,
+      "agencyId": 4,
       "type": "Truck",
       "brand": "Ford",
       "model": "F-150",
@@ -1766,6 +1784,7 @@
     },
     {
       "id": 19,
+      "agencyId": 2,
       "type": "SUV",
       "brand": "BMW",
       "model": "X5",
@@ -1864,6 +1883,7 @@
     },
     {
       "id": 20,
+      "agencyId": 5,
       "type": "Van",
       "brand": "Mercedes-Benz",
       "model": "Metris",

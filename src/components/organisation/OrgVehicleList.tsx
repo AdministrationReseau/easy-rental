@@ -92,6 +92,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
             <CarCard
               key={vehicle.id}
               id={vehicle.id}
+              agencyId={vehicle.agencyId}
               images={vehicle.images}
               brand={vehicle.brand}
               rating={vehicle.rating}

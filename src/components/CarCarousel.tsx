@@ -53,6 +53,7 @@ const CarCarousel: React.FC = () => {
                         {/* <span className='mx-4'> */}
                         <CarCard
                             id={carData.id || 0} // Provide a fallback value
+                            agencyId={carData.agencyId || 0} // Fallback to 0 if agencyId is not provided
                             images={carData.images || []} // Handle undefined images
                             brand={carData.brand || 'Unknown Brand'}
                             model={carData.model || 'Unknown Model'}

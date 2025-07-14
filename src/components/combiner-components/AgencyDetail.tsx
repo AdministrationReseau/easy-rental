@@ -140,6 +140,7 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
             <CarCard
             key={vehicle.id}
             id={vehicle.id}
+            agencyId={vehicle.agencyId}
             images={vehicle.images}
             brand={vehicle.brand}
             rating={vehicle.rating}
