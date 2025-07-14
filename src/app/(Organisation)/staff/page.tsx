@@ -365,7 +365,7 @@ const PersonnelAdmin: React.FC = () => {
                                                 <TableCell>
                                                     <div className="relative h-10 w-10 rounded-full overflow-hidden">
                                                         <Image
-                                                            src={personnel.photo}
+                                                            src="/personne.png"
                                                             alt={`${personnel.prenom} ${personnel.nom}`}
                                                             fill
                                                             className="object-cover"

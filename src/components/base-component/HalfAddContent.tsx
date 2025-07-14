@@ -32,11 +32,11 @@ const HalfAddContent: React.FC<HalfAddProps> = ({
             />
 
             <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 text-white">
-                <h2 className="text-xl md:text-2xl font-bold mb-2">{title}</h2>
+                <h2 className="text-xl md:text-4xl font-bold mb-2">{title}</h2>
                 <p className="text-sm md:text-base mb-4">{description}</p>
                 <Link
                     href={buttonLink}
-                    className={`${buttonColor} text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition w-[200px]`}
+                        className={`w-[120px] p-3 rounded-2xl ${buttonColor}`}
                 >
                     {buttonText}
                 </Link>

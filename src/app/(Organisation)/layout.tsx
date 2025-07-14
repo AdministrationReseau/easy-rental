@@ -1,27 +1,23 @@
 'use client';
 
 import React from "react";
-import OrgSidebar from "@/components/OrgSidebar";
+import OrganizationSidebar from "@/components/sidebar/OrganizationSidebar";
 import NavOrg from "@/components/organisation/NavOrg";
 
 export default function Layout({children }: { children: React.ReactNode }) {
     return (
         <>
-            <div className="flex h-screen">
-                <div>
-                    <OrgSidebar/>
-                </div>
-
-                <div className="flex flex-col flex-grow">
-                    <NavOrg/>
-
-                    <div className="flex-grow overflow-y-auto bg-gray-90 p-1 ">
-                        {children}
-                    </div>
-
+            <div className="flex h-screen flex-col">
+                <NavOrg/>
+                <div className="flex h-[calc(100vh-60px)]">
+                    <OrganizationSidebar/>
+                    <main className="w-full md:ml-64 pb-[70px] md:pb-0 overflow-y-auto">
+                        <div className="p-6">
+                            {children}
+                        </div>
+                    </main>
                 </div>
             </div>
-
         </>
     )
 }

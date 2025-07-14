@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState, useRef, ReactElement } from 'react';
 import Navbar from "@/components/organisation/NavBar";
 import Footer from "@/components/Footer";
 import Image from 'next/image';
@@ -7,8 +8,19 @@ import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { PlayCircle } from 'lucide-react';
 import { BsSearch, BsFillCalendarCheckFill } from 'react-icons/bs';
-import { FaCar } from 'react-icons/fa';
+import { FaCar, FaCheck } from 'react-icons/fa';
 import ServiceCard from "@/components/ServiceCard"
+import { FormatQuote } from '@mui/icons-material';
+import React, { useMemo} from "react";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import Stars from "@/components/Stars";
+import { useInView, UseInViewOptions } from "framer-motion";
+import { FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaShieldAlt, FaHeadset, FaMobileAlt } from 'react-icons/fa';
+
 
 export default function Home() {
   return (
@@ -16,11 +28,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       <HowItWorks/>
-
       <Services />
-      <DriverCTA />
+      <Features />
       <Testimonials />
-      <PodcastSection />
+      <Organization/>
+      <Partners/>
+      <Team />
       <Stats />
       <Footer />
     </main>
@@ -32,9 +45,9 @@ export default function Home() {
 
   return (
     <div
-      className="md:pt-[120px] h-[100vh] flex flex-col lg:flex-row items-center justify-between bg-cover bg-center bg-[url('/assets/Ads3.png')] "
+      className="md:pt-[120px] pt-[50px] h-[100vh] flex flex-col lg:flex-row items-center justify-between bg-cover bg-center bg-[url('/assets/Ads3.png')] "
     >
-      <div className="w-full lg:w-1/2 space-y-6 lg:pl-10">
+      <div className="px-4 w-full lg:w-1/2 space-y-6 lg:pl-10">
         <h1 className="text-5xl lg:text-6xl mb-5 font-bold text-whitish-background leading-tight">
           Fast & Easy Rental <br/>
           <span className="animate-text-glow text-primary-blue">Made Easy</span>
@@ -170,7 +183,7 @@ export default function Home() {
     ];
 
     return (
-      <div className="bg-background-light dark:bg-background-dark items-center">
+      <div className="-ml-16 bg-background-light dark:bg-background-dark items-center">
         <div className="text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4 text-text-light dark:text-text-dark"
@@ -212,52 +225,6 @@ export default function Home() {
       </div>
     );
   };
-
-  // components/DriverCTA.tsx
-   function DriverCTA() {
-    return (
-      <section className="relative m-8 ">
-        <div
-          className="absolute inset-0 rounded-md bg-cover bg-center z-0"
-          style={{ backgroundImage: "url('/Ads 2.png')" }}
-        >
-        </div>
-
-
-        <div className="container flex flex-col md:flex-row md:justify-center items-center mx-auto px-4 my-auto relative z-10">
-          <div className="h-[430px]">
-            <Image
-                src="/customer.png"
-                alt="become locator"
-                width={400}
-                height={400}
-                objectFit="contain"
-                className="h-full w-auto"/>
-          </div>
-
-          <div className="md:w-1/2 ml-auto">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Do You Want To Earn With Us? So Don&apos;t Be Late.
-            </h2>
-            <Link href="/drivers">
-              <button className="bg-secondary-blue text-white px-8 py-4 m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
-                Become A Driver
-              </button>
-            </Link>
-            <Link href="/agencies">
-              <button className="bg-secondary-blue text-white px-8 py-4  m-4 rounded-full shadow-lg text-lg hover:bg-opacity-90 transition">
-                Become An Agency
-              </button>
-            </Link>
-            <Link href="/customer"></Link>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // components/Testimonials.tsx
-  import { FormatQuote } from '@mui/icons-material';
 
   function Testimonials() {
     const testimonials = [
@@ -330,11 +297,7 @@ export default function Home() {
     );
   }
 
-  import React, {useRef, useMemo} from "react";
-  import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-  import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-  import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-  import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+
 function Stats() {
   // Mémoriser l'objet `stats` pour éviter qu'il change à chaque rendu
   const stats = useMemo(
@@ -458,82 +421,345 @@ function Stats() {
   );
 }
 
-import Stars from "@/components/Stars";
-import { useEffect, useState } from "react";
+
+const TeamMember = ({ name, role, bio, image, linkedin, twitter }: { name: string, role: string, bio: string, image: string, linkedin?: string, twitter?: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.2 } as UseInViewOptions);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="bg-card-light dark:bg-card-dark rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="h-64 relative overflow-hidden">
+        <Image
+          src={image}
+          fill
+          className="object-cover"
+          alt={name}
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-1 text-text-light dark:text-text-dark">{name}</h3>
+        <p className="text-primary-600 dark:text-primary-400 mb-3">{role}</p>
+        <p className="text-text-light-secondary dark:text-text-dark-secondary mb-4">{bio}</p>
+        <div className="flex space-x-4">
+          {linkedin && (
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary dark:hover:text-primary-300 transition-colors">
+              <FaLinkedin size={20} />
+            </a>
+          )}
+          {twitter && (
+            <a href={twitter} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary dark:hover:text-primary-300 transition-colors">
+              <FaTwitter size={20} />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const Team = () => {
+  return (
+    <div className="bg-background-whitish dark:bg-background-darkish">
+      <div className="text-center mb-16">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-4 text-text-light dark:text-text-dark"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Team
+        </motion.h2>
+        <motion.p
+          className="text-xl text-text-light-secondary dark:text-text-dark-secondary max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Meet the passionate individuals who make Easy Rental a reality
+        </motion.p>
+      </div>
+      <div className="md:w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <TeamMember
+          name="Prof. John Doe"
+          role="Supervising Professor"
+          bio="Information systems specialist with over 15 years of experience in teaching and research."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/jeandupont"
+          twitter="https://twitter.com/jeandupont"
+        />
+        <TeamMember
+          name="Marie Laurent"
+          role="Lead Engineer"
+          bio="Experienced engineer with expertise in web development and software architecture."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/marielaurent"
+          twitter="https://twitter.com/marielaurent"
+        />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <TeamMember
+          key="member1"
+          name="Lucas Martin"
+          role="Frontend Developer"
+          bio="Passionate about UX/UI and modern web technologies."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/lucasmartin"
+          twitter="https://twitter.com/lucasmartin"
+        />
+        <TeamMember
+          key="member2"
+          name="Sophie Bernard"
+          role="Backend Developer"
+          bio="Expert in databases and performance optimization."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/sophiebernard"
+          twitter="https://twitter.com/sophiebernard"
+        />
+        <TeamMember
+          key="member3"
+          name="Thomas Petit"
+          role="DevOps Engineer"
+          bio="Specialist in continuous integration and deployment."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/thomaspetit"
+          twitter="https://twitter.com/thomaspetit"
+        />
+        <TeamMember
+          key="member4"
+          name="Emma Leroy"
+          role="UI/UX Designer"
+          bio="Creative and passionate about user experience and accessibility."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/emmaleroy"
+          twitter="https://twitter.com/emmaleroy"
+        />
+        <TeamMember
+          key="member5"
+          name="Pierre Dubois"
+          role="QA Tester"
+          bio="Methodical and thorough, dedicated to software quality."
+          image="/assets/member.jpg"
+          linkedin="https://linkedin.com/in/pierredubois"
+          twitter="https://twitter.com/pierredubois"
+        />
+      </div>
+    </div>
+  );
+};
 
 
-function PodcastSection() {
-  const podcasts = [
-    {
-      image: "/fleet.png",
-      date: "Jan. 10, 2025",
-      host: "John Doe",
-      duration: "45 min",
-      title: "The Future of AI in Everyday Life",
-      description: "Discover how AI is shaping our daily routines and what the future holds.",
-      url: "/podcasts/future-of-ai"
-    },
-    {
-      image: "/fleet.png",
-      date: "Dec. 15, 2024",
-      host: "Jane Smith",
-      duration: "30 min",
-      title: "How to Stay Productive Working from Home",
-      description: "Tips and tricks to maximize your productivity while working remotely.",
-      url: "/podcasts/productivity-tips"
-    },
-    // Ajoutez d'autres podcasts ici...
+const FeatureCard = ({ icon, title, description }:{ icon: ReactElement, title: string, description: string}) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.2 }  as UseInViewOptions);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="bg-white dark:bg-surface-dark rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-border-light dark:border-border-dark"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="bg-primary-100  rounded-full w-16 h-16 flex items-center justify-center mb-6">
+        {React.cloneElement(icon, { className: "text-primary-blue dark:text-primary-900 text-3xl" })}
+      </div>
+      <h3 className="text-xl font-bold mb-3 text-primary-text dark:text-text-dark">{title}</h3>
+      <p className="text-secondary-text ">{description}</p>
+    </motion.div>
+  );
+};
+
+
+
+
+const Features = () => {
+  return (
+    <div className="bg-background-whitish dark:text-text-dark dark:bg-background-darkish p-6 my-12">
+      <div className="text-center mb-16">
+        <motion.h2
+          className="text-3xl font-bold"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Our Features
+        </motion.h2>
+        <motion.p
+          className="text-xl text-text-light-secondary dark:text-text-dark-secondary max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          Discover what makes our rental service simple and efficient
+        </motion.p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <FeatureCard
+          icon={<FaCar />}
+          title="Wide Range of Vehicles"
+          description="Access a diverse fleet of vehicles for all your travel needs, from compact cars to spacious SUVs."
+        />
+        <FeatureCard
+          icon={<FaShieldAlt />}
+          title="Guaranteed Safety"
+          description="All our vehicles are regularly inspected and maintained to ensure your safety on the road."
+        />
+        <FeatureCard
+          icon={<FaHeadset />}
+          title="24/7 Support"
+          description="Our team is available at any time to assist you and answer your questions or concerns."
+        />
+        <FeatureCard
+          icon={<FaMobileAlt />}
+          title="Mobile Application"
+          description="Manage your bookings, track your rentals, and access our services from your smartphone."
+        />
+      </div>
+    </div>
+
+  );
+};
+
+
+
+const Organization = () => {
+  // Définir les fonctionnalités comme tableau statique
+  const features = [
+    "Élargissez votre clientèle",
+    "Structure de commission flexible",
+    "Gestion des réservations en temps réel",
+    "Équipe de support dédiée"
   ];
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        {/* En-tête de la section */}
-        <div className="text-center mb-12">
-          <span className="text-primary text-sm uppercase tracking-wider">Podcasts</span>
-          <h2 className="text-3xl font-bold mt-2">Recent Podcasts</h2>
+    <div className="rounded-2xl bg-gradient-to-r from-primary-text to-secondary-text text-white m-6 px-4">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-4">
+        <div className="w-full md:w-1/2 mb-10 md:mb-0">
+          <h2 className="text-3xl font-bold mb-4 text-tahiti-600">Become a Partner Organization</h2>
+          <p className="text-gray-200 mb-6">
+            List your fleet on our platform and reach thousands of potential customers every day. Our streamlined system makes managing rentals simple and profitable.
+          </p>
+          <ul className="space-y-3 mb-8">
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-center gap-2 ">
+                <FaCheck className="text-blue-text" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/subscription">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white text-primary-text font-semibold rounded-full shadow-md transition-all duration-300"
+            >
+              Sign Up as an Organization
+            </motion.button>
+          </Link>
+
         </div>
-
-        {/* Grille des podcasts */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {podcasts.map((podcast, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg">
-              {/* Image du podcast */}
-              <div
-                className="h-48 bg-cover bg-center"
-                style={{ backgroundImage: `url(${podcast.image})` }}
-              />
-
-              {/* Contenu du podcast */}
-              <div className="p-4">
-                <div className="flex items-center text-gray-500 text-sm mb-4">
-                  <span>{podcast.date}</span>
-                  <span className="mx-2">•</span>
-                  <span>{podcast.host}</span>
-                  <span className="mx-2">•</span>
-                  <span>{podcast.duration}</span>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <div className="relative w-full h-[400px] md:h-[500px]">
+            <Image
+              src="/assets/fleet.png"
+              alt="Organization Fleet"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="rounded-3xl shadow-2xl"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="absolute -bottom-5 -right-5 md:bottom-10 md:-right-10 bg-white dark:bg-background-darkish p-6 rounded-3xl shadow-2xl max-w-xs"
+            >
+              <h3 className="text-xl font-semibold text-text-primary dark:text-white mb-2">
+                Join Over 500 Organizations
+              </h3>
+              <p className="text-secondary-text dark:text-gray text-sm">
+                &ldquo;Our partnership with Easy-Rent increased our bookings by 60% in the first quarter!&rdquo;
+              </p>
+              <div className="mt-3 flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-gray-200"></div>
+                <div>
+                  <p className="text-secondary-text dark:text-white font-medium text-sm">
+                    John Doe
+                  </p>
+                  <p className="text-secondary-text dark:text-gray-400 text-xs">
+                    CEO, Premium Rides
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-2">
-                  <Link href={podcast.url} className="hover:text-primary">
-                    {podcast.title}
-                  </Link>
-                </h3>
-                <p className="text-gray-700 mb-4">
-                  {podcast.description}
-                </p>
-                <Link
-                  href={podcast.url}
-                  className="text-primary hover:text-primary-dark font-semibold"
-                >
-                  Listen Now <PlayCircle className="mr-2" />
-
-                </Link>
               </div>
-            </div>
-          ))}
+            </motion.div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+
   );
+};
+
+
+interface Partner {
+  name: string;
+  logo: string;
 }
+const Partners = () => {
+  // Liste des partenaires statiques
+  const partnersList: Partner[] = [
+    {
+      name: "Alicya Auto",
+      logo: "/assets/rental2.png"
+    },
+    {
+      name: "VIP Cars",
+      logo: "/assets/rental3.png"
+    },
+    {
+      name: "Polycom Sarl",
+      logo: "/assets/rental4.png"
+    }
+  ];
+
+  return (
+    <div>
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-text-primary dark:text-text-dark mb-4">
+          Our Partners
+        </h2>
+        <p className="text-text-secondary dark:text-gray-400 max-w-2xl mx-auto">
+          Trusted by leading vehicle rental agencies
+        </p>
+      </div>
+      <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+        {partnersList.map((partner) => (
+          <motion.div
+            key={partner.name}
+            whileHover={{ scale: 1.1 }}
+            className="rounded-lg w-80 flex flex-col items-center justify-center dark:bg-white"
+          >
+            <Image
+              src={partner.logo}
+              alt={partner.name}
+              width={120}
+              height={120}
+              className="object-contain"
+            />
+            <span className="text-gray-500 dark:text-gray-400 font-semibold mt-2">{partner.name}</span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
+
+
 

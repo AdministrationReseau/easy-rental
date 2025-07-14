@@ -17,7 +17,7 @@ const Navbar = () => {
         { href: "/customer/cars", label: "Vehicles" },
         { href: "/customer/agencies", label: "Agencies" },
         { href: "/customer/contact", label: "Contact" },
-        { href: "/customer/about", label: "About Us" },
+        // { href: "/customer/about", label: "About Us" },
     ];
 
     return (

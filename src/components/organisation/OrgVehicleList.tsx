@@ -125,7 +125,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
       </div>
 
       {/* Grille de véhicules avec dimensions fixes */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 justify-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 justify-items-center">
         {isLoading ? (
           <div className="col-span-full flex justify-center items-center h-64">
             <Loader2 className="animate-spin mr-2" size={30} />

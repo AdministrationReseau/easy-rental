@@ -50,6 +50,15 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
     return <p>Loading drivers...</p>;
   }
 
+  const handleEdit = (id: number) => {
+    // Logic to handle edit
+    console.log(`Edit driver with id: ${id}`);
+  };
+
+  const handleDelete = (id: number) => {
+    // Logic to handle delete
+    console.log(`Delete driver with id: ${id}`);
+  };
   const handleDriverSelection = (driver: DriverProps | null) => {
     setSelectedDriver(driver);
     onSelectedDriversChange(driver);
@@ -59,12 +68,19 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
     <div className="flex flex-row gap-4 overflow-x-auto">
       {filteredDrivers.length > 0 ? (
         filteredDrivers.map((driver, index) => (
-          <DriverCard
-            key={index}
-            {...driver}
-            onSelect={() => handleDriverSelection(selectedDriver?.id === driver.id ? null : driver)}
-            isSelected={selectedDriver?.id === driver.id}
-          />
+        //   <DriverCard
+        // key={index}
+        //     {...driver}
+        //     onSelect={() => handleDriverSelection(selectedDriver?.id === driver.id ? null : driver)}
+        //     isSelected={selectedDriver?.id === driver.id}          />
+              <DriverCard
+                key={index}
+                {...driver}
+                onSelect={handleDriverSelection}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                isSelected={false} // Adjust this based on your logic
+              />
         ))
       ) : (
         <p className="col-span-full text-center text-gray-500">

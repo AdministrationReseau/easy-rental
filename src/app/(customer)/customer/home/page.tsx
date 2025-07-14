@@ -1,5 +1,5 @@
 'use client'
-import LocationFilter from "@/components/LocationFilter";
+
 import React, {useEffect, useState} from "react";
 import VehicleList from "@/components/customer/VehicleList";
 import {CarProps, FilterVehicleProps} from "@/utils/types/CarProps";
@@ -91,8 +91,6 @@ export default function Home() {
 
 
                 <div className="w-full flex justify-center items-center flex-col">
-                    <LocationFilter/>
-
                     <div>
                         <div className="mx-5 flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
