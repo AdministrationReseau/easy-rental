@@ -102,8 +102,8 @@ const AgencyVehicles: React.FC<{ agency: AgencyProps }> = ({ agency }) => {
   const id_agency = agency.id;
 
   // Pagination
-    const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-    const itemsPerPage = 8; // Nombre d'éléments par page
+    const [currentPage, setCurrentPage] = useState(1); // État pour la info actuelle
+    const itemsPerPage = 8; // Nombre d'éléments par info
   
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;

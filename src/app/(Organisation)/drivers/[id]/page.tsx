@@ -85,25 +85,6 @@ export default function ResourceProfilPage() {
 			{/* Header */}
 			<DriverHeader requestedDriver={requestedDriver} differenceEnAnnees={differenceEnAnnees} />
 
-			{/* Tabs for Details and Activity */}
-			{/*<Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">*/}
-			{/*	<TabsList className="grid w-full grid-cols-2">*/}
-			{/*		<TabsTrigger value="details">Details</TabsTrigger>*/}
-			{/*		<TabsTrigger value="activity">Activity</TabsTrigger>*/}
-			{/*	</TabsList>*/}
-
-			{/*	/!* Details Tab Content *!/*/}
-			{/*	<TabsContent value="details" className="space-y-4 flex fle-col md:flex-row justify-between">*/}
-			{/*		<OrgDriverDetail requestedDriver={requestedDriver} />*/}
-
-			{/*		<OrgDriverCalendar requestedResource={requestedDriver} />*/}
-			{/*	</TabsContent>*/}
-
-			{/*	/!* Activity Tab Content *!/*/}
-			{/*	<TabsContent value="activity" className="space-y-4">*/}
-			{/*		<DriverRentalHistory requestedDriverHistory = {requestedDriverHistory}/>*/}
-			{/*	</TabsContent>*/}
-			{/*</Tabs>*/}
 		</div>
 	);
 }

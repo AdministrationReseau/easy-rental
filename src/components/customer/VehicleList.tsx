@@ -5,8 +5,8 @@ import { CarCard } from '@/components/CarCard';
 import { VehicleListProps } from '@/utils/types/CarProps';
 
 const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
-  const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 6; // Nombre d'éléments par page
+  const [currentPage, setCurrentPage] = useState(1); // État pour la info actuelle
+  const itemsPerPage = 6; // Nombre d'éléments par info
 
   // Filtrer les véhicules selon les critères
   const filteredVehicles = vehicles.filter((vehicle) => {

@@ -5,8 +5,8 @@ import { DriverListProps } from '@/utils/types/DriverProps';
 import DriverCard from './DriverCard';
 
 const OrgDriverList: React.FC<DriverListProps> = ({ drivers, filters }) => {
-  const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 8; // Nombre d'éléments par page
+  const [currentPage, setCurrentPage] = useState(1); // État pour la info actuelle
+  const itemsPerPage = 8; // Nombre d'éléments par info
 
   // Filtrer les véhicules selon les critères
   const filteredDrivers = drivers.filter((driver) => {

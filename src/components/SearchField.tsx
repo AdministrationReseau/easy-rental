@@ -22,27 +22,12 @@ const SearchField: React.FC<SearchFieldProps> = ({
     };
 
     return (
-        <div className="flex items-center w-full max-w-[500px] rounded-full border border-gray-300 bg-whitish-background px-2 py-2 shadow-sm ">
-            {/* Icône de loupe */}
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-4 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-            >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8 16l-4-4m0 0l4-4m-4 4h16"
-                />
-            </svg>
+        <div className="flex items-center w-full rounded-full border border-gray-300 bg-whitish-background px-2 py-2 shadow-sm ">
 
             {/* Champ de recherche */}
             <input
                 type="text"
-                className="flex-1 bg-transparent outline-none placeholder-gray-500 text-primary-text"
+                className="flex-1 ml-4 bg-transparent outline-none placeholder-gray-500 text-primary-text"
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handleInputChange}
@@ -52,27 +37,6 @@ const SearchField: React.FC<SearchFieldProps> = ({
                     }
                 }}
             />
-
-            {/* Icône de filtre */}
-            <button
-                className="-ml-2 text-gray-400 hover:text-primary-blue focus:outline-none"
-                onClick={handleSearch}
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10 6h4M6 10h12M8 14h8"
-                    />
-                </svg>
-            </button>
         </div>
     );
 };

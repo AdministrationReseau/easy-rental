@@ -35,7 +35,7 @@ const Location = () => {
     return (
         <div>
             <main>
-                <div className="mt-[20px]">
+                <div className="m-[20px]">
                     <LocationListProfile locations={locations} />
                 </div>
             </main>

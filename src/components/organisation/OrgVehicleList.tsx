@@ -175,7 +175,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
       {filteredVehicles.length > itemsPerPage && (
         <div className="flex justify-center items-center mt-10 overflow-x-auto">
           <nav className="inline-flex rounded-md shadow-sm" aria-label="Pagination">
-            {/* Bouton première page (desktop) */}
+            {/* Bouton première info (desktop) */}
             <button
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
@@ -186,7 +186,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
               <ChevronLeft className="h-4 w-4" />
             </button>
 
-            {/* Bouton page précédente */}
+            {/* Bouton info précédente */}
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
@@ -196,7 +196,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
               <ChevronLeft className="h-4 w-4" />
             </button>
 
-            {/* Numéros de page */}
+            {/* Numéros de info */}
             <div className="hidden sm:flex">
               {generatePageNumbers().map((pageNum) => (
                 <button
@@ -214,12 +214,12 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
               ))}
             </div>
 
-            {/* Indicateur de page mobile */}
+            {/* Indicateur de info mobile */}
             <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium sm:hidden">
               {currentPage} / {totalPages}
             </span>
 
-            {/* Bouton page suivante */}
+            {/* Bouton info suivante */}
             <button
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
@@ -229,7 +229,7 @@ const OrgVehicleList: React.FC<VehicleListProps> = ({ vehicles, setVehicles, fil
               <ChevronRight className="h-4 w-4" />
             </button>
 
-            {/* Bouton dernière page (desktop) */}
+            {/* Bouton dernière info (desktop) */}
             <button
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}

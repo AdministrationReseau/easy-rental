@@ -17,8 +17,8 @@ const isAgencyOpen = (agency: AgencyProps) => {
 };
 
 const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
-  const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 6; // Nombre d'éléments par page
+  const [currentPage, setCurrentPage] = useState(1); // État pour la info actuelle
+  const itemsPerPage = 6; // Nombre d'éléments par info
 
   const filteredAgencies = agencies.filter((agency) => {
     if (!agency) return false;

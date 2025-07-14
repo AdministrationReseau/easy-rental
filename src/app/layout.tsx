@@ -4,6 +4,7 @@ import "./globals.css";
 import ThemeProviderWrapper from "@/providers/ThemeProviderWrapper";
 import {ToastProvider} from "@/components/ui/use-toast";
 import { Analytics } from "@vercel/analytics/react"
+import {BreadcrumbProvider} from "@/providers/BreadcrumbContext";
 // import { BonusProvider } from "@/context/BonusContext";
 
 export const metadata: Metadata = {
