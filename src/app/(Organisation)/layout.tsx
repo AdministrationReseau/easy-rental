@@ -12,7 +12,7 @@ export default function Layout({children }: { children: React.ReactNode }) {
                     <OrganizationSidebar/>
                 </div>
 
-                <div className="flex flex-col flex-grow ml-64">
+                <div className="flex flex-col flex-grow">
                     <NavOrg/>
 
                     <div className="flex-grow overflow-y-auto bg-gray-90 p-6 ">

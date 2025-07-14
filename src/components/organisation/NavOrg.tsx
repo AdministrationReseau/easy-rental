@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, Notifications, Tune, Menu, Close } from "@mui/icons-material";
+import { Search, Tune, Menu, Close  } from "@mui/icons-material";
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import Link from "next/link";
 import ImageProfile from "@/components/ImageProfile";
 
@@ -16,22 +17,11 @@ const NavOrg = () => {
                     <p className="text-primary-blue font-bold text-lg">EASY-RENT</p>
                 </Link>
 
-                {/* Search Bar - Cachée sur mobile */}
-                <div className="hidden md:flex justify-items-start bg-gray-100 rounded-full w-1/3 px-4">
-                    <Search className="text-gray-500 mt-3" />
-                    <input
-                        type="text"
-                        placeholder="Search something here"
-                        className="flex-grow bg-transparent outline-none text-sm px-2 py-3 text-gray-700"
-                    />
-                    <Tune className="text-gray-500 cursor-pointer mt-3" />
-                </div>
-
+             
                 {/* Action Icons - Toujours visibles */}
                 <div className="flex items-center gap-4">
-                    <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200">
-                        <Notifications className="text-primary-blue" />
-                        <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"></span>
+                    <button className="relative flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-200">
+                        <CardMembershipIcon fontSize="large" color="primary" />
                     </button>
 
                     {/* Menu Hamburger uniquement sur mobile */}

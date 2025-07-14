@@ -1,216 +1,227 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import { SidebarProps, SidebarItem } from '@/utils/types/models/sidebar';
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { FaAngleDown, FaAngleUp, FaEllipsisH } from 'react-icons/fa'
+import { SidebarProps, SidebarItem } from '@/utils/types/models/sidebar'
 
 const Sidebar: React.FC<SidebarProps> = ({
-                                           items = [],
-                                           bottomItems = [],
-                                           logo,
-                                         }) => {
-  const pathname = usePathname();
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
-  const [showMobileSubMenu, setShowMobileSubMenu] = useState<string | null>(null);
+  items = [],
+  bottomItems = [],
+  logo,
+}) => {
+  const pathname = usePathname()
+  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
+  const [showMobileMenu, setShowMobileMenu] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const toggleSubMenu = (label: string) => {
     setExpandedItems(prev => ({
       ...prev,
       [label]: !prev[label]
-    }));
-  };
+    }))
+  }
 
-  const toggleMobileSubMenu = (label: string) => {
-    setShowMobileSubMenu(prevState => prevState === label ? null : label);
-  };
+  const toggleMobileMenu = (label: string) => {
+    setShowMobileMenu(prev => prev === label ? null : label)
+  }
 
-  // Check if any child in the item is active
   const isItemOrChildActive = (item: SidebarItem): boolean => {
-    if (pathname === item.href) return true;
-
-    if (item.children && item.children.length > 0) {
-      return item.children.some(child => pathname === child.href);
+    if (pathname === item.href) return true
+    if (item.children) {
+      return item.children.some(child => pathname === child.href)
     }
+    return false
+  }
 
-    return false;
-  };
-
-  // Auto-expand parents with active children
   useEffect(() => {
-    const newExpandedItems = { ...expandedItems };
+    const newExpandedItems: Record<string, boolean> = {}
 
-    items.forEach(item => {
-      if (item.children && item.children.some(child => pathname === child.href)) {
-        newExpandedItems[item.label] = true;
-      }
-    });
-
-    if (bottomItems) {
-      bottomItems.forEach(item => {
+    const checkItems = (items: SidebarItem[]) => {
+      items.forEach(item => {
         if (item.children && item.children.some(child => pathname === child.href)) {
-          newExpandedItems[item.label] = true;
+          newExpandedItems[item.label] = true
         }
-      });
+      })
     }
 
-    setExpandedItems(newExpandedItems);
-  }, [pathname, items, bottomItems]); // eslint-disable-line react-hooks/exhaustive-deps
+    checkItems(items)
+    checkItems(bottomItems)
+    setExpandedItems(newExpandedItems)
+  }, [pathname, items, bottomItems])
 
-  const renderSidebarItem = (item: SidebarItem, index: number, isLastBottomItem: boolean = false) => {
-    const isActive = isItemOrChildActive(item);
-    const isExpanded = expandedItems[item.label] || false;
-    const hasSubItems = item.children && item.children.length > 0;
-    const isLogout = isLastBottomItem;
-
+  const renderDesktopItem = (item: SidebarItem, index: number, isBottomItem = false) => {
+    const isActive = isItemOrChildActive(item)
+    const isExpanded = expandedItems[item.label] || false
+    const hasChildren = item.children && item.children.length > 0
+    const isLogout = isBottomItem && index === bottomItems.length - 1
 
     return (
-      <div key={index} className="mb-3">
-        {hasSubItems ? (
+      <div key={`desktop-${index}`} className="mb-2">
+        {hasChildren ? (
           <>
             <button
-              onClick={() => { // Ensured onClick is present as per user's version for toggleSubMenu
-                toggleSubMenu(item.label);
-              }}
-              className={`flex items-center w-full text-text-light-secondary dark:text-text-dark-secondary text-left px-4 py-4 rounded-lg transition-colors duration-150
-                ${isLogout ? 'text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20' :
-                isActive ? 'bg-primary text-white' : ''}`}
+              onClick={() => toggleSubMenu(item.label)}
+              className={`flex items-center w-full px-4 py-3 rounded-lg transition-colors duration-200 ${
+                isActive ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-white' : 
+                isLogout ? 'text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20' : 
+                'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+              }`}
             >
-              <div className="flex items-center flex-grow">
-                {item.icon && (
-                  <span className={`mr-3 text-xl ${isLogout ? 'text-red-500' : (isActive ? 'text-white' : '')}`}> {/* MODIFICATION 1: Icon color for active parent */}
-                    {item.icon}
-                  </span>
-                )}
-                <span className={`${isLogout ? 'text-red-500' : ''}`}>
-                  {item.label}
+              {item.icon && (
+                <span className={`mr-3 text-lg ${
+                  isLogout ? 'text-red-600' : 
+                  isActive ? 'text-primary-600 dark:text-white' : 
+                  'text-gray-500 dark:text-gray-400'
+                }`}>
+                  {item.icon}
                 </span>
-              </div>
-              {hasSubItems && (
-                <span>{isExpanded ? <FaAngleUp /> : <FaAngleDown />}</span>
+              )}
+              <span className="flex-grow text-left">{item.label}</span>
+              {hasChildren && (
+                <span className="ml-2">
+                  {isExpanded ? <FaAngleUp size={14} /> : <FaAngleDown size={14} />}
+                </span>
               )}
             </button>
 
-            {isExpanded && ( // Children rendering part
-              <div className="ml-4 mt-1 space-y-1 py-1">
-                {item.children?.map((child, childIndex) => ( // Assuming item.children is always defined if hasSubItems is true
+            {isExpanded && (
+              <div className="ml-8 mt-1 space-y-1">
+                {item.children?.map((child, childIndex) => (
                   <Link
-                    key={childIndex}
+                    key={`child-${childIndex}`}
                     href={child.href || '#'}
-                    onClick={() => { // Assuming child.onClick might exist as per user's code
-                      if (child.onClick) child.onClick();
-                    }}
-                    className={`flex items-center px-4 py-3 rounded-lg dark:text-text-dark-secondary  ${isItemOrChildActive(child) ? 'bg-primary-50 dark:bg-primary-200/50 text-primary dark:text-primary-300' : 'text-text-light-secondary'}`}
+                    className={`flex items-center px-3 py-2 text-sm rounded-lg ${
+                      pathname === child.href ? 
+                      'bg-primary-100 text-primary-600 dark:bg-gray-600 dark:text-white' : 
+                      'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+                    }`}
                   >
-                    {child.icon && <span className="mr-3">{child.icon}</span>} {/* Kept child icon simple as per user's general structure */}
+                    {child.icon && <span className="mr-3">{child.icon}</span>}
                     {child.label}
                   </Link>
                 ))}
               </div>
             )}
           </>
-        ) : ( // Non-submenu item rendering
+        ) : (
           <Link
             href={item.href || '#'}
-            onClick={() => { // Assuming item.onClick might exist
-              if (item.onClick) item.onClick();
-            }}
-            className={`flex items-center px-4 py-4 rounded-lg text-text-light-secondary dark:text-text-dark-secondary ${isActive ? 'bg-primary text-white' : ''}`}
+            className={`flex items-center px-4 py-3 rounded-lg transition-colors duration-200 ${
+              isActive ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-white' : 
+              isLogout ? 'text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20' : 
+              'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+            }`}
           >
-            {/* Icon styling for direct link, ensuring consistency with active state */}
-            {item.icon && <span className={`mr-3 text-lg ${isLogout ? 'text-red-500' : (isActive ? 'text-white' : '')}`}>{item.icon}</span>}
-            <span className={`${isLogout && !isActive ? 'text-red-500' : ''}`}>
-              {item.label}
-            </span>
+            {item.icon && (
+              <span className={`mr-3 text-lg ${
+                isLogout ? 'text-red-600' : 
+                isActive ? 'text-primary-600 dark:text-white' : 
+                'text-gray-500 dark:text-gray-400'
+              }`}>
+                {item.icon}
+              </span>
+            )}
+            <span>{item.label}</span>
           </Link>
         )}
       </div>
-    );
-  };
+    )
+  }
 
-  // Mobile Bottom Navigation Item
-  const renderMobileNavItem = (item: SidebarItem, index: number, isLastBottomItem: boolean = false) => {
-    const isActive = isItemOrChildActive(item);
-    const hasSubItems = item.children && item.children.length > 0;
-    const isShowingSubMenu = showMobileSubMenu === item.label;
-    const isLogout = isLastBottomItem;
+  const renderMobileItem = (item: SidebarItem, index: number, isBottomItem = false) => {
+    const isActive = isItemOrChildActive(item)
+    const hasChildren = item.children && item.children.length > 0
+    const isMenuOpen = showMobileMenu === item.label
+    const isLogout = isBottomItem && index === bottomItems.length - 1
 
-    if (hasSubItems) {
+    if (hasChildren) {
       return (
-        <div key={index} className="relative">
+        <div key={`mobile-${index}`} className="relative">
           <button
-            onClick={() => toggleMobileSubMenu(item.label)}
-            className={`flex flex-col items-center justify-center px-2 py-1
-              ${isLogout ? 'text-red-500' :
-              isActive ? 'text-primary' : 'text-gray-500 dark:text-gray-400'}`}
+            onClick={() => toggleMobileMenu(item.label)}
+            className={`flex flex-col items-center p-2 ${
+              isActive ? 'text-primary-600 dark:text-white' : 
+              isLogout ? 'text-red-600' : 
+              'text-gray-600 dark:text-gray-300'
+            }`}
           >
-            {item.icon && <span className="text-xl mb-1">{item.icon}</span>}
-            <span className="text-xs">{item.label}</span>
+            <span className="text-xl">{item.icon}</span>
+            <span className="text-xs mt-1">{item.label}</span>
           </button>
 
-          {isShowingSubMenu && (
-            <div className="absolute bottom-full left-0 mb-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700">
+          {isMenuOpen && (
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50">
               {item.children?.map((child, childIndex) => (
                 <Link
-                  key={childIndex}
+                  key={`mobile-child-${childIndex}`}
                   href={child.href || '#'}
-                  className={`flex items-center px-4 py-2 transition-colors duration-150
-                    ${pathname === child.href ? 'bg-primary/10 text-primary' : 'dark:text-text-dark-secondary text-text-light-secondary'}`}
-                  onClick={() => setShowMobileSubMenu(null)}
+                  className={`flex items-center px-4 py-3 ${
+                    pathname === child.href ? 
+                    'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-white' : 
+                    'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+                  }`}
+                  onClick={() => setShowMobileMenu(null)}
                 >
-                  {child.icon && <span className="mr-3 text-lg">{child.icon}</span>}
+                  {child.icon && <span className="mr-3">{child.icon}</span>}
                   <span>{child.label}</span>
                 </Link>
               ))}
             </div>
           )}
         </div>
-      );
+      )
     }
 
     return (
       <Link
-        key={index}
+        key={`mobile-${index}`}
         href={item.href || '#'}
-        className={`flex flex-col items-center justify-center px-2 py-1
-          ${isLogout ? 'text-red-500' :
-          isActive ? 'text-primary' : 'text-gray-500 dark:text-gray-400'}`}
+        className={`flex flex-col items-center p-2 ${
+          isActive ? 'text-primary-600 dark:text-white' : 
+          isLogout ? 'text-red-600' : 
+          'text-gray-600 dark:text-gray-300'
+        }`}
       >
-        {item.icon && <span className="text-xl mb-1">{item.icon}</span>}
-        <span className="text-xs">{item.label}</span>
+        <span className="text-xl">{item.icon}</span>
+        <span className="text-xs mt-1">{item.label}</span>
       </Link>
-    );
-  };
+    )
+  }
 
+  // Main render
   return (
     <>
-      {/* Desktop Sidebar - Always fixed width */}
-      <aside
-        className="bg-primary-blue fixed left-0 z-40  md:flex flex-col h-screen w-64 bg-background-light dark:bg-background-dark border-r border-gray-200 dark:border-gray-700 overflow-hidden"
-      >
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-40">
         {logo && (
-          <div className="flex items-center justify-between px-4 py-5 border-b border-gray-200 dark:border-gray-700">
-            <div className="flex items-center">
-              {logo.icon}
-              <span className="text-xl font-bold ml-2">{logo.label}</span>
-            </div>
+          <div className="flex items-center p-4 border-b border-gray-200 dark:border-gray-700">
+            {logo.icon && <div className="mr-2">{logo.icon}</div>}
+            <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{logo.label}</h1>
           </div>
         )}
 
-        {/* Main Navigation */}
-        <div className="flex-grow overflow-y-auto scrollbar-thin p-4">
+        <div className="flex-1 overflow-y-auto py-4 px-3">
           <nav className="space-y-1">
-            {items.map((item, index) => renderSidebarItem(item, index))}
+            {items.map((item, index) => renderDesktopItem(item, index))}
           </nav>
         </div>
 
-        {/* Bottom Navigation (Settings, Logout, etc) */}
         {bottomItems.length > 0 && (
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <nav className="space-y-1">
-              {bottomItems.map((item, index) =>
-                renderSidebarItem(item, index, index === bottomItems.length - 1)
+              {bottomItems.map((item, index) => 
+                renderDesktopItem(item, index, true)
               )}
             </nav>
           </div>
@@ -218,59 +229,71 @@ const Sidebar: React.FC<SidebarProps> = ({
       </aside>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex justify-around items-center py-2 px-2 z-50">
-        {items.slice(0, 4).map((item, index) => renderMobileNavItem(item, index))}
+      {isMobile && (
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex justify-around items-center py-2 z-50">
+          {items.slice(0, 4).map((item, index) => renderMobileItem(item, index))}
 
-        {/* More button for additional items if needed */}
-        {(items.length > 4 || bottomItems.length > 0) && (
-          <div className="relative">
-            <button
-              onClick={() => toggleMobileSubMenu('more')}
-              className="flex flex-col items-center justify-center px-2 py-1 text-gray-500 dark:text-gray-400"
-            >
-              <span className="text-xl mb-1">•••</span>
-              <span className="text-xs">More</span>
-            </button>
+          {(items.length > 4 || bottomItems.length > 0) && (
+            <div className="relative">
+              <button
+                onClick={() => toggleMobileMenu('more')}
+                className={`flex flex-col items-center p-2 ${
+                  showMobileMenu === 'more' ? 
+                  'text-primary-600 dark:text-white' : 
+                  'text-gray-600 dark:text-gray-300'
+                }`}
+              >
+                <FaEllipsisH className="text-xl" />
+                <span className="text-xs mt-1">More</span>
+              </button>
 
-            {showMobileSubMenu === 'more' && (
-              <div className="absolute bottom-full right-0 mb-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-50 border border-gray-200 dark:border-gray-700">
-                {items.slice(4).map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href || '#'}
-                    className="flex items-center px-4 py-3"
-                    onClick={() => setShowMobileSubMenu(null)}
-                  >
-                    {item.icon && <span className="mr-3 text-lg">{item.icon}</span>}
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
+              {showMobileMenu === 'more' && (
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50">
+                  {items.slice(4).map((item, index) => (
+                    <Link
+                      key={`mobile-more-${index}`}
+                      href={item.href || '#'}
+                      className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                      onClick={() => setShowMobileMenu(null)}
+                    >
+                      {item.icon && <span className="mr-3">{item.icon}</span>}
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
 
-                {bottomItems.length > 0 && items.length > 4 && (
-                  <hr className="my-1 border-gray-200 dark:border-gray-700" />
-                )}
+                  {bottomItems.length > 0 && (
+                    <>
+                      <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                      {bottomItems.map((item, index) => (
+                        <Link
+                          key={`mobile-bottom-${index}`}
+                          href={item.href || '#'}
+                          className={`flex items-center px-4 py-3 ${
+                            index === bottomItems.length - 1 ? 
+                            'text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20' : 
+                            'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+                          }`}
+                          onClick={() => setShowMobileMenu(null)}
+                        >
+                          {item.icon && <span className="mr-3">{item.icon}</span>}
+                          <span>{item.label}</span>
+                        </Link>
+                      ))}
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </nav>
+      )}
 
-                {bottomItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href || '#'}
-                    className={`flex items-center px-4 py-3
-                      ${index === bottomItems.length - 1 ? 'text-red-500' : ''}`}
-                    onClick={() => setShowMobileSubMenu(null)}
-                  >
-                    {item.icon && <span className={`mr-3 text-lg ${index === bottomItems.length - 1 ? 'text-red-500' : ''}`}>
-                      {item.icon}
-                    </span>}
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </nav>
+      {/* Content Padding */}
+      <div className={`${isMobile ? 'pb-16' : 'md:pl-64'}`}>
+        {/* Your content goes here */}
+      </div>
     </>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar
