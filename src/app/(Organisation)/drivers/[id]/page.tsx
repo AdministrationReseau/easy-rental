@@ -2,17 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+// import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { DriverProps } from '@/utils/types/DriverProps';
 import {LocationProps} from "@/utils/types/LocationProps";
 import DriverHeader from "@/components/DriverHeader";
-import OrgDriverDetail from "@/components/OrgDriverDetail";
-import OrgDriverCalendar from "@/components/OrgResourceCalendar";
-import DriverRentalHistory from "@/components/DriverRentalHistory";
+// import OrgDriverDetail from "@/components/OrgDriverDetail";
+// import OrgDriverCalendar from "@/components/OrgResourceCalendar";
+// import DriverRentalHistory from "@/components/DriverRentalHistory";
 
 export default function ResourceProfilPage() {
 	const [drivers, setDrivers] = useState<DriverProps[]>([]);
-	const [activeTab, setActiveTab] = useState('details'); // State to manage active tab
+	// const [activeTab, setActiveTab] = useState('details'); // State to manage active tab
 	const { id } = useParams<{ id: string }>();
 	const driverId = Number(id);
 

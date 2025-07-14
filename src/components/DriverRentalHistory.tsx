@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { LocationProps } from "@/utils/types/LocationProps";
+import Image from "next/image";
 
 interface DriverActivityProps {
 	requestedDriverHistory: LocationProps[];
@@ -48,9 +49,11 @@ export const DriverRentalHistory: React.FC<DriverActivityProps> = ({requestedDri
 					{filteredHistory.map((location) => (
 						<TableRow key={location.id}>
 							<TableCell className="w-[200px]">
-								<img
+								<Image
 									src={location.vehicle.image[0]}
 									alt={location.vehicle.brand}
+									width={75}
+									height={75}
 									className="w-[75px] rounded"
 								/>
 							</TableCell>

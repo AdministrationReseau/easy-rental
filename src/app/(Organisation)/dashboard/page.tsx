@@ -282,7 +282,7 @@ const Dashboard = () => {
   useEffect(() => {
     setAgencies(mockAgencies);
     setServices(mockServices);
-  }, []);
+  });
 
   useEffect(() => {
     const nbAvailableDrivers: number = drivers.filter((driver) => driver.available).length;

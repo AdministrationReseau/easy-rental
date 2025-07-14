@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, Favorite, Notifications, Tune, Menu, Close, AccountCircleRounded } from "@mui/icons-material";
+import { Favorite, Notifications, Menu, Close, AccountCircleRounded } from "@mui/icons-material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {FaCar} from "react-icons/fa";
