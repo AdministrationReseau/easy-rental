@@ -51,6 +51,7 @@ const App: React.FC = () => {
         {/* <Filter/> */}
         <div className='flex justify-center items-center flex-col'>
           {/* <LocationFilter/> */}
+                <h1 className="text-5xl font-bold text-center text-blue-800 mb-8 ">Toutes les agences disponibles</h1>
           <AgencyList agencies={agencies} filters={filters} />
         </div>
           

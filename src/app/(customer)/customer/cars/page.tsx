@@ -57,6 +57,8 @@ const Cars: React.FC = () => {
           <div className="flex">
 
             <div className="w-full flex justify-center items-center flex-col gap-8">
+              
+                <h1 className="text-5xl font-bold text-center text-blue-800 mb-8 ">Choisissez un véhicule à louer</h1>
               <LocationFilter />
               <VehicleList
                 vehicles={vehicles}

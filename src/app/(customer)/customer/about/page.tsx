@@ -82,9 +82,11 @@ const Home: React.FC = () => {
     return (
         <main className="min-h-screen">
             <section className="container mx-auto px-4 py-12">
+                <h1 className="text-5xl font-bold text-center text-blue-800 mb-8 ">A propos de nous</h1>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
-                        <h1 className="text-4xl font-bold mb-4">100% Trusted Vehicle Rental Service</h1>
+                        <h1 className="text-4xl font-bold mb-2">We are </h1>
+                        <h1 className="text-4xl font-bold mb-4"> A 100% Trusted Vehicle Rental Service</h1>
                         <p className="text-gray-600 mb-6">
                             Looking for a reliable way to rent vehicles for your travel or business needs? EasyRent is
                             here to provide you with a seamless rental experience.
