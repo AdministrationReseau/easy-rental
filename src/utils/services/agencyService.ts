@@ -49,7 +49,7 @@ const AgencyService: IAgencyService = {
 
   async getAgencyById(id: number): Promise<AgencyProps | undefined> {
     const agencys = await this.getAllAgencies();
-    return agencys.find(v => v.id === id);
+    return agencys.find(a => a.id === id);
   },
 
   async createAgency(agencyData: Partial<Omit<AgencyProps, 'id'|'followers'|'rating'|'images'|'reviews'|'createAt'|'updateAt'>> ): Promise<AgencyProps> {

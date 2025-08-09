@@ -7,12 +7,13 @@ import AgencyList from '@/components/customer/AgencyList';
 import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
 import AgencyDetail from '@/components/combiner-components/AgencyDetail';
 import Link from 'next/link';
+import { agencyService } from '@/utils/services';
 
 
 
 const AgencyDetails: React.FC = () => {
   const { id } = useParams();
-  const [agency, setAgency] = React.useState<AgencyProps | null>(null);
+  const [agency, setAgency] = React.useState<AgencyProps | undefined>(undefined);
   const [agencies, setAgencies] = useState<AgencyProps[]>([]);
   const [filters] = useState<FilterAgencyProps>({
     city: [],
@@ -24,27 +25,39 @@ const AgencyDetails: React.FC = () => {
 
   // Chargement des données des véhicules
   useEffect(() => {
-    fetch('/data/agencies.json')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data && Array.isArray(data)) {
-          setAgencies(data);
-          const foundAgency = data.find(
-            (a: AgencyProps) => a.id.toString() === id
-          );
-          setAgency(foundAgency || null); // Trouve l'agence correspondant à l'ID
-        } else {
-          console.error('Unexpected data format:', data);
-        }
-      })
-      .catch((error) => {
-        console.error('Error loading Agencies:', error);
-      });
+    // fetch('/data/agencies.json')
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! Status: ${response.status}`);
+    //     }
+    //     return response.json();
+      // })
+      // .then((data) => {
+      //   if (data && Array.isArray(data)) {
+      //     setAgencies(data);
+      //     const foundAgency = data.find(
+      //       (a: AgencyProps) => a.id.toString() === id
+      //     );
+      //     setAgency(foundAgency || null); // Trouve l'agence correspondant à l'ID
+      //   } else {
+      //     console.error('Unexpected data format:', data);
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.error('Error loading Agencies:', error);
+      // });
+      
+const loadInitialData = async () => {
+            try {
+                const fetchedAgency = await agencyService.getAgencyById(Number(id));
+                setAgency(fetchedAgency);
+                const fetchedAgencies = await agencyService.getAllAgencies();
+                setAgencies(fetchedAgencies);
+            } catch (err) {
+                console.error("Erreur lors du chargement des agences.");
+            } 
+            };
+            loadInitialData();
   }, [id]);
 
   if (!agency) {

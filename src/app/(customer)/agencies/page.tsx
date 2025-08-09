@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import AgencyList from '@/components/customer/AgencyList';
 import SidebarFilterAgency from '@/components/customer/SideBarFilterAgency';
 import { AgencyProps, FilterAgencyProps } from '@/utils/types/AgencyProps';
+import { agencyService } from '@/utils/services';
 
 
 
@@ -18,24 +19,16 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    fetch('/data/agencies.json')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data && Array.isArray(data)) {
-          setAgencies(data);
-        } else {
-          console.error('Unexpected data format:', data);
-          console.log(data);
-        }
-      })
-      .catch((error) => {
-        console.error('Error loading Agencies:', error);
-      });
+const loadInitialData = async () => {
+            try {
+                const fetchedAgencies = await agencyService.getAllAgencies();
+                setAgencies(fetchedAgencies);
+            } catch (err) {
+                console.error("Erreur lors du chargement des agences.",err);
+            } 
+            };
+            loadInitialData();
+      
   }, []);
 
   const handleFilterChange = (newFilters: FilterAgencyProps) => {
@@ -51,7 +44,7 @@ const App: React.FC = () => {
         {/* <Filter/> */}
         <div className='flex justify-center items-center flex-col'>
           {/* <LocationFilter/> */}
-                <h1 className="text-5xl font-bold text-center text-blue-800 mb-8 ">Toutes les agences disponibles</h1>
+                <h1 className="text-5xl font-bold text-center text-blue-800 mb-8 ">All availables agencies </h1>
           <AgencyList agencies={agencies} filters={filters} />
         </div>
           

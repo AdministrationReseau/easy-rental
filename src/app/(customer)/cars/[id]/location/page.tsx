@@ -444,8 +444,8 @@ const MultiStepForm: React.FC = () => {
 
 
     return (
-        <div className=' flex m-4 flex-col lg:flex-row'>
-            <div className="m-auto w-full h-[730px] ">
+        <div className=' flex m-4 flex-col lg:flex-row justify-between'>
+            <div className=" m-auto w-full  ">
 
                 {/* Barre des étapes */}
                 <div className="top-0 flex justify-center items-center mb-6">
@@ -461,11 +461,8 @@ const MultiStepForm: React.FC = () => {
                 {/* Formulaire dynamique */}
                 <div className="bg-white  rounded-lg shadow-md p-6 w-[full] space-y-4 ">
 
-
-
-
-
-                    {/* Boutons de navigation */}
+                    <div className="space-y-4">{renderStepContent()}</div>
+                     {/* Boutons de navigation */}
                     <div className="flex justify-between">
                         <button
                             onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 1))}
@@ -487,12 +484,9 @@ const MultiStepForm: React.FC = () => {
                             </button>
                         </Link>
                     </div>
-
-
-                    <div className="space-y-4">{renderStepContent()}</div>
                 </div>
             </div>
-            <aside className="w-full p-4 mt-6 mx-auto">
+            <aside className="w-full p-4 mt-8 mx-auto">
                 <RentalSummary
                     key={vehicle.id}
                     {...vehicle}

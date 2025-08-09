@@ -52,9 +52,9 @@ const RentalSuccess = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.9 }}
         >
-          <Link href="/">
+          <Link href="/home">
             <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-              Return to Dashboard
+              Return to home page
             </button>
           </Link>
         </motion.div>
