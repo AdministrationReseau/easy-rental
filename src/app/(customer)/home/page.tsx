@@ -14,8 +14,7 @@ import { agencyService, vehicleService } from "@/utils/services";
 export default function Home() {
     const [agencies, setAgencies] = useState<AgencyProps[]>([]);
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [, setLoading] = useState(true);
     const [filters] = useState<FilterVehicleProps>({
         type: [],
         capacity: null,
@@ -33,11 +32,10 @@ export default function Home() {
         const loadInitialData = async () => {
             try {
                 setLoading(true);
-                setError(null);
                 const fetchedAgencies = await agencyService.getAllAgencies();
                 setAgencies(fetchedAgencies);
             } catch (err) {
-                setError("Erreur lors du chargement des agences.");
+                console.error("Erreur lors du chargement des agences.",err);
             } finally {
                 setLoading(false);
             }
@@ -49,11 +47,10 @@ export default function Home() {
         const loadInitialData = async () => {
             try {
                 setLoading(true);
-                setError(null);
                 const fetchedVehicles = await vehicleService.getAllVehicles();
                 setVehicles(fetchedVehicles);
             } catch (err) {
-                setError("Erreur lors du chargement des véhicules.");
+                console.error("Erreur lors du chargement des véhicules.",err);
             } finally {
                 setLoading(false);
             }

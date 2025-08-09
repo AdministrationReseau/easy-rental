@@ -263,7 +263,10 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [dateRange, setDateRange] = useState<'day' | 'week' | 'month' | 'year'>('month');
 
-  // Mock data for agencies
+  
+
+  useEffect(() => {
+    // Mock data for agencies
   const mockAgencies: AgencyProps[] = [
     { id: 1, name: "Agence Centrale", location: "Douala", revenue: 3458000, performance: 87, employeeCount: 12 },
     { id: 2, name: "Agence Nord", location: "Yaoundé", revenue: 2156000, performance: 76, employeeCount: 8 },
@@ -278,11 +281,9 @@ const Dashboard = () => {
     { id: 3, name: "Transport aéroport", description: "Service de navette entre l'aéroport et la destination du client", price: 25000, popularity: 85, revenue: 758000 },
     { id: 4, name: "Services événementiels", description: "Location de flotte pour événements corporatifs ou mariages", price: 120000, popularity: 62, revenue: 540000 },
   ];
-
-  useEffect(() => {
     setAgencies(mockAgencies);
     setServices(mockServices);
-  });
+  },[]);
 
   useEffect(() => {
     const nbAvailableDrivers: number = drivers.filter((driver) => driver.available).length;

@@ -11,6 +11,7 @@ import { agencyService } from '@/utils/services';
 
 
 
+
 const AgencyDetails: React.FC = () => {
   const { id } = useParams();
   const [agency, setAgency] = React.useState<AgencyProps | undefined>(undefined);
@@ -54,7 +55,7 @@ const loadInitialData = async () => {
                 const fetchedAgencies = await agencyService.getAllAgencies();
                 setAgencies(fetchedAgencies);
             } catch (err) {
-                console.error("Erreur lors du chargement des agences.");
+                console.error("Erreur lors du chargement des agences.",err);
             } 
             };
             loadInitialData();

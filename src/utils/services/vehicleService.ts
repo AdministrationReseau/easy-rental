@@ -27,7 +27,7 @@ interface IVehicleService {
    * @param id L'ID du département.
    * @returns Une promesse résolue avec true si la suppression a réussi.
    */
-  deleteVehicle(id: number): Promise<Boolean>;
+  deleteVehicle(id: number): Promise<boolean>;
 
   calculateRentalPrice(vehicleId: number, startDate: Date, endDate: Date): Promise<number>
 }
@@ -53,7 +53,7 @@ const VehicleService: IVehicleService = {
     return vehicles.find(v => v.id === id);
   },
 
-  async createVehicle(vehicleData: Partial<Omit<CarProps, 'id'|'available'|'pricePerDay'|'images'|'fonctionnalities'|'status'|'dailyRate'>> ): Promise<CarProps|null> {
+  async createVehicle(vehicleData: Partial<Omit<CarProps, 'id'|'available'|'pricePerDay'|'images'|'fonctionnalities'|'status'|'dailyRate'>> ): Promise<CarProps> {
       // Simuler l'ajout côté backend
       await new Promise(resolve => setTimeout(resolve, 300));
       const newId = (await this.getAllVehicles()).length + 1;
@@ -78,8 +78,7 @@ const VehicleService: IVehicleService = {
               additional_covers: false
           },
           images: []
-      };
-      delete (newVehicle as any).assignedById; // Supprimer la propriété pour qu'elle corresponde au type Task
+      }as CarProps; 
   
       // Ici, en production, on ferait un POST à l'API
       console.log("Simulating task creation:", newVehicle);

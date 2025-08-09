@@ -27,7 +27,7 @@ interface IAgencyService {
    * @param id L'ID du département.
    * @returns Une promesse résolue avec true si la suppression a réussi.
    */
-  deleteAgency(id: number): Promise<Boolean>;
+  deleteAgency(id: number): Promise<boolean>;
 
 }
 
@@ -67,8 +67,7 @@ const AgencyService: IAgencyService = {
           updatedAt: now,
           reviews: [],
           images: []
-      };
-      delete (newAgency as any).assignedById; // Supprimer la propriété pour qu'elle corresponde au type Task
+      }as AgencyProps;
   
       // Ici, en production, on ferait un POST à l'API
       console.log("Simulating task creation:", newAgency);
