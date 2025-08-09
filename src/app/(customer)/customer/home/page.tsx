@@ -7,11 +7,15 @@ import HalfAddContent from "@/components/base-component/HalfAddContent";
 import AgencyList from "@/components/customer/AgencyList";
 import {AgencyProps, FilterAgencyProps} from "@/utils/types/AgencyProps";
 import Link from "next/link";
+import { agencyService, vehicleService } from "@/utils/services";
+
 
 
 export default function Home() {
     const [agencies, setAgencies] = useState<AgencyProps[]>([]);
     const [vehicles, setVehicles] = useState<CarProps[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [filters] = useState<FilterVehicleProps>({
         type: [],
         capacity: null,
@@ -26,44 +30,35 @@ export default function Home() {
     });
 
     useEffect(() => {
-        fetch('/data/agencies.json')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data && Array.isArray(data)) {
-                    setAgencies(data);
-                } else {
-                    console.error('Unexpected data format:', data);
-                    console.log(data);
-                }
-            })
-            .catch((error) => {
-                console.error('Error loading Agencies:', error);
-            });
+        const loadInitialData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const fetchedAgencies = await agencyService.getAllAgencies();
+                setAgencies(fetchedAgencies);
+            } catch (err) {
+                setError("Erreur lors du chargement des agences.");
+            } finally {
+                setLoading(false);
+            }
+            };
+            loadInitialData();
     }, []);
 
     useEffect(() => {
-        fetch('/data/cars.json')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data && Array.isArray(data.vehicles)) {
-                    setVehicles(data.vehicles);
-                } else {
-                    console.error('Unexpected data format:', data);
-                }
-            })
-            .catch((error) => {
-                console.error('Error loading vehicles:', error);
-            });
+        const loadInitialData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const fetchedVehicles = await vehicleService.getAllVehicles();
+                setVehicles(fetchedVehicles);
+            } catch (err) {
+                setError("Erreur lors du chargement des véhicules.");
+            } finally {
+                setLoading(false);
+            }
+            };
+            loadInitialData();
     }, []);
 
     return (
@@ -94,24 +89,6 @@ export default function Home() {
                     <LocationFilter/>
 
                     <div>
-                        <div className="mx-5 flex flex-col justify-center items-center mt-10">
-                            <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
-                            <h3 className="font-light text-lg text-secondary-text text-center items-center">
-                                Find the best agencies to meet your needs
-                            </h3>
-
-                        </div>
-                        <div className="w-full flex flex-row justify-center mb-12">
-                            <AgencyList agencies={agencies.slice(0, 6)} filters={filtersA}/>
-                        </div>
-
-                        <Link
-                            href="/customer/agencies"
-                            className={`flex justify-center m-auto bg-primary-blue text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition w-[230px]`}
-                        >
-                            Explore more agencies
-                        </Link>
-
                         <div className="flex flex-col justify-center items-center mt-10">
                             <h2 className="text-3xl font-semibold text-gray-800">Cars</h2>
                             <h3 className="font-light text-lg text-secondary-text text-centeritems-center">
@@ -128,6 +105,23 @@ export default function Home() {
                             className={`flex justify-center m-auto mb-5 bg-primary-blue text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition w-[200px]`}
                         >
                             View more cars
+                        </Link>
+
+                        <div className="mx-5 flex flex-col justify-center items-center mt-10">
+                            <h2 className="text-3xl font-semibold text-gray-800">Agencies</h2>
+                            <h3 className="font-light text-lg text-secondary-text text-center items-center">
+                                Find the best agencies to meet your needs
+                            </h3>
+                        </div>
+                        <div className="w-full flex flex-row justify-center mb-12">
+                            <AgencyList agencies={agencies.slice(0, 6)} filters={filtersA}/>
+                        </div>
+
+                        <Link
+                            href="/customer/agencies"
+                            className={`flex justify-center m-auto bg-primary-blue text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition w-[230px]`}
+                        >
+                            Explore more agencies
                         </Link>
                     </div>
 
