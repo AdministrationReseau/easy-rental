@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Stars from "../Stars"; // Composant pour afficher les étoiles
+import Stars from "../Stars";
 import { DriverProps } from "@/utils/types/DriverProps";
 
 export const DriverImage: React.FC<{ driver: DriverProps }> = ({ driver }) => {
@@ -50,7 +50,18 @@ export const DriverInfo: React.FC<{ driver: DriverProps }> = ({ driver }) => {
         {/* Vehicle Assigned */}
         {driver.vehicle_assigned && (
           <div className="pt-4">
-            <p><strong>Assigned Vehicle:</strong> {driver.vehicle_assigned.make} {driver.vehicle_assigned.model} ({driver.vehicle_assigned.year})</p>
+            <p><strong>Assigned Vehicles:</strong></p>
+            {driver.vehicle_assigned.length > 0 ?(
+              driver.vehicle_assigned.map((vehicle, key)=>(
+                <p key={key}>
+                {vehicle.brand}
+                {vehicle.model} 
+                ({vehicle.year})
+                </p>
+            ))
+            ):(
+            <p>Not any</p>
+            )}
           </div>
         )}
 

@@ -1,199 +1,72 @@
 "use client";
-
 import React from 'react';
-import Image from "next/image";
+import Link from "next/link";
 
-const Profile = () => {
+// Define types for the card items and props
+type CardItem = {
+  icon: string;
+  text: string;
+};
 
-    return (
-        <div>
-            <main className="flex-grow  p-6">
-                <h1 className="text-2xl font-bold mb-4">Welcome Back!!!</h1>
+type CardProps = {
+  title: string;
+  link: string;
+  items: CardItem[];
+};
 
-                {/* Profile Header */}
-                <div className=" relative">
-                    {/* Background image */}
-                    <div className="w-full h-32 bg-[url('/bannerSettings.svg')] bg-repeat rounded-t-lg"></div>
+const Card: React.FC<CardProps> = ({ title, items, link}) => {
+  return (
+    <div className="bg-white px-6 pt-6 pb-14 rounded-lg shadow-md">
+      <Link href={link}>
+        <h2 className="text-xl font-bold mb-4">{title}</h2>
+        <ul>
+          {items.map((item, index) => (
+            <li key={index} className="mb-2 flex items-center">
+              <span className="mr-2">{item.icon}</span>
+              <span className="ml-2 mr-2">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </Link>
 
-                    <div className="flex flex-col md:flex-row items-center p-6 rounded-lg -mt-16 md:ml-14 relative">
-                        {/* Profile Image */}
-                        <div className="relative">
-                            <div
-                                className="relative w-[170px] h-[170px] rounded-full overflow-hidden border-8 border-blue-400 shadow-lg">
-                                <Image
-                                    src="/personne2.png"
-                                    alt="Profile"
-                                    width={150}
-                                    height={150}
-                                    className="w-full h-full object-cover bg-gray-100"
-                                />
-                            </div>
-                            <div
-                                className="absolute bottom-4 right-2 bg-primary-blue w-8 h-8 z-10 rounded-full flex items-stretch justify-center">
-                                <button>
-                                    <Image
-                                        src="/CameraIcon.svg"
-                                        alt="share button"
-                                        height={24}
-                                        width={24}
-                                    />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+    </div>
+  );
+};
 
-                </div>
-                <div className="mt-4 md:ml-10">
-                    <div>
-                        {/* Name and Information */}
-                        <h2 className="text-lg font-semibold text-primary-text mt-4">
-                            Mobina Mirbagheri
-                        </h2>
-                        <p className="text-sm font-semibold text-primary-text mt-1">
-                            Your account is ready, you can now apply for advice.
-                        </p>
-                        <span className="text-sm text-secondary-text flex">mirbagheri</span>
-                    </div>
-                    <div className="right-[10%] top-[50%]">
-                        {/* Share button*/}
-                        <button>
-                            <Image
-                                src="/shareIcon.svg"
-                                alt="share button"
-                                height={30}
-                                width={30}
-                            />
-                        </button>
-                    </div>
-                </div>
+const Profile: React.FC = () => {
+  // Define items for each card
+  const personalInformationItems: CardItem[] = [
+    { icon: '👤', text: 'Profile Details' },
+    { icon: '🔒', text: 'Edit Profile Settings' },
+  ];
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                    {/* Personal Section */}
-                    <div>
-                        <h3 className="text-lg font-medium text-primary-text mb-4">Personal</h3>
-                        <div className="space-y-4">
-                            <div className="flex flex-row justify-between">
-                                <div className="w-[49%]">
-                                    <label className="block text-sm font-medium text-secondary-text">
-                                        First Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        defaultValue="mobina"
-                                        disabled
-                                        className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                    />
-                                </div>
-                                <div className="w-[49%]">
-                                    <label className="block text-sm font-medium text-secondary-text">
-                                        Surname
-                                    </label>
-                                    <input
-                                        type="text"
-                                        defaultValue="mobina surname"
-                                        disabled
-                                        className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    Statut
-                                </label>
-                                <input
-                                    type="text"
-                                    defaultValue="Customer"
-                                    disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    Password
-                                </label>
-                                <input
-                                    type="password"
-                                    defaultValue="12345678"
-                                    disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    Age
-                                </label>
-                                <input
-                                    type="number"
-                                    defaultValue={25}
-                                    disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                />
-                            </div>
-                        </div>
-                    </div>
+  const transactionsItems: CardItem[] = [
+    { icon: '💳', text: 'Payment History' },
+    { icon: '💵', text: 'Invoices' },
+  ];
 
-                    {/* Contact Section */}
-                    <div>
-                        <h3 className="text-lg font-medium text-primary-text mb-4">Contact</h3>
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    defaultValue="test@gmail.com"
-                                    disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    Phone Number
-                                </label>
-                                <div className="flex items-center space-x-2">
-                                    <input
-                                        type="text"
-                                        defaultValue="+237"
-                                        disabled
-                                        className="w-16 h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                    />
-                                    <input
-                                        type="text"
-                                        defaultValue="620203233"
-                                        disabled
-                                        className="flex-1 h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text w-[80%] "
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    Country
-                                </label>
-                                <input
-                                    type="text"
-                                    defaultValue="Cameroon"
-                                    disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-secondary-text">
-                                    City
-                                </label>
-                                <input
-                                    type="text"
-                                    defaultValue="Yaounde"
-                                    disabled
-                                    className="w-full h-[44px] border rounded-lg px-4 py-2 text-sm text-primary-text"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+  const rentalsItems: CardItem[] = [
+    { icon: '🏠', text: 'Current Rentals' },
+    { icon: '📅', text: 'Rental History' },
+  ];
+
+  const helpCenterItems: CardItem[] = [
+    { icon: '📞', text: 'Contact Support' },
+    { icon: '🛠️', text: 'FAQ' },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <main className="flex-grow w-full max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10  ">
+          <Card title="Personal Information" link="/profile/info" items={personalInformationItems} />
+          <Card title="Transactions" link="/profile/transactions" items={transactionsItems} />
+          <Card title="Rentals" link="/profile/locations" items={rentalsItems} />
+          <Card title="Help Center" link="/profile/help" items={helpCenterItems} />
         </div>
-    );
+      </main>
+    </div>
+  );
 };
 
 export default Profile;

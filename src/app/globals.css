@@ -2,13 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        font-size: 12px; /* Slimmer base font size */
+        line-height: 1.35; /* Tighter line height */
+        -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
+        -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
+    }
 
-body.dark {
-    background-color: #121212;
+    body {
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        max-width: 100vw; /* Ensure body doesn't exceed viewport width */
+    }
+
+    body.dark {
+        background-color: #121212; /* Retain existing dark mode background */
+    }
+
+    p {
+        font-weight: 400; /* Standard weight, can be 300 if font supports it well */
+        letter-spacing: -0.015em; /* Slightly tighter letter spacing */
+        /* line-height: 1.4; */ /* Can be controlled by html's line-height or set specifically */
+    }
+
+    /* More aggressive slimming for headings if needed, but start with base html/p */
+    /* h1, h2, h3, h4, h5, h6 {
+        letter-spacing: -0.02em;
+        font-weight: 600;
+    } */
 }
 
-
-/* Ajoutez ces classes dans votre fichier global CSS si vous utilisez Tailwind CSS */
+/* Keep existing custom component styles */
 .search-bar input {
     border: 1px solid #ccc;
     padding: 0.5rem;
@@ -24,8 +48,6 @@ body.dark {
     width: 100%;
     max-width: 600px;
 }
-
-
 
 /* Personalizes components scrollbars specifically div stylized with "overflow-auto" class
  * Assure compatibility with Webkit/Blink and Firefox browsers : Chrome/Edge/Safari and Firefox
@@ -55,3 +77,4 @@ body.dark {
 }
 
 /* END: scrollbar styles */
+

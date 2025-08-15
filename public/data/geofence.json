@@ -1,0 +1,9 @@
+{
+    "geofence_id": "hospital_route",
+    "points": [
+      { "latitude": 4.051056, "longitude": 9.767868 },
+      { "latitude": 4.052300, "longitude": 9.770000 },
+      { "latitude": 4.053500, "longitude": 9.775000 },
+      { "latitude": 4.055000, "longitude": 9.780000 }
+    ]
+}

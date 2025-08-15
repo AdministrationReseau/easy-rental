@@ -38,7 +38,7 @@ const ProfileSidebar: React.FC = () => {
     }, []);
 
     const mainMenuItems = [
-        { name: "Profile", icon: <Home />, link: "/profile" },
+        { name: "Profile", icon: <Home />, link: "/profile/info" },
         { name: "Favorite", icon: <Favorite />, link: "/profile/favorites" },
         { name: "Location", icon: <LocationOn />, link: "/profile/locations" },
         { name: "Transaction", icon: <AttachMoney />, link: "/profile/transactions" },
@@ -71,14 +71,14 @@ const ProfileSidebar: React.FC = () => {
                     {mainMenuItems.map((item, index) => (
                         <Link key={index} href={item.link}>
                             <li
-                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
+                                className={`flex items-center gap-4 p-2 m-2 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
-                                        ? "bg-primary-blue text-white m-2"
+                                        ? "bg-primary-blue text-white "
                                         : "hover:bg-gray-100 hover:mx-2 text-secondary-text"
                                 }`}
                             >
                                 <span
-                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                    className={`w-8 h-9 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
                                         isActive(item.link)
                                             ? "border-white bg-white text-primary-blue"
                                             : "border-gray-200 bg-white text-gray-200"
@@ -112,14 +112,14 @@ const ProfileSidebar: React.FC = () => {
                     {preferenceItems.map((item, index) => (
                         <Link key={index} href={item.link}>
                             <li
-                                className={`flex items-center gap-4 p-3 cursor-pointer rounded-lg transition-all duration-200 ${
+                                className={`flex items-center gap-4 p-2 m-2 cursor-pointer rounded-lg transition-all duration-200 ${
                                     isActive(item.link)
                                         ? "bg-primary-blue text-white"
                                         : "hover:bg-gray-100 text-secondary-text"
                                 }`}
                             >
                                 <span
-                                    className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                                    className={`w-8 h-9 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
                                         isActive(item.link)
                                             ? "border-white bg-white text-primary-blue"
                                             : "border-gray-200 bg-white text-gray-200"
@@ -148,14 +148,14 @@ const ProfileSidebar: React.FC = () => {
             <div className="p-3">
                 <Link href="/">
                     <button
-                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
+                        className={`flex items-center m-2 gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
                             isActive("/")
                                 ? "bg-red-text text-white"
                                 : "hover:bg-gray-100 text-red-text"
                         }`}
                     >
                         <span
-                            className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
+                            className={`w-8 h-9  flex items-center justify-center rounded-full border-2 transition-colors duration-200 ${
                                 isActive("/logout")
                                     ? "border-white bg-white text-red-text"
                                     : "border-red-text bg-white text-red-text"

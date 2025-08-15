@@ -58,13 +58,19 @@ const AgencyCard: React.FC<AgencyProps> = ({
     };
     // Fonction pour basculer l'état du like
     const toggleLike = () => {
-        setIsLiked(!isLiked);
-        if (!isLiked) {
-            onLike(id); // Appel de la fonction onLike si le véhicule est aimé
-        } else {
-            onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
+        if(onLike&&onDislike){
+            setIsLiked(!isLiked);
+            if (!isLiked) {
+                onLike(id); // Appel de la fonction onLike si le véhicule est aimé
+            } else {
+                onDislike(id); // Appel de la fonction onDislike si le véhicule est non aimé
+            }
+        }
+        else{
+            console.log("Not likable",id)
         }
     };
+    
     const agency = {
         id : id,
         city : city,

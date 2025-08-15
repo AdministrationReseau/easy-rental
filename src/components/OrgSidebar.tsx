@@ -8,7 +8,6 @@ import {
     Person,
     LocationOn,
     AttachMoney,
-    BarChart,
     Notifications,
     Subscriptions,
     Settings,
@@ -42,13 +41,13 @@ const OrgSidebar: React.FC = () => {
     }, []);
 
     const mainMenuItems = [
-        { name: "Dashboard", icon: <Home />, link: "/Dashboard" },
+        { name: "Dashboard", icon: <Home />, link: "/dashboard" },
         { name: "Agencies", icon: <AccountBalance />, link: "/agencies" },
-        { name: "Cars", icon: <DirectionsCar />, link: "/cars" },
+        { name: "Vehicles", icon: <DirectionsCar />, link: "/cars" },
         { name: "Drivers", icon: <Person />, link: "/drivers" },
+        { name: "Staffs", icon: <Person />, link: "/staff" },
         { name: "Locations", icon: <LocationOn />, link: "/rentals" },
         { name: "Transactions", icon: <AttachMoney />, link: "/transactions" },
-        { name: "Statistics", icon: <BarChart />, link: "/statistics" },
         { name: "Notifications", icon: <Notifications />, link: "/notifications" },
     ];
 
@@ -58,7 +57,7 @@ const OrgSidebar: React.FC = () => {
         { name: "Help", icon: <Help />, link: "/help" },
     ];
 
-    const isActive = (link: string) => pathname === link;
+    const isActive = (link: string) =>  pathname.startsWith(link);
 
     return (
         <div
@@ -104,7 +103,7 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-gray-300 mt-auto"></div>
+            <div className="border-t bottom-0 border-gray-300 mt-auto"></div>
 
             {/* Preferences Section */}
             <div className="mt-1">
@@ -135,11 +134,11 @@ const OrgSidebar: React.FC = () => {
             </div>
 
             {/* Logout Section */}
-            <div className="p-4">
+            <div className="p-4 bottom-0">
                 <Link href="/">
                     <li
-                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-200 ${
-                            isActive("/")
+                        className={`flex items-center gap-4 w-full cursor-pointer rounded-lg transition-all duration-300 ${
+                            isActive("/logout")
                                 ? "bg-red-500 text-white"
                                 : "hover:bg-gray-100 text-red-500"
                         }`}
@@ -151,7 +150,7 @@ const OrgSidebar: React.FC = () => {
                                     : "border-red-500 bg-white text-red-500"
                             }`}
                         >
-                            <Logout />
+                            <Logout/>
                         </span>
                         {!isCollapsed && <span>Log Out</span>}
                     </li>

@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/fonts": ["./src/app/fonts/fonts"],
+      "@/fonts": ["./src/config/fonts/fonts"],
       "@/components": ["./src/components"],
       "@/utils": ["./src/utils"],
       "@/config": ["./src/config"],

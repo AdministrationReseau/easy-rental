@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import Transaction from '../app/(Organisation)/transactions/page';
+import Transaction from '../app/Organisation/transactions/page';
 
 interface Transaction {
     id: string;

@@ -1,28 +1,21 @@
+// components/Layout.tsx
 'use client';
-
-import React from "react";
-import ProfileSidebar from "@/components/ProfileSidebar";
+import React from 'react';
+// import ProfileSidebar from "@/components/ProfileSidebar";
 import NavBar from "@/components/organisation/NavBar";
-import Footer from "@/components/Footer";
+import ProfileHeader from "@/components/ProfileHeader";
 
-export default function Layout({children }: { children: React.ReactNode }) {
-    return (
-        <>
-            <NavBar/>
-            <div className="flex h-screen">
-                <ProfileSidebar/>
+export default function Layout({ children }: { children: React.ReactNode }) {
 
-                <div className="flex flex-col flex-grow">
-
-                    <div className="flex-grow overflow-y-auto bg-gray-100 p-4 md:p-6">
-                        {children}
-                    </div>
-
-                </div>
-
-            </div>
-
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <NavBar />
+      <div className="flex">
+        <div className="flex flex-col bg-gray-100 flex-grow mt-14 overflow-y-auto">
+          <ProfileHeader />
+          {children}
+        </div>
+      </div>
+    </>
+  );
 }

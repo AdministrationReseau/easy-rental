@@ -36,8 +36,8 @@ const DriverList: React.FC<DriverListProps> = ({ vehicleId, onSelectedDriversCha
   // Filtrer les chauffeurs assignés à un véhicule spécifique
   useEffect(() => {
     const filtered = drivers.filter(
-      (driver) => driver.vehicle_assigned?.id === vehicleId
-    );
+      (driver) => driver.vehicle_assigned?.some(vehicle => vehicle.id === vehicleId)
+    );    
     setFilteredDrivers(filtered);
   }, [drivers, vehicleId]);
 

@@ -5,8 +5,8 @@ import { CarCard } from '@/components/CarCard';
 import { VehicleListProps } from '@/utils/types/CarProps';
 
 const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
-  const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 6; // Nombre d'éléments par page
+  const [currentPage, setCurrentPage] = useState(1); // État pour la info actuelle
+  const itemsPerPage = 6; // Nombre d'éléments par info
 
   // Filtrer les véhicules selon les critères
   const filteredVehicles = vehicles.filter((vehicle) => {
@@ -35,36 +35,14 @@ const VehicleList: React.FC<VehicleListProps> = ({ vehicles, filters }) => {
   const totalPages = Math.ceil(filteredVehicles.length / itemsPerPage);
 
   return (
-    <div className="p-5 w-full">
+    <div className="p-5 w-full justify-center">
       {/* Liste des véhicules */}
-      <div className="flex flex-row flex-wrap gap-6 w-full justify-center">
+      <div className="flex justify-center flex-row flex-wrap gap-6 w-full justify-start">
         {paginatedVehicles.length > 0 ? (
           paginatedVehicles.map((vehicle) => (
             <CarCard
               key={vehicle.id}
-              id={vehicle.id}
-              images={vehicle.images}
-              brand={vehicle.brand}
-              rating={vehicle.rating}
-              reviews={vehicle.reviews}
-              model={vehicle.model}
-              transmission={vehicle.transmission}
-              engine={vehicle.engine}
-              passenger={vehicle.passenger || 4}
-              pricePerDay={vehicle.pricePerDay}
-              type={vehicle.type}
-              year={vehicle.year}
-              description={vehicle.description}
-              vin={vehicle.vin}
-              fonctionnalities={vehicle.fonctionnalities}
-              color={vehicle.color}
-              fuel_efficiency={vehicle.fuel_efficiency}
-              license_plate={vehicle.license_plate}
-              registration={vehicle.registration}
-              owner={vehicle.owner}
-              service_history={vehicle.service_history}
-              insurance={vehicle.insurance}
-              favorite={vehicle.favorite}
+              {...vehicle}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
             />

@@ -17,12 +17,12 @@ export const CountryPickerStyled = ({ valueCountry, valueRegion, onChangeCountry
   
 
   return (
-    <div className="w-full my-2 h-[50px] ">
-      <div className="flex flex-col gap-4">
-        <div className="relative">
+    <div className="w-full text-primary-text ">
+      <div className="flex flex-row w-full gap-4">
+        <div className="relative w-full">
           <label className="block font-medium mb-1">Country</label>
           <CountryDropdown
-            className="w-full rounded-[10px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+            className="w-full rounded-md border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
             value={valueCountry}
             onChange={(e) => {
               if (onChangeCountry) onChangeCountry(e);
@@ -31,10 +31,10 @@ export const CountryPickerStyled = ({ valueCountry, valueRegion, onChangeCountry
         </div>
 
         {valueCountry && (
-          <div className="relative">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Select City/Region</label>
+          <div className="w-full text-primary-text relative">
+            <label className="block font-medium text-gray-700 mb-1">Select City/Region</label>
             <RegionDropdown
-              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:ring-primary-blue focus:border-primary-blue"
+              className="w-full px-5 py-3 rounded-md border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
               country={valueCountry}
               value={valueRegion}
               onChange={(e) => {

@@ -17,8 +17,8 @@ const isAgencyOpen = (agency: AgencyProps) => {
 };
 
 const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
-  const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
-  const itemsPerPage = 6; // Nombre d'éléments par page
+  const [currentPage, setCurrentPage] = useState(1); // État pour la info actuelle
+  const itemsPerPage = 6; // Nombre d'éléments par info
 
   const filteredAgencies = agencies.filter((agency) => {
     if (!agency) return false;
@@ -55,21 +55,7 @@ const AgencyList: React.FC<AgencyListProps> = ({ agencies, filters }) => {
           paginatedAgencies.map((agency) => (
             <AgencyCard
               key={agency.id}
-              id={agency.id}
-              city={agency.city}
-              quater={agency.quater}
-              name={agency.name}
-              followers={agency.followers || 4}
-              rating={agency.rating || 4}
-              slogan={agency.slogan}
-              images={agency.images}
-              description={agency.description}
-              openingTime={agency.openingTime}
-              closingTime={agency.closingTime}
-              type={agency.type}
-              createdAt={agency.createdAt}
-              updatedAt={agency.updatedAt}
-              reviews={agency.reviews}
+              {...agency}
               onLike={(id: number) => console.log(id)}
               onDislike={(id: number) => console.log(id)}
             />

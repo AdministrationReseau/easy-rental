@@ -1,24 +1,22 @@
 'use client'
-import CarCarousel from "@/components/CarCarousel";
 import Navbar from "@/components/organisation/NavBar";
 import Footer from "@/components/Footer";
-
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { PlayCircle } from 'lucide-react';
+import { BsSearch, BsFillCalendarCheckFill } from 'react-icons/bs';
+import { FaCar } from 'react-icons/fa';
+import ServiceCard from "@/components/ServiceCard"
 
 export default function Home() {
   return (
     <main className="bg-whitish-background">
       <Navbar />
       <Hero />
-    <div className="rounded-r p-8 flex flex-col md:flex-row justify-between gap-4">
-    <h3 className="text-2xl text-primary-text font-semibold md:opacity-100 opacity-0 mb-6">Better Way to Rent Your Perfect Cars</h3>
-    <RentalSteps />
-    <h3 className="text-2xl text-primary-text text-center font-semibold mb-6 opacity-100 md:opacity-0 md:hidden">Better Way to Rent Your Perfect Cars</h3>
-    </div>
-    <div className="p-8">
-      <LocationFilterContainer/>
-    </div>
-      <FeaturedVehicles />
-      <AboutSection />
+      <HowItWorks/>
+
       <Services />
       <DriverCTA />
       <Testimonials />
@@ -29,191 +27,214 @@ export default function Home() {
   )
 }
 
-import Link from 'next/link';
 
-import { PlayCircle } from '@mui/icons-material';
+  const Hero = () => {
 
- function Hero() {
   return (
     <div
-  className="relative h-screen bg-cover bg-center"
-  style={{ backgroundImage: "url('/Ads 1.png')" }}
->
-  <div className="absolute inset-0"></div>
-  <div className="mx-auto px-4 w-full h-full">
-    <div className="flex items-center p-6 justify-around h-full w-full flex-col md:flex-row">
-      {/* Texte */}
-      <div className="text-center text-white relative z-10 md:text-left md:w-1/2">
-        <h1 className="text-5xl font-bold m-4">
-          Fast & Easy Way To Rent A Car
+      className="md:pt-[120px] h-[100vh] flex flex-col lg:flex-row items-center justify-between bg-cover bg-center bg-[url('/assets/Ads3.png')] "
+    >
+      <div className="w-full lg:w-1/2 space-y-6 lg:pl-10">
+        <h1 className="text-5xl lg:text-6xl mb-5 font-bold text-whitish-background leading-tight">
+          Fast & Easy Rental <br/>
+          <span className="animate-text-glow text-primary-blue">Made Easy</span>
         </h1>
-        <p className="text-xl mb-8">
-          A small river named Duden flows by their place and supplies it with
-          the necessary regelialia.
+        <p className="text-xl lg:text-lg text-whitish-background mb-8 sm:w-[80%]">
+          Experience premium vehicles with our hassle-free rental service. From sports cars to luxury sedans, we have the perfect ride for your journey.
         </p>
-        <button className="flex items-center mx-auto md:mx-0 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark">
-          <PlayCircle className="mr-2" />
-          <span>Easy steps for renting a car</span>
+
+        <button className="flex items-center text-white mx-0 pb-3 sm:pb-12 rounded-full">
+          <div className= " bg-primary-blue p-2 rounded-full mr-2">
+            <PlayCircle />
+          </div>
+          <span className= "font-md text-lg">Easy steps for renting a car</span>
         </button>
+
+        <div className="flex flex-col sm:flex-row gap-8 lg:gap-4">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mx-auto w-fit sm:mx-0 px-8 py-4 text-lg bg-toggle-blue text-white font-semibold rounded-full shadow-md transition-all duration-300">
+            Rent Now
+          </motion.button>
+          <div className="flex mx-auto md:mx-0 items-center gap-4">
+            <div className="flex space-x-4">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link href="##"
+                      className="text-lg flex items-center gap-2 px-4 py-3 bg-whitish-background text-text-primary-blue rounded-full">
+                  <FaApple className="text-xl"/> App Store
+                </Link>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link href="#1"
+                      className="text-lg flex items-center gap-2 px-4 py-3 bg-whitish-background text-text-primary-blue rounded-full">
+                  <FaGooglePlay className="text-xl"/> Google Play
+                </Link>
+              </motion.div>
+
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Image */}
-      <div className="relative md:w-1/2 h-64 md:h-auto flex justify-center items-center">
-        <Image
-          src="/voiture.png"
-          alt="Lamborghini"
-          width={500}
-          height={400}
-          objectFit="contain"
+      <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
+        <div className="relative h-[300px] md:h-[400px] lg:h-[500px] w-full">
+          <Image
+            src="/assets/voiture.png"
+            alt="Luxury Car Rental"
+            fill
+            style={{objectFit: "contain"}}
+            priority
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+  const HowItWorks = () => {
+
+    // Définir les étapes avec leurs icônes
+    const steps = [
+      {
+        icon: <BsSearch className="text-4xl text-primary-blue" />,
+        title: "Search & Select",
+        description: "Browse our extensive fleet and choose your perfect vehicle"
+      },
+      {
+        icon: <BsFillCalendarCheckFill className="text-4xl text-primary-blue" />,
+        title: "Book & Pay",
+        description: "Select your dates and complete secure payment in seconds"
+      },
+      {
+        icon: <FaCar className="text-4xl text-primary-blue" />,
+        title: "Enjoy your Ride",
+        description: "Pick up your car and hit the road with style and comfort"
+      },
+    ];
+
+    return (
+      <div className="my-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-text-primary dark:text-text-dark mb-4">
+            How It Works
+          </h2>
+          <p className="text-text-secondary dark:text-gray-400 max-w-2xl mx-auto">
+            Easy steps to rent your dream car in minutes
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ y: -10 }}
+              className="bg-white p-8 rounded-3xl shadow-lg text-center"
+            >
+              <div className="flex justify-center mb-4">
+                {step.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-primary-text mb-3">{step.title}</h3>
+              <p className="text-text-secondary dark:text-gray-400">{step.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+
+  const Services = () => {
+
+    // Définir les fonctionnalités directement plutôt que de les récupérer via les traductions
+    const clientFeatures = [
+      "Browse verified vehicles",
+      "Chauffeur Services",
+      "Secure payment options",
+      "Flexible booking system",
+      "24/7 customer support"
+    ];
+
+    const agencyFeatures = [
+      "Complete fleet management",
+      "Advanced analytics dashboard",
+      "Automated booking system",
+      "Dedicated account manager"
+    ];
+
+    return (
+      <div className="bg-background-light dark:bg-background-dark items-center">
+        <div className="text-center mb-16">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-4 text-text-light dark:text-text-dark"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Our Services
+          </motion.h2>
+          <motion.p
+            className="text-xl text-text-light-secondary dark:text-text-dark-secondary max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Solutions adapted to each type of user
+          </motion.p>
+        </div>
+
+        <ServiceCard
+          title="For Clients"
+          description="Rent vehicles easily and enjoy your trip"
+          features={clientFeatures}
+          cta="Start Renting"
+          image="/assets/clientservice.png"
+          isReversed={false}
+        />
+
+        <hr className="mx-auto mb-24 border-t w-[40%] border-text-primary dark:border-text-dark-secondary" />
+
+        <ServiceCard
+          title="For Agencies"
+          description="Grow your business with our platform"
+          features={agencyFeatures}
+          cta="Join as Agency"
+          image="/assets/orgservice.png"
+          isReversed={false}
         />
       </div>
-    </div>
-  </div>
-</div>
-
-  );
-}
-
-// components/FeaturedVehicles.tsx
- function FeaturedVehicles() {
-
-
-  return (
-    <section className="py-16 w-full  flex flex-col justify-center items-center">
-      <div className="container mx-auto w-full">
-        <div className="text-center mb-12">
-          <span className="text-secondary-text">What we offer</span>
-          <h2 className="text-3xl font-bold text-primary-text">Featured Vehicles</h2>
-        </div>
-      </div>
-      <CarCarousel/>
-    </section>
-  );
-}
-
-// components/AboutSection.tsx
- function AboutSection() {
-    return (
-        <div className="relative flex  items-center rounded-lg p-8 flex-col md:flex-row">
-        <div className="flex  md:bg-white rounded-l-lg h-[370px] items-center">
-            <div className="h-full md:w-[400px] md:h-[70%] inset-y-0 md:left-1/8 md:z-10 md:translate-x-1/4 translate-y-2 bg-gray-200 rounded-lg shadow-lg overflow-hidden">
-                <Image
-                    src="/about_rental.png"
-                    alt="Welcome"
-                    width={500}
-                    height={500}
-                    objectFit="cover"  
-                    className="h-full w-auto fit-cover "
-                />
-            </div>
-        </div>
-
-        {/* Section droite (bleu) */}
-        <div className="flex-[3]  flex justify-start bg-blue-500 p-8  text-white rounded-l-lg md:rounded-l-0   rounded-r-lg h-full">
-            {/* <div className="flex-1 ">
-
-            </div> */}
-            <div className=" flex-[4] md:w-2/3 w-full my-10  md:text-base md:ml-[90px] rounded-lg flex flex-col justify-around text-left">
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
-                    Welcome to Easy Rent
-                </h2>
-                <p className="w-full mb-4">
-                    A small river named Duden flows by their place and supplies it with
-                    the necessary regelialia. It is a paradisematic country, in which
-                    roasted parts of sentences fly into your mouth.
-                </p>
-                <p className=" mb-4">
-                    On her way she met a copy. The copy warned the Little Blind Text, that
-                    where it came from it would have been rewritten a thousand times and
-                    everything that was left from its origin would be the word and and
-                    the Little Blind Text should turn around and return to its own, safe
-                    country.
-                </p>
-                <Link
-                    href="/customer/cars"
-                    className=" font-semibold hover:underline"
-                >
-                    Search Vehicle
-                </Link>
-            </div>
-        </div>
-    </div>
     );
-  }
-  
-  // components/Services.tsx
-  import { DirectionsCar, LocationCity, FlightTakeoff, Public } from '@mui/icons-material';
-  
-  function Services() {
-    const services = [
-      {
-        icon: <DirectionsCar className="text-5xl text-secondary-text" />,
-        title: "Wedding Ceremony",
-        description: "A small river named Duden flows by their place and supplies it with the necessary regelialia."
-      },
-      {
-        icon: <LocationCity className="text-5xl text-secondary-text" />,
-        title: "City Transfer",
-        description: "A small river named Duden flows by their place and supplies it with the necessary regelialia."
-      },
-      {
-        icon: <FlightTakeoff className="text-5xl text-secondary-text" />,
-        title: "Airport Transfer",
-        description: "A small river named Duden flows by their place and supplies it with the necessary regelialia."
-      },
-      {
-        icon: <Public className="text-5xl text-secondary-text" />,
-        title: "Whole City Tour",
-        description: "A small river named Duden flows by their place and supplies it with the necessary regelialia."
-      }
-    ];
-  
-    return (
-      <section className="py-16 rounded-md">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-secondary-text text-sm uppercase tracking-wider">Services</span>
-            <h2 className="text-primary-text text-3xl font-bold mt-2">Our Latest Services</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className=" flex flex-col justify-center items-center text-center">
-                <div className="bg-blue-100 h-[150px] w-[150px] rounded-full flex justify-center mb-4 flex justify-center items-center">
-                  {service.icon}
-                </div>
-                <h3 className="text-primary-text text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-secondary-text ">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-  
+  };
+
   // components/DriverCTA.tsx
    function DriverCTA() {
     return (
       <section className="relative m-8 ">
-        <div 
+        <div
           className="absolute inset-0 rounded-md bg-cover bg-center z-0"
           style={{ backgroundImage: "url('/Ads 2.png')" }}
         >
         </div>
-        
-        
+
+
         <div className="container flex flex-col md:flex-row md:justify-center items-center mx-auto px-4 my-auto relative z-10">
           <div className="h-[430px]">
-            <Image 
-                src="/customer.png" 
+            <Image
+                src="/customer.png"
                 alt="become locator"
                 width={400}
                 height={400}
-                objectFit="contain"  
+                objectFit="contain"
                 className="h-full w-auto"/>
           </div>
-          
+
           <div className="md:w-1/2 ml-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
               Do You Want To Earn With Us? So Don&apos;t Be Late.
@@ -234,11 +255,10 @@ import { PlayCircle } from '@mui/icons-material';
       </section>
     );
   }
-  
+
   // components/Testimonials.tsx
   import { FormatQuote } from '@mui/icons-material';
-import LocationFilterContainer from "@/components/LocationFilter";
-  
+
   function Testimonials() {
     const testimonials = [
       {
@@ -265,10 +285,10 @@ import LocationFilterContainer from "@/components/LocationFilter";
         date: "15/08/2024",
         rate: 4
       }
-      
+
       // Add more testimonials...
     ];
-  
+
     return (
       <section className="py-16 mx-8 ">
         <div className="container mx-auto px-4">
@@ -276,17 +296,17 @@ import LocationFilterContainer from "@/components/LocationFilter";
             <span className="text-secondary-text text-sm uppercase tracking-wider">Testimonial</span>
             <h2 className="text-primary-text text-3xl font-bold mt-2">Happy Clients</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white p-8 rounded-lg  shadow-lg text-center">
                 <div className="flex justify-between w-full">
                     <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mx-auto mb-4">
-                    <Image 
-                        src={testimonial.image} 
+                    <Image
+                        src={testimonial.image ?? '/voiture.png'}
                         alt={testimonial.name}
                         width={400}
-                        height={400}   
+                        height={400}
                         className="w-full h-full object-cover"
                     />
                     </div>
@@ -294,10 +314,10 @@ import LocationFilterContainer from "@/components/LocationFilter";
                         <Stars value={testimonial.rate?? 0} precision={1} />
                         <p>{testimonial.date}</p>
                     </div>
-                    
+
                 </div>
-                
-                
+
+
                 <FormatQuote className="text-primary text-4xl mb-4" />
                 <p className="text-gray-600 mb-4">{testimonial.text}</p>
                 <h4 className="font-bold">{testimonial.name}</h4>
@@ -438,82 +458,9 @@ function Stats() {
   );
 }
 
-  import { LocationOn, Handshake, } from '@mui/icons-material';
 import Stars from "@/components/Stars";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const RentalSteps = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const steps = [
-    {
-      icon: <LocationOn className="text-primary w-8 h-8" />,
-      title: "Choose Your Pickup Location",
-    },
-    {
-      icon: <Handshake className="text-primary w-8 h-8" />,
-      title: "Select the Best Deal",
-    },
-    {
-      icon: <DirectionsCar className="text-primary w-8 h-8" />,
-      title: "Reserve Your Car Rental",
-    }
-  ];
-
-  // Hook pour vérifier si le composant est visible dans la fenêtre
-  useEffect(() => {
-    const handleScroll = () => {
-      const component = document.getElementById("rental-steps");
-      if (component) {
-        const rect = component.getBoundingClientRect();
-        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-          setIsVisible(true);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Vérifie au cas où le composant est déjà visible
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <div
-      id="rental-steps"
-      className={`w-full relative shadow-lg bg-white rounded-md p-6 transition-all duration-1000 ${
-        isVisible ? "top-[-100px] animate-slideIn" : "top-0"
-      }`}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className={`flex flex-col items-center text-center py-4 transition-opacity duration-1000 ${
-              isVisible ? `opacity-100 animate-fadeIn` : ""
-            }`}
-            style={{ animationDelay: `${index * 0.3}s` }} // Délai progressif pour chaque étape
-          >
-            <div className="flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-4">
-              {step.icon}
-            </div>
-            <h3 className="text-lg font-medium text-gray-800">
-              {step.title}
-            </h3>
-          </div>
-        ))}
-      </div>
-
-      <div className="text-center mt-8">
-        <Link href="/customer/cars">
-          <button className="bg-secondary-blue text-white text-xl px-8 py-3 rounded hover:bg-primary-blue transition-colors duration-300">
-            Reserve Your Perfect Car Rental Now
-          </button>
-        </Link>
-      </div>
-    </div>
-  );
-};
 
 function PodcastSection() {
   const podcasts = [
@@ -574,8 +521,8 @@ function PodcastSection() {
                 <p className="text-gray-700 mb-4">
                   {podcast.description}
                 </p>
-                <Link 
-                  href={podcast.url} 
+                <Link
+                  href={podcast.url}
                   className="text-primary hover:text-primary-dark font-semibold"
                 >
                   Listen Now <PlayCircle className="mr-2" />
